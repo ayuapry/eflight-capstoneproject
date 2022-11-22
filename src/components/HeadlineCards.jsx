@@ -2,7 +2,7 @@ import React from 'react'
 
 export const HeadlineCards = () => {
   return (
-    <div className='h-[500px] md:mt-10'>
+    <div className='h-auto'>
         <section className="md:h-full flex items-center text-gray-600 md:mx-16 ">
         <div className="container px-5 py-24 mx-3">
             <p className='text-xl mb-3'>Promotions</p>
