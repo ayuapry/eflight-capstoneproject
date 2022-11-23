@@ -81,7 +81,7 @@ export const Navbar = () => {
                     </div>
                 </div>
                 {/* <Link to='/profile' className='mx-5'><IoMdNotifications size={30} color='black' /></Link> */}
-                <Link to='/login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
+                <Link to='/login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
             </div>
 
             <div className='md:hidden mr-4 cursor-pointer' onClick={handleClick}>
