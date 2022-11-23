@@ -10,3 +10,7 @@
     @apply fixed top-0 z-50;
   }
 }
+
+* {
+  font-family: 'DM Sans', sans-serif;
+}

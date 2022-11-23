@@ -3,6 +3,8 @@ import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai'
 import {IoMdNotifications} from 'react-icons/io'
 import {AiOutlineUser, AiFillHome} from 'react-icons/ai'
 import {Link, useNavigate} from 'react-router-dom'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
 
 export const Navbar = () => {
     const [nav, setNav] = useState(false)
@@ -103,8 +105,8 @@ export const Navbar = () => {
             </div>
 
             <div className='flex flex-rows gap-3 justify-end my-4'>
-                <Link to='/login' className='bg-transparent border-2 border-[#FFE69A] text-black rounded-lg hover:bg-[#FFE69A] font-semibold text-center px-8 py-3 mb-4'>Sign In</Link>
-                <Link to='/register' className='bg-[#FFD24C] border-[#FFD24C] text-black font-bold rounded-lg hover:bg-[#FFE69A] text-center text-white-600 px-8 py-3 mb-4'>Sign Up</Link>
+                <Link to='/Login' className='bg-transparent border-2 border-[#FFE69A] text-black rounded-lg hover:bg-[#FFE69A] font-semibold text-center px-8 py-3 mb-4'>Sign In</Link>
+                <Link to='/Register' className='bg-[#FFD24C] border-[#FFD24C] text-black font-bold rounded-lg hover:bg-[#FFE69A] text-center text-white-600 px-8 py-3 mb-4'>Sign Up</Link>
             </div>
         </ul>
     </div>
