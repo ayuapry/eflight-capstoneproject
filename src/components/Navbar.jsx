@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai'
 import {IoMdNotifications} from 'react-icons/io'
+import {AiOutlineUser, AiFillHome} from 'react-icons/ai'
 import {Link, useNavigate} from 'react-router-dom'
 
 export const Navbar = () => {
@@ -31,7 +32,7 @@ export const Navbar = () => {
     <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg '>
         <div className='px-2 flex justify-between items-center w-full h-full'>
             <div className='flex items-center'>
-                <Link to='/' className='text-3xl font-bold ml-5 sm:text-4xl text-black cursor-pointer '>Binar Air</Link>  
+                <Link to='/' className='text-3xl font-bold ml-5 sm:text-4xl text-[#4ddbff] cursor-pointer '>Binar<span className='text-[#FFD24C]'>Air</span></Link>  
                 <ul className='hidden md:flex'>
                     {/* <li>Pesawat</li>
                     <li>Hotel</li> */}
@@ -43,19 +44,6 @@ export const Navbar = () => {
                 <div className="filter-dropdowns mr-5">
                     <div className="relative inline-block text-left">
                         <div>
-                            {/* <button 
-                                type="button" 
-                                className="inline-flex w-44 md:w-56 justify-between rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm font-medium text-black shadow-sm  focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-100" 
-                                id="menu-button" 
-                                aria-expanded="true" 
-                                aria-haspopup="true"
-                                onClick={() => setSelect(!select)}
-                            >
-                                All Genres
-                            <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                            </svg>
-                            </button> */}
                             <IoMdNotifications size={30} color='black' onClick={() => setSelect(!select)} className='cursor-pointer' />
                         </div>
                         <div 
@@ -74,11 +62,7 @@ export const Navbar = () => {
                                         </a>
                                     ))
                                 } */}
-                                {/* <ul className='mx-5'>
-                                    <li>This is Notification</li>
-                                    <li>This is Notification</li>
-                                    <li>This is Notification</li>
-                                </ul> */}
+
                                 <div className='mt-3'>
                                     <p className='font-semibold'>Lorem, ipsum.</p>
                                     <span>Lorem ipsum dolor sit amet.</span>
@@ -97,7 +81,7 @@ export const Navbar = () => {
                     </div>
                 </div>
                 {/* <Link to='/profile' className='mx-5'><IoMdNotifications size={30} color='black' /></Link> */}
-                <Link to='/register' className='mt-3 mr-5 bg-[#FFD24C] border-2 text-black font-light rounded-lg hover:bg-transparent hover:border-[#FFD24C] text-center  px-8 py-3 mb-4'>Sign Up</Link>
+                <Link to='/login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
             </div>
 
             <div className='md:hidden mr-4 cursor-pointer' onClick={handleClick}>
@@ -105,9 +89,19 @@ export const Navbar = () => {
             </div>
         </div>
         <ul className={!nav ? 'hidden' : 'absolute bg-white w-full px-7 text-black pb-10 '}>
-            <li className='border-b-2 py-2 border-[#FFE69A] w-full'>Pesawat</li>
-            <li className='border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/profile'>Profile</Link></li>
-           
+        <div className='flex items-center gap-2'>
+                <AiFillHome />
+                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/'>Home</Link></li>
+            </div>
+            <div className='flex items-center gap-2'>
+                <AiOutlineUser />
+                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/profile'>Profile</Link></li>
+            </div>
+            <div className='flex items-center gap-2'>
+                <IoMdNotifications />
+                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/notification'>Notification</Link></li>
+            </div>
+
             <div className='flex flex-rows gap-3 justify-end my-4'>
                 <Link to='/login' className='bg-transparent border-2 border-[#FFE69A] text-black rounded-lg hover:bg-[#FFE69A] font-semibold text-center px-8 py-3 mb-4'>Sign In</Link>
                 <Link to='/register' className='bg-[#FFD24C] border-[#FFD24C] text-black font-bold rounded-lg hover:bg-[#FFE69A] text-center text-white-600 px-8 py-3 mb-4'>Sign Up</Link>

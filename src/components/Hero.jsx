@@ -9,9 +9,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import Banner1 from '../assets/Banner1.jpg'
+import Banner2 from '../assets/Banner2.jpg'
+import Banner3 from '../assets/Banner3.jpg'
+
 export const Hero = () => {
   return (
-    <div className='pt-[100px] mx-5 lg:mx-[100px]'>
+    <div className='lg:bg-gradient-to-b from-[#4ddbff] to-white rounded-t-[400px] mt-[100px]  '>
+    <div className='mx-5 lg:mx-[100px] -pt-[100px]'>
     <Swiper
       // install Swiper modules
       modules={[Pagination, Scrollbar, A11y]}
@@ -23,14 +28,16 @@ export const Hero = () => {
       onSlideChange={() => console.log('slide change')}
     >
         <SwiperSlide>
-            <div className=''>
-                <img className='h-[150px] md:h-[400px] w-full rounded-lg object-cover' src="https://images.pexels.com/photos/7267852/pexels-photo-7267852.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=400&h=250&fit=crop&crop=focalpoint" alt="" />
-            </div>
+            <img className='h-[150px] md:h-[500px] w-full rounded-lg object-cover' src={Banner1} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-            <img className='h-[150px] md:h-[400px] w-full rounded-lg object-cover' src="https://images.pexels.com/photos/2441454/pexels-photo-2441454.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
+            <img className='h-[150px] md:h-[500px] w-full rounded-lg object-cover' src={Banner2} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+            <img className='h-[150px] md:h-[500px] w-full rounded-lg object-cover' src={Banner3} alt="" />
         </SwiperSlide>
     </Swiper>
+    </div>
     </div>
   )
 }

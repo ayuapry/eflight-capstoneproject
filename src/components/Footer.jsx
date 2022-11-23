@@ -1,11 +1,11 @@
 import React from 'react'
-import BinarLogo from '../image/BinarLogo.png'
+import BinarLogo from '../assets/BinarLogo.png'
 import { SiFacebook, SiYoutubemusic, SiLinkedin } from 'react-icons/si';
 import { FaInstagramSquare } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-      <div className="FooterWrap bg-blue-50">
+      <div className="FooterWrap bg-[#4ddbff]/20">
         <div className='FooterImg px-[3rem] md:px-[7rem] py-[2rem] md:py-[2rem]'>
           <img 
             className='w-[10rem]'
