@@ -9,7 +9,8 @@ const ButtonPrimary = (props) => {
         //     onClick={props.click}
         //     htmlType={props.type}
 		// > {props.title} </Button>
-        <button type="submit" className="w-full text-slate-700 font-bold bg-[#FFD24C] hover:bg-[#FFE69A] focus:outline-none focus:ring-2 focus:ring-[#FFE69A] rounded-full text-sm px-5 py-2.5 text-center mr-2">
+        <button type="submit" className="w-full text-slate-700 font-bold bg-[#FFD24C] hover:bg-[#FFE69A] focus:outline-none focus:ring-2 focus:ring-[#FFE69A] rounded-full text-sm px-5 py-2.5 text-center"
+        onClick={props.click}>
         {props.title}</button>
     );
 };

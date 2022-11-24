@@ -11,15 +11,16 @@ export default function Register() {
   
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        navigate('/')
     };
 
   return (
-    <div className='grid lg:grid-cols-2 items-center h-screen'>
-        <div className='hidden p-2 lg:w-[120%] lg:block'>
+    <div className='grid lg:grid-cols-2 items-center h-screen px-6'>
+        <div className='hidden lg:w-[120%] lg:block'>
             <img src={LoginBg} />
         </div>
         <div className='items-center pt-auto pb-auto'>
-        <div className='lg:ml-auto lg:mr-6 mx-4 rounded-lg lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
+        <div className='lg:ml-auto lg:mr-6 rounded-lg lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
             <h1 className='text-2xl font-bold mb-6 text-slate-700'>Create your account</h1>
                   <Form
                       form={form}

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai'
 import {IoMdNotifications} from 'react-icons/io'
 import {AiOutlineUser, AiFillHome} from 'react-icons/ai'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, Navigate, useNavigate} from 'react-router-dom'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import ButtonPrimary from './ButtonPrimary'
 
 export const Navbar = () => {
+    const navigate = useNavigate()
     const [nav, setNav] = useState(false)
     const [select, setSelect] = useState('')
     const handleClick = () => setNav(!nav)
@@ -31,17 +33,17 @@ export const Navbar = () => {
 
     return (
     <header className={`${isScrolled && 'bg-[#ffff] shadow-lg'}`}>
-    <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg '>
-        <div className='px-2 flex justify-between items-center w-full h-full'>
+    <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg'>
+        <div className='px-8 lg:px-16 flex justify-between items-center w-full h-full'>
             <div className='flex items-center'>
-                <Link to='/' className='text-3xl font-bold ml-5 sm:text-4xl text-[#4ddbff] cursor-pointer '>Binar<span className='text-[#FFD24C]'>Air</span></Link>  
+                <Link to='/' className='text-3xl font-bold sm:text-4xl text-[#4ddbff] cursor-pointer '>Binar<span className='text-[#FFD24C]'>Air</span></Link>  
                 <ul className='hidden md:flex'>
                     {/* <li>Pesawat</li>
                     <li>Hotel</li> */}
                 </ul>
             </div>
             
-            <div className='hidden md:flex pr-4 items-center'>
+            <div className='hidden md:flex items-center'>
                 {/* <p>{userData?.displayName}</p> */}
                 <div className="filter-dropdowns mr-5">
                     <div className="relative inline-block text-left">
@@ -83,7 +85,8 @@ export const Navbar = () => {
                     </div>
                 </div>
                 {/* <Link to='/profile' className='mx-5'><IoMdNotifications size={30} color='black' /></Link> */}
-                <Link to='/login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
+                {/* <Link to='/Login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link> */}
+                <ButtonPrimary click={()=>navigate('/Login')} title="Login" />
             </div>
 
             <div className='md:hidden mr-4 cursor-pointer' onClick={handleClick}>
