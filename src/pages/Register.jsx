@@ -4,6 +4,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import ButtonPrimary from '../components/ButtonPrimary';
 import LoginBg from '../assets/login.png';
 import { useNavigate } from 'react-router-dom';
+import { SecondFooter } from '../components/SecondFooter';
 
 export default function Register() {
     const navigate = useNavigate()
@@ -14,12 +15,13 @@ export default function Register() {
     };
 
   return (
+  <div>
     <div className='grid lg:grid-cols-2 items-center h-screen'>
-        <div className='hidden p-2 lg:w-[120%] lg:block'>
+        <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
         </div>
         <div className='items-center pt-auto pb-auto'>
-        <div className='lg:ml-auto lg:mr-6 mx-4 rounded-lg lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
+        <div className='lg:ml-auto lg:mr-20 mx-4 rounded-lg lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
             <h1 className='text-2xl font-bold mb-6 text-slate-700'>Create your account</h1>
                   <Form
                       form={form}
@@ -116,6 +118,8 @@ export default function Register() {
         <div className='px-4 lg:hidden'>
             <img src={LoginBg} />
         </div>
+    </div>
+    <SecondFooter />
     </div>
   )
 }
