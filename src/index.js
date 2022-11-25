@@ -7,6 +7,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { NotificationPage } from "./pages/NotificationPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Detail from "./pages/Detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/Register" element={<Register/>} />
         <Route path="/Login" element={<Login/>} />
+        <Route path="/Detail" element={<Detail/>} />
       </Routes>
   </BrowserRouter>
 );
