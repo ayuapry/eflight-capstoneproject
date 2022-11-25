@@ -30,17 +30,17 @@ export const Navbar = () => {
 
     return (
     <header className={`${isScrolled && 'bg-[#ffff] shadow-lg'}`}>
-    <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg '>
-        <div className='px-2 flex justify-between items-center w-full h-full'>
+    <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg'>
+        <div className='px-8 lg:px-16 flex justify-between items-center w-full h-full'>
             <div className='flex items-center'>
-                <Link to='/' className='text-3xl font-bold ml-5 sm:text-4xl text-[#4ddbff] cursor-pointer '>Binar<span className='text-[#FFD24C]'>Air</span></Link>  
+                <Link to='/' className='text-3xl font-bold sm:text-4xl text-[#4ddbff] cursor-pointer '>Binar<span className='text-[#FFD24C]'>Air</span></Link>  
                 <ul className='hidden md:flex'>
                     {/* <li>Pesawat</li>
                     <li>Hotel</li> */}
                 </ul>
             </div>
             
-            <div className='hidden md:flex pr-4 items-center'>
+            <div className='hidden md:flex items-center'>
                 {/* <p>{userData?.displayName}</p> */}
                 <div className="filter-dropdowns mr-5">
                     <div className="relative inline-block text-left">
@@ -82,10 +82,10 @@ export const Navbar = () => {
                     </div>
                 </div>
                 {/* <Link to='/profile' className='mx-5'><IoMdNotifications size={30} color='black' /></Link> */}
-                <Link to='/login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
+                <Link to='/login' className='mt-3 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
             </div>
 
-            <div className='md:hidden mr-4 cursor-pointer' onClick={handleClick}>
+            <div className='md:hidden cursor-pointer' onClick={handleClick}>
                 {!nav ? <AiOutlineMenu color='black' size={30} className='cursor-pointer' /> : <AiOutlineClose color='black' size={40} className='w-5 cursor-pointer ' />}
             </div>
         </div>

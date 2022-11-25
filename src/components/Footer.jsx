@@ -13,7 +13,7 @@ const Footer = () => {
             alt="BinarLogo" />
         </div>
 
-          <div className='FooterText flex justify-between flex-row px-[3rem] md:px-[7rem] pb-[1.5rem] md:pb-[4rem]'>
+          <div className='FooterText flex justify-between flex-row px-[3rem] md:px-16 pb-[1.5rem] md:pb-[4rem]'>
             <div className="FooterOne">
               <h2 className='text-blue-800 text-[1.2rem] font-bold pb-5'>
                 BinarAir
