@@ -19,10 +19,12 @@ export const Hero = () => {
     <div className='mx-8 lg:mx-16'>
     <Swiper
       // install Swiper modules
-      modules={[Pagination, A11y]}
+      modules={[Pagination, Scrollbar, A11y]}
       spaceBetween={10}
       slidesPerView={1}
+      Navigation
       pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
     >

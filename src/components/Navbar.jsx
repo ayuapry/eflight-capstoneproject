@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai'
-import {IoMdNotifications} from 'react-icons/io'
-import {AiOutlineUser, AiFillHome} from 'react-icons/ai'
-import {Link, Navigate, useNavigate} from 'react-router-dom'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-import ButtonPrimary from './ButtonPrimary'
+import {IoMdNotifications, IoMdNotificationsOutline} from 'react-icons/io'
+import {AiOutlineUser, AiOutlineHome} from 'react-icons/ai'
+import {MdOutlineReceiptLong} from 'react-icons/md'
+import {Link} from 'react-router-dom'
+
 
 export const Navbar = () => {
-    const navigate = useNavigate()
     const [nav, setNav] = useState(false)
     const [select, setSelect] = useState('')
     const handleClick = () => setNav(!nav)
     const [isScrolled, setIsScrolled] = useState(false)
-    // const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -79,32 +76,35 @@ export const Navbar = () => {
                                     <p className='font-semibold'>Lorem, ipsum.</p>
                                     <span>Lorem ipsum dolor sit amet.</span>
                                 </div>
-                                <p className='flex justify-end mt-6 text-blue-400 cursor-pointer'>view all ...</p>
+                                <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200'>view all ...</Link>
                             </div>
                         </div>
                     </div>
                 </div>
                 {/* <Link to='/profile' className='mx-5'><IoMdNotifications size={30} color='black' /></Link> */}
-                {/* <Link to='/Login' className='mt-3 mr-5 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link> */}
-                <ButtonPrimary click={()=>navigate('/Login')} title="Login" />
+                <Link to='/login' className='mt-3 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
             </div>
 
-            <div className='md:hidden mr-4 cursor-pointer' onClick={handleClick}>
+            <div className='md:hidden cursor-pointer' onClick={handleClick}>
                 {!nav ? <AiOutlineMenu color='black' size={30} className='cursor-pointer' /> : <AiOutlineClose color='black' size={40} className='w-5 cursor-pointer ' />}
             </div>
         </div>
         <ul className={!nav ? 'hidden' : 'absolute bg-white w-full px-7 text-black pb-10 '}>
-        <div className='flex items-center gap-2'>
-                <AiFillHome />
+            <div className='flex items-center gap-2'>
+                <AiOutlineHome />
                 <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/'>Home</Link></li>
+            </div>
+            <div className='flex items-center gap-2'>
+                <IoMdNotificationsOutline />
+                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/notification'>Notification</Link></li>
             </div>
             <div className='flex items-center gap-2'>
                 <AiOutlineUser />
                 <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/profile'>Profile</Link></li>
             </div>
             <div className='flex items-center gap-2'>
-                <IoMdNotifications />
-                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/notification'>Notification</Link></li>
+                <MdOutlineReceiptLong />
+                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/history'>Order History</Link></li>
             </div>
 
             <div className='flex flex-rows gap-3 justify-end my-4'>

@@ -5,8 +5,8 @@ import { FaInstagramSquare } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-      <div className="FooterWrap bg-[#4ddbff]/20">
-        <div className='FooterImg px-[3rem] md:px-20 py-[2rem] md:py-[2rem]'>
+      <div className="FooterWrap bg-gray-100">
+        <div className='FooterImg px-[3rem] md:px-[7rem] py-[2rem] md:py-[2rem]'>
           <img 
             className='w-[10rem]'
             src={BinarLogo} 
@@ -135,7 +135,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <p className='text-center pb-10 '>Copyright © 2022 BinarAir</p>
         </div>
   )
 }
