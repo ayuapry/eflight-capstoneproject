@@ -4,13 +4,13 @@ import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
 export const HeadlineCards = () => {
   return (
     <div>
-    <div className='h-auto'>
+    <div className='h-auto bg-slate-50'>
         <section className="md:h-full flex items-center md:mx-16 ">
         <div className="container px-5 py-14 mx-3 md:mx-0">
             <p className='text-3xl mb-10 text-center font-bold'>Promotions</p>
             <div className="flex flex-wrap -m-4">
                 <div className="p-4 sm:w-1/2 lg:w-1/4">
-                    <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <div className="h-full border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img className="lg:h-40 w-full object-cover object-center scale-100 hover:scale-110 ease-in duration-300"
                             src="https://picsum.photos/id/188/720/400" alt="blog" />
                         <div className="p-6 hover:bg-gray-200 hover:text-black transition duration-300 ease-in">
@@ -21,7 +21,7 @@ export const HeadlineCards = () => {
                 </div>
                 
                 <div className="p-4 sm:w-1/2 lg:w-1/4">
-                    <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <div className="h-full border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img className="lg:h-40 w-full object-cover object-center scale-100 hover:scale-110 ease-in duration-300"
                             src="https://picsum.photos/id/1016/720/400" alt="blog" />
                         <div className="p-6 hover:bg-gray-200 hover:text-black transition duration-300 ease-in">
@@ -32,7 +32,7 @@ export const HeadlineCards = () => {
                 </div>
                
                 <div className="p-4 sm:w-1/2 lg:w-1/4">
-                    <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <div className="h-full border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img className="lg:h-40 w-full object-cover object-center scale-100 hover:scale-110 ease-in duration-300"
                             src="https://picsum.photos/id/11/367/267" alt="blog" />
                         <div className="p-6 hover:bg-gray-200 hover:text-black transition duration-300 ease-in">
@@ -42,7 +42,7 @@ export const HeadlineCards = () => {
                     </div>
                 </div>
                 <div className="p-4 sm:w-1/2 lg:w-1/4">
-                    <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <div className="h-full border-2 bg-white border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img className="lg:h-40 w-full object-cover object-center scale-100 hover:scale-110 ease-in duration-300"
                             src="https://picsum.photos/id/11/367/267" alt="blog" />
                         <div className="p-6 hover:bg-gray-200 hover:text-black transition duration-300 ease-in">
@@ -55,8 +55,9 @@ export const HeadlineCards = () => {
         </div>
     </section>
     </div>
-    <p className='text-center pb-10 text-3xl font-bold'>Discover further services</p>
-    <div className='bg-white px-10 md:px-16 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
+    <div className='bg-slate-50'>
+    <p className='text-center text-3xl pb-5 font-bold'>Discover further services</p>
+    <div className='bg-slate-50 px-0 md:px-16 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
         <div className='flex flex-col items-center'>
             <MdAirlineSeatLegroomExtra size={50}  className='mb-5'/>
             <p className='font-semibold text-center'>ADITIONAL SEAT</p>
@@ -77,6 +78,7 @@ export const HeadlineCards = () => {
             <p className='font-semibold text-center'>CABIN UPGRADE</p>
             <h3 className='font-light'>Treat yourself to an upgrade and enjoy better amenities for your flight</h3>
         </div>
+    </div>
     </div>
     </div>
   )
