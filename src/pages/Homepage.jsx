@@ -13,7 +13,7 @@ export const Homepage = () => {
     <div>
        <Navbar />
        <Hero />
-       <ButtonPrimary title="Detail" click={()=>navigate('/Detail')} />
+       {/* <ButtonPrimary title="Detail" click={()=>navigate('/Detail')} /> */}
        <HeadlineCards />
        <Footer/>
        <SecondFooter />

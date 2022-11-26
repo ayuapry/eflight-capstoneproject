@@ -70,7 +70,7 @@ export default function Login() {
                     <ButtonBorder title="Login With Google" />
                     <div className='flex'>
                     <p className='mr-2 mt-4 mb-0 text-slate-700'>Don't have an accout?</p>
-                    <a className='text-[#46B3E6] mt-4 mb-0 hover:font-bold hover:text-[#46B3E6]' onClick={() => navigate(`/Register`)}> Register </a>
+                    <a className='text-sky-600 mt-4 mb-0 hover:font-bold hover:text-sky-500' onClick={() => navigate(`/Register`)}> Register </a>
                     </div>
                   </Form.Item>
               </Form>
