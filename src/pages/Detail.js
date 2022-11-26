@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { ChevronUpIcon, ShoppingBagIcon, WifiIcon } from '@heroicons/react/24/outline'
 import { Disclosure } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Detail() {
+  const navigate = useNavigate()
   return (
     <Disclosure>
       <div className='w-screen p-16'>
@@ -17,6 +19,9 @@ export default function Detail() {
         </div>
         <div>
             <p>23j5m</p>
+            <div>
+            <div className='border-b-[1.5px] w-16 border-gray-400 -mt-2 mb-2'></div>
+            </div>
             <p>2 stop</p>
         </div>
         <div>
@@ -30,13 +35,30 @@ export default function Detail() {
         </div>
         <div className='w-fit'>
         <h1 className='font-bold text-lg'>Rp. 2.500.000 / <span className='text-sm font-normal'>org</span></h1>
-        <ButtonPrimary title="Beli Sekarang" />
+        <ButtonPrimary title="Beli Sekarang" click={()=>navigate('/')} />
         </div>
         </div>
-        <div className="mx-auto w-full rounded-2xl bg-white p-2">
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                If you're unhappy with your purchase for any reason, email us
-                within 90 days and we'll refund you in full, no questions asked.
+        <div className="mx-auto w-full rounded-2xl bg-white">
+              <Disclosure.Panel className="flex pt-4 h-48 text-left">
+                <div className='flex flex-col justify-between h-48'>
+                <p className='text-sm'>20.00 <br /> 28 Nov</p>
+
+                <p className='text-sm'>23j5m</p>
+                
+                <p className='text-sm'>10:45 <br /> 29 Nov</p>
+                </div>
+
+                <div className='flex flex-col justify-between ml-6 items-center'>
+                <div className='rounded-full p-1 bg-gray-400 h-2'></div>
+                <div className='border-l-2 h-full'></div>
+                <div className='rounded-full p-1 bg-gray-400 h-2'></div>
+                </div>
+
+                <div className='flex flex-col justify-between ml-6 h-48'>
+                  <p>Jakarta <br/><span>Bandara Internasional Soekarno Hatta (CGK)</span></p>
+                  <p className='p-4 bg-slate-100 rounded-md'>Indonesia BinarAir, QZ 7518</p>
+                  <p>Bali <br/><span>Bandara Internasional Denpasar Ngurah Rai (DPS)</span></p>
+                </div>
               </Disclosure.Panel>
         </div>
     </Disclosure.Button>
