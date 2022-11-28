@@ -57,7 +57,7 @@ export const HeadlineCards = () => {
     </div>
     <div className='bg-slate-50'>
     <p className='text-center text-3xl pb-5 font-bold'>Discover further services</p>
-    <div className='bg-slate-50 px-0 md:px-16 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
+    <div className='bg-slate-50 px-10 md:px-20 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
         <div className='flex flex-col items-center'>
             <MdAirlineSeatLegroomExtra size={50}  className='mb-5'/>
             <p className='font-semibold text-center'>ADITIONAL SEAT</p>
