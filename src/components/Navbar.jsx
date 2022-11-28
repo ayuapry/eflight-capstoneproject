@@ -3,7 +3,8 @@ import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai'
 import {IoMdNotifications, IoMdNotificationsOutline} from 'react-icons/io'
 import {AiOutlineUser, AiOutlineHome} from 'react-icons/ai'
 import {MdOutlineReceiptLong} from 'react-icons/md'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import ButtonPrimary from './ButtonPrimary'
 
 
 export const Navbar = () => {
@@ -11,6 +12,7 @@ export const Navbar = () => {
     const [select, setSelect] = useState('')
     const handleClick = () => setNav(!nav)
     const [isScrolled, setIsScrolled] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -29,11 +31,11 @@ export const Navbar = () => {
 
 
     return (
-    <header className={`${isScrolled && 'bg-[#ffff] shadow-lg'}`}>
+    <header className={`${isScrolled && 'bg-white shadow-lg'}`}>
     <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg'>
         <div className='px-8 lg:px-16 flex justify-between items-center w-full h-full'>
             <div className='flex items-center'>
-                <Link to='/' className='text-3xl font-bold sm:text-4xl text-[#4ddbff] cursor-pointer '>Binar<span className='text-[#FFD24C]'>Air</span></Link>  
+                <Link to='/' className='text-3xl font-bold sm:text-4xl text-sky-600 cursor-pointer '>Binar<span className='text-yellow-400'>Air</span></Link>  
                 <ul className='hidden md:flex'>
                     {/* <li>Pesawat</li>
                     <li>Hotel</li> */}
@@ -82,7 +84,8 @@ export const Navbar = () => {
                     </div>
                 </div>
                 {/* <Link to='/profile' className='mx-5'><IoMdNotifications size={30} color='black' /></Link> */}
-                <Link to='/login' className='mt-3 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link>
+                <ButtonPrimary title='sign in' className='font-light' click={() => navigate('/login')} />
+                {/* <Link to='/login' className='mt-3 bg-[#FFD24C] text-black font-light rounded-lg hover:bg-transparent hover:bg-[#FFE69A] text-center  px-8 py-3 mb-4'>Sign In</Link> */}
             </div>
 
             <div className='md:hidden cursor-pointer' onClick={handleClick}>
@@ -100,12 +103,12 @@ export const Navbar = () => {
             </div>
             <div className='flex items-center gap-2'>
                 <AiOutlineUser />
-                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/profile'>Profile</Link></li>
+                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/history'>Profile</Link></li>
             </div>
-            <div className='flex items-center gap-2'>
+            {/* <div className='flex items-center gap-2'>
                 <MdOutlineReceiptLong />
                 <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/history'>Order History</Link></li>
-            </div>
+            </div> */}
 
             <div className='flex flex-rows gap-3 justify-end my-4'>
                 <Link to='/Login' className='bg-transparent border-2 border-[#FFE69A] text-black rounded-lg hover:bg-[#FFE69A] font-semibold text-center px-8 py-3 mb-4'>Sign In</Link>
