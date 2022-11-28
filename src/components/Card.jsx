@@ -96,7 +96,7 @@ const Card = () => {
 
   return (
     <div className='bg-slate-50 pt-10 pb-10'>
-        <div className='CardWrap bg-sky-600 mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
+        <div className='CardWrap bg-sky-500 mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
