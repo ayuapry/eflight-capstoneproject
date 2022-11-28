@@ -7,9 +7,9 @@ import { ImManWoman } from 'react-icons/im';
 import { FaBabyCarriage, FaChild } from 'react-icons/fa';
 import { Calendar } from 'react-date-range'
 import format from 'date-fns/format'
-
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
+import { useNavigate } from 'react-router-dom';
 
 const Card = () => {
     const [city, setCity] = useState(null)
@@ -30,6 +30,7 @@ const Card = () => {
     const [countD, setCountD] = useState(0);
     const [countA, setCountA] = useState(0);
     const [countB, setCountB] = useState(0);
+    const navigate = useNavigate()
     // get the target element to toggle 
     const refOne = useRef(null)
     const result = useRef()
@@ -472,13 +473,13 @@ const Card = () => {
             <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem]">
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
-                        <BiSearchAlt className='flex items-center text-[1.4rem] md:mr-2'/>
+                        <BiSearchAlt color='white' className='flex items-center text-[1.4rem] md:mr-2'/>
                     </span>
                     <button
                         className='flex items-center' 
                         type="submit">
                         {/* Cari Tiket */}
-                        <h2 className='hidden md:flex fontMont text-[0.9rem] font-bold mb-0'>
+                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-white' onClick={()=>navigate('/Detail')} >
                            Find Tickets
                         </h2>
                     </button>
