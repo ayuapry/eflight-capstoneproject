@@ -9,8 +9,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import { HistoryPage } from "./pages/HistoryPage";
-import { HistoryPage } from "./pages/HistoryPage";
-import Detail from "./pages/Detail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +20,6 @@ root.render(
         <Route path="/Register" element={<Register/>} />
         <Route path="/Login" element={<Login/>} />
         <Route path="/Detail" element={<Detail/>} />
-        <Route path="/Detail" element={<Detail />} />
         <Route path="/history" element={<HistoryPage/>} />
       </Routes>
   </BrowserRouter>
