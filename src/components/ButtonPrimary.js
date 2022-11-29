@@ -1,6 +1,4 @@
-import React from "react";
-// import { Button } from "antd";
-// import { PlayCircleOutlined } from "@ant-design/icons";
+import React from 'react';
 
 const ButtonPrimary = (props) => {
   return (

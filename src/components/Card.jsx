@@ -7,9 +7,9 @@ import { ImManWoman } from 'react-icons/im';
 import { FaBabyCarriage, FaChild } from 'react-icons/fa';
 import { Calendar } from 'react-date-range'
 import format from 'date-fns/format'
-
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
+import { useNavigate } from 'react-router-dom';
 
 const Card = () => {
     const [city, setCity] = useState(null)
@@ -30,6 +30,7 @@ const Card = () => {
     const [countD, setCountD] = useState(0);
     const [countA, setCountA] = useState(0);
     const [countB, setCountB] = useState(0);
+    const navigate = useNavigate()
     // get the target element to toggle 
     const refOne = useRef(null)
     const result = useRef()
@@ -94,8 +95,8 @@ const Card = () => {
         
 
   return (
-    <div>
-        <div className='CardWrap bg-[#e3f9ff] mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
+    <div className='bg-slate-50 pt-10 pb-10'>
+        <div className='CardWrap bg-sky-500 mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
@@ -103,22 +104,22 @@ const Card = () => {
                 src={Logo} 
                 alt="BinarLogo" />
                 <h1
-                className='fontMont text-[1.3rem] text-[#0099b7] font-extrabold px-[0.5rem] mb-0'>
-                Cari Tiket Pesawat
+                className='fontMont text-[1.3rem] text-white font-extrabold px-[0.5rem] mb-0'>
+                Find Filghts Tickets
                 </h1>
             </div>
 
-            <div>
+            <div className='text-white'>
                 <form className='px-[1.5rem] md:px-[4rem] mb-[1rem] md:mb-[2rem]'
                     onClick={() => setHidden(!hidden)} >
-                    <input type="radio" id='sekali' name="Sekali" value="SekaliJalan" />
-                    <label for="sekali" className='p-2 mr-5'>
-                        Sekali Jalan
+                    <input type="radio" id='OW' name="OneWay" value="OneWay" />
+                    <label for="OneWay" className='p-2 mr-5'>
+                        One Way
                     </label>
                     
-                    <input type="radio" id="PP" name="Sekali" value="PulangPergi" />
-                    <label for="PP" className='p-2'>
-                        Pulang Pergi
+                    <input type="radio" id="RT" name="RoundTrip" value="RoundTrip" />
+                    <label for="RpundTrip" className='p-2'>
+                        RoundTrip
                     </label>
                 </form>
             </div>
@@ -126,16 +127,16 @@ const Card = () => {
             <div className='flex flex-col justify-between md:flex-row px-[1.5rem] md:px-[4rem] md:border-double md:border-y-2 md:border-[#0099b7]'>
                 <div className='flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-[#0099b7] md:py-2'>
                     <div className="flex w-full flex-col md:flex-row md:items-center md:pr-[4rem] mb-3 md:mb-0">
-                        <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%]'>
-                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>Dari</h2>
+                        <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-white'>
+                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>From</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-black hover:border-[#0099b7] transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                                className='relative flex flex-col cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
                                 <div 
                                     onClick={() => setOpen(!open)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                    <TbPlaneDeparture className='mr-3 text-[1.5rem] text-[#0099b7]'/>
+                                    <TbPlaneDeparture className='mr-3 text-[1.5rem] text-white'/>
                                     <p className='fontMont text-[0.9rem] w-full wmd:w-40 md:truncate mb-0'>
-                                        {selectCity ? selectCity : "Pilih Kota Disini"}
+                                        {selectCity ? selectCity : "City or Airport"}
                                     </p>
                                 </div>
                                 <div className='absolute bottom-[-16.2rem] z-30'>
@@ -145,17 +146,17 @@ const Card = () => {
                                             <input 
                                                 className='fontMont text-[0.9rem] outline-[#0099b7]'
                                                 type="text" value={inputCity}
-                                                placeholder='Kota Asal di Sini'
+                                                placeholder='Select City or Airport'
                                                 onChange={(e) =>setInputCity(e.target.value.toLocaleLowerCase())} 
                                             />
                                             <RiCloseFill 
-                                                className='text-[1.5rem] cursor-pointer text-gray-300 hover:text-blue-400'
+                                                className='text-[1.5rem] cursor-pointer text-gray-300  hover:text-blue-400'
                                                 onClick={() => setOpen(!open)} />
                                         </div>
                                         
                                         {city?.map((e) => (
                                         <li key={e?.name}
-                                            className={`fontMont text-[0.9rem] pb-1 hover:bg-sky-50 w-full md:w-40 md:truncate ${e?.name?.toLowerCase().startsWith(inputCity) ? "block" : "hidden"}`}
+                                            className={`fontMont text-[0.9rem] text-black pb-1 hover:bg-sky-50 w-full md:w-40 md:truncate ${e?.name?.toLowerCase().startsWith(inputCity) ? "block" : "hidden"}`}
                                             onClick={() => {
                                                 if(e?.name?.toLowerCase() !== selectCity.toLowerCase()) {
                                                     setSelectCity(e?.name);
@@ -174,16 +175,16 @@ const Card = () => {
                             </div>
                         </div>
 
-                        <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] '>
-                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>Ke</h2>
+                        <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-white '>
+                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>To</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-black hover:border-[#0099b7] transition-all duration-[0.2s] ease-linear rounded-md'>
+                                className='relative flex flex-col cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md'>
                                 <div 
                                     onClick={() => setOpenTo(!openTo)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                    <TbPlaneInflight className='mr-3 text-[1.5rem] text-[#0099b7]'/>
+                                    <TbPlaneInflight className='mr-3 text-[1.5rem] text-white'/>
                                     <p className='fontMont text-[0.9rem] w-full md:w-40 md:truncate mb-0'>
-                                        {selectCityTo ? selectCityTo : "Mau Ke Mana?"}
+                                        {selectCityTo ? selectCityTo : "Going Anywhere?"}
                                     </p>
                                 </div>
                                 <div className='absolute bottom-[-16.2rem] z-30'>
@@ -193,7 +194,7 @@ const Card = () => {
                                             <input 
                                                 className='fontMont text-[0.9rem] outline-[#0099b7]'
                                                 type="text" value={inputCityTo}
-                                                placeholder='Mau ke Mana?'
+                                                placeholder='Going Anywhere?'
                                                 onChange={(e) =>setInputCityTo(e.target.value.toLocaleLowerCase())} 
                                             />
                                             <RiCloseFill 
@@ -203,7 +204,7 @@ const Card = () => {
                                         
                                         {city?.map((e) => (
                                         <li key={e?.name}
-                                            className={`fontMont text-[0.9rem] pb-1 hover:bg-sky-50 w-full md:w-40 md:truncate ${e?.name?.toLowerCase().startsWith(inputCityTo) ? "block" : "hidden"}`}
+                                            className={`fontMont text-[0.9rem] text-black pb-1 hover:bg-sky-50 w-full md:w-40 md:truncate ${e?.name?.toLowerCase().startsWith(inputCityTo) ? "block" : "hidden"}`}
                                             onClick={() => {
                                                 if(e?.name?.toLowerCase() !== selectCityTo.toLowerCase()) {
                                                     setSelectCityTo(e?.name);
@@ -224,14 +225,14 @@ const Card = () => {
                     </div>
                 
                     <div className='flex items-center'>
-                        <div className='DateWrap flex flex-col md:flex-row md:items-center mb-3 md:mb-1 w-full md:pr-[4rem]'>
+                        <div className='DateWrap flex flex-col md:flex-row md:items-center mb-3 md:mb-1 w-full md:pr-[4rem] text-white'>
                             <div className='flex flex-col mb-3 md:mb-0 md:w-[50%]'>
-                                <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>Berangkat</h2>
+                                <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>Departure</h2>
                                 <div className='relative flex flex-col justify-center md:mr-[1rem]'>
                                     <div
                                         ref={refOne}
-                                        className='tranform flex flex-row cursor-pointer border-2 border-black hover:border-[#0099b7] transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
-                                        <TbCalendarEvent className='mr-3 text-[1.5rem] text-[#0099b7]'/>
+                                        className='tranform flex flex-row cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
+                                        <TbCalendarEvent className='mr-3 text-[1.5rem] text-white'/>
                                         <input
                                             className="inputBox outline-none bg-transparent cursor-pointer"
                                             value={ calendar }
@@ -260,7 +261,7 @@ const Card = () => {
                                         onClick={() => setHidden(false)} />
                                     <h2
                                         className='fontMont text-[0.9rem] font-bold hidden md:flex flex-col md:flex-row'>
-                                        Pulang
+                                        Return
                                     </h2>
                                 </div>
                                 <div className="relative flex flex-col justify-center">
@@ -268,7 +269,7 @@ const Card = () => {
                                         ref={refOne}
                                         className={`flex flex-row cursor-pointer border-2 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem] 
                                         ${hidden? "border-black hover:border-[#0099b7]" : "border-gray-300"}`}>
-                                        <TbCalendarStats className='mr-3 text-[1.5rem] text-[#0099b7]'/>
+                                        <TbCalendarStats className='mr-3 text-[1.5rem] text-white'/>
                                         <input
                                             className={`inputBox outline-none bg-transparent cursor-pointer
                                             ${hidden? "text-black" : "text-gray-300" }`}
@@ -297,18 +298,18 @@ const Card = () => {
 
                     <div className="AirClass flex flex-col w-full md:w-[50%] md:pl-[4rem] py-2">
                         <div className="jPenumpang">
-                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>Penumpang & Kelas Kabin</h2>
+                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem] text-white'>Passenger & Cabin Class</h2>
                         </div>
 
-                        <div className="relative flex flex-col cursor-pointer border-2 border-black hover:border-[#0099b7] transition-all duration-[0.2s] ease-linear rounded-md mr-[1rem]'">
-                            <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem]'
+                        <div className="relative flex flex-col cursor-pointer border-2 border-white hover:border-[#0099b7] transition-all duration-[0.2s] ease-linear rounded-md mr-[1rem]'">
+                            <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-white'
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
                                     {display ? display : "Jumlah Penumpang"}
                                     {selectClass ? selectClass : " Pilih Kelas Kabin"}
                                 </p>
                                 <BiChevronDown
-                                    className='text-[1.5rem] cursor-pointer text-black hover:text-[#0099b7]'/>
+                                    className='text-[1.5rem] cursor-pointer text-white hover:text-[#0099b7]'/>
                             </div>
 
 
@@ -324,30 +325,30 @@ const Card = () => {
                                             className='text-[1.5rem] cursor-pointer text-transparent md:text-gray-300 md:hover:text-[#0099b7]'
                                             onClick={() => setOpenClass(!openClass)} />
                                     </div>
-                                    <hr className='hidden md:flex md:m-1' />
+                                    <hr className='hidden md:flex md:m-1 ' />
                                     <li 
                                         className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
                                         onClick={() => {
                                         setOpenClass(false);
-                                        setselectClass("Ekonomi");
+                                        setselectClass("Economy");
                                     }}>
-                                        Ekonomi
+                                        Economy
                                     </li>
                                     <li 
                                         className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
                                         onClick={() => {
                                         setOpenClass(false);
-                                        setselectClass("Premium Ekonomi");
+                                        setselectClass("Premium Economy");
                                     }}>
-                                        Premium Ekonomi
+                                        Premium Economy
                                     </li>
                                     <li 
                                         className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
                                         onClick={() => {
                                         setOpenClass(false);
-                                        setselectClass("Bisnis");
+                                        setselectClass("Business");
                                     }}>
-                                        Bisnis
+                                        Business
                                     </li>
                                     <li 
                                         className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
@@ -365,7 +366,7 @@ const Card = () => {
                             <div className={`countWrap flex flex-col bg-white overflow-y-auto py-[0.2rem] px-[0.5rem] ${openClass? "max-h-60" : "hidden"}`}>
                                 <div className='fontMont text-[0.9rem] flex flex-row items-center justify-between font-bold sticky top-0 mb-3 md:mb-1'>
                                     <p className='mb-0'>
-                                        Penumpang
+                                        Passenger
                                     </p>
                                     <RiCloseFill
                                             className='text-[1.5rem] cursor-pointer lg:text-transparent lg:hover:text-transparent text-gray-300 hover:text-[#0099b7]'
@@ -377,10 +378,10 @@ const Card = () => {
                                         <ImManWoman className='text-[1.5rem] mr-3 text-[#0099b7]'/>
                                             <div className='flex flex-col'>
                                                 <h1 className='fontMont text-[0.9rem] font-bold mb-[0.2rem]'>
-                                                    Dewasa
+                                                    Adult
                                                 </h1>
                                                 <h2 className='fontMont text-[0.7rem] text-gray-500'>
-                                                    Usia 12+
+                                                    Age 12+
                                                 </h2>
                                             </div>
                                     </div>
@@ -406,10 +407,10 @@ const Card = () => {
                                         <FaChild className='text-[1.5rem] mr-3 text-[#0099b7]'/>
                                             <div className='flex flex-col'>
                                                 <h1 className='fontMont text-[0.9rem] font-bold mb-[0.2rem]'>
-                                                    Anak
+                                                    Child
                                                 </h1>
                                                 <h2 className='fontMont text-[0.7rem] text-gray-500'>
-                                                    Usia 2-11
+                                                    Age 2-11
                                                 </h2>
                                             </div>
                                     </div>
@@ -435,10 +436,10 @@ const Card = () => {
                                         <FaBabyCarriage className='text-[1.5rem] mr-3 text-[#0099b7]'/>
                                             <div className='flex flex-col'>
                                                 <h1 className='fontMont text-[0.9rem] font-bold mb-[0.2rem]'>
-                                                    Bayi
+                                                    Infant
                                                 </h1>
                                                 <h2 className='fontMont text-[0.7rem] text-gray-500'>
-                                                    Di Bawah 2
+                                                    Below Age 2
                                                 </h2>
                                             </div>
                                     </div>
@@ -472,14 +473,14 @@ const Card = () => {
             <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem]">
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
-                        <BiSearchAlt className='flex items-center text-[1.4rem] md:mr-2'/>
+                        <BiSearchAlt color='white' className='flex items-center text-[1.4rem] md:mr-2'/>
                     </span>
                     <button
                         className='flex items-center' 
                         type="submit">
                         {/* Cari Tiket */}
-                        <h2 className='hidden md:flex fontMont text-[0.9rem] font-bold mb-0'>
-                            Cari Tiket
+                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-white' onClick={()=>navigate('/Detail')} >
+                           Find Tickets
                         </h2>
                     </button>
                 </div>
