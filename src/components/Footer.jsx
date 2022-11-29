@@ -6,19 +6,19 @@ import { FaInstagramSquare } from 'react-icons/fa';
 const Footer = () => {
   return (
       <div className="FooterWrap bg-gray-100">
-        <div className='FooterImg px-[3rem] md:px-[7rem] py-[2rem] md:py-[2rem]'>
+        <div className='FooterImg flex justify-center md:justify-start px-[3rem] md:px-16 py-[2rem] md:py-[2rem]'>
           <img 
             className='w-[10rem]'
             src={BinarLogo} 
             alt="BinarLogo" />
         </div>
 
-          <div className='FooterText flex justify-between flex-row px-[3rem] md:px-16 pb-[1.5rem] md:pb-[4rem]'>
-            <div className="FooterOne">
-              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-5'>
+          <div className='FooterText flex items-center md:items-start md:justify-between flex-col md:flex-row px-[3rem] md:px-16 pb-[1.5rem] md:pb-[4rem]'>
+            <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
+              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-0 md:pb-5'>
                 BinarAir
               </h2>
-              <div className="FooterOneLink flex flex-col ">
+              <div className="FooterOneLink flex flex-col items-center md:items-start ">
                   <a
                     className='pb-1'
                     href='https://www.binaracademy.com/binar-bootcamp'
@@ -39,11 +39,11 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="FooterOne">
-              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-5'>
+            <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
+              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-0 md:pb-5'>
                 BinarAir Service
               </h2>
-              <div className="FooterOneLink flex flex-col">
+              <div className="FooterOneLink flex flex-col items-center md:items-start ">
                   <a
                     className='pb-1'
                     href='https://www.binaracademy.com/job-portal'
@@ -65,11 +65,11 @@ const Footer = () => {
               </div>
             </div>
             
-            <div className="FooterOne">
-              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-5'>
+            <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
+              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-0 md:pb-5'>
                 About BinarAir
               </h2>
-              <div className="FooterOneLink flex flex-col">
+              <div className="FooterOneLink flex flex-col items-center md:items-start ">
                   <a
                     className='pb-1'
                     href='https://www.binaracademy.com/id/about'
@@ -103,11 +103,11 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="FooterOne">
-              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-5'>
+            <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
+              <h2 className='text-blue-800 text-[1.2rem] font-bold pb-0 md:pb-5'>
                 FollowUs
               </h2>
-              <div className="FooterOneLink flex flex-col md:flex-row gap-4 items-center">
+              <div className="FooterOneLink flex flex-row gap-4 items-center md:items-start">
                   <a
                     className='pb-2 text-[2rem] text-red-600' 
                     href='https://www.instagram.com/academybinar/'
