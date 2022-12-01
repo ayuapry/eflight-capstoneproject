@@ -7,11 +7,13 @@ import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
 import { SecondFooter } from '../components/SecondFooter'
 import Card from '../components/Card'
+import NewNavbar from '../components/NewNavbar'
 
 export const Homepage = () => {
   return (
     <div>
-       <Navbar />
+       {/* <Navbar /> */}
+       <NewNavbar />
        <Hero />
        <Card/>
        <HeadlineCards />
