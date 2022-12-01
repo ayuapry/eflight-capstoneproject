@@ -6,8 +6,9 @@ import { GiHandBag} from 'react-icons/gi'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
+import { SecondFooter } from '../components/SecondFooter';
 
-export const BookingPage = () => {
+export const BookStep = () => {
     const [Bmodal, setBmodal] = useState(false)
     const handleOnClose = () => setBmodal(false)
     const [formValues, setFormValues] = useState([]);
@@ -46,11 +47,13 @@ export const BookingPage = () => {
         },
       };
 
+
     return (
-    <div className='bg-slate-100'>
-        <Navbar />
-        <div className='py-[100px] mx-5 md:mx-14'>
-            <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[700px]'>
+    <>
+    <Navbar />
+    <div className='md:flex '>
+        <div className='md:w-[70%] pt-[100px] md:px-14 px-5 pb-5 bg-slate-100 md:h-screen'>
+        <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[900px]'>
                 <div className='flex items-center gap-3'>
                     <FaUserCircle size={30} />
                     <div className='text-lg'>Passenger Details</div>  
@@ -148,8 +151,10 @@ export const BookingPage = () => {
                     </Form>
                 </div>
             </div>
+        </div>
 
-            <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3 md:w-[700px]'>
+        <div className='md:w-[30%] pt-[100px] px-5 md:pr-14 bg-slate-100 md:h-screen'>
+            <div className='bg-white shadow-lg rounded-md py-5 px-3'>
                 <div className='flex items-center gap-3'>
                     <AiOutlineAppstoreAdd size={30} />
                     <div className='text-lg'>Extra Facilities</div>  
@@ -187,11 +192,9 @@ export const BookingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-5'>
-                <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button>
-                {/* <ButtonPrimary type="submit" title="Booking Now"/>  */}
-            </div>
         </div>
     </div>
+    <SecondFooter />
+    </>
   )
 }

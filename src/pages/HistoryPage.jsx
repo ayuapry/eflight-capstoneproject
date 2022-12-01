@@ -13,12 +13,12 @@ import ButtonPrimary from '../components/ButtonPrimary'
 export const HistoryPage = () => {
   const [select, setSelect] = useState('')
   return (
-    <div className='h-auto bg-slate-50'>
+    <div className='h-auto bg-slate-100'>
       <Navbar />
       <div className='grid md:grid-cols-4 pt-[100px] md:px-2 mb-10 gap-2 md:h-auto'>
-        <div className='flex flex-col md:col-span-1 col-span-4 bg-white rounded-md border-2 md:h-[310px] md:ml-14 shadow-md w-auto mx-5 '> 
-            <div className='flex items-center px-10 pt-10'>
-                <img src="https://images.pexels.com/photos/8214192/pexels-photo-8214192.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="noimg" className='w-[70px] h-[70px] rounded-full bg-slate-300 object-cover'/>
+        <div className='flex flex-col md:col-span-1 col-span-4 bg-white rounded-[30px] border-2 md:h-[600px] md:ml-14 shadow-md w-auto mx-5 '> 
+            <div className='px-16 pt-10'>
+                <img src="https://images.pexels.com/photos/8214192/pexels-photo-8214192.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="noimg" className='w-[150px] h-[150px] rounded-full bg-slate-300 object-cover'/>
                 <p className='text-xl ml-5 mt-5'>Maudy Ayunda</p>
             </div>
             <div className='px-10 mt-10'>
@@ -34,7 +34,7 @@ export const HistoryPage = () => {
                 </ul>
             </div>
         </div>
-        <div className='flex flex-col col-span-4 md:col-span-3 border-2 bg-white rounded-md shadow-md mx-5 md:mr-[50px] md:h-full'>
+        <div className='flex flex-col col-span-4 md:col-span-3 border-2 bg-white rounded-[30px] shadow-md mx-5 md:mr-[50px] md:h-full'>
         <div className='md:flex justify-between items-center mt-5 border-b-2'>
           <div className='px-5'>
             <h1 className='font-semibold'>Order History</h1>

@@ -9,12 +9,10 @@ import { SecondFooter } from '../components/SecondFooter'
 import Card from '../components/Card'
 
 export const Homepage = () => {
-  const navigate = useNavigate()
   return (
     <div>
        <Navbar />
        <Hero />
-       {/* <ButtonPrimary title="Detail" click={()=>navigate('/Detail')} /> */}
        <Card/>
        <HeadlineCards />
        <Footer/>
