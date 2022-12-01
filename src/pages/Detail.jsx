@@ -168,7 +168,7 @@ export default function Detail() {
         </div>
         <div className='w-fit'>
         <h1 className='font-bold text-lg'>Rp. 2.500.000 / <span className='text-sm font-normal'>org</span></h1>
-        <ButtonPrimary title="Beli Sekarang" click={()=>navigate('/')} />
+        <ButtonPrimary title="Beli Sekarang" click={()=>navigate('/booking')} />
         </div>
         </div>
         <Tab.Group>

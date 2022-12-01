@@ -56,25 +56,25 @@ export const HeadlineCards = () => {
     </section>
     </div>
     <div className='bg-slate-50'>
-    <p className='text-center text-3xl pb-5 font-bold'>Discover further services</p>
+    <p className='text-center text-xl md:text-3xl pb-5 font-bold'>Discover further services</p>
     <div className='bg-slate-50 px-10 md:px-20 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
         <div className='flex flex-col items-center'>
-            <MdAirlineSeatLegroomExtra size={50}  className='mb-5'/>
+            <MdAirlineSeatLegroomExtra size={50}  className='mb-5 text-sky-300'/>
             <p className='font-semibold text-center'>ADITIONAL SEAT</p>
             <h3 className='font-light'>Reserve your seat before flight that best suit for you</h3>
         </div>
         <div className='flex flex-col items-center'>
-            <GiHandBag size={50} className='mb-5'/>
+            <GiHandBag size={50} className='mb-5 text-yellow-500 '/>
             <p className='font-semibold text-center'>ADD MORE BAGS</p>
             <h3 className='font-light'>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
         </div>
         <div className='flex flex-col items-center'>
-            <GiHotMeal size={50} className='mb-5' />
+            <GiHotMeal size={50} className='mb-5 text-red-400 ' />
             <p className='font-semibold text-center'>SPECIAL MEALS</p>
             <h3 className='font-light'>Make your travel easy and enjoyablewith delicious in-flight meals service</h3>
         </div>
         <div className='flex flex-col items-center'>
-            <GiUpgrade size={50} className='mb-5' />
+            <GiUpgrade size={50} className='mb-5 text-teal-400 ' />
             <p className='font-semibold text-center'>CABIN UPGRADE</p>
             <h3 className='font-light'>Treat yourself to an upgrade and enjoy better amenities for your flight</h3>
         </div>
