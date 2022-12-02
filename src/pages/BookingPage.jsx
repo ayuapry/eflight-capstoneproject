@@ -6,6 +6,7 @@ import { GiHandBag} from 'react-icons/gi'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
+import ButtonPrimary from '../components/ButtonPrimary';
 
 export const BookingPage = () => {
     const [Bmodal, setBmodal] = useState(false)
@@ -47,10 +48,10 @@ export const BookingPage = () => {
       };
 
     return (
-    <div className='bg-slate-100'>
+    <div className='bg-blue-500'>
         <Navbar />
         <div className='py-[100px] mx-5 md:mx-14'>
-            <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[700px]'>
+            <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[1200px] md:mx-[100px]'>
                 <div className='flex items-center gap-3'>
                     <FaUserCircle size={30} />
                     <div className='text-lg'>Passenger Details</div>  
@@ -149,7 +150,9 @@ export const BookingPage = () => {
                 </div>
             </div>
 
-            <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3 md:w-[700px]'>
+            
+
+            <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3  md:w-[1200px] md:mx-[100px]'>
                 <div className='flex items-center gap-3'>
                     <AiOutlineAppstoreAdd size={30} />
                     <div className='text-lg'>Extra Facilities</div>  
@@ -187,9 +190,9 @@ export const BookingPage = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-5'>
-                <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button>
-                {/* <ButtonPrimary type="submit" title="Booking Now"/>  */}
+            <div className='mx-[100px] mr-[120px] mt-10 '>
+                {/* <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button> */}
+                <ButtonPrimary type="submit" title="Booking Now"/> 
             </div>
         </div>
     </div>

@@ -12,8 +12,8 @@ import NewNavbar from '../components/NewNavbar'
 export const Homepage = () => {
   return (
     <div>
-       {/* <Navbar /> */}
-       <NewNavbar />
+       <Navbar />
+       {/* <NewNavbar /> */}
        <Hero />
        <Card/>
        <HeadlineCards />
