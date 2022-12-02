@@ -10,6 +10,16 @@
   }
 }
 
+@layer components {
+  .clip-path {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .close-path {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+
 @layer base {
   body {
     @apply bg-white text-black;
