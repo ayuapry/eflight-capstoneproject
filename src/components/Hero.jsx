@@ -15,7 +15,7 @@ import Banner3 from '../assets/Banner3.jpg'
 
 export const Hero = () => {
   return (
-    <div className='Haia'>
+    <div className='Haia pt-10 md:pt-0'>
       <div >
         <Swiper
           // install Swiper modules
@@ -35,7 +35,7 @@ export const Hero = () => {
         >
             <SwiperSlide>
                 <img 
-                  className='h-auto md:h-screen object-cover w-full -z-50' 
+                  className='h-auto md:h-screen object-cover w-full' 
                   src={Banner1} alt="Banner1" />
             </SwiperSlide>
             <SwiperSlide>
