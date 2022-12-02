@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Navbar } from '../components/Navbar'
+import { Navbar } from '../components/Navbar'
 import { HeadlineCards } from '../components/HeadlineCards'
 import { Hero } from '../components/Hero'
 import Footer from '../components/Footer'
@@ -14,9 +14,9 @@ export const Homepage = () => {
 
   return (
     <div className='bg-slate-50'>
+        {/* <Navbar/> */}
         <NewNavbar />
         <Hero />
-        {/* <ButtonPrimary title="Detail" click={()=>navigate('/Detail')} /> */}
         <Card/>
         <HeadlineCards />
         <Footer/>
