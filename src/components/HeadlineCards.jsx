@@ -7,7 +7,7 @@ export const HeadlineCards = () => {
         <div className='bg-slate-50 h-auto pt-[100px]'>
             <h1 className='text-center text-xl md:text-3xl font-bold'>Our Top Tour Places</h1>
             <p className='text-center text-gray-500 mx-10 mb-8 font-light'>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</p>
-            <div className='bg-slate-50 px-10 md:mx-40 md:pl-20 h-full pb-[150px] grid grid-cols-2 lg:grid-cols-4 gap-0 max-w-7xl justify-center'>
+            <div className='bg-slate-50 px-10 md:mx-20 md:pl-[105px] h-full pb-[150px] grid grid-cols-2 lg:grid-cols-4 gap-0 max-w-10xl justify-center'>
                 <div className='border border-3 cursor-pointer w-[150px] md:w-[250px] h-[270px] bg-white shadow-lg rounded-md mb-5 hover:bg-slate-100 hover:scale-110 ease-in duration-300'>
                     <img src="https://i.pinimg.com/564x/87/91/44/879144d6568e6b141e7b2c839b72be8c.jpg" alt="" className=' object-cover w-[250px] h-[180px] ' />
                     <p className='font-bold text-center px-2 mt-2'>Korean Places</p>

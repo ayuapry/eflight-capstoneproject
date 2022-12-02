@@ -35,12 +35,26 @@ export const Navbar = () => {
     <div className='w-screen h-[80px] z-10 text-white font-light drop-shadow-lg'>
         <div className='px-8 lg:px-16 flex justify-between items-center w-full h-full'>
             <div className='flex items-center'>
-                <Link to='/' className='text-3xl font-bold sm:text-4xl text-sky-600 cursor-pointer '>Binar<span className='text-yellow-400'>Air</span></Link>  
+                <Link to='/' className='text-3xl font-bold sm:text-4xl text-blue-600 cursor-pointer '>BinarAir</Link>  
                 <ul className='hidden md:flex'>
                     {/* <li>Pesawat</li>
                     <li>Hotel</li> */}
                 </ul>
             </div>
+
+            {/* <div className='flex items-center text-black'>
+                <ul className='hidden md:flex gap-4 items-center pt-8'>
+                    <div>
+                        <Link to="/card">Booking</Link>
+                    </div>
+                    <div>
+                        <a href="#destination">Destination</a>
+                    </div>
+                    <div>
+                        <a href="#services">Services</a>
+                    </div>
+                </ul>
+            </div> */}
             
             <div className='hidden md:flex items-center'>
                 {/* <p>{userData?.displayName}</p> */}
@@ -95,15 +109,15 @@ export const Navbar = () => {
         <ul className={!nav ? 'hidden' : 'absolute bg-white w-full px-7 text-black pb-10 '}>
             <div className='flex items-center gap-2'>
                 <AiOutlineHome />
-                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/'>Home</Link></li>
+                <li className=' border-b-2 py-2 border-blue-600 w-full'><Link to='/'>Home</Link></li>
             </div>
             <div className='flex items-center gap-2'>
                 <IoMdNotificationsOutline />
-                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/notification'>Notification</Link></li>
+                <li className=' border-b-2 py-2 border-blue-600 w-full'><Link to='/notification'>Notification</Link></li>
             </div>
             <div className='flex items-center gap-2'>
                 <AiOutlineUser />
-                <li className=' border-b-2 py-2 border-[#FFE69A] w-full'><Link to='/history'>Profile</Link></li>
+                <li className=' border-b-2 py-2 border-blue-600 w-full'><Link to='/history'>Profile</Link></li>
             </div>
             {/* <div className='flex items-center gap-2'>
                 <MdOutlineReceiptLong />
@@ -111,8 +125,8 @@ export const Navbar = () => {
             </div> */}
 
             <div className='flex flex-rows gap-3 justify-end my-4'>
-                <Link to='/Login' className='bg-transparent border-2 border-[#FFE69A] text-black rounded-lg hover:bg-[#FFE69A] font-semibold text-center px-8 py-3 mb-4'>Sign In</Link>
-                <Link to='/Register' className='bg-[#FFD24C] border-[#FFD24C] text-black font-bold rounded-lg hover:bg-[#FFE69A] text-center text-white-600 px-8 py-3 mb-4'>Sign Up</Link>
+                <Link to='/Login' className='bg-transparent border-2 border-blue-600 text-black rounded-lg hover:bg-blue-600 hover:text-white font-semibold text-center px-8 py-3 mb-4'>Sign In</Link>
+                <Link to='/Register' className='bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-400 text-center text-white-600 px-8 py-3 mb-4'>Sign Up</Link>
             </div>
         </ul>
     </div>
