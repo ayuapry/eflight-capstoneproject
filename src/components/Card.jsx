@@ -95,8 +95,8 @@ const Card = () => {
         
 
   return (
-    <div className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
-        <div className=' CardWrap bg-[#fef7e5] shadow-md mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
+    <div id='Booking' className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20 md:pt-7'>
+        <div className=' CardWrap bg-white shadow-md mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
@@ -110,7 +110,7 @@ const Card = () => {
             </div>
 
             <div className='text-black'>
-                <form className='px-[1.5rem] md:px-[4rem] mb-[1rem] md:mb-[2rem] flex flex-col md:flex-row cursor-pointer'>
+                <form className='px-[1.5rem] md:px-[4rem] mb-[1rem] md:mb-[2rem] flex md:flex-row cursor-pointer'>
                     <div className='mb-2 md:mb-0'>
                         <input type="radio" id='OneWay' name="OneWay" checked={selectRadio === 'OneWay'}  onChange={(e) => setSelectRadio(e.target.value)} value="OneWay" className='cursor-pointer' />
                         <label htmlFor="OneWay" className='p-2 mr-5 cursor-pointer'>

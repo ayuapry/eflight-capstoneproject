@@ -3,8 +3,8 @@ import {MdAirlineSeatLegroomExtra} from 'react-icons/md'
 import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
 export const HeadlineCards = () => {
   return (
-    <div>
-        <div className='bg-slate-50 h-auto pt-[100px] mt-0 md:mt-[9rem]'>
+    <div id='Destination'>
+        <div className='bg-slate-50 h-auto pt-[100px] mt-0 md:mt-[20rem]'>
             <h1 className='text-center text-xl md:text-3xl font-bold'>Our Top Tour Places</h1>
             <p className='text-center text-gray-500 mx-10 mb-8 font-light'>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</p>
             <div className='bg-slate-50 px-10 md:mx-20 md:pl-[105px] h-full pb-[150px] grid grid-cols-2 lg:grid-cols-4 gap-0 max-w-10xl justify-center'>
@@ -32,7 +32,7 @@ export const HeadlineCards = () => {
         </div>
         
         <div className='bg-slate-50'>
-            <p className='text-center text-xl md:text-3xl pb-5 font-bold md:px-20'>Discover further services</p>
+            <p  id='Services' className='text-center text-xl md:text-3xl pb-5 font-bold md:px-20'>Discover further services</p>
             <div className='bg-slate-50 px-10 md:px-20 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
                 <div className='flex flex-col items-center'>
                     <MdAirlineSeatLegroomExtra size={50}  className='mb-5 text-sky-300'/>

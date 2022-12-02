@@ -6,9 +6,10 @@ import { GiHandBag} from 'react-icons/gi'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
+import { SecondFooter } from '../components/SecondFooter';
 import ButtonPrimary from '../components/ButtonPrimary';
 
-export const BookingPage = () => {
+export const BookStep = () => {
     const [Bmodal, setBmodal] = useState(false)
     const handleOnClose = () => setBmodal(false)
     const [formValues, setFormValues] = useState([]);
@@ -47,11 +48,13 @@ export const BookingPage = () => {
         },
       };
 
+
     return (
-    <div className='bg-slate-100'>
-        <Navbar />
-        <div className='py-[100px] mx-5 md:mx-14'>
-            <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[1200px] md:mx-[100px]'>
+    <>
+    <Navbar />
+    <div className='lg:flex '>
+        <div className='lg:w-[80%] pt-[100px] lg:pt-[100px] lg:px-14 px-5 md:px-5 pb-5 bg-slate-200 lg:h-screen'>
+        <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[800px] lg:h-[600px] xl:w-[850px]' >
                 <div className='flex items-center gap-3'>
                     <FaUserCircle size={30} />
                     <div className='text-lg'>Passenger Details</div>  
@@ -149,10 +152,11 @@ export const BookingPage = () => {
                     </Form>
                 </div>
             </div>
+        </div>
+        
 
-            
-
-            <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3  md:w-[1200px] md:mx-[100px]'>
+        <div className='lg:w-[60%] lg:pt-[100px] px-5 lg:pr-14 bg-slate-200 md:h-[screen] pb-5'>
+            <div className='bg-white shadow-lg rounded-md py-5 px-3 lg:h-[600px]'>
                 <div className='flex items-center gap-3'>
                     <AiOutlineAppstoreAdd size={30} />
                     <div className='text-lg'>Extra Facilities</div>  
@@ -169,7 +173,7 @@ export const BookingPage = () => {
                         </div>
                         </div>
                         <h3 className='text-blue-600 hover:text-blue-400 cursor-pointer' onClick={() => setBmodal(true)} >Order</h3>
-                        <SeatModal open={Bmodal} close={handleOnClose} />
+                        {/* <SeatModal open={Bmodal} close={handleOnClose}  /> */}
                     </div>
                     <div className='flex gap-4 justify-between mt-5 items-center'>
                         <div className='flex gap-4'>
@@ -177,24 +181,31 @@ export const BookingPage = () => {
                         <div>
                             <h1>Baggage</h1>
                             <span className='font-light'>Increase the capacity of your luggage.</span>
-                            {/* <Form.Item className='mt-3'>
+                            <Form>
+                            <Form.Item className='mt-3'>
                                 <Select placeholder='Baggage'>
                                     <Select.Option value="No Baggage">No Baggage</Select.Option>
                                     <Select.Option value="10kg">10kg - Rp 50.000</Select.Option>
                                     <Select.Option value="15kg">15kg - Rp 100.000</Select.Option>
                                     <Select.Option value="20kg">20kg - Rp 150.000</Select.Option>
                                 </Select>
-                            </Form.Item> */}
+                            </Form.Item>
+                            </Form> 
                         </div>
                         </div>
                     </div>
+                    <div className='mt-[270px]'>
+                        <ButtonPrimary title='order'></ButtonPrimary>
+                    </div>
                 </div>
             </div>
-            <div className='mx-[100px] mr-[120px] mt-10 '>
-                {/* <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button> */}
-                <ButtonPrimary type="submit" title="Booking Now"/> 
+            <div>
             </div>
         </div>
+        <SeatModal open={Bmodal} close={handleOnClose}  />
+        
     </div>
+    <SecondFooter />
+    </>
   )
 }
