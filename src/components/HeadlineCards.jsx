@@ -6,7 +6,7 @@ export const HeadlineCards = () => {
     <div>
     <div className='h-auto bg-slate-50'>
         <section className="md:h-full flex items-center md:mx-16 ">
-        <div className="container px-5 py-14 mx-3 md:mx-0">
+        <div className="container px-5 py-14 mx-3 md:mx-0 mt-0 md:mt-[9rem]">
             <p className='text-3xl mb-10 text-center font-bold'>Promotions</p>
             <div className="flex flex-wrap -m-4">
                 <div className="p-4 sm:w-1/2 lg:w-1/4">
