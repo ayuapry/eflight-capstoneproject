@@ -9,18 +9,20 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import { HistoryPage } from "./pages/HistoryPage";
+import { BookingPage } from "./pages/BookingPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/notification" element={<NotificationPage />} />
-      <Route path="/Register" element={<Register />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Detail" element={<Detail />} />
-      <Route path="/history" element={<HistoryPage />} />
-    </Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/notification" element={<NotificationPage />} />
+        <Route path="/Register" element={<Register/>} />
+        <Route path="/Login" element={<Login/>} />
+        <Route path="/Detail" element={<Detail/>} />
+        <Route path="/history" element={<HistoryPage/>} />
+        <Route path="/Booking" element={<BookingPage />} />
+      </Routes>
   </BrowserRouter>
 );
