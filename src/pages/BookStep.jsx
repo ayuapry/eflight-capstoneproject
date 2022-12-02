@@ -52,8 +52,8 @@ export const BookStep = () => {
     <>
     <Navbar />
     <div className='md:flex '>
-        <div className='md:w-[70%] pt-[100px] md:px-14 px-5 pb-5 bg-slate-100 md:h-screen'>
-        <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[900px]'>
+        <div className='md:w-[60%] pt-[100px] md:p-14 px-5 pb-5 bg-slate-100 md:h-screen'>
+        <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[800px]'>
                 <div className='flex items-center gap-3'>
                     <FaUserCircle size={30} />
                     <div className='text-lg'>Passenger Details</div>  
@@ -73,6 +73,7 @@ export const BookStep = () => {
                         </Form.Item>
                         {/* <div className='flex gap-2'> */}
                             <Form.Item
+                                style={{width:'80%'}}
                                 name={['FirstName']}
                                 rules={[
                                     {
@@ -84,6 +85,7 @@ export const BookStep = () => {
                                 <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
                             </Form.Item>
                             <Form.Item
+                                style={{width:'80%'}}
                                 name={['LastName']}
                                 rules={[
                                     {
@@ -96,7 +98,7 @@ export const BookStep = () => {
                             </Form.Item>
                         {/* </div> */}
                         <div className='flex gap-2'>
-                            <Form.Item style={{width:'50%'}}>
+                            <Form.Item style={{width:'40%'}}>
                                 <Select 
                                     showSearch
                                     placeholder="Citizenship       "
@@ -123,14 +125,14 @@ export const BookStep = () => {
                                     />
                                     <span className='text-xs text-gray-400'>Citizenship</span>
                             </Form.Item>
-                            <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                            <Form.Item style={{width:'40%'}} name={['birthdate']}  >
                                 <DatePicker name='birthDate'  onChange={handleChange} style={{width:'100%'}} placeholder='Birth Date' />
                                 <span className='text-xs text-gray-400'>Birth Date</span>
                             </Form.Item>
                         </div>
                         <div className='flex gap-2'>
                         <Form.Item
-                           style={{width:'50%'}}
+                           style={{width:'40%'}}
                             name={['pasport_number']}
                             rules={[
                                 {
@@ -142,7 +144,7 @@ export const BookStep = () => {
                             <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
                         </Form.Item>
                         <Form.Item 
-                            style={{width:'50%'}}
+                            style={{width:'40%'}}
                             name={['created_at']}>
                             <DatePicker name='created_at' onChange={handleChange} style={{width:'100%'}} placeholder='created at' />
                             <span className='text-xs text-gray-400'>The date the passport was issued</span>
@@ -153,7 +155,7 @@ export const BookStep = () => {
             </div>
         </div>
 
-        <div className='md:w-[30%] pt-[100px] px-5 md:pr-14 bg-slate-100 md:h-screen'>
+        <div className='md:w-[30%] md:pt-[100px] px-5 md:pr-14 bg-slate-100 md:h-screen pb-5'>
             <div className='bg-white shadow-lg rounded-md py-5 px-3'>
                 <div className='flex items-center gap-3'>
                     <AiOutlineAppstoreAdd size={30} />
