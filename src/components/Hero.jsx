@@ -1,5 +1,5 @@
 // import Swiper core and required modules
-import {  Pagination, A11y } from 'swiper';
+import {  Pagination, A11y, Autoplay } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,29 +15,50 @@ import Banner3 from '../assets/Banner3.jpg'
 
 export const Hero = () => {
   return (
-    <div className='pt-[100px] bg-slate-50'>
-    <div className='mx-8 lg:mx-16 drop-shadow-xl shadow-black '>
-    <Swiper
-      // install Swiper modules
-      modules={[Pagination, A11y]}
-      spaceBetween={10}
-      slidesPerView={1}
-      Navigation
-      pagination={{ clickable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
-    >
-        <SwiperSlide>
-            <img className='h-[150px] md:h-[500px] w-full rounded-xl  object-cover' src={Banner1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img className='h-[150px] md:h-[500px] w-full rounded-2xl object-cover' src={Banner2} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img className='h-[150px] md:h-[500px] w-full rounded-2xl object-cover' src={Banner3} alt="" />
-        </SwiperSlide>
-    </Swiper>
-    </div>
+    <div className='Haia pt-10 md:pt-0'>
+      <div >
+        <Swiper
+          // install Swiper modules
+          modules={[Pagination, A11y, Autoplay]}
+          // modules={[Pagination, A11y]}
+          autoplay={{
+            delay: 10000,
+            disableOnInteraction: false,
+          }}
+          spaceBetween={0}
+          slidesPerView={1}
+          loop={true}
+          Navigation
+          pagination={{ clickable: true }}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log('slide change')}
+        >
+            <SwiperSlide>
+                <img 
+                  className='h-auto md:h-screen object-cover w-full' 
+                  src={Banner1} alt="Banner1" />
+            </SwiperSlide>
+            <SwiperSlide>
+                <img 
+                  className='h-auto md:h-screen object-cover w-full -z-50' 
+                  src={Banner2} alt="Banner2" />
+            </SwiperSlide>
+            <SwiperSlide>
+                <img 
+                  className='h-auto md:h-screen object-cover w-full -z-50' 
+                  src={Banner3} alt="Banner3" />
+            </SwiperSlide>
+            {/* <SwiperSlide>
+                <img className='h-[150px] md:h-[500px] w-full rounded-2xl object-cover' src={Banner2} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+                <img className='h-[150px] md:h-[500px] w-full rounded-2xl object-cover' src={Banner3} alt="" />
+            </SwiperSlide> */}
+        </Swiper>
+      </div>
+      {/* <div>
+        <Card className='absolute top-[5rem] h-full'/>
+      </div> */}
     </div>
   )
 }

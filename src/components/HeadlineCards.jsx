@@ -4,7 +4,7 @@ import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
 export const HeadlineCards = () => {
   return (
     <div>
-        <div className='bg-slate-50 h-auto pt-[100px]'>
+        <div className='bg-slate-50 h-auto pt-[100px] mt-0 md:mt-[9rem]'>
             <h1 className='text-center text-xl md:text-3xl font-bold'>Our Top Tour Places</h1>
             <p className='text-center text-gray-500 mx-10 mb-8 font-light'>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</p>
             <div className='bg-slate-50 px-10 md:mx-20 md:pl-[105px] h-full pb-[150px] grid grid-cols-2 lg:grid-cols-4 gap-0 max-w-10xl justify-center'>

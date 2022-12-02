@@ -95,8 +95,8 @@ const Card = () => {
         
 
   return (
-    <div className='bg-slate-5 pb-10'>
-        <div className='CardWrap bg-sky-500 mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
+    <div className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
+        <div className=' CardWrap bg-[#fef7e5] shadow-md mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
@@ -104,12 +104,12 @@ const Card = () => {
                 src={Logo} 
                 alt="BinarLogo" />
                 <h1
-                    className='fontMont text-[1.3rem] text-white font-extrabold px-[0.5rem] mb-0'>
+                    className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
                     Find Filghts Tickets
                 </h1>
             </div>
 
-            <div className='text-white'>
+            <div className='text-black'>
                 <form className='px-[1.5rem] md:px-[4rem] mb-[1rem] md:mb-[2rem] flex flex-col md:flex-row cursor-pointer'>
                     <div className='mb-2 md:mb-0'>
                         <input type="radio" id='OneWay' name="OneWay" checked={selectRadio === 'OneWay'}  onChange={(e) => setSelectRadio(e.target.value)} value="OneWay" className='cursor-pointer' />
@@ -130,14 +130,14 @@ const Card = () => {
                 <div className='flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-[#0099b7] md:py-2'>
                     <div className="flex w-full flex-col md:flex-row md:items-center md:pr-[4rem] mb-3 md:mb-0">
                         
-                        <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-white'>
+                        <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                             <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>From</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                                className='relative flex flex-col cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
                                 <div 
                                     onClick={() => setOpen(!open)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                    <TbPlaneDeparture className='mr-3 text-[1.5rem] text-white'/>
+                                    <TbPlaneDeparture className='mr-3 text-[1.5rem] text-black'/>
                                     <p className='fontMont text-[0.9rem] w-full wmd:w-40 md:truncate mb-0'>
                                         {selectCity ? selectCity : "City or Airport"}
                                     </p>
@@ -177,14 +177,14 @@ const Card = () => {
                             </div>
                         </div>
 
-                        <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-white'>
+                        <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                         <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>To</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md'>
+                                className='relative flex flex-col cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md'>
                                 <div 
                                     onClick={() => setOpenTo(!openTo)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                    <TbPlaneInflight className='mr-3 text-[1.5rem] text-white'/>
+                                    <TbPlaneInflight className='mr-3 text-[1.5rem] text-black'/>
                                     <p className='fontMont text-[0.9rem] w-full md:w-40 md:truncate mb-0'>
                                         {selectCityTo ? selectCityTo : "Going Anywhere?"}
                                     </p>
@@ -227,7 +227,7 @@ const Card = () => {
                 
                     {/* DATE */}
                     <div className='flex items-center'>
-                        <div className='DateWrap flex flex-col md:flex-row md:items-center mb-3 md:mb-1 w-full md:pr-[4rem] text-white'>
+                        <div className='DateWrap flex flex-col md:flex-row md:items-center mb-3 md:mb-1 w-full md:pr-[4rem] text-black'>
                             
                             {/* OneWay */}
                             <div className='flex flex-col mb-3 md:mb-0 md:w-[50%]'>
@@ -237,8 +237,8 @@ const Card = () => {
                                 <div className='relative flex flex-col justify-center md:mr-[1rem]'>
                                     <div
                                         ref={refOne}
-                                        className='tranform flex flex-row cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
-                                        <TbCalendarEvent className='mr-3 text-[1.5rem] text-white'/>
+                                        className='tranform flex flex-row cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
+                                        <TbCalendarEvent className='mr-3 text-[1.5rem] text-black'/>
                                         <input
                                             className="inputBox outline-none bg-transparent cursor-pointer"
                                             value={ calendar }
@@ -278,11 +278,11 @@ const Card = () => {
                                     <div
                                         ref={refOne}
                                         className={`flex flex-row cursor-pointer border-2 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem] 
-                                        ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-white"}`}>
-                                        <TbCalendarStats className='mr-3 text-[1.5rem] text-white'/>
+                                        ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-[#0099b7]"}`}>
+                                        <TbCalendarStats className='mr-3 text-[1.5rem] text-black'/>
                                         <input
                                             className={`inputBox outline-none  disabled:opacity-30 bg-transparent cursor-pointer
-                                            ${selectRadio !== 'RoundTrip' ? "opacity-70" : "text-white" }`}
+                                            ${selectRadio !== 'RoundTrip' ? "opacity-70" : "text-black" }`}
                                             value={ calendarGo }
                                             disabled={selectRadio === 'OneWay'}
                                             onClick={ () => {
@@ -308,19 +308,19 @@ const Card = () => {
 
                     <div className="AirClass flex flex-col w-full md:w-[50%]  md:pl-[4rem] py-2">
                         <div className="jPenumpang">
-                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem] text-white'>Passenger & Cabin Class</h2>
+                            <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem] text-black'>Passenger & Cabin Class</h2>
                         </div>
 
                         <div 
-                            className='relative flex flex-col cursor-pointer border-2 border-white hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
-                            <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-white'
+                            className='relative flex flex-col cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                            <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-black'
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
                                     {display ? display : "Jumlah Penumpang"}
                                     {selectClass ? selectClass : " Pilih Kelas Kabin"}
                                 </p>
                                 <BiChevronDown
-                                    className='text-[1.5rem] cursor-pointer text-white hover:text-[#0099b7]'/>
+                                    className='text-[1.5rem] cursor-pointer text-black hover:text-[#0099b7]'/>
                             </div>
 
                             <div className={`${openClass? 'clip-path' : "close-path"} flex  transition-all duration-500 absolute bottom-[-15.1rem] m-0 h-[240px] w-full z-30 flex-col md:flex-row justify-between `}>
@@ -483,13 +483,13 @@ const Card = () => {
             <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem]">
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
-                        <BiSearchAlt color='white' className='flex items-center text-[1.4rem] md:mr-2'/>
+                        <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
                     </span>
                     <button
                         className='flex items-center' 
                         type="submit">
                         {/* Cari Tiket */}
-                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-white' onClick={()=>navigate('/Detail')} >
+                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' onClick={()=>navigate('/Detail')} >
                            Find Tickets
                         </h2>
                     </button>

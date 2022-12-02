@@ -10,15 +10,17 @@ import Card from '../components/Card'
 import NewNavbar from '../components/NewNavbar'
 
 export const Homepage = () => {
+  const navigate = useNavigate()
+
   return (
-    <div>
-       <Navbar />
-       {/* <NewNavbar /> */}
-       <Hero />
-       <Card/>
-       <HeadlineCards />
-       <Footer/>
-       <SecondFooter />
+    <div className='bg-slate-50'>
+        {/* <Navbar/> */}
+        <NewNavbar />
+        <Hero />
+        <Card/>
+        <HeadlineCards />
+        <Footer/>
+        <SecondFooter />
     </div>
   )
 }
