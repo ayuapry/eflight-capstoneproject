@@ -95,7 +95,7 @@ const Card = () => {
         
 
   return (
-    <div id='Booking' className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20 md:pt-7'>
+    <div id='Booking' className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
         <div className=' CardWrap bg-white shadow-md mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
@@ -480,7 +480,8 @@ const Card = () => {
                     </div>
             </div>
 
-            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem]">
+                       
+            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Detail')}>
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
                         <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
@@ -489,7 +490,7 @@ const Card = () => {
                         className='flex items-center' 
                         type="submit">
                         {/* Cari Tiket */}
-                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' onClick={()=>navigate('/Detail')} >
+                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' >
                            Find Tickets
                         </h2>
                     </button>

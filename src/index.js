@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import { HistoryPage } from "./pages/HistoryPage";
 import { BookingPage } from "./pages/BookingPage";
+import NewDetail from "./pages/NewDetail";
 import Card from "./components/Card";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -21,7 +22,7 @@ root.render(
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/Register" element={<Register/>} />
         <Route path="/Login" element={<Login/>} />
-        <Route path="/Detail" element={<Detail/>} />
+        <Route path="/Detail" element={<NewDetail/>} />
         <Route path="/history" element={<HistoryPage/>} />
         <Route path="/Booking" element={<BookingPage />} />
         <Route path="/card" element={<Card />}/>

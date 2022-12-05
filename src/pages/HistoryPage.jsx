@@ -81,7 +81,7 @@ export const HistoryPage = () => {
                 </div>
           </div>
           <div className='mx-2 my-2'>
-            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3'>
+            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3  rounded-lg'>
               <div className='flex gap-2 pb-4'>
                 <GiCommercialAirplane color='skyblue' />
                 <p>Flights</p>
@@ -108,7 +108,7 @@ export const HistoryPage = () => {
             </div>
           </div>
           <div className='mx-2 my-2'>
-            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3'>
+            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3 rounded-lg'>
               <div className='flex gap-2 pb-4'>
                 <GiCommercialAirplane color='skyblue' />
                 <p>Flights</p>
@@ -135,7 +135,7 @@ export const HistoryPage = () => {
             </div>
           </div>
           <div className='mx-2 my-2'>
-            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3'>
+            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3 rounded-lg'>
               <div className='flex gap-2 pb-4'>
                 <GiCommercialAirplane color='skyblue' />
                 <p>Flights</p>
@@ -162,7 +162,7 @@ export const HistoryPage = () => {
             </div>
           </div>
           <div className='mx-2 my-2'>
-            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3'>
+            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3 rounded-lg'>
               <div className='flex gap-2 pb-4'>
                 <GiCommercialAirplane color='skyblue' />
                 <p>Flights</p>
@@ -189,7 +189,7 @@ export const HistoryPage = () => {
             </div>
           </div>
           <div className='mx-2 my-2'>
-            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3'>
+            <div className='bg-white border-2 border-gray-100 shadow-xl w-full md:h-[220px] px-3 py-3 rounded-lg'>
               <div className='flex gap-2 pb-4'>
                 <GiCommercialAirplane color='skyblue' />
                 <p>Flights</p>

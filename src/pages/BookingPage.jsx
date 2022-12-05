@@ -177,14 +177,14 @@ export const BookingPage = () => {
                         <div>
                             <h1>Baggage</h1>
                             <span className='font-light'>Increase the capacity of your luggage.</span>
-                            {/* <Form.Item className='mt-3'>
+                            <Form.Item className='mt-3'>
                                 <Select placeholder='Baggage'>
                                     <Select.Option value="No Baggage">No Baggage</Select.Option>
                                     <Select.Option value="10kg">10kg - Rp 50.000</Select.Option>
                                     <Select.Option value="15kg">15kg - Rp 100.000</Select.Option>
                                     <Select.Option value="20kg">20kg - Rp 150.000</Select.Option>
                                 </Select>
-                            </Form.Item> */}
+                            </Form.Item>
                         </div>
                         </div>
                     </div>

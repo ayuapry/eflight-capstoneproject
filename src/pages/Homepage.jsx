@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { SecondFooter } from '../components/SecondFooter'
 import Card from '../components/Card'
 import NewNavbar from '../components/NewNavbar'
+import { NewComp } from '../components/NewComp'
 
 export const Homepage = () => {
   const navigate = useNavigate()
@@ -15,7 +16,8 @@ export const Homepage = () => {
   return (
     <div className='bg-slate-50'>
         {/* <Navbar/> */}
-        <NewNavbar />
+        {/* <NewNavbar /> */}
+        <NewComp />
         <Hero />
         <Card/>
         <HeadlineCards />
