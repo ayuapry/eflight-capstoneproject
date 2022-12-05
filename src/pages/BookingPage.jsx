@@ -169,7 +169,6 @@ export const BookingPage = () => {
                         </div>
                         </div>
                         <h3 className='text-blue-600 hover:text-blue-400 cursor-pointer' onClick={() => setBmodal(true)} >Order</h3>
-                        <SeatModal open={Bmodal} close={handleOnClose} />
                     </div>
                     <div className='flex gap-4 justify-between mt-5 items-center'>
                         <div className='flex gap-4'>
@@ -195,6 +194,7 @@ export const BookingPage = () => {
                 <ButtonPrimary type="submit" title="Booking Now"/> 
             </div>
         </div>
+        <SeatModal open={Bmodal} close={handleOnClose} />
     </div>
   )
 }
