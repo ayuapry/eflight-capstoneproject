@@ -9,8 +9,8 @@ import { SeatModal } from '../components/SeatModal';
 import ButtonPrimary from '../components/ButtonPrimary';
 
 export const BookingPage = () => {
-    const [Bmodal, setBmodal] = useState(false)
-    const handleOnClose = () => setBmodal(false)
+    const [seatModal, setSeatModal] = useState(false)
+    const handleOnClose = () => setSeatModal(false)
     const [formValues, setFormValues] = useState([]);
 
     const handleChange = e => {
@@ -168,7 +168,7 @@ export const BookingPage = () => {
                             </div>
                         </div>
                         </div>
-                        <h3 className='text-blue-600 hover:text-blue-400 cursor-pointer' onClick={() => setBmodal(true)} >Order</h3>
+                        <h3 className='text-blue-600 hover:text-blue-400 cursor-pointer' onClick={() => setSeatModal(true)} >Order</h3>
                     </div>
                     <div className='flex gap-4 justify-between mt-5 items-center'>
                         <div className='flex gap-4'>
@@ -194,7 +194,7 @@ export const BookingPage = () => {
                 <ButtonPrimary type="submit" title="Booking Now"/> 
             </div>
         </div>
-        <SeatModal open={Bmodal} close={handleOnClose} />
+        <SeatModal open={seatModal} close={handleOnClose} />
     </div>
   )
 }

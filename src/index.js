@@ -13,6 +13,7 @@ import { HistoryPage } from "./pages/HistoryPage";
 import { BookingPage } from "./pages/BookingPage";
 import Card from "./components/Card";
 import { FilterPage } from "./pages/FilterPage";
+import { History } from "./pages/History";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -29,6 +30,7 @@ root.render(
         <Route path="/history" element={<HistoryPage/>} />
         <Route path="/Booking" element={<BookingPage />} />
         <Route path="/card" element={<Card />}/>
+        <Route path="/story" element={<History/>} />
       </Routes>
   </BrowserRouter>
   </Provider>
