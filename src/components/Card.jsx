@@ -313,7 +313,7 @@ const Card = () => {
                         </div>
 
                         <div 
-                            className='relative flex flex-col cursor-pointer border-b-2 border-gray-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
+                            className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                             <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-black'
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
@@ -480,23 +480,10 @@ const Card = () => {
                         </div>
                     </div>
             </div>
-
                        
             <div className="w-full flex items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  >
-                {/* <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
-                    <span>
-                        <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
-                    </span>
-                    <button
-                        className='flex items-center' 
-                        type="submit">
-                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' >
-                           Find Tickets
-                        </h2>
-                    </button>
-                </div> */}
-                <div className='w-fit' onClick={()=>navigate('/Detail')}>
-                    <ButtonPrimary title='Find Tickets' />
+                <div className='w-fit' onClick={()=>navigate('/Filter')}>
+                    <ButtonPrimary type='submit' title='Find Tickets' />
                 </div>
             </div>
 

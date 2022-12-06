@@ -3,10 +3,8 @@ import { Navbar } from '../components/Navbar'
 import { HeadlineCards } from '../components/HeadlineCards'
 import { Hero } from '../components/Hero'
 import Footer from '../components/Footer'
-// import ButtonPrimary from '../components/ButtonPrimary'
 import { SecondFooter } from '../components/SecondFooter'
 import Card from '../components/Card'
-import NewNavbar from '../components/NewNavbar'
 
 export const Homepage = () => {
   return (

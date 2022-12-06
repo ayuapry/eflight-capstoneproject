@@ -35,14 +35,15 @@ export const Navbar = () => {
                 <Link to='/' className='flex items-center ml-14'>
                     <img src={LogoText} className='w-40 lg:block' alt="" />
                 </Link>
-            </div>
-            <div className='text-[#171717] mt-3'>
-              <ul className='hidden md:flex gap-3 md:text-lg'>
+            {/* <div className='text-[#171717] mt-3'> */}
+              <ul className='hidden md:flex gap-3 md:text-md mt-3'>
                   <a href='#Destination' className='hover:text-blue-600 hover:font-semibold'>Destination</a>
                   <a href='#Booking' className='hover:text-blue-600 hover:font-semibold'>Booking</a>
                   <a href='#Services' className='hover:text-blue-600 hover:font-semibold'>Services</a>
               </ul>
-            </div>    
+            {/* </div>     */}
+            </div>
+
             <div className='flex gap-3 items-center pr-5'>
                 <div className="filter-dropdowns">
                     <div className="relative inline-block text-left">
