@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store/Store";
 import { ProfilePage } from "./pages/ProfilePage";
 import { NotificationPage } from "./pages/NotificationPage";
 import Register from "./pages/Register";
@@ -12,8 +14,10 @@ import { BookingPage } from "./pages/BookingPage";
 import Card from "./components/Card";
 import { FilterPage } from "./pages/FilterPage";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <Provider store={store}>
   <BrowserRouter>
     <Routes>
         <Route path="/" element={<App />} />
@@ -27,4 +31,5 @@ root.render(
         <Route path="/card" element={<Card />}/>
       </Routes>
   </BrowserRouter>
+  </Provider>
 );

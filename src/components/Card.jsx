@@ -92,7 +92,7 @@ const Card = () => {
         setCalendarGo(format(date, 'MM/dd/yyyy'))
     }
     
-    const display = countD + countA + countB + " People, ";
+    const display = countD + countA + countB + " Passenger, ";
         
 
   return (
