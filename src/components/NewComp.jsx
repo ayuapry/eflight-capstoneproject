@@ -20,7 +20,7 @@ const items = [
       ),
     },
   ];
-export const Navbar = () => {
+export const NewComp = () => {
     const [select, setSelect] = useState('')
     return (
     <div className='h-[90px] w-screen bg-white py-5 fixed z-50'>

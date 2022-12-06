@@ -10,6 +10,17 @@
   }
 }
 
+@layer utilities {
+  .LiGradien {
+    background: linear-gradient(
+      0deg,
+      rgba(67, 149, 182, 1) 0%,
+      rgba(165, 204, 220, 1) 40%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
+}
+
 @layer components {
   .clip-path {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);

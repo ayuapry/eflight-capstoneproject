@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import { HistoryPage } from "./pages/HistoryPage";
 import { BookingPage } from "./pages/BookingPage";
 import NewDetail from "./pages/NewDetail";
+import Card from "./components/Card";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path="/Detail" element={<NewDetail/>} />
         <Route path="/history" element={<HistoryPage/>} />
         <Route path="/Booking" element={<BookingPage />} />
+        <Route path="/card" element={<Card />}/>
       </Routes>
   </BrowserRouter>
 );
