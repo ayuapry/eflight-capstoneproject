@@ -7,7 +7,6 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { NotificationPage } from "./pages/NotificationPage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Detail from "./pages/Detail";
 import { HistoryPage } from "./pages/HistoryPage";
 import { BookingPage } from "./pages/BookingPage";
 import NewDetail from "./pages/NewDetail";

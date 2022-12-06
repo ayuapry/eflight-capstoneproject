@@ -20,7 +20,6 @@ export default function Filter() {
   return (
     <div>
         <div className='hidden lg:block'>
-        <h1 className='text-lg'>Filter</h1>
         <div className='shadow-sm shadow-gray-400 rounded-xl p-2 w-72'>
         <Disclosure>
           {({ open }) => (
