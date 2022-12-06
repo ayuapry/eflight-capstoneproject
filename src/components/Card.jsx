@@ -10,6 +10,7 @@ import format from 'date-fns/format'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
+import ButtonPrimary from './ButtonPrimary';
 
 const Card = () => {
     const [city, setCity] = useState(null)
@@ -91,12 +92,12 @@ const Card = () => {
         setCalendarGo(format(date, 'MM/dd/yyyy'))
     }
     
-    const display = countD + countA + countB + " Orang, ";
+    const display = countD + countA + countB + " People, ";
         
 
   return (
-    <div id='Booking' className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
-        <div className=' CardWrap bg-white shadow-md mx-[2rem] md:mx-[4rem] my-[1rem] md:my-[3rem] rounded-xl'>
+    <div id='Booking' className=' bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
+        <div className=' CardWrap bg-white shadow md:shadow-md mx-0 md:mx-20 my-0 md:my-[3rem] rounded-none md:rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
@@ -105,7 +106,7 @@ const Card = () => {
                 alt="BinarLogo" />
                 <h1
                     className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
-                    Find Filghts Tickets
+                    Find Flights Tickets
                 </h1>
             </div>
 
@@ -120,20 +121,20 @@ const Card = () => {
                     <div>
                         <input type="radio" id="RpundTrip" name="RoundTrip" value="RoundTrip" onChange={()=>{}}  checked={selectRadio === 'RoundTrip'}  onClick={(e) => setSelectRadio( selectRadio === 'RoundTrip' ? 'OneWay' : 'RoundTrip')} className='cursor-pointer' /> 
                         <label htmlFor="RpundTrip" className='p-2 cursor-pointer fontMont'>
-                            RoundTrip
+                            Round Trip
                         </label>
                     </div>
                 </form>
             </div>
 
-            <div className='flex flex-col justify-between md:flex-row px-[1.5rem] md:px-[4rem] md:border-double md:border-y-2 md:border-[#0099b7]'>
-                <div className='flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-[#0099b7] md:py-2'>
+            <div className='flex flex-col justify-between md:flex-row px-[1.5rem] md:px-[4rem] md:border-double md:border-y-2 md:border-blue-600'>
+                <div className='flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-blue-600 md:py-2'>
                     <div className="flex w-full flex-col md:flex-row md:items-center md:pr-[4rem] mb-3 md:mb-0">
                         
                         <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                             <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>From</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                                className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                                 <div 
                                     onClick={() => setOpen(!open)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -144,7 +145,7 @@ const Card = () => {
                                 </div>
                                 <div className={`${open? 'clip-path' : "close-path"} transition-all duration-500 flex absolute bottom-[-15.1rem] m-0  h-[240px] w-full z-30`}>
                                     <ul className={` overflow-y-auto w-full h-full`}>
-                                        <div className='flex border-b-2 border-yellow-300 w-full flex-row justify-between items-center bg-white sticky top-0'>
+                                        <div className='flex border-b-2 border-blue-600 w-full flex-row justify-between items-center bg-white sticky top-0'>
                                             <input 
                                                 className='fontMont text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black'
                                                 type="text" value={inputCity}
@@ -152,13 +153,13 @@ const Card = () => {
                                                 onChange={(e) =>setInputCity(e.target.value.toLocaleLowerCase())} 
                                             />
                                             <RiCloseFill 
-                                                className='text-[1.5rem] mr -2  cursor-pointer text-gray-300  hover:text-blue-400'
+                                                className='text-[1.5rem] mr -2  cursor-pointer text-gray-300  hover:text-blue-600'
                                                 onClick={() => setOpen(!open)} />
                                         </div>
                                         
                                         {city?.map((e) => (
                                         <li key={e?.name}
-                                            className={`fontMont text-[0.9rem] p-2 hover:bg-gray-300 bg-white  text-black pb-1 w-full md:truncate ${e?.name?.toLowerCase().startsWith(inputCity) ? "block" : "hidden"}`}
+                                            className={`fontMont text-[0.9rem] p-2 hover:bg-sky-50 bg-white  text-black pb-1 w-full md:truncate ${e?.name?.toLowerCase().startsWith(inputCity) ? "block" : "hidden"}`}
                                             onClick={() => {
                                                 if(e?.name?.toLowerCase() !== selectCity.toLowerCase()) {
                                                     setSelectCity(e?.name);
@@ -180,7 +181,7 @@ const Card = () => {
                         <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                         <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>To</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md'>
+                                className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear'>
                                 <div 
                                     onClick={() => setOpenTo(!openTo)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -191,7 +192,7 @@ const Card = () => {
                                 </div>
                                 <div className={`${openTo? 'clip-path' : "close-path"} transition-all duration-500 flex absolute bottom-[-15.1rem] m-0  h-[240px] w-full z-30`}>
                                     <ul className={` overflow-y-auto w-full h-full`}>
-                                    <div className='flex border-b-2 border-yellow-300 w-full flex-row justify-between items-center bg-white sticky top-0'>
+                                    <div className='flex border-b-2 border-blue-600 w-full flex-row justify-between items-center bg-white sticky top-0'>
                                             <input 
                                                 className='fontMont text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black'
                                                 type="text" value={inputCityTo}
@@ -199,13 +200,13 @@ const Card = () => {
                                                 onChange={(e) =>setInputCityTo(e.target.value.toLocaleLowerCase())} 
                                             />
                                             <RiCloseFill 
-                                                className='text-[1.5rem] mr -2  cursor-pointer text-gray-300  hover:text-blue-400'
+                                                className='text-[1.5rem] mr -2  cursor-pointer text-gray-300  hover:text-blue-600'
                                                 onClick={() => setOpenTo(!openTo)} />
                                         </div>
                                         
                                         {city?.map((e) => (
                                         <li key={e?.name}
-                                            className={`fontMont text-[0.9rem] p-2 hover:bg-gray-300 bg-white  text-black pb-1 w-full md:truncate ${e?.name?.toLowerCase().startsWith(inputCityTo) ? "block" : "hidden"}`}
+                                            className={`fontMont text-[0.9rem] p-2 hover:bg-sky-50 bg-white  text-black pb-1 w-full md:truncate ${e?.name?.toLowerCase().startsWith(inputCityTo) ? "block" : "hidden"}`}
                                             onClick={() => {
                                                 if(e?.name?.toLowerCase() !== selectCityTo.toLowerCase()) {
                                                     setSelectCityTo(e?.name);
@@ -237,7 +238,7 @@ const Card = () => {
                                 <div className='relative flex flex-col justify-center md:mr-[1rem]'>
                                     <div
                                         ref={refOne}
-                                        className='tranform flex flex-row cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
+                                        className='tranform flex flex-row cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem]'>
                                         <TbCalendarEvent className='mr-3 text-[1.5rem] text-black'/>
                                         <input
                                             className="inputBox outline-none bg-transparent cursor-pointer"
@@ -277,8 +278,8 @@ const Card = () => {
                                 <div className="relative flex flex-col justify-center">
                                     <div
                                         ref={refOne}
-                                        className={`flex flex-row cursor-pointer border-2 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem] 
-                                        ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-[#0099b7]"}`}>
+                                        className={`flex flex-row cursor-pointer border-b-2 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem] 
+                                        ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-blue-400 hover:border-blue-600"}`}>
                                         <TbCalendarStats className='mr-3 text-[1.5rem] text-black'/>
                                         <input
                                             className={`inputBox outline-none  disabled:opacity-30 bg-transparent cursor-pointer
@@ -312,15 +313,15 @@ const Card = () => {
                         </div>
 
                         <div 
-                            className='relative flex flex-col cursor-pointer border-2 border-[#0099b7] hover:border-black transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                            className='relative flex flex-col cursor-pointer border-b-2 border-gray-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                             <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-black'
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
                                     {display ? display : "Jumlah Penumpang"}
-                                    {selectClass ? selectClass : " Pilih Kelas Kabin"}
+                                    {selectClass ? selectClass : " Choose Cabin Class"}
                                 </p>
                                 <BiChevronDown
-                                    className='text-[1.5rem] cursor-pointer text-black hover:text-[#0099b7]'/>
+                                    className='text-[1.5rem] cursor-pointer text-blue-400 hover:text-blue-600'/>
                             </div>
 
                             <div className={`${openClass? 'clip-path' : "close-path"} flex  transition-all duration-500 absolute bottom-[-15.1rem] m-0 h-[240px] w-full z-30 flex-col md:flex-row justify-between `}>
@@ -331,13 +332,13 @@ const Card = () => {
                                             Passenger
                                         </p>
                                         <RiCloseFill
-                                            className='text-[1.5rem] cursor-pointer lg:text-transparent lg:hover:text-transparent text-gray-300 hover:text-[#0099b7]'
+                                            className='text-[1.5rem] cursor-pointer lg:text-transparent lg:hover:text-transparent text-gray-300 hover:text-blue-600'
                                             onClick={() => setOpenClass(!openClass)} />
                                     </div>
-                                    <hr className='hidden md:flex md:my-1 border-b-1 border-yellow-300 ' />
+                                    <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600 ' />
                                     <div className='flex flex-row justify-between'>
                                         <div className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                            <ImManWoman className='text-[1.5rem] mr-3 text-[#0099b7]'/>
+                                            <ImManWoman className='text-[1.5rem] mr-3 text-blue-600'/>
                                                 <div className='flex flex-col'>
                                                     <h1 className='fontMont text-[0.9rem] font-bold mb-[0.2rem]'>
                                                         Adult
@@ -349,7 +350,7 @@ const Card = () => {
                                         </div>
                                         <div className='flex flex-row items-center '>
                                             <button
-                                                className='cursor-pointer mr-2 hover:text-[#0099b7]'
+                                                className='cursor-pointer mr-2 hover:text-blue-600'
                                                 onClick={() => setCountD(countD - 1)}
                                                 disabled={countD === 0}>
                                                 <BiMinusCircle />
@@ -358,7 +359,7 @@ const Card = () => {
                                                 {countD}
                                             </h2>
                                             <button
-                                                className='cursor-pointer ml-2 hover:text-[#0099b7]'
+                                                className='cursor-pointer ml-2 hover:text-blue-600'
                                                 onClick={() => setCountD(countD + 1)}
                                                 disabled={countD === 5}>
                                                 <BiPlusCircle/>
@@ -367,7 +368,7 @@ const Card = () => {
                                     </div>
                                     <div className='flex flex-row justify-between'>
                                         <div className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                            <FaChild className='text-[1.5rem] mr-3 text-[#0099b7]'/>
+                                            <FaChild className='text-[1.5rem] mr-3 text-blue-600'/>
                                                 <div className='flex flex-col'>
                                                     <h1 className='fontMont text-[0.9rem] font-bold mb-[0.2rem]'>
                                                         Child
@@ -379,7 +380,7 @@ const Card = () => {
                                         </div>
                                         <div className='flex flex-row items-center '>
                                             <button
-                                                className='cursor-pointer mr-2 hover:text-[#0099b7]'
+                                                className='cursor-pointer mr-2 hover:text-blue-600'
                                                 onClick={() => setCountA(countA - 1)}
                                                 disabled={countA === 0}>
                                                 <BiMinusCircle />
@@ -388,7 +389,7 @@ const Card = () => {
                                                 {countA}
                                             </h2>
                                             <button
-                                                className='cursor-pointer ml-2 hover:text-[#0099b7]'
+                                                className='cursor-pointer ml-2 hover:text-blue-600'
                                                 onClick={() => setCountA(countA + 1)}
                                                 disabled={countA === 2}>
                                                 <BiPlusCircle/>
@@ -397,7 +398,7 @@ const Card = () => {
                                     </div>
                                     <div className='flex flex-row justify-between'>
                                         <div className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                            <FaBabyCarriage className='text-[1.5rem] mr-3 text-[#0099b7]'/>
+                                            <FaBabyCarriage className='text-[1.5rem] mr-3 text-blue-600'/>
                                                 <div className='flex flex-col'>
                                                     <h1 className='fontMont text-[0.9rem] font-bold mb-[0.2rem]'>
                                                         Infant
@@ -409,7 +410,7 @@ const Card = () => {
                                         </div>
                                         <div className='flex flex-row items-center '>
                                             <button
-                                                className='cursor-pointer mr-2 hover:text-[#0099b7]'
+                                                className='cursor-pointer mr-2 hover:text-blue-600'
                                                 onClick={() => setCountB(countB - 1)}
                                                 disabled={countB === 0}>
                                                 <BiMinusCircle/>
@@ -418,7 +419,7 @@ const Card = () => {
                                                 {countB}
                                             </h2>
                                             <button
-                                                className='cursor-pointer ml-2 hover:text-[#0099b7]'
+                                                className='cursor-pointer ml-2 hover:text-blue-600'
                                                 onClick={() => setCountB(countB + 1)}
                                                 disabled={countB === 2}>
                                                 <BiPlusCircle />
@@ -437,12 +438,12 @@ const Card = () => {
                                             Cabin Class
                                         </p>
                                         <RiCloseFill
-                                            className='text-[1.5rem] cursor-pointer text-transparent md:text-gray-300 md:hover:text-[#0099b7]'
+                                            className='text-[1.5rem] cursor-pointer text-transparent md:text-gray-300 md:hover:text-blue-600'
                                             onClick={() => setOpenClass(!openClass)} />
                                     </div>
-                                    <hr className='hidden md:flex md:my-1 border-b-1 border-yellow-300 ' />
+                                    <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600' />
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
+                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("Economy");
@@ -450,7 +451,7 @@ const Card = () => {
                                         Economy
                                     </li>
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
+                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("Premium Economy");
@@ -458,7 +459,7 @@ const Card = () => {
                                         Premium Economy
                                     </li>
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
+                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("Business");
@@ -466,7 +467,7 @@ const Card = () => {
                                         Business
                                     </li>
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-[#FFD24C] md:hover:bg-sky-50 max-md:border-[#FFE69A] '
+                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("First");
@@ -481,19 +482,21 @@ const Card = () => {
             </div>
 
                        
-            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Detail')}>
-                <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
+            <div className="w-full flex items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  >
+                {/* <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
                         <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
                     </span>
                     <button
                         className='flex items-center' 
                         type="submit">
-                        {/* Cari Tiket */}
                         <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' >
                            Find Tickets
                         </h2>
                     </button>
+                </div> */}
+                <div className='w-fit' onClick={()=>navigate('/Detail')}>
+                    <ButtonPrimary title='Find Tickets' />
                 </div>
             </div>
 

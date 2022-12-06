@@ -1,59 +1,47 @@
 import React from 'react'
-import {MdAirlineSeatLegroomExtra, MdHolidayVillage} from 'react-icons/md'
-import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
+import { HeadingCard } from './HeadingCard'
 import Holiday from '../assets/Holiday.png'
+import {MdAirlineSeatLegroomExtra} from 'react-icons/md'
+import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
+
 export const HeadlineCards = () => {
   return (
-    <div id='Destination'>
-        <div className='bg-slate-50 h-[500px] pt-[100px] mt-0 md:mt-[20rem]'>
-            <h1 className='text-center text-xl md:text-3xl font-bold'>Our Top Tour Places</h1>
-            <p className='text-center text-gray-500 mx-10 mb-8 font-light'>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</p>
-            <div className='bg-slate-50 px-10 md:mx-20 md:pl-[105px] h-full pb-[150px] grid grid-cols-2 lg:grid-cols-4 gap-0 max-w-10xl justify-center'>
-                <div className='border border-3 cursor-pointer w-[140px] md:w-[250px] h-[270px] bg-white shadow-lg rounded-md mb-5 hover:bg-slate-100 hover:scale-110 ease-in duration-300'>
-                    <img src="https://i.pinimg.com/564x/87/91/44/879144d6568e6b141e7b2c839b72be8c.jpg" alt="" className=' object-cover w-[250px] h-[180px] ' />
-                    <p className='font-bold text-center px-2 mt-2'>Korean Places</p>
-                    <span className='text-gray-400 px-2 '>Lorem, ipsum dolor.</span>
-                </div>
-                <div className='border border-3 cursor-pointer w-[140px] md:w-[250px] h-[270px] bg-white shadow-lg rounded-md hover:bg-slate-100 hover:scale-110 ease-in duration-300'>
-                    <img src="https://i.pinimg.com/236x/ce/f3/65/cef3658f078b94360e6fc2032311ba4f.jpg" alt="" className=' object-cover w-[250px] h-[180px]' />
-                    <p className='font-bold mt-2 px-2'>Japan Places</p>
-                    <span className='text-gray-400 px-2'>Lorem, ipsum dolor.</span>
-                </div>
-                <div className='border border-3 cursor-pointer w-[140px] md:w-[250px] h-[270px] bg-white shadow-lg rounded-md hover:bg-slate-100 hover:scale-110 ease-in duration-300'>
-                    <img src="https://i.pinimg.com/236x/4d/42/ae/4d42ae183e8eb047c1fed220e8a95298.jpg" alt="" className=' object-cover w-[250px] h-[180px]' />
-                    <p className='font-bold mt-2 px-2'>Thailand Places</p>
-                    <span className='text-gray-400 px-2'>Lorem, ipsum dolor.</span>
-                </div>  
-                <div className='border border-3 cursor-pointer w-[140px] md:w-[250px] h-[270px] bg-white shadow-lg rounded-md hover:bg-slate-100 hover:scale-110 ease-in duration-300'>
-                    <img src="https://i.pinimg.com/236x/ed/dd/47/eddd47c147292916adb14d533759d3b3.jpg" alt="" className=' object-cover w-[250px] h-[180px] ' />
-                    <p className='font-bold mt-2 px-2'>Bali Places</p>
-                    <span className='text-gray-400 px-2'>Lorem, ipsum dolor.</span>
-                </div>                 
-            </div>
+    <>
+    <div className='py-10 md:mt-[350px]'>
+        <div className='max-w-[1240px] mx-auto px-4 text-center'>
+            <h1>Our Top Tour Places</h1>
+            <span className=''>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</span>
         </div>
-      
-        <div className='hidden md:flex items-center mx-[100px] h-[500px]'>
+        <div className='max-w-[1024px] mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer'>
+            <HeadingCard bg='https://media.istockphoto.com/id/474127808/id/foto/makam-kuno-yang-ditempa-di-batu.jpg?s=612x612&w=0&k=20&c=Cx0uX_fDvPjVz-9Kgw828cJLsnCbCRFqoMQ-MAisdMw=' text='Toraja Island' />
+            <HeadingCard bg='https://media.istockphoto.com/id/653953140/id/foto/candi-hindu-di-bali.jpg?s=612x612&w=0&k=20&c=RHnKo1W5qOArOWwR3BHgd2GiAquTB0FGMouoEFlIXT4=' text='Bali' />
+            <HeadingCard bg='https://media.istockphoto.com/id/692520370/id/foto/candi-prambanan.jpg?s=612x612&w=0&k=20&c=Vf2-yCqTbMLn-D6-7gKjK29jjFR00OdChCf2D3FA4ls=' text='Yogyakarta' />
+            <HeadingCard bg='https://media.istockphoto.com/id/909449006/id/foto/pulau-padar.jpg?s=612x612&w=0&k=20&c=dODNFZUa47JpBSP9FQ_1nXhqki82tOEMdBRg6AImmxQ=' text='Labuan Bajo' />
+            <HeadingCard bg='https://media.istockphoto.com/id/500798563/id/foto/city-skyline-at-sunset-jakarta-indonesia.jpg?s=612x612&w=0&k=20&c=dICfiBlbElOeu0UceZMoFpBJ7xJF5bKyriTRZmGXHO4=' text='Jakarta' />
+            <HeadingCard bg='https://media.istockphoto.com/id/1164092944/id/foto/lanskap-perkebunan-teh-yang-indah-di-pagi-hari.jpg?s=612x612&w=0&k=20&c=PjbtnvVtI0MLMu8jFEoeiFlGI0uGqRBkZwO7O92tuPI=' text='Bandung' />
+        </div>
+        <div className='max-w-[1240px] mx-auto px-4 hidden md:flex items-center '>
             <div className='w-[40%]'>
                 <img src={Holiday} alt="/" className='h-auto w-auto object-cover ' />
             </div>
-            <div className='w-[60%]'>
-                <h1 className='text-2xl font-bold'>Ordering Tickets and Planning Vacations Made Easy</h1>
+            <div className='w-[50%]'>
+                <h1>Ordering Tickets and Planning Vacations Made Easy</h1>
                 <div className='border-l-4 border-blue-600 px-3'>
                     <div>
-                        <h1>Easily Book Tickets and Hotels.</h1>
+                        <h2>Easily Book Tickets and Hotels.</h2>
                         <span>Book flight tickets easily and quickly. No need to worry, with just one touch of a finger, you can easily get the flight ticket you need.</span>
                     </div>
                     <div className='mt-4'>
-                        <h1>Lots of Special Promos.</h1>
+                        <h2>Lots of Special Promos.</h2>
                         <span>Many promos for your favorite airline tickets. Get the best price discounts so that your vacation budget is even more economical. There is no more reason to postpone your vacation.</span>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div className='bg-slate-50'>
-            <p  id='Services' className='text-center text-xl md:text-3xl pb-5 font-bold md:px-20'>Discover further services</p>
-            <div className='bg-slate-50 px-10 md:px-20 h-full pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
+
+        <div className='max-w-[1240px] mx-auto px-4'>
+            <h1 id='Services' className='text-center py-4'>Discover further services</h1>
+            <div className='bg-slate-50 px-10 md:px-20 h-full pb-5 md:pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
                 <div className='flex flex-col items-center'>
                     <MdAirlineSeatLegroomExtra size={50}  className='mb-5 text-sky-300'/>
                     <p className='font-semibold text-center'>ADITIONAL SEAT</p>
@@ -61,7 +49,7 @@ export const HeadlineCards = () => {
                 </div>
                 <div className='flex flex-col items-center'>
                     <GiHandBag size={50} className='mb-5 text-yellow-500 '/>
-                    <p className='font-semibold text-center'>ADD MORE BAGS</p>
+                    <p className='font-semibold text-center'>MORE BAGS</p>
                     <h3 className='font-light'>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
                 </div>
                 <div className='flex flex-col items-center'>
@@ -76,7 +64,8 @@ export const HeadlineCards = () => {
                 </div>
             </div>
         </div>
+        
     </div>
-
+    </>
   )
 }

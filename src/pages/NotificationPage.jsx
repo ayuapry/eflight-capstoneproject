@@ -7,7 +7,7 @@ export const NotificationPage = () => {
     <div className='h-screen bg-white'>
         <Navbar />
         <div className='pt-[100px] h-screen'>
-        <button className='font-semibold mx-5 md:mx-[75px] text-xl mb-5 bg-[#FFD24C] hover:bg-[#FFE69A]  px-4 py-1 rounded-[100px]'>All Notification</button>
+        <button className='font-semibold text-white mx-5 md:mx-[75px] text-xl mb-5 bg-blue-600 hover:bg-blue-300  px-4 py-1 rounded-[100px]'>All Notification</button>
         <div className=' pb-5 '> 
           <article className='border-b-2 md:px-10 mx-[20px] border-gray-400 bg-white md:mx-[80px]'>
             <div className='flex gap-5 items-center'>

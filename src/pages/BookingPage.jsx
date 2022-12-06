@@ -163,7 +163,7 @@ export const BookingPage = () => {
                         <MdEventSeat size={25} />
                         <div className='flex justify-between items-center'>
                             <div>
-                                <h1>Seat</h1>
+                                <h2>Seat</h2>
                                 <span className='font-light'>Choose a seat on the plane.</span>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ export const BookingPage = () => {
                         <div className='flex gap-4'>
                         <GiHandBag size={25} />
                         <div>
-                            <h1>Baggage</h1>
+                            <h2>Baggage</h2>
                             <span className='font-light'>Increase the capacity of your luggage.</span>
                             <Form.Item className='mt-3'>
                                 <Select placeholder='Baggage'>
