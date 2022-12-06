@@ -1,10 +1,11 @@
 import React from 'react'
-import {MdAirlineSeatLegroomExtra} from 'react-icons/md'
+import {MdAirlineSeatLegroomExtra, MdHolidayVillage} from 'react-icons/md'
 import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
+import Holiday from '../assets/Holiday.png'
 export const HeadlineCards = () => {
   return (
     <div id='Destination'>
-        <div className='bg-slate-50 h-auto pt-[100px] mt-0 md:mt-[20rem]'>
+        <div className='bg-slate-50 h-[500px] pt-[100px] mt-0 md:mt-[20rem]'>
             <h1 className='text-center text-xl md:text-3xl font-bold'>Our Top Tour Places</h1>
             <p className='text-center text-gray-500 mx-10 mb-8 font-light'>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</p>
             <div className='bg-slate-50 px-10 md:mx-20 md:pl-[105px] h-full pb-[150px] grid grid-cols-2 lg:grid-cols-4 gap-0 max-w-10xl justify-center'>
@@ -28,6 +29,25 @@ export const HeadlineCards = () => {
                     <p className='font-bold mt-2 px-2'>Bali Places</p>
                     <span className='text-gray-400 px-2'>Lorem, ipsum dolor.</span>
                 </div>                 
+            </div>
+        </div>
+      
+        <div className='hidden md:flex items-center mx-[100px] h-[500px]'>
+            <div className='w-[40%]'>
+                <img src={Holiday} alt="/" className='h-auto w-auto object-cover ' />
+            </div>
+            <div className='w-[60%]'>
+                <h1 className='text-2xl font-bold'>Ordering Tickets and Planning Vacations Made Easy</h1>
+                <div className='border-l-4 border-blue-600 px-3'>
+                    <div>
+                        <h1>Easily Book Tickets and Hotels.</h1>
+                        <span>Book flight tickets easily and quickly. No need to worry, with just one touch of a finger, you can easily get the flight ticket you need.</span>
+                    </div>
+                    <div className='mt-4'>
+                        <h1>Lots of Special Promos.</h1>
+                        <span>Many promos for your favorite airline tickets. Get the best price discounts so that your vacation budget is even more economical. There is no more reason to postpone your vacation.</span>
+                    </div>
+                </div>
             </div>
         </div>
         

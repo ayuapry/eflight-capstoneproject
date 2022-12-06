@@ -24,15 +24,15 @@ export const Navbar = () => {
     const [select, setSelect] = useState('')
     return (
     <div className='h-[90px] w-screen bg-white py-5 fixed z-50'>
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center md:mx-20'>
             <div className='flex gap-3 '>
                 <div className='md:hidden'>
                 <Dropdown menu={{items,}} placement="bottom" arrow >
                         <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                 </Dropdown>
                 </div>
-                <Link to='/'>
-                    <img src={LogoText} className='w-40  lg:block' alt="" />
+                <Link to='/' className='flex items-center'>
+                    <img src={LogoText} className='w-40 lg:block' alt="" />
                 </Link>
             </div>
             <div className='text-[#171717] mt-3'>
@@ -42,11 +42,11 @@ export const Navbar = () => {
                   <a href='#Services' className='hover:text-blue-600 hover:font-semibold'>Services</a>
               </ul>
             </div>    
-            <div className='flex gap-3'>
-                <div>
-                <div className="filter-dropdowns mr-5">
+            <div className='flex gap-3 items-center'>
+                <div className='flex items-center'>
+                <div className="filter-dropdowns">
                     <div className="relative inline-block text-left">
-                        <div className='h-8 w-8 rounded-full mt-0'>
+                        <div className='h-8 w-8 rounded-full'>
                             <MdCircleNotifications size={38} color='blue' onClick={() => setSelect(!select)} className='cursor-pointer' />
                         </div>
                         <div 
