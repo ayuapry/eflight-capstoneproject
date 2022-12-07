@@ -9,7 +9,6 @@ import { useState } from 'react';
 import Filter from '../components/Filter';
 import { ChevronUpIcon } from '@heroicons/react/20/solid';
 import { Button, Drawer } from 'antd';
-import NewNavbar from '../components/NewNavbar'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

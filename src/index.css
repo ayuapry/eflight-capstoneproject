@@ -38,6 +38,11 @@
   header {
     @apply fixed top-0 z-50;
   }
+  h1 {
+    @apply text-3xl md:text-4xl font-bold
+  }
+
+
 }
 
 * {
