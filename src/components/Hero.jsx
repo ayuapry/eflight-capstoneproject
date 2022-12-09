@@ -1,3 +1,4 @@
+import React from 'react';
 // import Swiper core and required modules
 import {  Pagination, A11y, Autoplay, Navigation } from 'swiper';
 
@@ -13,10 +14,24 @@ import Banner1 from '../assets/Banner1.jpg'
 import Banner2 from '../assets/Banner2.jpg'
 import Banner3 from '../assets/Banner3.jpg'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getHero } from '../redux/feature/homeSlice';
+import { useEffect } from 'react';
+
 
 export const Hero = () => {
+    const {hero, loading} = useSelector((state) => state.hero);
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(getHero())
+    },[]);  
+  
+    if(loading){
+      return <h2>Loading</h2>
+    }
   return (
-    <div className='py-20 md:bg-blue-600 md:h-fit w-full'>
+    <div className='py-[65px] md:bg-blue-600 md:h-fit w-full'>
         <Swiper
           // install Swiper modules
           modules={[Pagination, A11y, Autoplay]}
@@ -35,17 +50,17 @@ export const Hero = () => {
             <SwiperSlide>
                 <img 
                   className='md:max-w-3xl mx-auto'
-                  src={Banner1} alt="Banner1" />
+                  src={hero[0]?.imageURL} alt="Banner1" />
             </SwiperSlide>
             <SwiperSlide>
                 <img 
                   className='md:max-w-3xl mx-auto' 
-                  src={Banner2} alt="Banner2" />
+                  src={hero[1]?.imageURL} alt="Banner2" />
             </SwiperSlide>
             <SwiperSlide>
                 <img 
                   className='md:max-w-3xl mx-auto' 
-                  src={Banner3} alt="Banner3" />
+                  src={hero[2]?.imageURL} alt="Banner3" />
             </SwiperSlide>
         </Swiper>
     </div>

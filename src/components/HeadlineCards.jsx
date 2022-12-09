@@ -3,6 +3,10 @@ import { HeadingCard } from './HeadingCard'
 import Holiday from '../assets/Holiday.png'
 import {MdAirlineSeatLegroomExtra} from 'react-icons/md'
 import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
+import meals from '../assets/meals.png'
+import seat from '../assets/seat.png'
+import bag from '../assets/bag.png'
+import baggage from '../assets/baggage.png'
 
 export const HeadlineCards = () => {
   return (
@@ -26,14 +30,14 @@ export const HeadlineCards = () => {
             </div>
             <div className='w-[50%]'>
                 <h1>Ordering Tickets and Planning Vacations Made Easy</h1>
-                <div className='border-l-4 border-blue-600 px-3'>
+                <div className='border-l-4 py-3 border-blue-600 px-4'>
                     <div>
                         <h2>Easily Book Tickets and Hotels.</h2>
-                        <span>Book flight tickets easily and quickly. No need to worry, with just one touch of a finger, you can easily get the flight ticket you need.</span>
+                        <p className='text-justify'>Book flight tickets easily and quickly. No need to worry, with just one touch of a finger, you can easily get the flight ticket you need.</p>
                     </div>
                     <div className='mt-4'>
                         <h2>Lots of Special Promos.</h2>
-                        <span>Many promos for your favorite airline tickets. Get the best price discounts so that your vacation budget is even more economical. There is no more reason to postpone your vacation.</span>
+                        <p className='text-justify'>Many promos for your favorite airline tickets. Get the best price discounts so that your vacation budget is even more economical. There is no more reason to postpone your vacation.</p>
                     </div>
                 </div>
             </div>
@@ -41,26 +45,26 @@ export const HeadlineCards = () => {
 
         <div className='max-w-[1240px] mx-auto px-4'>
             <h1 id='Services' className='text-center py-4'>Discover further services</h1>
-            <div className='bg-slate-50 px-10 md:px-20 h-full pb-5 md:pb-20 grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center'>
+            <div className='bg-slate-50 px-10 md:px-20 h-full pb-5 md:pb-20 grid grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                 <div className='flex flex-col items-center'>
-                    <MdAirlineSeatLegroomExtra size={50}  className='mb-5 text-sky-300'/>
+                    <img src={seat} alt='seat' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>ADITIONAL SEAT</p>
-                    <h3 className='font-light'>Reserve your seat before flight that best suit for you</h3>
+                    <h3 className='font-light text-justify'>Reserve your seat before flight that best suit for you</h3>
                 </div>
                 <div className='flex flex-col items-center'>
-                    <GiHandBag size={50} className='mb-5 text-yellow-500 '/>
+                    <img src={bag} alt='bag' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>MORE BAGS</p>
-                    <h3 className='font-light'>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
+                    <h3 className='font-light text-justify' style={{textJustify: "inter-character"}}>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
                 </div>
                 <div className='flex flex-col items-center'>
-                    <GiHotMeal size={50} className='mb-5 text-red-400 ' />
+                    <img src={meals} alt='meals' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>SPECIAL MEALS</p>
-                    <h3 className='font-light'>Make your travel easy and enjoyablewith delicious in-flight meals service</h3>
+                    <p className='font-light text-justify'>Make your travel easy and enjoyablewith delicious in-flight meals service</p>
                 </div>
                 <div className='flex flex-col items-center'>
-                    <GiUpgrade size={50} className='mb-5 text-teal-400 ' />
+                    <img src={baggage} alt='baggage' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>CABIN UPGRADE</p>
-                    <h3 className='font-light'>Treat yourself to an upgrade and enjoy better amenities for your flight</h3>
+                    <p className='font-light text-justify tracking-normal'>Treat yourself to an upgrade and enjoy better amenities for your flight</p>
                 </div>
             </div>
         </div>

@@ -22,13 +22,13 @@ export default function LoginPage() {
       };
 
   return (
-    <div className='h-screen'>
-    <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>
+    <div className='h-full'>
+    <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center md:h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
         </div>
         <div className='items-center'>
-        <div className='lg:ml-auto lg:mr-20 mx-4 rounded-lg lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
+        <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
             <h1 className='text-2xl text-slate-700 font-bold mb-6'>Login</h1>
               <Form
                   name="normal_login"
