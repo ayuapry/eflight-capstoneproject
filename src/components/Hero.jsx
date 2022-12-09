@@ -29,8 +29,8 @@ export const Hero = () => {
           slidesPerView={1}
           loop={true}
           pagination={{ clickable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log('slide change')}
         >
             <SwiperSlide>
                 <img 

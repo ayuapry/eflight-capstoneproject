@@ -5,19 +5,23 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import LoginBg from '../assets/login.png';
 import { useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
+import { useDispatch, useSelector } from 'react-redux';
+import { Register } from '../redux/feature/authSlice';
 
-export default function Register() {
+export default function RegisterPage() {
     const navigate = useNavigate()
     const [form] = Form.useForm();
-  
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-        navigate('/')
+    const {register, loading} = useSelector ((state) => state.auth)
+    const dispatch = useDispatch()
+
+    const onFinish = async (values) => {
+        dispatch(Register(values))
+        navigate('/Login')
     };
 
   return (
-    <div>
-    <div className='grid lg:grid-cols-2 items-center h-screen'>
+    <div className='h-screen'>
+    <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
         </div>
@@ -31,30 +35,17 @@ export default function Register() {
                       scrollToFirstError
                   >
                       <Form.Item
-                          name="name"
+                          name="fullname"
                           rules={[
                               {
                                   required: true,
-                                  message: 'Please input your name!',
+                                  message: 'Please input your fullname!',
                                   whitespace: true,
                               },
                           ]}
                       >
-                          <Input className="round-input" suffix={<UserOutlined />} placeholder="Name" />
+                          <Input className="round-input" suffix={<UserOutlined />} placeholder="Fullname" />
                       </Form.Item>
-
-                      {/* <Form.Item
-        name="last_name"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your last name!',
-            whitespace: true,
-          },
-        ]}
-      >
-      <Input className="round-input" suffix={<UserOutlined />} placeholder="Last Name"/>
-      </Form.Item> */}
 
                       <Form.Item
                           name="email"
@@ -86,7 +77,7 @@ export default function Register() {
                       </Form.Item>
 
                       <Form.Item
-                          name="password_confirmation"
+                          name="password-validation"
                           dependencies={['password']}
                           hasFeedback
                           rules={[

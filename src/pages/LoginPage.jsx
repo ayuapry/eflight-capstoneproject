@@ -6,17 +6,24 @@ import ButtonBorder from '../components/ButtonBorder';
 import LoginBg from '../assets/login.png';
 import { useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
+import googleIcon from '../assets/google.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoginEmail } from '../redux/feature/authSlice';
 
-export default function Login() {
+export default function LoginPage() {
     const navigate = useNavigate()
+    const {login, loading} = useSelector ((state) => state.auth)
+    const dispatch = useDispatch()
+
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
-        navigate('/')
+        dispatch(LoginEmail(values))
+        // navigate('/')
       };
 
   return (
-    <div>
-    <div className='grid lg:grid-cols-2 items-center h-screen'>
+    <div className='h-screen'>
+    <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
         </div>
@@ -67,7 +74,7 @@ export default function Login() {
                     <p className='text-center text-slate-700 mt-2'>Or</p>
                     <div className='border-b-2 border-slate-700 w-20 mb-6 ml-2'></div>
                     </div>
-                    <ButtonBorder title="Login With Google" />
+                    <ButtonBorder title="Login With Google" img={googleIcon}/>
                     <div className='flex'>
                     <p className='mr-2 mt-4 mb-0 text-slate-700'>Don't have an accout?</p>
                     <a className='text-sky-600 mt-4 mb-0 hover:font-bold hover:text-sky-500' onClick={() => navigate(`/Register`)}> Register </a>

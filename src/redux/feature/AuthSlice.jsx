@@ -1,0 +1,106 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios';
+// export const LoginGoogle = createAsyncThunk(
+//     "user/LoginGoogle", async () => {
+//         try {
+//             const res = await signInWithPopup(auth, googleProvider);
+//             const user = res.user;
+//             const q = query(collection(db, "users"), where("uid", "==", user.uid));
+//             const docs = await getDocs(q);
+//             if (docs.docs.length === 0) {
+//                 await addDoc(collection(db, "users"), {
+//                     uid: user.uid,
+//                     name: user.displayName,
+//                     authProvider: "google",
+//                     email: user.email,
+//                 });
+//             }
+//             localStorage.setItem("token", JSON.stringify(user.accessToken))
+//             localStorage.setItem("user", JSON.stringify(user))
+//             window.location.reload(1);
+//             return user
+//         } catch (err) {
+//             console.error(err);
+//             alert(err.message);
+//         }
+//     }
+// )
+
+export const LoginEmail = createAsyncThunk(
+    "user/Login", async (values) => {
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/signin`, {
+                "email": `${values.email}`,
+                "password": `${values.password}`
+            })
+            localStorage.setItem("token",(res.data.data.jwtToken))
+            return res.data.data
+        } catch (error) {
+            console.error(error)
+        }
+    }
+)
+
+export const Register = createAsyncThunk(
+    "user/Register", async (values) => {
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`,
+            {
+                "email" : `${values.email}`,
+                "fullName" : `${values.fullname}`,
+                "password" : `${values.password}`
+            }
+            )
+            console.log(res.data)
+            return res.data.data
+        } catch (error) {
+            console.error(error)
+        }
+    }
+)
+
+export const authSlice = createSlice({
+    name: "auth",
+    initialState: {
+        loginGoogle: [],
+        loginEmail: [],
+        register: [],
+        loading: false,
+    },
+    reducers: {},
+    extraReducers: {
+        // [LoginGoogle.pending]: (state) => {
+        //     state.loading = true
+        // },
+        // [LoginGoogle.fulfilled]: (state, { payload }) => {
+        //     state.loading = false
+        //     state.login = payload
+        // },
+        // [LoginGoogle.rejected]: (state) => {
+        //     state.loading = false
+        // },
+        [LoginEmail.pending]: (state) => {
+            state.loading = true
+        },
+        [LoginEmail.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.login = payload
+        },
+        [LoginEmail.rejected]: (state) => {
+            state.loading = false
+        },
+        [Register.pending]: (state) => {
+            state.loading = true
+        },
+        [Register.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.login = payload
+        },
+        [Register.rejected]: (state) => {
+            state.loading = false
+        },
+
+    }
+})
+
+export const authReducer = authSlice.reducer
