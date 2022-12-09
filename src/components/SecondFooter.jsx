@@ -1,5 +1,4 @@
 import React from 'react'
-
 export const SecondFooter = () => {
   return (
     <div className='bg-gray-100 border-t-2 h-[100px] text-center font-light text-gray-500 pt-5 '>

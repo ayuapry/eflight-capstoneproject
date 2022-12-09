@@ -1,4 +1,5 @@
 // import Swiper core and required modules
+import React, { useEffect } from 'react';
 import {  Pagination, A11y, Autoplay, Navigation } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,6 +16,8 @@ import Banner3 from '../assets/Banner3.jpg'
 
 
 export const Hero = () => {
+
+
   return (
     <div className='pt-20 md:pt-0 md:bg-blue-600 md:h-[600px] rounded-sm'>
       <div >
@@ -30,8 +33,7 @@ export const Hero = () => {
           slidesPerView={1}
           loop={true}
           pagination={{ clickable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
+
         >
             <SwiperSlide>
                 <img 
