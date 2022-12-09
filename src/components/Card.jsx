@@ -10,6 +10,7 @@ import format from 'date-fns/format'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
+import ButtonPrimary from './ButtonPrimary';
 
 const Card = () => {
     const [city, setCity] = useState(null)
@@ -91,12 +92,12 @@ const Card = () => {
         setCalendarGo(format(date, 'MM/dd/yyyy'))
     }
     
-    const display = countD + countA + countB + " Orang, ";
+    const display = countD + countA + countB + " Passenger, ";
         
 
   return (
-    <div id='Booking' className='bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
-        <div className=' CardWrap bg-white shadow md:shadow-md mx-0 md:mx-[4rem] my-0 md:my-[3rem] rounded-none md:rounded-xl'>
+    <div id='Booking' className=' bg-slate-50 md:bg-transparent w-full h-auto md:h-screen pb-5 md:pb-10 relative md:absolute bottom-0 md:bottom-[-65%] z-10 md:z-20'>
+        <div className=' CardWrap bg-white shadow md:shadow-md mx-0 md:mx-20 my-0 md:my-[3rem] rounded-none md:rounded-xl'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
@@ -105,7 +106,7 @@ const Card = () => {
                 alt="BinarLogo" />
                 <h1
                     className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
-                    Find Filghts Tickets
+                    Find Flights Tickets
                 </h1>
             </div>
 
@@ -120,7 +121,7 @@ const Card = () => {
                     <div>
                         <input type="radio" id="RpundTrip" name="RoundTrip" value="RoundTrip" onChange={()=>{}}  checked={selectRadio === 'RoundTrip'}  onClick={(e) => setSelectRadio( selectRadio === 'RoundTrip' ? 'OneWay' : 'RoundTrip')} className='cursor-pointer' /> 
                         <label htmlFor="RpundTrip" className='p-2 cursor-pointer fontMont'>
-                            RoundTrip
+                            Round Trip
                         </label>
                     </div>
                 </form>
@@ -133,7 +134,7 @@ const Card = () => {
                         <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                             <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>From</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                                className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                                 <div 
                                     onClick={() => setOpen(!open)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -180,7 +181,7 @@ const Card = () => {
                         <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                         <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>To</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md'>
+                                className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear'>
                                 <div 
                                     onClick={() => setOpenTo(!openTo)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -237,7 +238,7 @@ const Card = () => {
                                 <div className='relative flex flex-col justify-center md:mr-[1rem]'>
                                     <div
                                         ref={refOne}
-                                        className='tranform flex flex-row cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
+                                        className='tranform flex flex-row cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem]'>
                                         <TbCalendarEvent className='mr-3 text-[1.5rem] text-black'/>
                                         <input
                                             className="inputBox outline-none bg-transparent cursor-pointer"
@@ -277,7 +278,7 @@ const Card = () => {
                                 <div className="relative flex flex-col justify-center">
                                     <div
                                         ref={refOne}
-                                        className={`flex flex-row cursor-pointer border-2 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem] 
+                                        className={`flex flex-row cursor-pointer border-b-2 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem] 
                                         ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-blue-400 hover:border-blue-600"}`}>
                                         <TbCalendarStats className='mr-3 text-[1.5rem] text-black'/>
                                         <input
@@ -312,12 +313,12 @@ const Card = () => {
                         </div>
 
                         <div 
-                            className='relative flex flex-col cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                            className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                             <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-black'
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
                                     {display ? display : "Jumlah Penumpang"}
-                                    {selectClass ? selectClass : " Pilih Kelas Kabin"}
+                                    {selectClass ? selectClass : " Choose Cabin Class"}
                                 </p>
                                 <BiChevronDown
                                     className='text-[1.5rem] cursor-pointer text-blue-400 hover:text-blue-600'/>
@@ -479,21 +480,10 @@ const Card = () => {
                         </div>
                     </div>
             </div>
-
-                       
-            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Detail')}>
-                <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
-                    <span>
-                        <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
-                    </span>
-                    <button
-                        className='flex items-center' 
-                        type="submit">
-                        {/* Cari Tiket */}
-                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' >
-                           Find Tickets
-                        </h2>
-                    </button>
+                
+            <div className="w-full flex items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  >
+                <div className='w-fit' onClick={()=>navigate('/Filter')}>
+                    <ButtonPrimary type='submit' title='Find Tickets' />
                 </div>
             </div>
 

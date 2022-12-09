@@ -9,8 +9,8 @@ import { SeatModal } from '../components/SeatModal';
 import ButtonPrimary from '../components/ButtonPrimary';
 
 export const BookingPage = () => {
-    const [Bmodal, setBmodal] = useState(false)
-    const handleOnClose = () => setBmodal(false)
+    const [seatModal, setSeatModal] = useState(false)
+    const handleOnClose = () => setSeatModal(false)
     const [formValues, setFormValues] = useState([]);
 
     const handleChange = e => {
@@ -163,18 +163,18 @@ export const BookingPage = () => {
                         <MdEventSeat size={25} />
                         <div className='flex justify-between items-center'>
                             <div>
-                                <h1>Seat</h1>
+                                <h2>Seat</h2>
                                 <span className='font-light'>Choose a seat on the plane.</span>
                             </div>
                         </div>
                         </div>
-                        <h3 className='text-blue-600 hover:text-blue-400 cursor-pointer' onClick={() => setBmodal(true)} >Order</h3>
+                        <h3 className='text-blue-600 hover:text-blue-400 cursor-pointer' onClick={() => setSeatModal(true)} >Order</h3>
                     </div>
                     <div className='flex gap-4 justify-between mt-5 items-center'>
                         <div className='flex gap-4'>
                         <GiHandBag size={25} />
                         <div>
-                            <h1>Baggage</h1>
+                            <h2>Baggage</h2>
                             <span className='font-light'>Increase the capacity of your luggage.</span>
                             <Form.Item className='mt-3'>
                                 <Select placeholder='Baggage'>
@@ -194,7 +194,7 @@ export const BookingPage = () => {
                 <ButtonPrimary type="submit" title="Booking Now"/> 
             </div>
         </div>
-        <SeatModal open={Bmodal} close={handleOnClose} />
+        <SeatModal open={seatModal} close={handleOnClose} />
     </div>
   )
 }

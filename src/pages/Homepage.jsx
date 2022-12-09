@@ -3,21 +3,13 @@ import { Navbar } from '../components/Navbar'
 import { HeadlineCards } from '../components/HeadlineCards'
 import { Hero } from '../components/Hero'
 import Footer from '../components/Footer'
-// import ButtonPrimary from '../components/ButtonPrimary'
-import { useNavigate } from 'react-router-dom'
 import { SecondFooter } from '../components/SecondFooter'
 import Card from '../components/Card'
-import NewNavbar from '../components/NewNavbar'
-import { NewComp } from '../components/NewComp'
 
 export const Homepage = () => {
-  const navigate = useNavigate()
-
   return (
     <div className='bg-slate-50'>
-        {/* <Navbar/> */}
-        {/* <NewNavbar /> */}
-        <NewComp />
+        <Navbar/>
         <Hero />
         <Card/>
         <HeadlineCards />

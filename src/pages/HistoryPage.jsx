@@ -9,9 +9,12 @@ import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
+import { EditProfileModal } from '../components/EditProfileModal'
 
 export const HistoryPage = () => {
   const [select, setSelect] = useState('')
+  const [editProfileModal, setEditProfileModal] = useState(false)
+  const handleOnClose = () => setEditProfileModal(false)
   return (
     <div className='h-auto bg-slate-100'>
       <Navbar />
@@ -25,7 +28,7 @@ export const HistoryPage = () => {
                 <ul>
                     <div className='flex items-center gap-2'>
                         <HiUser size={25} />
-                        <li className='py-2 w-full'><Link to='/profile'>Edit Account</Link></li>
+                        <li className='py-2 w-full cursor-pointer' onClick={() => setEditProfileModal(true)} >Edit Account</li>
                     </div>  
                     <div className='flex items-center gap-2'>
                         <HiLogout size={25} />
@@ -220,6 +223,7 @@ export const HistoryPage = () => {
       </div>
       <Footer />
       <SecondFooter />
+      <EditProfileModal open={editProfileModal} close={handleOnClose} />
     </div>
   )
 }
