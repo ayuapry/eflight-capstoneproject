@@ -5,7 +5,7 @@ import { FaInstagramSquare } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-      <div className="FooterWrap hidden md:flex flex-col bg-gray-100">
+      <div className="FooterWrap flex flex-col bg-gray-100">
         <div className='FooterImg flex justify-center md:justify-start px-[3rem] md:px-16 py-[2rem] md:py-[2rem]'>
           <img 
             className='w-[10rem]'

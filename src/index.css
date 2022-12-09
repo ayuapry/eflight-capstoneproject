@@ -19,6 +19,15 @@
       rgba(255, 255, 255, 1) 100%
     );
   }
+  .LiGradien2 {
+    background: rgb(191, 219, 254);
+    background: linear-gradient(
+      180deg,
+      rgba(191, 219, 254, 1) 0%,
+      rgba(99, 168, 254, 1) 58%,
+      rgba(37, 99, 235, 1) 100%
+    );
+  }
 }
 
 @layer components {

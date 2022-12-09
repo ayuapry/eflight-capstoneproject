@@ -442,7 +442,7 @@ const Card = () => {
                                     </div>
                                     <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600' />
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
+                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("Economy");
@@ -450,7 +450,7 @@ const Card = () => {
                                         Economy
                                     </li>
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
+                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("Premium Economy");
@@ -458,7 +458,7 @@ const Card = () => {
                                         Premium Economy
                                     </li>
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
+                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("Business");
@@ -466,7 +466,7 @@ const Card = () => {
                                         Business
                                     </li>
                                     <li 
-                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-lg hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
+                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
                                         onClick={() => {
                                         setOpenClass(false);
                                         setselectClass("First");
@@ -482,7 +482,7 @@ const Card = () => {
 
                        
             <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Detail')}>
-                <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
+                <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
                         <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
                     </span>

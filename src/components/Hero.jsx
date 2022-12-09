@@ -16,6 +16,7 @@ import Banner3 from '../assets/Banner3.jpg'
 export const Hero = () => {
   return (
     <div className='pt-10 md:pt-0 md:bg-blue-600 md:h-[600px]'>
+    {/* <div className='pt-10 md:pt-0 md:LiGradien2 md:h-[600px]'> */}
       <div >
         <Swiper
           // install Swiper modules
