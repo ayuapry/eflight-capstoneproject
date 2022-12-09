@@ -14,13 +14,23 @@ import Banner1 from '../assets/Banner1.jpg'
 import Banner2 from '../assets/Banner2.jpg'
 import Banner3 from '../assets/Banner3.jpg'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getHero } from '../redux/feature/homeSlice';
+
 
 export const Hero = () => {
-
-
+    const {hero, loading} = useSelector((state) => state.hero);
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(getHero())
+    },[]);  
+  
+    if(loading){
+      return <h2>Loading</h2>
+    }
   return (
-    <div className='pt-20 md:pt-0 md:bg-blue-600 md:h-[600px] rounded-sm'>
-      <div >
+    <div className='py-[65px] md:bg-blue-600 md:h-fit w-full'>
         <Swiper
           // install Swiper modules
           modules={[Pagination, A11y, Autoplay]}
@@ -33,28 +43,25 @@ export const Hero = () => {
           slidesPerView={1}
           loop={true}
           pagination={{ clickable: true }}
-
+          // onSwiper={(swiper) => console.log(swiper)}
+          // onSlideChange={() => console.log('slide change')}
         >
             <SwiperSlide>
                 <img 
-                  className='h-auto md:mx-[300px] md:pt-[100px] md:h-[500px] object-cover md:w-[900px] -z-50 ' 
-                  src={Banner1} alt="Banner1" />
+                  className='md:max-w-3xl mx-auto'
+                  src={hero[0]?.imageURL} alt="Banner1" />
             </SwiperSlide>
             <SwiperSlide>
                 <img 
-                  className='h-auto md:mx-[300px] md:pt-[100px] md:h-[500px] object-cover md:w-[900px] -z-50 ' 
-                  src={Banner2} alt="Banner2" />
+                  className='md:max-w-3xl mx-auto' 
+                  src={hero[1]?.imageURL} alt="Banner2" />
             </SwiperSlide>
             <SwiperSlide>
                 <img 
-                  className='h-auto md:mx-[300px] md:pt-[100px] md:h-[500px] object-cover md:w-[900px] -z-50 ' 
-                  src={Banner3} alt="Banner3" />
+                  className='md:max-w-3xl mx-auto' 
+                  src={hero[2]?.imageURL} alt="Banner3" />
             </SwiperSlide>
         </Swiper>
-      </div>
-      {/* <div>
-        <Card className='absolute top-[5rem] h-full'/>
-      </div> */}
     </div>
   )
 }

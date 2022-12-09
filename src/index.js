@@ -7,13 +7,13 @@ import { Provider } from "react-redux";
 import store from "./redux/store/Store";
 import { ProfilePage } from "./pages/ProfilePage";
 import { NotificationPage } from "./pages/NotificationPage";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import RegisterPage from "./pages/RegisterPage";
 import { HistoryPage } from "./pages/HistoryPage";
 import { BookingPage } from "./pages/BookingPage";
 import Card from "./components/Card";
 import { FilterPage } from "./pages/FilterPage";
 import { History } from "./pages/History";
+import LoginPage from "./pages/LoginPage";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,8 +24,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/notification" element={<NotificationPage />} />
-        <Route path="/Register" element={<Register/>} />
-        <Route path="/Login" element={<Login/>} />
+        <Route path="/Register" element={<RegisterPage/>} />
+        <Route path="/Login" element={<LoginPage/>} />
         <Route path="/Filter" element={<FilterPage/>} />
         <Route path="/history" element={<HistoryPage/>} />
         <Route path="/Booking" element={<BookingPage />} />

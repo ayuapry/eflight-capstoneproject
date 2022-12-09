@@ -7,6 +7,7 @@ import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
 import ButtonPrimary from '../components/ButtonPrimary';
+import { SecondFooter } from '../components/SecondFooter';
 
 export const BookingPage = () => {
     const [seatModal, setSeatModal] = useState(false)
@@ -188,13 +189,14 @@ export const BookingPage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className='mx-[100px] mr-[120px] mt-10 '>
+            <div className='max-w-7xl mt-10 '>
                 {/* <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button> */}
-                <ButtonPrimary type="submit" title="Booking Now"/> 
+                <ButtonPrimary type="submit" title="Booking Now" className='w-fit'/> 
+            </div>
             </div>
         </div>
         <SeatModal open={seatModal} close={handleOnClose} />
+        <SecondFooter />
     </div>
   )
 }
