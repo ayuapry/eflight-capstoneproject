@@ -19,7 +19,7 @@ import { getHero } from '../redux/feature/homeSlice';
 
 
 export const Hero = () => {
-    const {hero, loading} = useSelector((state) => state.hero);
+    const {hero, loading} = useSelector((state) => state.homepage);
     const dispatch = useDispatch();
   
     useEffect(() => {
@@ -30,7 +30,7 @@ export const Hero = () => {
       return <h2>Loading</h2>
     }
   return (
-    <div className='py-[65px] md:bg-blue-600 md:h-fit w-full'>
+    <div className='pt-[65px] pb-10 md:pb-0 md:bg-blue-600 md:h-fit w-full'>
         <Swiper
           // install Swiper modules
           modules={[Pagination, A11y, Autoplay]}

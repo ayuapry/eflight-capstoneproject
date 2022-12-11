@@ -4,6 +4,7 @@ import { TbPlaneDeparture, TbPlaneInflight, TbCalendarEvent,TbCalendarStats } fr
 import { BiSearchAlt, BiChevronDown, BiPlusCircle, BiMinusCircle} from 'react-icons/bi';
 import { RiCloseFill } from 'react-icons/ri';
 import { ImManWoman } from 'react-icons/im';
+import { BsBuilding } from 'react-icons/bs';
 import { FaBabyCarriage, FaChild } from 'react-icons/fa';
 import { Calendar } from 'react-date-range'
 import format from 'date-fns/format'
@@ -11,10 +12,28 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCountry, getAge, getCabinClass } from '../redux/feature/homeSlice';
 
 const Card = () => {
-    const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
-    const AgeCategory = "https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all"
+    // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
+    // const AgeCategory = "https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all"
+
+    const {country, age, cabinClass } = useSelector((state) => state.homepage);
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(getCountry())
+    },[dispatch]); 
+
+    useEffect(() => {
+      dispatch(getAge())
+    },[dispatch]); 
+    
+    useEffect(() => {
+      dispatch(getCabinClass())
+    },[dispatch]); 
+
 
     const [city, setCity] = useState(null)
     const [inputCity, setInputCity] = useState("");
@@ -39,25 +58,25 @@ const Card = () => {
     // get the target element to toggle 
     const refOne = useRef(null)
 
-    useEffect(() => {
-        axios
-        .get(ApiCountry)
-        .then((res) =>{
-            setCity(res.data.data);
-            console.log(res)
-            })
-        .catch((err) => console.log(err))
-    }, [ApiCountry]);
+    // useEffect(() => {
+    //     axios
+    //     .get(ApiCountry)
+    //     .then((res) =>{
+    //         setCity(res.data.data);
+    //         console.log(res)
+    //         })
+    //     .catch((err) => console.log(err))
+    // }, [ApiCountry]);
     
-    useEffect(() => {
-        axios
-        .get(AgeCategory)
-        .then((res) =>{
-            setCity(res.data.data);
-            console.log(res)
-            })
-        .catch((err) => console.log(err))
-    }, [ApiCountry])
+    // useEffect(() => {
+    //     axios
+    //     .get(AgeCategory)
+    //     .then((res) =>{
+    //         setCity(res.data.data);
+    //         console.log(res)
+    //         })
+    //     .catch((err) => console.log(err))
+    // }, [ApiCountry])
 
     useEffect(() => {
         // set current date on component load
@@ -111,10 +130,10 @@ const Card = () => {
 
   return (
     <div id='Booking' className='bg-slate-50 md:bg-transparent h-auto pb-5 md:py-0 flex justify-center'>
-        <div className='h-[20%] md:bg-yellow-600 w-full absolute'>
+        <div className='h-[10%] md:bg-blue-600 w-full absolute'>
 
         </div>
-        <div className=' CardWrap bg-white shadow md:shadow-md md:max-w-5xl md:mx-auto m-0 px-4 rounded-none md:rounded-xl z-10 md:my-10'>
+        <div className=' CardWrap bg-white shadow md:shadow-md md:max-w-5xl md:mx-auto m-0 px-4 rounded-md md:rounded-xl z-10'>
             
             <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
                 <img 
@@ -144,14 +163,14 @@ const Card = () => {
                 </form>
             </div>
 
-            <div className='flex flex-col justify-between md:flex-row px-[1.5rem] md:px-[4rem] md:border-double md:border-y-2 md:border-blue-600'>
-                <div className='flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-blue-600 md:py-2'>
+            <div className='flex flex-col justify-between md:flex-row px-[1.5rem] md:px-[4rem] md:border-double md:border-y-2 md:border-blue-300'>
+                <div className='flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-blue-200 md:py-2'>
                     <div className="flex w-full flex-col md:flex-row md:items-center md:pr-[4rem] mb-3 md:mb-0">
                         
                         <div className='FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                             <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>From</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                                className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                                 <div 
                                     onClick={() => setOpen(!open)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -160,9 +179,9 @@ const Card = () => {
                                         {selectCity ? selectCity : "City or Airport"}
                                     </p>
                                 </div>
-                                <div className={`${open? 'clip-path' : "close-path"} transition-all duration-500 flex absolute bottom-[-15.1rem] m-0  h-[240px] w-full z-30`}>
-                                    <ul className={` overflow-y-auto w-full h-full`}>
-                                        <div className='flex border-b-2 border-blue-600 w-full flex-row justify-between items-center bg-white sticky top-0'>
+                                <div className={`${open? 'clip-path' : "close-path"} transition-all duration-500 flex absolute bottom-[-15.1rem] m-0 h-[240px] w-full md:w-[300%] z-30`}>
+                                    <ul className='overflow-y-auto w-full h-full'>
+                                        <div className='flex border-b-2 border-blue-600 px-2 w-full flex-row justify-between items-center bg-white sticky top-0'>
                                             <input 
                                                 className='fontMont text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black'
                                                 type="text" value={inputCity}
@@ -170,22 +189,36 @@ const Card = () => {
                                                 onChange={(e) =>setInputCity(e.target.value.toLocaleLowerCase())} 
                                             />
                                             <RiCloseFill 
-                                                className='text-[1.5rem] mr -2  cursor-pointer text-gray-300  hover:text-blue-600'
+                                                className='text-[1.5rem]  cursor-pointer text-gray-300  hover:text-blue-600'
                                                 onClick={() => setOpen(!open)} />
                                         </div>
                                         
-                                        {city?.map((e) => (
-                                        <li key={e?.cityCode}
-                                            className={`fontMont text-[0.9rem] p-2 hover:bg-sky-50 bg-white  text-black pb-1 w-full md:truncate ${e?.city?.toLowerCase().startsWith(inputCity) ? "block" : "hidden"}`}
+                                        {country?.map((e) => (
+                                        <li key={e?.iata}
+                                            className={`p-2 hover:bg-sky-50 bg-white  text-black pb-1 w-full md:truncate ${e?.city?.toLowerCase().startsWith(inputCity) ? "block" : "hidden"}`}
                                             onClick={() => {
                                                 if(e?.city?.toLowerCase() !== selectCity.toLowerCase()) {
                                                     setSelectCity(e?.city);
                                                     setOpen(false);
                                                     setInputCity("");
                                                 }
-                                            }}
-                                            >
-                                            {e?.city}
+                                            }}>
+                                                <div className='flex flex-row items-center justify-between px-2'>
+                                                    <div className='flex flex-row'>
+                                                        <BsBuilding className='mr-3 text-[1.2rem] text-blue-600'/>
+                                                        <div className='flex flex-col'>
+                                                            <h2 className='fontMont text-[0.8rem] font-semibold'>
+                                                                {e?.city}, {e?.country}
+                                                            </h2>
+                                                            <h3 className='fontMont text-[0.7rem]'>
+                                                                {e?.name}
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                    <h4 className='fontMont text-[0.6rem] text-gray-400 bg-gray-200 p-1 rounded-md w-[2.5rem] flex justify-center'>
+                                                        {e?.iata}
+                                                    </h4>
+                                                </div>
                                         </li>
                                         )
                                         )}
@@ -198,7 +231,7 @@ const Card = () => {
                         <div className='ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black'>
                         <h2 className='fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]'>To</h2>
                             <div
-                                className='relative flex flex-col cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md'>
+                                className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear'>
                                 <div 
                                     onClick={() => setOpenTo(!openTo)} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -207,9 +240,9 @@ const Card = () => {
                                         {selectCityTo ? selectCityTo : "Going Anywhere?"}
                                     </p>
                                 </div>
-                                <div className={`${openTo? 'clip-path' : "close-path"} transition-all duration-500 flex absolute bottom-[-15.1rem] m-0  h-[240px] w-full z-30`}>
-                                    <ul className={` overflow-y-auto w-full h-full`}>
-                                    <div className='flex border-b-2 border-blue-600 w-full flex-row justify-between items-center bg-white sticky top-0'>
+                                <div className={`${openTo? 'clip-path' : "close-path"} transition-all duration-500 flex absolute bottom-[-15.1rem] m-0  h-[240px] w-full md:w-[270%] z-30`}>
+                                    <ul className="overflow-y-auto w-full h-full">
+                                    <div className='flex border-b-2 border-blue-600 px-2 w-full flex-row justify-between items-center bg-white sticky top-0'>
                                             <input 
                                                 className='fontMont text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black'
                                                 type="text" value={inputCityTo}
@@ -221,18 +254,32 @@ const Card = () => {
                                                 onClick={() => setOpenTo(!openTo)} />
                                         </div>
                                         
-                                        {city?.map((e) => (
-                                        <li key={e?.cityCode}
-                                            className={`fontMont text-[0.9rem] p-2 hover:bg-sky-50 bg-white  text-black pb-1 w-full md:truncate ${e?.city?.toLowerCase().startsWith(inputCityTo) ? "block" : "hidden"}`}
+                                        {country?.map((e) => (
+                                        <li key={e?.iata}
+                                            className={`p-2 hover:bg-sky-50 bg-white  text-black pb-1 w-full md:truncate ${e?.city?.toLowerCase().startsWith(inputCityTo) ? "block" : "hidden"}`}
                                             onClick={() => {
                                                 if(e?.city?.toLowerCase() !== selectCityTo.toLowerCase()) {
                                                     setSelectCityTo(e?.city);
                                                     setOpenTo(false);
                                                     setInputCityTo("");
                                                 }
-                                            }}
-                                            >
-                                            {e?.city}
+                                            }}>
+                                                <div className='flex flex-row items-center justify-between px-2'>
+                                                    <div className='flex flex-row'>
+                                                        <BsBuilding className='mr-3 text-[1.2rem] text-blue-600'/>
+                                                        <div className='flex flex-col'>
+                                                            <h2 className='fontMont text-[0.8rem] font-semibold'>
+                                                                {e?.city}, {e?.country}
+                                                            </h2>
+                                                            <h3 className='fontMont text-[0.7rem]'>
+                                                                {e?.name}
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                    <h4 className='fontMont text-[0.6rem] text-gray-400 bg-gray-200 p-1 rounded-md w-[2.5rem] flex justify-center'>
+                                                        {e?.iata}
+                                                    </h4>
+                                                </div>
                                         </li>
                                         )
                                         )}
@@ -255,7 +302,7 @@ const Card = () => {
                                 <div className='relative flex flex-col justify-center md:mr-[1rem]'>
                                     <div
                                         ref={refOne}
-                                        className='tranform flex flex-row cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem]'>
+                                        className='tranform flex flex-row cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem]'>
                                         <TbCalendarEvent className='mr-3 text-[1.5rem] text-black'/>
                                         <input
                                             className="inputBox outline-none bg-transparent cursor-pointer"
@@ -295,7 +342,7 @@ const Card = () => {
                                 <div className="relative flex flex-col justify-center">
                                     <div
                                         ref={refOne}
-                                        className={`flex flex-row cursor-pointer border-2 transition-all duration-[0.2s] ease-linear rounded-md py-[0.2rem] px-[0.5rem] 
+                                        className={`flex flex-row cursor-pointer border-b-2 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem] 
                                         ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-blue-400 hover:border-blue-600"}`}>
                                         <TbCalendarStats className='mr-3 text-[1.5rem] text-black'/>
                                         <input
@@ -330,7 +377,7 @@ const Card = () => {
                         </div>
 
                         <div 
-                            className='relative flex flex-col cursor-pointer border-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear rounded-md md:mr-[1rem]'>
+                            className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                             <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-black'
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
@@ -341,9 +388,9 @@ const Card = () => {
                                     className='text-[1.5rem] cursor-pointer text-blue-400 hover:text-blue-600'/>
                             </div>
 
-                            <div className={`${openClass? 'clip-path' : "close-path"} flex  transition-all duration-500 absolute bottom-[-15.1rem] m-0 h-[240px] w-full z-30 flex-col md:flex-row justify-between `}>
+                            <div className={`${openClass? 'clip-path' : "close-path"} flex transition-all duration-500 absolute top-[2rem] md:bottom-[-15.1rem] md:right-[-1rem] m-0 h-auto md:h-[240px] w-full md:w-[150%] z-30 flex-col md:flex-row justify-between`}>
                                 
-                            <div className={`countWrap flex flex-col bg-white py-[0.2rem] px-[0.5rem] m-0  h-[240px] w-full md:w-[50%] z-30 ${openClass? 'flex' : "hidden"}`}>
+                            <div className={`countWrap flex flex-col bg-white py-[0.5rem] px-[0.5rem] m-0 h-auto md:h-[240px] w-[100%] md:w-[55%] z-30 ${openClass? 'flex' : "hidden"}`}>
                                     <div className='fontMont text-[0.9rem] font-bold hidden md:flex flex-row items-center justify-between sticky top-0 my-3 md:my-1' >
                                         <p className='mb-0'>
                                             Passenger
@@ -353,15 +400,15 @@ const Card = () => {
                                             onClick={() => setOpenClass(!openClass)} />
                                     </div>
                                     <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600 ' />
-                                    <div className='flex flex-row justify-between'>
+                                    <div key={age[0]?.id} className='flex flex-row justify-between'>
                                         <div className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
-                                            <ImManWoman className='text-[1.5rem] mr-3 text-blue-600'/>
+                                            <ImManWoman className='text-[2rem] mr-3 text-blue-600'/>
                                                 <div className='flex flex-col'>
-                                                    <h1 className='fontMont text-[0.9rem] font-bold mb-0'>
-                                                        Adult
+                                                    <h1 className='fontMont text-[0.9rem] font-bold mb-0 leading-loose'>
+                                                        {age[0]?.categoryName}
                                                     </h1>
                                                     <h2 className='fontMont text-[0.7rem] text-gray-500 mb-0'>
-                                                        Age 12+
+                                                        {age[0]?.description}
                                                     </h2>
                                                 </div>
                                         </div>
@@ -383,15 +430,15 @@ const Card = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className='flex flex-row justify-between'>
+                                    <div key={age[1]?.id} className='flex flex-row justify-between'>
                                         <div className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
                                             <FaChild className='text-[1.5rem] mr-3 text-blue-600'/>
                                                 <div className='flex flex-col'>
-                                                    <h1 className='fontMont text-[0.9rem] font-bold mb-0'>
-                                                        Child
+                                                    <h1 className='fontMont text-[0.9rem] font-bold mb-0 leading-loose'>
+                                                        {age[1]?.categoryName}
                                                     </h1>
                                                     <h2 className='fontMont text-[0.7rem] text-gray-500 mb-0'>
-                                                        Age 2-11
+                                                        {age[1]?.description}
                                                     </h2>
                                                 </div>
                                         </div>
@@ -413,15 +460,15 @@ const Card = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className='flex flex-row justify-between'>
+                                    <div key={age[2]?.id} className='flex flex-row justify-between'>
                                         <div className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
                                             <FaBabyCarriage className='text-[1.5rem] mr-3 text-blue-600'/>
                                                 <div className='flex flex-col'>
-                                                    <h1 className='fontMont text-[0.9rem] font-bold mb-0'>
-                                                        Infant
+                                                    <h1 className='fontMont text-[0.9rem] font-bold mb-0 leading-loose'>
+                                                        {age[2]?.categoryName}
                                                     </h1>
                                                     <h2 className='fontMont text-[0.7rem] text-gray-500 mb-0'>
-                                                        Below Age 2
+                                                        {age[2]?.description}
                                                     </h2>
                                                 </div>
                                         </div>
@@ -448,8 +495,8 @@ const Card = () => {
                                 </div>
                                 
                                 
-                                <div className='w-full md:w-[50%]'>
-                                <ul className={`fontMont flex flex-row md:flex-col flex-wrap justify-center md:justify-start text-[0.9rem] bg-white py-[0.2rem] px-[0.5rem] mb-0 overflow-y-auto w-full h-full`}>
+                                <div className='w-full md:w-[45%]'>
+                                <ul className={`fontMont flex flex-row md:flex-col flex-wrap justify-center md:justify-start text-[0.9rem] bg-white py-[0.5rem] px-[0.5rem] mb-0 overflow-y-auto w-full h-full`}>
                                     <div className='fontMont text-[0.9rem] font-bold hidden md:flex flex-row items-center justify-between sticky top-0 my-3 md:my-1' >
                                         <p className='mb-0'>
                                             Cabin Class
@@ -459,38 +506,20 @@ const Card = () => {
                                             onClick={() => setOpenClass(!openClass)} />
                                     </div>
                                     <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600' />
-                                    <li 
-                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
-                                        onClick={() => {
-                                        setOpenClass(false);
-                                        setselectClass("Economy");
-                                    }}>
-                                        Economy
-                                    </li>
-                                    <li 
-                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
-                                        onClick={() => {
-                                        setOpenClass(false);
-                                        setselectClass("Premium Economy");
-                                    }}>
-                                        Premium Economy
-                                    </li>
-                                    <li 
-                                        className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
-                                        onClick={() => {
-                                        setOpenClass(false);
-                                        setselectClass("Business");
-                                    }}>
-                                        Business
-                                    </li>
-                                    <li 
-                                        className='fontMont text-[0.8rem] font-bold max-md:mb-[1em] mb-1 max-md:ml-[1em] max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300'
-                                        onClick={() => {
-                                        setOpenClass(false);
-                                        setselectClass("First");
-                                    }}>
-                                        First
-                                    </li>
+                                    {cabinClass && cabinClass.map((e)=> {
+                                        return (
+                                            <li 
+                                                className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 md:py-2 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300 md:border-b-[1px]'
+                                                onClick={() => {
+                                                setOpenClass(false);
+                                                setselectClass("Economy")}}
+                                                key={e.travelClassId}
+                                                >
+                                                {e.travelClassName}
+                                            </li>
+                                            
+                                        )
+                                    })}
                                 </ul>
                                 </div>
                             </div>
