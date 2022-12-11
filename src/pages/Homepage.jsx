@@ -6,7 +6,9 @@ import Footer from '../components/Footer'
 import { SecondFooter } from '../components/SecondFooter'
 import Card from '../components/Card'
 
+
 export const Homepage = () => {
+
   return (
     <div className='bg-slate-50'>
         <Navbar/>
