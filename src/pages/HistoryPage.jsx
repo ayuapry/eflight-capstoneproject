@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../components/Footer'
 import { Navbar } from '../components/Navbar'
 import { SecondFooter } from '../components/SecondFooter'
@@ -11,12 +11,20 @@ import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { EditProfileModal } from '../components/EditProfileModal'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
+import { useDispatch } from 'react-redux'
+import { Profile } from '../redux/feature/authSlice'
 const { Option } = Select;
 
 export const HistoryPage = () => {
   const [select, setSelect] = useState('')
   const [editProfileModal, setEditProfileModal] = useState(false)
   const handleOnClose = () => setEditProfileModal(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(Profile())
+  }, []);
+
   return (
     <div className='h-auto bg-slate-100'>
       <Navbar />

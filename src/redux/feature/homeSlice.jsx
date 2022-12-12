@@ -59,13 +59,36 @@ export const getCabinClass = createAsyncThunk(
     }
 )
 
+export const getTiket = createAsyncThunk(
+  'tiket/getTiket',
+  async () => {
+      try {
+          const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fullsearch",
+          {
+            params: {
+              ap: 'DPS.CGK',
+              dt : '25-12-2022.NA',
+              ps : '1.1.0',
+              sc : 'ECONOMY'
+            }
+          }
+          )
+          console.log(res)
+          return res.data.data
+      } catch (err) {
+          console.log(err)
+      }
+  }
+)
+
 export const homeSlice = createSlice({
     name: "homepage",
     initialState : {
       hero: [],
       country: [],
       age: [],
-      cabinClass: []
+      cabinClass: [],
+      tiket: []
     },
     reducers: {},
     extraReducers: {
@@ -91,8 +114,11 @@ export const homeSlice = createSlice({
       [getCabinClass.fulfilled]: (state, { payload }) => {
         state.cabinClass = payload;
       },
+      [getTiket.fulfilled]: (state, { payload }) => {
+        state.tiket = payload;
+      },
     },
   });
 
-  // export const homeReducer = homeSlice.reducer;
-  export default homeSlice.reducer;
+  export const homeReducer = homeSlice.reducer;
+  // export default homeSlice.reducer;
