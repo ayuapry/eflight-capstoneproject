@@ -12,12 +12,9 @@
 
 @layer utilities {
   .LiGradien {
-    background: linear-gradient(
-      0deg,
-      rgba(67, 149, 182, 1) 0%,
-      rgba(165, 204, 220, 1) 40%,
-      rgba(255, 255, 255, 1) 100%
-    );
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, red, blue, pink);
   }
   .LiGradien2 {
     background: rgb(191, 219, 254);
@@ -48,10 +45,8 @@
     @apply fixed top-0 z-50;
   }
   h1 {
-    @apply text-3xl md:text-4xl font-bold
+    @apply text-3xl md:text-4xl font-bold;
   }
-
-
 }
 
 * {
