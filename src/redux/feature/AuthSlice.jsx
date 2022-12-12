@@ -33,7 +33,9 @@ export const LoginEmail = createAsyncThunk(
                 "email": `${values.email}`,
                 "password": `${values.password}`
             })
+            localStorage.removeItem("id")
             localStorage.setItem("token",(res.data.data.jwtToken))
+            localStorage.setItem("id",(res.data.data.id))
             return res.data.data
         } catch (error) {
             // console.error(error.response.data.data)
@@ -63,19 +65,21 @@ export const Register = createAsyncThunk(
 
 export const Profile = createAsyncThunk(
     "user/Profile", async () => {
+        const token =  localStorage.getItem('token');
+        const id = localStorage.getItem('id')
         try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/`,
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/${id}`,
             {
-                params: {
-                    id: 'ur-5e2c2e57-e1b4-4094-84d5-119340372e79'
-                }
-            }, {headers:{ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY3MDg1NjY1OCwiZXhwIjoxNzAyMzM5MjAwfQ.uRPifNGgjmYNlfA23kWSsEpjZtmLRJQhmnQyxQLFAgSWevBCE2jDNUcYmjjU9jPh-WrbR_kYLD3y4tEWgKv2Yw'
-        }})
+                headers: { 
+                    'Authorization': `Bearer ${token}`
+                },
+            }
+            )
             // localStorage.setItem("id",(res.data.data.id))
-            console.log(res);
+            console.log(res.data.data)
             return res.data.data
         } catch (error) {
-            // console.error(error.response.data.data)
+            console.error(error)
             return error.response.data.data
         }
     }

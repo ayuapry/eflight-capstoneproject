@@ -1,17 +1,17 @@
+import React, { useState, useEffect } from 'react'
+import Footer from '../components/Footer'
 import { ArrowLeftCircleIcon, UserCircleIcon } from '@heroicons/react/20/solid'
-import React, { useState } from 'react'
 import { Navbar } from '../components/Navbar'
 import { Form, Select } from 'antd';
 import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
-import Footer from '../components/Footer';
+import ButtonPrimary from '../components/ButtonPrimary'
+import { useDispatch, useSelector } from 'react-redux'
+import { Profile } from '../redux/feature/AuthSlice'
 import { SecondFooter } from '../components/SecondFooter';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Profile } from '../redux/feature/AuthSlice';
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -19,9 +19,16 @@ export const HistoryPage = () => {
     const [editProfileModal, setEditProfileModal] = useState(false)
     const handleOnClose = () => setEditProfileModal(false)
     const navigate = useNavigate()
-    const dispatch = useDispatch();
+    
+    const dispatch = useDispatch()
+    const id = localStorage.getItem('id')
+    // const {id} = useParams()
+    const {profile} = useSelector((state) => state.profile)
 
-
+    useEffect(() => {
+        dispatch(Profile())
+        console.log(profile)
+    },[]); 
     const logout = async () => {
         localStorage.clear();
         navigate('/')
@@ -29,10 +36,6 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
-    
-      useEffect(() => {
-        dispatch(Profile())
-      },[dispatch]); 
   return (
     <div className='bg-slate-100'>
         <Navbar />
@@ -45,8 +48,8 @@ export const HistoryPage = () => {
                             className='h-20 w-20 object-cover rounded-full' />
                         </div>
                         <div>
-                            <h1 className='font-bold md:text-xl text-lg'>Maudy Ayunda</h1>
-                            <span className='text-sm'>ayuapry@gmail.com</span>
+                            <h1 className='font-bold md:text-xl text-lg'>{profile?.fullName}</h1>
+                            <span className='text-sm'>{profile?.email}</span>
                         </div>
                     </div>
                     <div className='hidden md:block mx-10 my-10'>

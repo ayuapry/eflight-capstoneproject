@@ -1,26 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LogoText from '../assets/LogoText.png'
 import { Dropdown } from 'antd';
 import {MdCircleNotifications} from 'react-icons/md'
 import { BellIcon } from '@heroicons/react/20/solid';
+import { useDispatch } from 'react-redux';
+import { getNotification } from '../redux/feature/NotificationSlice';
 
-// const items = [
-//     {
-//       key: '1',
-//       label: (
-//         <Link to='/history'>Profile</Link>
-//       ),
-//     },
-//     {
-//       key: '2',
-//       label: (
-//         <div onClick={logout}>
-//           Logout
-//         </div>
-//       ),
-//     },
-//   ];
 export const Navbar = () => {
     const [select, setSelect] = useState('')
     const navigate = useNavigate()
@@ -48,6 +34,11 @@ export const Navbar = () => {
       ),
     },
   ];
+  
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getNotification())
+  },[dispatch]); 
     return (
     <div className='py-3 w-screen bg-white fixed z-50'>
         <div className='flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20'>

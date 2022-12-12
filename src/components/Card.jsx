@@ -13,7 +13,7 @@ import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountry, getAge, getCabinClass, getTickets } from '../redux/feature/homeSlice';
+import { getCountry, getAge, getCabinClass, getTiket } from '../redux/feature/homeSlice';
 import ButtonPrimary from './ButtonPrimary';
 
 const Card = () => {
@@ -36,8 +36,9 @@ const Card = () => {
     },[dispatch]); 
 
     useEffect(() => {
-        dispatch(getTickets())
+        dispatch(getTiket())
       },[dispatch]); 
+  
 
 
     const [city, setCity] = useState(null)
@@ -131,6 +132,7 @@ const Card = () => {
     }
     
     const display = countD + countA + countB + " Passenger, ";
+
         
 
   return (

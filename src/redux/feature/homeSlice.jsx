@@ -59,9 +59,7 @@ export const getCabinClass = createAsyncThunk(
     }
 )
 
-
-//Ticket
-export const getTickets = createAsyncThunk(
+export const getTiket = createAsyncThunk(
   'tiket/getTiket',
   async () => {
       try {
@@ -91,7 +89,8 @@ export const homeSlice = createSlice({
       country: [],
       age: [],
       cabinClass: [],
-      tickets: [],
+      tiket: [],
+
     },
     reducers: {},
     extraReducers: {
@@ -117,12 +116,12 @@ export const homeSlice = createSlice({
       [getCabinClass.fulfilled]: (state, { payload }) => {
         state.cabinClass = payload;
       },
-      //ticket
-      [getTickets.fulfilled]: (state, { payload }) => {
+      //tiket
+      [getTiket.fulfilled]: (state, { payload }) => {
         state.tiket = payload;
       },
     },
   });
 
-  // export const homeReducer = homeSlice.reducer;
-  export default homeSlice.reducer;
+  export const homeReducer = homeSlice.reducer;
+  // export default homeSlice.reducer;
