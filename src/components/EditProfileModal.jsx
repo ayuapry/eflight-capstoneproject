@@ -56,18 +56,6 @@ export const EditProfileModal = ({open, close}) => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    name={['user', 'email']}
-                    label="Email"
-                    rules={[
-                    {
-                        type: 'email',
-                        required: true,
-                    },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
                     name="gender"
                     label="Gender"
                     rules={[
@@ -76,7 +64,7 @@ export const EditProfileModal = ({open, close}) => {
                     },
                     ]}
                 >
-                    <Select placeholder="Select a option and change input text above" allowClear>
+                    <Select placeholder="Gender" allowClear>
                     <Option value="male">male</Option>
                     <Option value="female">female</Option>
                     <Option value="other">other</Option>

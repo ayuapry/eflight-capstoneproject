@@ -11,7 +11,7 @@ import baggage from '../assets/baggage.png'
 export const HeadlineCards = () => {
   return (
     <>
-    <div className='py-10 md:mt-[350px]'>
+    <div id='Destination' className='py-10'>
         <div className='max-w-[1240px] mx-auto px-4 text-center'>
             <h1>Our Top Tour Places</h1>
             <span className=''>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</span>
