@@ -12,15 +12,20 @@ export default function RegisterPage() {
     const navigate = useNavigate()
     const [form] = Form.useForm();
     const {register, loading} = useSelector ((state) => state.auth)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const id =  localStorage.getItem('id');
 
     const onFinish = async (values) => {
         dispatch(Register(values))
-        navigate('/Login')
     };
 
   return (
     <div className='h-screen'>
+        {/* { id ? `${navigate('/Login')}` : 
+        (register ? <div className='absolute w-full px-20'><p className='px-10 bg-red-500 py-2 text-red-800 text-md font-bold rounded-lg'>Oops ! {register}</p></div>:'')} */}
+        {id? navigate('/Login') :
+        register.length?<div className='absolute w-full px-20'><p className='px-10 bg-red-500 py-2 text-red-800 text-md font-bold rounded-lg'>Oops ! {register}</p></div>:''}
+        {console.log(register)}
     <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
