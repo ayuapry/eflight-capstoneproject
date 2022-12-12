@@ -8,7 +8,7 @@ const Footer = () => {
       <div className='bg-gray-100 py-10 px-4'>
         <div className="FooterWrap px-5 max-w-7xl mx-auto md:px-20 flex flex-col ">
           <div className=' flex flex-col'>
-            <div className='FooterImg flex justify-center md:justify-start py-[2rem] md:py-[2rem]'>
+            <div className='FooterImg flex justify-center md:justify-start pb-[2rem] md:pb-[2rem]'>
               <img 
                 className='w-40'
                 src={BinarLogo} 
@@ -16,7 +16,6 @@ const Footer = () => {
             </div>
 
               <div className='FooterText flex items-center md:items-start md:justify-between flex-col md:flex-row'>
-              {/* <div className='FooterText gap- md:grid-rows-3 pb-[1.5rem] md:pb-[4rem] max-w-[1240px] mx-auto'> */}
                 <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
                   <h2 className='text-blue-800 text-base md:text-lg font-bold pb-0 md:pb-5 fontMont mb-2 md:mb-0'>
                     BinarAir
@@ -107,7 +106,7 @@ const Footer = () => {
                   </div>
                 </div>
 
-                <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
+                <div className="FooterOne flex items-center md:items-start flex-col">
                   <h2 className='text-blue-800 text-base md:text-lg fontMont font-bold pb-0 md:pb-5 mb-2 md:mb-0'>
                     FollowUs
                   </h2>
