@@ -4,7 +4,7 @@ import { Form, Input, Modal, Space, Alert } from 'antd';
 import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonBorder from '../components/ButtonBorder';
 import LoginBg from '../assets/login.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
 import googleIcon from '../assets/google.png';
 import { useDispatch, useSelector } from 'react-redux';

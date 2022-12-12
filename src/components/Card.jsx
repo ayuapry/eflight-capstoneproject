@@ -13,7 +13,12 @@ import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { getCountry, getAge, getCabinClass, getTiket } from '../redux/feature/homeSlice';
+=======
+import { getCountry, getAge, getCabinClass } from '../redux/feature/homeSlice';
+import ButtonPrimary from './ButtonPrimary';
+>>>>>>> 6f7faf2ad862aa90968ae0dac6072d47102ef4c0
 
 const Card = () => {
     // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
@@ -129,7 +134,7 @@ const Card = () => {
         setCalendarGo(format(date, 'MM/dd/yyyy'))
     }
     
-    const display = countD + countA + countB + " Orang, ";
+    const display = countD + countA + countB + " Passenger, ";
         
 
   return (
@@ -386,7 +391,7 @@ const Card = () => {
                                 onClick={() => setOpenClass(!openClass)}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
                                     {display ? display : "Jumlah Penumpang"}
-                                    {selectClass ? selectClass : " Pilih Kelas Kabin"}
+                                    {selectClass ? selectClass : " Select Cabin Class"}
                                 </p>
                                 <BiChevronDown
                                     className='text-[1.5rem] cursor-pointer text-blue-400 hover:text-blue-600'/>
@@ -532,19 +537,27 @@ const Card = () => {
             </div>
 
                        
+<<<<<<< HEAD
             <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Filter')}>
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
+=======
+            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/filter')}>
+                {/* <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
+>>>>>>> 6f7faf2ad862aa90968ae0dac6072d47102ef4c0
                     <span>
                         <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
                     </span>
                     <button
                         className='flex items-center' 
                         type="submit">
-                        {/* Cari Tiket */}
+                        Cari Tiket
                         <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' >
                            Find Tickets
                         </h2>
                     </button>
+                </div> */}
+                <div className='w-fit'>
+                    <ButtonPrimary title='SEARCH FLIGHTS' />
                 </div>
             </div>
 
