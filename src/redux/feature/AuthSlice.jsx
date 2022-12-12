@@ -36,7 +36,8 @@ export const LoginEmail = createAsyncThunk(
             localStorage.setItem("token",(res.data.data.jwtToken))
             return res.data.data
         } catch (error) {
-            console.error(error)
+            // console.error(error.response.data.data)
+            return error.response.data.data
         }
     }
 )
@@ -51,10 +52,11 @@ export const Register = createAsyncThunk(
                 "password" : `${values.password}`
             }
             )
-            console.log(res.data)
+            localStorage.setItem("id",(res.data.data.id))
             return res.data.data
         } catch (error) {
-            console.error(error)
+            // console.error(error.response.data.data)
+            return error.response.data.data
         }
     }
 )
@@ -69,16 +71,6 @@ export const authSlice = createSlice({
     },
     reducers: {},
     extraReducers: {
-        // [LoginGoogle.pending]: (state) => {
-        //     state.loading = true
-        // },
-        // [LoginGoogle.fulfilled]: (state, { payload }) => {
-        //     state.loading = false
-        //     state.login = payload
-        // },
-        // [LoginGoogle.rejected]: (state) => {
-        //     state.loading = false
-        // },
         [LoginEmail.pending]: (state) => {
             state.loading = true
         },
@@ -94,7 +86,7 @@ export const authSlice = createSlice({
         },
         [Register.fulfilled]: (state, { payload }) => {
             state.loading = false
-            state.login = payload
+            state.register = payload
         },
         [Register.rejected]: (state) => {
             state.loading = false

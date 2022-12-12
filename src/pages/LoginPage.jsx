@@ -1,6 +1,6 @@
 import React from 'react';
-import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
+import { Form, Input, Modal, Space } from 'antd';
 import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonBorder from '../components/ButtonBorder';
 import LoginBg from '../assets/login.png';
@@ -14,16 +14,18 @@ export default function LoginPage() {
     const navigate = useNavigate()
     const {login, loading} = useSelector ((state) => state.auth)
     const dispatch = useDispatch()
+    const token =  localStorage.getItem('token');
 
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         dispatch(LoginEmail(values))
-        // navigate('/')
       };
 
   return (
     <div className='h-full'>
-    <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center md:h-[90vh]'>
+        {token ? `${navigate('/')}` : 
+        (login ? <div className='absolute w-full px-20'><p className='px-10 bg-red-500 py-2 text-red-800 text-md font-bold rounded-lg'>Oops ! {login}</p></div>:'')}
+        <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center md:h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
         </div>
