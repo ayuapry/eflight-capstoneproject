@@ -9,6 +9,9 @@ import Footer from '../components/Footer';
 import { SecondFooter } from '../components/SecondFooter';
 import { useNavigate } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Profile } from '../redux/feature/AuthSlice';
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -16,6 +19,8 @@ export const HistoryPage = () => {
     const [editProfileModal, setEditProfileModal] = useState(false)
     const handleOnClose = () => setEditProfileModal(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch();
+
 
     const logout = async () => {
         localStorage.clear();
@@ -24,10 +29,14 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
+    
+      useEffect(() => {
+        dispatch(Profile())
+      },[dispatch]); 
   return (
     <div className='bg-slate-100'>
         <Navbar />
-        <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 h-screen'>
+        <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>
                 <div className='bg-white mt-20 rounded-md shadow-md md:h-[220px] '>
                     <div className='flex my-4 gap-2 mx-16 items-center text-center'>

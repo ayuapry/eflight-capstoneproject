@@ -61,12 +61,33 @@ export const Register = createAsyncThunk(
     }
 )
 
+export const Profile = createAsyncThunk(
+    "user/Profile", async () => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/`,
+            {
+                params: {
+                    id: 'ur-5e2c2e57-e1b4-4094-84d5-119340372e79'
+                }
+            }, {headers:{ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImlhdCI6MTY3MDg1NjY1OCwiZXhwIjoxNzAyMzM5MjAwfQ.uRPifNGgjmYNlfA23kWSsEpjZtmLRJQhmnQyxQLFAgSWevBCE2jDNUcYmjjU9jPh-WrbR_kYLD3y4tEWgKv2Yw'
+        }})
+            // localStorage.setItem("id",(res.data.data.id))
+            console.log(res);
+            return res.data.data
+        } catch (error) {
+            // console.error(error.response.data.data)
+            return error.response.data.data
+        }
+    }
+)
+
 export const authSlice = createSlice({
     name: "auth",
     initialState: {
         loginGoogle: [],
         loginEmail: [],
         register: [],
+        profile: [],
         loading: false,
     },
     reducers: {},
@@ -89,6 +110,16 @@ export const authSlice = createSlice({
             state.register = payload
         },
         [Register.rejected]: (state) => {
+            state.loading = false
+        },
+        [Profile.pending]: (state) => {
+            state.loading = true
+        },
+        [Profile.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            state.profile = payload
+        },
+        [Profile.rejected]: (state) => {
             state.loading = false
         },
 

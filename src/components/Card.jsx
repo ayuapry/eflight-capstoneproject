@@ -13,7 +13,7 @@ import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountry, getAge, getCabinClass } from '../redux/feature/homeSlice';
+import { getCountry, getAge, getCabinClass, getTickets } from '../redux/feature/homeSlice';
 import ButtonPrimary from './ButtonPrimary';
 
 const Card = () => {
@@ -34,6 +34,10 @@ const Card = () => {
     useEffect(() => {
       dispatch(getCabinClass())
     },[dispatch]); 
+
+    useEffect(() => {
+        dispatch(getTickets())
+      },[dispatch]); 
 
 
     const [city, setCity] = useState(null)
@@ -143,7 +147,7 @@ const Card = () => {
                 alt="BinarLogo" />
                 <h1
                     className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
-                    Find Filghts Tickets
+                    Find Flights Tickets
                 </h1>
             </div>
 

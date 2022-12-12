@@ -23,7 +23,7 @@ export const getCountry = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -37,7 +37,7 @@ export const getAge = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -51,7 +51,7 @@ export const getCabinClass = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/travel/all")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -59,13 +59,39 @@ export const getCabinClass = createAsyncThunk(
     }
 )
 
+
+//Ticket
+export const getTickets = createAsyncThunk(
+  'tiket/getTiket',
+  async () => {
+      try {
+          const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fullsearch",
+          {
+            params: {
+              ap: 'DPS.CGK',
+              dt : '25-12-2022.NA',
+              ps : '1.1.0',
+              sc : 'ECONOMY'
+            }
+          }
+          )
+          console.log(res)
+          return res.data.data
+      } catch (err) {
+          console.log(err)
+      }
+  }
+)
+
+
 export const homeSlice = createSlice({
     name: "homepage",
     initialState : {
       hero: [],
       country: [],
       age: [],
-      cabinClass: []
+      cabinClass: [],
+      tickets: [],
     },
     reducers: {},
     extraReducers: {
@@ -90,6 +116,10 @@ export const homeSlice = createSlice({
       //CabinClass
       [getCabinClass.fulfilled]: (state, { payload }) => {
         state.cabinClass = payload;
+      },
+      //ticket
+      [getTickets.fulfilled]: (state, { payload }) => {
+        state.tiket = payload;
       },
     },
   });
