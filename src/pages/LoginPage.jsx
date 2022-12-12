@@ -4,7 +4,7 @@ import { Form, Input, Modal, Space } from 'antd';
 import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonBorder from '../components/ButtonBorder';
 import LoginBg from '../assets/login.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
 import googleIcon from '../assets/google.png';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,9 +26,9 @@ export default function LoginPage() {
         {token ? `${navigate('/')}` : 
         (login ? <div className='absolute w-full px-20'><p className='px-10 bg-red-500 py-2 text-red-800 text-md font-bold rounded-lg'>Oops ! {login}</p></div>:'')}
         <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center md:h-[90vh]'>
-        <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
+        <Link to='/' className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
-        </div>
+        </Link>
         <div className='items-center'>
         <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
             <h1 className='text-2xl text-slate-700 font-bold mb-6'>Login</h1>
