@@ -35,7 +35,7 @@ const Card = () => {
     },[dispatch]); 
 
 
-    const [city, setCity] = useState(null)
+    const [search, setSearch] = useState();
     const [inputCity, setInputCity] = useState("");
     const [inputCityTo, setInputCityTo] = useState("");
     const [selectCity, setSelectCity] = useState("");
@@ -57,26 +57,6 @@ const Card = () => {
     const navigate = useNavigate()
     // get the target element to toggle 
     const refOne = useRef(null)
-
-    // useEffect(() => {
-    //     axios
-    //     .get(ApiCountry)
-    //     .then((res) =>{
-    //         setCity(res.data.data);
-    //         console.log(res)
-    //         })
-    //     .catch((err) => console.log(err))
-    // }, [ApiCountry]);
-    
-    // useEffect(() => {
-    //     axios
-    //     .get(AgeCategory)
-    //     .then((res) =>{
-    //         setCity(res.data.data);
-    //         console.log(res)
-    //         })
-    //     .catch((err) => console.log(err))
-    // }, [ApiCountry])
 
     useEffect(() => {
         // set current date on component load
@@ -126,6 +106,11 @@ const Card = () => {
     }
     
     const display = countD + countA + countB + " Orang, ";
+
+    const searchTicket = (iata) => {
+        navigate(`/Filter/${iata}`);
+        setSearch('');
+    }
         
 
   return (
@@ -528,7 +513,7 @@ const Card = () => {
             </div>
 
                        
-            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Detail')}>
+            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Filter')}>
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
                     <span>
                         <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
