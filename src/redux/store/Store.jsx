@@ -3,6 +3,7 @@ import { authReducer } from '../feature/AuthSlice'
 import { bookingReducer } from '../feature/BookingSlice'
 import { homeReducer } from '../feature/homeSlice'
 import { notifReducer } from '../feature/NotificationSlice'
+import { userReducer } from '../feature/UserSlice'
 // import homeSlice from '../feature/homeSlice'
 
 export default configureStore ({
@@ -11,7 +12,8 @@ export default configureStore ({
         // hero : homeReducer,
         homepage : homeReducer,
         // age : homeReducer,
-        profile: authReducer,
+        // profile: authReducer,
+        user: userReducer,
         notification: notifReducer,
         booking: bookingReducer,
     },

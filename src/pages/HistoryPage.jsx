@@ -8,10 +8,10 @@ import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { useDispatch, useSelector } from 'react-redux'
-import { Profile } from '../redux/feature/AuthSlice'
 import { SecondFooter } from '../components/SecondFooter';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
+import { getProfile } from '../redux/feature/UserSlice';
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -19,16 +19,17 @@ export const HistoryPage = () => {
     const [editProfileModal, setEditProfileModal] = useState(false)
     const handleOnClose = () => setEditProfileModal(false)
     const navigate = useNavigate()
+
+    const {id} = useParams()
     
     const dispatch = useDispatch()
-    const id = localStorage.getItem('id')
-    // const {id} = useParams()
-    const {profile} = useSelector((state) => state.profile)
+    const {profile} = useSelector((state) => state.user)
 
     useEffect(() => {
-        dispatch(Profile())
+        dispatch(getProfile(id))
         console.log(profile)
     },[]); 
+    
     const logout = async () => {
         localStorage.clear();
         navigate('/')
@@ -36,6 +37,7 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
+
   return (
     <div className='bg-slate-100'>
         <Navbar />
@@ -53,11 +55,11 @@ export const HistoryPage = () => {
                         </div>
                     </div>
                     <div className='hidden md:block mx-10 my-10'>
-                        <div className='flex gap-2' onClick={() => setEditProfileModal(true)}>
+                        <div className='flex gap-2 cursor-pointer' onClick={() => setEditProfileModal(true)} >
                             <UserCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Account</p>
                         </div>
-                        <div className='flex gap-2' onClick={logout}>
+                        <div className='flex gap-2 cursor-pointer' onClick={logout} >
                             <ArrowLeftCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Logout</p>
                         </div>
