@@ -8,6 +8,8 @@ import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { SecondFooter } from '../components/SecondFooter';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTitel } from '../redux/feature/BookingSlice';
 
 export const BookingPage = () => {
     const [seatModal, setSeatModal] = useState(false)
@@ -48,6 +50,13 @@ export const BookingPage = () => {
         },
       };
 
+    const {titel } = useSelector((state) => state.booking);
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      dispatch(getTitel())
+    },[dispatch]); 
+
     return (
     <div className='bg-slate-100'>
         <Navbar />
@@ -64,9 +73,9 @@ export const BookingPage = () => {
                     <Form validateMessages={validateMessages}>
                         <Form.Item style={{width:'49%'}} >
                             <Select placeholder='Title'>
-                                <Select.Option value="Mr.">Mr.</Select.Option>
-                                <Select.Option value="Mrs.">Mrs.</Select.Option>
-                                <Select.Option value="Ms.">Ms.</Select.Option>
+                                {titel?.map((e,i) => (
+                                    <Select.Option key={i} >{e?.titelName}</Select.Option>
+                                ))}
                             </Select>
                             <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
                         </Form.Item>

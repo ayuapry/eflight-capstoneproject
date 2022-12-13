@@ -1,14 +1,15 @@
 import React from 'react';
 import { MailOutlined } from '@ant-design/icons';
-import { Form, Input, Modal, Space } from 'antd';
+import { Form, Input, Modal, Space, Alert } from 'antd';
 import ButtonPrimary from '../components/ButtonPrimary';
 import ButtonBorder from '../components/ButtonBorder';
 import LoginBg from '../assets/login.png';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
 import googleIcon from '../assets/google.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginEmail } from '../redux/feature/AuthSlice';
+import { useEffect } from 'react';
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -22,16 +23,15 @@ export default function LoginPage() {
       };
 
   return (
-    <div className='h-full'>
-        {token ? `${navigate('/')}` : 
-        (login ? <div className='absolute w-full px-20'><p className='px-10 bg-red-500 py-2 text-red-800 text-md font-bold rounded-lg'>Oops ! {login}</p></div>:'')}
-        <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center md:h-[90vh]'>
+    <div className='flex flex-col justify-between h-screen'>
+        <div className='max-w-7xl lg:mx-auto lg:my-auto grid lg:grid-cols-2 md:items-center md:h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
             <img src={LoginBg} />
         </div>
-        <div className='items-center'>
-        <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:p-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-center bg-white'>
-            <h1 className='text-2xl text-slate-700 font-bold mb-6'>Login</h1>
+        <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white'>
+        {token ? `${navigate('/')}` : 
+        (login ? <div className='flex justify-center'><Alert message={login} type="error" showIcon className='w-full md:mt-4'/></div>:<div className='hidden'></div>)}
+            <h1 className='text-2xl text-slate-700 font-bold my-6'>Login</h1>
               <Form
                   name="normal_login"
                   className="login-form"
@@ -84,12 +84,13 @@ export default function LoginPage() {
                   </Form.Item>
               </Form>
         </div>
-        </div>
+    </div>
         <div className='px-4 lg:hidden'>
             <img src={LoginBg} />
         </div>
-    </div>
+    <div>
     <SecondFooter />
+    </div>
     </div>
   )
 }

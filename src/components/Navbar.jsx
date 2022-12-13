@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import LogoText from '../assets/LogoText.png'
 import { Dropdown } from 'antd';
 import {MdCircleNotifications} from 'react-icons/md'
 import { BellIcon } from '@heroicons/react/20/solid';
+import { useDispatch } from 'react-redux';
+import { getNotification } from '../redux/feature/NotificationSlice';
 
-const items = [
+export const Navbar = () => {
+    const [select, setSelect] = useState('')
+    const navigate = useNavigate()
+
+  const logout = async () => {
+    localStorage.clear();
+    navigate('/')
+    setTimeout(function () {
+        window.location.reload(1);
+      }, 1500);
+  };
+  const items = [
     {
       key: '1',
       label: (
@@ -15,14 +28,17 @@ const items = [
     {
       key: '2',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+        <div onClick={logout}>
           Logout
-        </a>
+        </div>
       ),
     },
   ];
-export const Navbar = () => {
-    const [select, setSelect] = useState('')
+  
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getNotification())
+  },[dispatch]); 
     return (
     <div className='py-3 w-screen bg-white fixed z-50'>
         <div className='flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20'>
