@@ -18,9 +18,8 @@ export default function LoginPage() {
     const token =  localStorage.getItem('token');
 
     const onFinish = (values) => {
-        // console.log('Received values of form: ', values);
         dispatch(LoginEmail(values))
-      };
+    };
 
   return (
     <div className='flex flex-col justify-between h-screen'>

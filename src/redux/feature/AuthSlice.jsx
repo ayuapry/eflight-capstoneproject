@@ -38,7 +38,7 @@ export const LoginEmail = createAsyncThunk(
             localStorage.setItem("id",(res.data.data.id))
             return res.data.data
         } catch (error) {
-            // console.error(error.response.data.data)
+            console.error(error)
             return error.response.data.data
         }
     }

@@ -13,12 +13,8 @@ import 'react-date-range/dist/theme/default.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-<<<<<<< HEAD
 import { getCountry, getAge, getCabinClass, getTiket } from '../redux/feature/homeSlice';
-=======
-import { getCountry, getAge, getCabinClass } from '../redux/feature/homeSlice';
 import ButtonPrimary from './ButtonPrimary';
->>>>>>> 6f7faf2ad862aa90968ae0dac6072d47102ef4c0
 
 const Card = () => {
     // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
@@ -38,11 +34,6 @@ const Card = () => {
     useEffect(() => {
       dispatch(getCabinClass())
     },[dispatch]); 
-    
-    useEffect(() => {
-      dispatch(getTiket())
-    },[dispatch]); 
-
 
     const [city, setCity] = useState(null)
     const [inputCity, setInputCity] = useState("");
@@ -537,13 +528,8 @@ const Card = () => {
             </div>
 
                        
-<<<<<<< HEAD
             <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Filter')}>
                 <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
-=======
-            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/filter')}>
-                {/* <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
->>>>>>> 6f7faf2ad862aa90968ae0dac6072d47102ef4c0
                     <span>
                         <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
                     </span>
@@ -555,7 +541,7 @@ const Card = () => {
                            Find Tickets
                         </h2>
                     </button>
-                </div> */}
+                </div> 
                 <div className='w-fit'>
                     <ButtonPrimary title='SEARCH FLIGHTS' />
                 </div>

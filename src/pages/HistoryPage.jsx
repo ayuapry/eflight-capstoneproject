@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Footer from '../components/Footer'
 import { ArrowLeftCircleIcon, UserCircleIcon } from '@heroicons/react/20/solid'
-import React, { useState } from 'react'
+import { useState, useEffect  } from 'react'
 import { Navbar } from '../components/Navbar'
-import { Form, Select } from 'antd';
 import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
@@ -12,10 +11,8 @@ import { EditProfileModal } from '../components/EditProfileModal'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import { useDispatch } from 'react-redux'
 import { Profile } from '../redux/feature/authSlice'
-import Footer from '../components/Footer';
 import { SecondFooter } from '../components/SecondFooter';
 import { useNavigate } from 'react-router-dom';
-import { EditProfileModal } from '../components/EditProfileModal';
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -23,6 +20,7 @@ export const HistoryPage = () => {
     const [editProfileModal, setEditProfileModal] = useState(false)
     const handleOnClose = () => setEditProfileModal(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(() => {
       dispatch(Profile())
