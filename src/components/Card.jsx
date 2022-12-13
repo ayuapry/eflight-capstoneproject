@@ -524,12 +524,10 @@ const Card = () => {
                         </div>
                     </div>
             </div>
-
                        
             <div 
-                className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  
-                onClick={()=>navigate(`/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)}>
-                <div className='w-fit'>
+                className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer" >
+                <div className='w-fit' onClick={()=>navigate(`/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)}>
                     <ButtonPrimary title='SEARCH FLIGHTS' />
                 </div>
             </div>
