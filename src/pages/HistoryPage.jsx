@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Footer from '../components/Footer'
-import { ArrowLeftCircleIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+import { ArrowLeftCircleIcon, CheckCircleIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { Navbar } from '../components/Navbar'
 import { Form, Select } from 'antd';
 import { GiCommercialAirplane } from 'react-icons/gi'
@@ -9,19 +9,24 @@ import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getProfile } from '../redux/feature/UserSlice';
+import axios from 'axios';
 
 export const HistoryPage = () => {
     const { Option } = Select;
     const [select, setSelect] = useState('')
+
+    const [fullName, setFullName] = useState('')
+    const [birthDate, setBirthDate] = useState('')
+    const [gender, setGender] = useState('')
+
     const [editProfileModal, setEditProfileModal] = useState(false)
     const handleOnClose = () => setEditProfileModal(false)
-    const navigate = useNavigate()
-
-    const {id} = useParams()
     
+    const navigate = useNavigate()
+    const {id} = useParams()
     const dispatch = useDispatch()
     const {profile} = useSelector((state) => state.user)
 
@@ -38,16 +43,29 @@ export const HistoryPage = () => {
           }, 1500);
       };
 
+    const updateProfile = () => {
+        axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`, {
+            fullName: fullName,
+            birthDate: birthDate,
+            gender: gender,
+        })
+        .then((response) => {
+            window.location.reload()
+        })
+    }
+
+    
+
   return (
     <div className='bg-slate-100'>
         <Navbar />
         <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>
-                <div className='bg-white mt-20 rounded-md shadow-md md:h-[220px] '>
-                    <div className='flex my-4 gap-2 mx-16 items-center text-center'>
+                <div className='bg-white mt-20 rounded-md shadow-md md:h-[350px] '>
+                    <div className=' my-4 gap-2 mx-16 items-center text-center'>
                         <div className=''>
                             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="nope" 
-                            className='h-20 w-20 object-cover rounded-full' />
+                            className='h-24 w-24 object-cover rounded-full mx-auto' />
                         </div>
                         <div>
                             <h1 className='font-bold md:text-xl text-lg'>{profile?.fullName}</h1>
@@ -59,6 +77,10 @@ export const HistoryPage = () => {
                             <UserCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Account</p>
                         </div>
+                        <Link to='/checkin' className='flex gap-2 cursor-pointer' >
+                            <CheckCircleIcon className="h-6 w-6 text-blue-600"/>
+                            <p className='font-semibold'>Check-In</p>
+                        </Link>
                         <div className='flex gap-2 cursor-pointer' onClick={logout} >
                             <ArrowLeftCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Logout</p>

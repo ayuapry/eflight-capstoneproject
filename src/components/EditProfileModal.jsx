@@ -1,30 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {AiOutlineClose} from 'react-icons/ai'    
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import ButtonPrimary from './ButtonPrimary';
-const { Option } = Select;
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+    const { Option } = Select;
 
-const layout = {
-    labelCol: {
-      span: 10,
-    },
-    wrapperCol: {
-      span: 20,
-    },
-  };
+    const layout = {
+        labelCol: {
+        span: 10,
+        },
+        wrapperCol: {
+        span: 20,
+        },
+    };
 
-const validateMessages = {
-    required: '${label} is required!',
-    types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
-    },
-};
+    const validateMessages = {
+        required: '${label} is required!',
+        types: {
+        email: '${label} is not a valid email!',
+        number: '${label} is not a valid number!',
+        },
+        number: {
+        range: '${label} must be between ${min} and ${max}',
+        },
+    };
 
-export const EditProfileModal = ({open, close}) => {
+    export const EditProfileModal = ({open, close}) => {
     const handleOnClose = (e) => {
         if(e.target.id === 'container') 
         close()
@@ -33,6 +35,22 @@ export const EditProfileModal = ({open, close}) => {
     const onFinish = (values) => {
         console.log(values);
     };
+
+    const {id} = useParams()
+    const [fullName, setFullName] = useState('')
+    const [birthDate, setBirthDate] = useState('')
+    const [gender, setGender] = useState('')
+    
+    const updateProfile = () => {
+        axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`, {
+            fullName: fullName,
+            birthDate: birthDate,
+            gender: gender,
+        })
+        .then((response) => {
+            window.location.reload()
+        })
+    }
 
     if(!open) return null
   return (
@@ -52,6 +70,7 @@ export const EditProfileModal = ({open, close}) => {
                         required: true,
                     },
                     ]}
+                    onChange={(e) => {setFullName(e.target.value)}}
                 >
                     <Input />
                 </Form.Item>
