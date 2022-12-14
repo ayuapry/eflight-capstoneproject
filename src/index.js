@@ -14,6 +14,7 @@ import { FilterPage } from "./pages/FilterPage";
 import LoginPage from "./pages/LoginPage";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { Coba } from "./pages/Coba";
+import { CheckInPage } from "./pages/CheckInPage";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -32,6 +33,7 @@ root.render(
         <Route path="/Booking" element={<BookingPage />} />
         <Route path="/card" element={<Card />}/>
         <Route path="/coba" element={<Coba />}/>
+        <Route path="/checkin" element={<CheckInPage />} />
       </Routes>
   </BrowserRouter>
   </Provider>

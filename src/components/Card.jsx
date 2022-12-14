@@ -10,11 +10,12 @@ import { Calendar } from 'react-date-range'
 import format from 'date-fns/format'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountry, getAge, getCabinClass, getTiket } from '../redux/feature/homeSlice';
 import ButtonPrimary from './ButtonPrimary';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
 
 const Card = () => {
     // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
@@ -125,7 +126,8 @@ const Card = () => {
         </div>
         <div className=' CardWrap bg-white shadow md:shadow-md md:max-w-5xl md:mx-auto m-0 px-4 rounded-md md:rounded-xl z-10'>
             
-            <div className='TitleCard flex flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
+            <div className='TitleCard flex justify-between flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]'>
+                <div className='flex items-center'>
                 <img 
                 className='w-[3rem]'
                 src={Logo} 
@@ -134,6 +136,13 @@ const Card = () => {
                     className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
                     Find Flights Tickets
                 </h1>
+                </div>
+                <Link to='/checkin' className='flex cursor-pointer' >
+                    <p className='text-blue-600 font-semibold hover:text-blue-400'>Check-In Here</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.4} stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" color='blue' />
+                    </svg>
+                </Link>
             </div>
 
             <div className='text-black'>
