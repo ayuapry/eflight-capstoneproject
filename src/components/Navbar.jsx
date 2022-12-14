@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import LogoText from '../assets/LogoText.png'
 import { Dropdown } from 'antd';
 import {MdCircleNotifications} from 'react-icons/md'
-import { BellIcon } from '@heroicons/react/20/solid';
 import userIcon from '../assets/userIcon.png'
 import ButtonPrimary from './ButtonPrimary';
+import { BellIcon, BellSlashIcon } from '@heroicons/react/20/solid';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNotification } from '../redux/feature/NotificationSlice';
 
 export const Navbar = () => {
   const [select, setSelect] = useState('')
@@ -35,6 +37,16 @@ export const Navbar = () => {
       ),
     },
   ];
+  
+  const {notification} = useSelector((state) => state.notification)
+  const dispatch = useDispatch()
+  const {id} = useParams()
+
+  useEffect(() => {
+    dispatch(getNotification(id))
+    console.log(notification)
+  },[dispatch, id]); 
+
     return (
     <div className='py-3 w-screen bg-white fixed z-50'>
         <div className='flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20'>
@@ -63,6 +75,7 @@ export const Navbar = () => {
                     <div className='h-8 w-8 rounded-full'>
                     <BellIcon size={38} onClick={() => setSelect(!select)} className='cursor-pointer text-gray-400' />
                     </div>
+                    {(token) ? 
                     <div 
                     className={`absolute right-0 z-10 mt-2 w-[300px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black 
                     ring-opacity-5 focus:outline-none transition ease-out duration-100 ${select ? 'visible transform opacity-100 scale-100' : 'invisible transform opacity-0 scale-95'}`}
@@ -71,20 +84,33 @@ export const Navbar = () => {
                     aria-labelledby="menu-button" 
                     tabIndex="-1"
                     >
-                    <div className='mt-3'>
-                    <p className='font-semibold'>Lorem, ipsum.</p>
-                    <span>Lorem ipsum dolor sit amet.</span>
+                    {notification.length > 0 ? (
+                      notification.map((notif, i) => (
+                        <div>
+                          <div key={i} className='mt-3'>
+                            <p className='font-semibold'>{notif?.notification.title}Lorem, ipsum.</p>
+                            <span>{notif?.notification.description}</span>
+                          </div>
+                          <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200'>view all ...</Link>
+                        </div>
+                      ))
+                    ):(
+                      <div>
+                        <div className='h-10 w-10 flex items-center text-center mx-auto my-5'>
+                          <BellSlashIcon className='text-gray-200' />
+                        </div>
+                          <p className='mx-auto text-center text-gray-300'>You don't have any notifications ..</p>
+                      </div>
+                    )}
+                    
+                  
                     </div>
-                    <div className='mt-3'>
-                    <p className='font-semibold'>Lorem, ipsum.</p>
-                    <span>Lorem ipsum dolor sit amet.</span>
+                    :
+                    <div>
+                      
                     </div>
-                    <div className='mt-3'>
-                    <p className='font-semibold'>Lorem, ipsum.</p>
-                    <span>Lorem ipsum dolor sit amet.</span>
-                    </div>
-                    <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200'>view all ...</Link>
-                    </div>
+                    }
+
                     </div>
                     </div>
                 <div className='hidden md:flex cursor-pointer'>
@@ -96,9 +122,8 @@ export const Navbar = () => {
                         }
                     </Dropdown>
                 </div>
+              </div>
             </div>
         </div>
-        
-    </div>
   )
 }

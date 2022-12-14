@@ -35,7 +35,10 @@ const Card = () => {
       dispatch(getCabinClass())
     },[dispatch]); 
 
-    const [city, setCity] = useState(null)
+    useEffect(() => {
+        dispatch(getTiket())
+      },[dispatch]); 
+  
     const [inputCity, setInputCity] = useState("");
     const [inputCityTo, setInputCityTo] = useState("");
     const [selectCity, setSelectCity] = useState("");
@@ -46,37 +49,22 @@ const Card = () => {
         "OneWay"
     )
     const [calendar, setCalendar] = useState('')
-    const [calendarGo, setCalendarGo] = useState('')
+    const [calendarGo, setCalendarGo] = useState()
+    const [iata, setIata] = useState({
+        iata1: '',
+        iata2: ''
+    })
+    console.log('calender: ', calendar)
     const [openDate, setOpenDate] = useState(false)
     const [openDateGo, setOpenDateGo] = useState(false)
     const [openClass, setOpenClass] = useState(false)
-    const [selectClass, setselectClass] = useState("")
-    const [countD, setCountD] = useState(0);
+    const [selectClass, setselectClass] = useState("ECONOMY")
+    const [countD, setCountD] = useState(1);
     const [countA, setCountA] = useState(0);
     const [countB, setCountB] = useState(0);
     const navigate = useNavigate()
     // get the target element to toggle 
     const refOne = useRef(null)
-
-    // useEffect(() => {
-    //     axios
-    //     .get(ApiCountry)
-    //     .then((res) =>{
-    //         setCity(res.data.data);
-    //         console.log(res)
-    //         })
-    //     .catch((err) => console.log(err))
-    // }, [ApiCountry]);
-    
-    // useEffect(() => {
-    //     axios
-    //     .get(AgeCategory)
-    //     .then((res) =>{
-    //         setCity(res.data.data);
-    //         console.log(res)
-    //         })
-    //     .catch((err) => console.log(err))
-    // }, [ApiCountry])
 
     useEffect(() => {
         // set current date on component load
@@ -123,9 +111,11 @@ const Card = () => {
     }
     const handleSelectGo = (date) => {
         setCalendarGo(format(date, 'MM/dd/yyyy'))
+        setOpenDateGo(false)
     }
     
     const display = countD + countA + countB + " Passenger, ";
+
         
 
   return (
@@ -142,7 +132,7 @@ const Card = () => {
                 alt="BinarLogo" />
                 <h1
                     className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
-                    Find Filghts Tickets
+                    Find Flights Tickets
                 </h1>
             </div>
 
@@ -172,7 +162,11 @@ const Card = () => {
                             <div
                                 className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                                 <div 
-                                    onClick={() => setOpen(!open)} 
+                                    onClick={() => {
+                                        setOpen(!open)
+                                         setOpenTo(false)
+                                        }
+                                    } 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
                                     <TbPlaneDeparture className='mr-3 text-[1.5rem] text-black'/>
                                     <p className='fontMont text-[0.9rem] w-full wmd:w-40 md:truncate mb-0'>
@@ -200,6 +194,7 @@ const Card = () => {
                                                 if(e?.city?.toLowerCase() !== selectCity.toLowerCase()) {
                                                     setSelectCity(e?.city);
                                                     setOpen(false);
+                                                    setIata({...iata, iata1: e.iata})
                                                     setInputCity("");
                                                 }
                                             }}>
@@ -233,7 +228,8 @@ const Card = () => {
                             <div
                                 className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear'>
                                 <div 
-                                    onClick={() => setOpenTo(!openTo)} 
+                                    onClick={() => {setOpenTo(!openTo)
+                                        setOpen(false)}} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
                                     <TbPlaneInflight className='mr-3 text-[1.5rem] text-black'/>
                                     <p className='fontMont text-[0.9rem] w-full md:w-40 md:truncate mb-0'>
@@ -251,7 +247,8 @@ const Card = () => {
                                             />
                                             <RiCloseFill 
                                                 className='text-[1.5rem] mr -2  cursor-pointer text-gray-300  hover:text-blue-600'
-                                                onClick={() => setOpenTo(!openTo)} />
+                                                onClick={() => {setOpenTo(!openTo)
+                                                }} />
                                         </div>
                                         
                                         {country?.map((e) => (
@@ -261,6 +258,7 @@ const Card = () => {
                                                 if(e?.city?.toLowerCase() !== selectCityTo.toLowerCase()) {
                                                     setSelectCityTo(e?.city);
                                                     setOpenTo(false);
+                                                    setIata({...iata, iata2: e.iata})
                                                     setInputCityTo("");
                                                 }
                                             }}>
@@ -512,7 +510,7 @@ const Card = () => {
                                                 className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 md:py-2 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300 md:border-b-[1px]'
                                                 onClick={() => {
                                                 setOpenClass(false);
-                                                setselectClass("Economy")}}
+                                                setselectClass(e.travelClassId)}}
                                                 key={e.travelClassId}
                                                 >
                                                 {e.travelClassName}
@@ -526,23 +524,10 @@ const Card = () => {
                         </div>
                     </div>
             </div>
-
                        
-            <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  onClick={()=>navigate('/Filter')}>
-                <div className='flex items-center p-[0.5rem] bg-[#FFD24C] hover:bg-[#FFE69A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFE69A] text-sm px-5 py-2.5 text-center'>
-                    <span>
-                        <BiSearchAlt className='text-black flex items-center text-[1.4rem] md:mr-2'/>
-                    </span>
-                    <button
-                        className='flex items-center' 
-                        type="submit">
-                        Cari Tiket
-                        <h2 className='md:flex fontMont text-[0.9rem] font-bold mb-0 text-black' >
-                           Find Tickets
-                        </h2>
-                    </button>
-                </div> 
-                <div className='w-fit'>
+            <div 
+                className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer" >
+                <div className='w-fit' onClick={()=>navigate(`/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)}>
                     <ButtonPrimary title='SEARCH FLIGHTS' />
                 </div>
             </div>

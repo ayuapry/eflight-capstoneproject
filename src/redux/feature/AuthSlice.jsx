@@ -76,7 +76,7 @@ export const Profile = createAsyncThunk(
             }
             )
             // localStorage.setItem("id",(res.data.data.id))
-            console.log(res)
+            console.log(res.data.data)
             return res.data.data
         } catch (error) {
             console.error(error)

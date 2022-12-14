@@ -28,7 +28,7 @@ export default function LoginPage() {
             <img src={LoginBg} />
         </div>
         <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white'>
-        {token ? `${navigate('/')}` : 
+        {token ? navigate('/') : 
         (login ? <div className='flex justify-center'><Alert message={login} type="error" showIcon className='w-full md:mt-4'/></div>:<div className='hidden'></div>)}
             <h1 className='text-2xl text-slate-700 font-bold my-6'>Login</h1>
               <Form

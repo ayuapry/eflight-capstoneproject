@@ -1,18 +1,19 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import { ArrowLeftCircleIcon, UserCircleIcon } from '@heroicons/react/20/solid'
-import { useState, useEffect  } from 'react'
 import { Navbar } from '../components/Navbar'
 import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
-import { EditProfileModal } from '../components/EditProfileModal'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
-import { useDispatch } from 'react-redux'
-import { Profile } from '../redux/feature/authSlice'
+import { Profile } from '../redux/feature/authSlice';
+import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { EditProfileModal } from '../components/EditProfileModal';
+import { getProfile } from '../redux/feature/UserSlice';
+import { useState, useEffect } from 'react'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -22,10 +23,14 @@ export const HistoryPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    useEffect(() => {
-      dispatch(Profile())
-    }, []);
+    const {id} = useParams()
+    const {profile} = useSelector((state) => state.user)
 
+    useEffect(() => {
+        dispatch(getProfile(id))
+        console.log(profile)
+    },[]); 
+    
     const logout = async () => {
         localStorage.clear();
         navigate('/')
@@ -33,10 +38,11 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
+
   return (
     <div className='bg-slate-100'>
         <Navbar />
-        <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 h-screen'>
+        <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>
                 <div className='bg-white mt-20 rounded-md shadow-md md:h-[220px] '>
                     <div className='flex my-4 gap-2 mx-16 items-center text-center'>
@@ -45,16 +51,16 @@ export const HistoryPage = () => {
                             className='h-20 w-20 object-cover rounded-full' />
                         </div>
                         <div>
-                            <h1 className='font-bold md:text-xl text-lg'>Maudy Ayunda</h1>
-                            <span className='text-sm'>ayuapry@gmail.com</span>
+                            <h1 className='font-bold md:text-xl text-lg'>{profile?.fullName}</h1>
+                            <span className='text-sm'>{profile?.email}</span>
                         </div>
                     </div>
                     <div className='hidden md:block mx-10 my-10'>
-                        <div className='flex gap-2' onClick={() => setEditProfileModal(true)}>
+                        <div className='flex gap-2 cursor-pointer' onClick={() => setEditProfileModal(true)} >
                             <UserCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Account</p>
                         </div>
-                        <div className='flex gap-2' onClick={logout}>
+                        <div className='flex gap-2 cursor-pointer' onClick={logout} >
                             <ArrowLeftCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Logout</p>
                         </div>

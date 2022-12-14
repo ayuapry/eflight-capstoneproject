@@ -13,6 +13,7 @@ import Card from "./components/Card";
 import { FilterPage } from "./pages/FilterPage";
 import LoginPage from "./pages/LoginPage";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
+import { Coba } from "./pages/Coba";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -30,6 +31,7 @@ root.render(
         <Route path="/Filter" element={<FilterPage/>} />
         <Route path="/Booking" element={<BookingPage />} />
         <Route path="/card" element={<Card />}/>
+        <Route path="/coba" element={<Coba />}/>
       </Routes>
   </BrowserRouter>
   </Provider>
