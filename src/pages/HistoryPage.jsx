@@ -7,13 +7,14 @@ import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
-import { Profile } from '../redux/feature/authSlice';
+import { Profile } from '../redux/feature/AuthSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getProfile } from '../redux/feature/UserSlice';
 import { useState, useEffect } from 'react'
+import { getHistory } from '../redux/feature/historySlice'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -25,10 +26,11 @@ export const HistoryPage = () => {
 
     const {id} = useParams()
     const {profile} = useSelector((state) => state.user)
+    const { history } = useSelector( (state) => state.history );
 
     useEffect(() => {
         dispatch(getProfile(id))
-        console.log(profile)
+        // console.log(profile)
     },[]); 
     
     const logout = async () => {
@@ -38,6 +40,10 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
+
+    useEffect( () => {
+        dispatch(getHistory())
+    }, [dispatch]);
 
   return (
     <div className='bg-slate-100'>

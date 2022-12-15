@@ -10,8 +10,11 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTitel } from '../redux/feature/BookingSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const BookingPage = () => {
+    const navigate = useNavigate()
+    const userid = localStorage.getItem('id');
     const [seatModal, setSeatModal] = useState(false)
     const handleOnClose = () => setSeatModal(false)
     const [formValues, setFormValues] = useState([]);
@@ -138,7 +141,7 @@ export const BookingPage = () => {
                         </div>
                         <div className='flex gap-2'>
                         <Form.Item
-                           style={{width:'50%'}}
+                            style={{width:'50%'}}
                             name={['pasport_number']}
                             rules={[
                                 {
@@ -198,9 +201,16 @@ export const BookingPage = () => {
                         </div>
                     </div>
                 </div>
-            <div className='max-w-7xl mt-10 '>
+            <div className='max-w-7xl mt-10'
+            onClick={() => 
+                navigate(`/history?sort=DESC`)
+            }>
                 {/* <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button> */}
-                <ButtonPrimary type="submit" title="Booking Now" className='w-fit'/> 
+                <ButtonPrimary 
+                    type="submit" 
+                    title="Booking Now"
+                    
+                    className='w-fit'/> 
             </div>
             </div>
         </div>
