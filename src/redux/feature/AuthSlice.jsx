@@ -33,6 +33,9 @@ export const LoginEmail = createAsyncThunk(
                 "email": `${values.email}`,
                 "password": `${values.password}`
             })
+            setTimeout(function () {
+                window.location.reload(1);
+              }, 500)
             localStorage.removeItem("id")
             localStorage.setItem("token",(res.data.data.jwtToken))
             localStorage.setItem("id",(res.data.data.id))
@@ -41,10 +44,7 @@ export const LoginEmail = createAsyncThunk(
             console.error(error)
             return error.response.data.data
         }
-        setTimeout(function () {
-            window.location.reload(1);
-          }, 500);
-        
+      
     }
 )
 

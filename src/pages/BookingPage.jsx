@@ -14,24 +14,25 @@ import { getTitel } from '../redux/feature/BookingSlice';
 export const BookingPage = () => {
     const [seatModal, setSeatModal] = useState(false)
     const handleOnClose = () => setSeatModal(false)
-    const [formValues, setFormValues] = useState([]);
+    // const [formValues, setFormValues] = useState([]);
 
-    const handleChange = e => {
-        const {name, value} = e.target;
-        setFormValues({ ...formValues, [name]: value});
-    }
+    // const handleChange = e => {
+    //     const {name, value} = e.target;
+    //     setFormValues({ ...formValues, [name]: value});
+    // }
 
-    const submitForm = () => {
-        setFormValues((prevFormValues) => [...prevFormValues]);
-      };
+    // const submitForm = () => {
+    //     setFormValues((prevFormValues) => [...prevFormValues]);
+    //   };
 
-      useEffect(() => {
-        localStorage.setItem("formValues", JSON.stringify(formValues));
-      }, [formValues]);
+    //   useEffect(() => {
+    //     localStorage.setItem("formValues", JSON.stringify(formValues));
+    //   }, [formValues]);
 
     // const onFinish = (values) => {
     //     localStorage.setItem("values", JSON.stringify(value));
     //   };
+
       const onChange = (value) => {
         console.log(`selected ${value}`);
       };
@@ -88,7 +89,7 @@ export const BookingPage = () => {
                                     },
                                 ]}
                                 >
-                                <Input name='firstName' onChange={handleChange} placeholder="FirstName and MidlleName" />
+                                <Input name='firstName' placeholder="FirstName and MidlleName" />
                                 <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
                             </Form.Item>
                             <Form.Item
@@ -99,12 +100,12 @@ export const BookingPage = () => {
                                     },
                                 ]}
                                 >
-                                <Input name='lastName' onChange={handleChange} placeholder="LastName" />
+                                <Input name='lastName' placeholder="LastName" />
                                 <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
                             </Form.Item>
                         {/* </div> */}
                         <div className='flex gap-2'>
-                            <Form.Item style={{width:'50%'}}>
+                            {/* <Form.Item style={{width:'50%'}}>
                                 <Select 
                                     showSearch
                                     placeholder="Citizenship       "
@@ -130,9 +131,21 @@ export const BookingPage = () => {
                                     ]}
                                     />
                                     <span className='text-xs text-gray-400'>Citizenship</span>
+                            </Form.Item> */}
+                            <Form.Item
+                                style={{width:'50%'}}
+                                name={['Citizenship']}
+                                rules={[
+                                    {
+                                    required: true,
+                                    },
+                                ]}
+                                >
+                                <Input name='citizenship' placeholder="citizenship" />
+                                <span className='text-xs text-gray-400'>Citizenship</span>
                             </Form.Item>
                             <Form.Item style={{width:'50%'}} name={['birthdate']}  >
-                                <DatePicker name='birthDate'  onChange={handleChange} style={{width:'100%'}} placeholder='Birth Date' />
+                                <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
                                 <span className='text-xs text-gray-400'>Birth Date</span>
                             </Form.Item>
                         </div>
@@ -146,13 +159,13 @@ export const BookingPage = () => {
                                 },
                             ]}
                             >
-                            <Input onChange={handleChange} name='pasportNumber' placeholder="Passport Number" />
+                            <Input name='pasportNumber' placeholder="Passport Number" />
                             <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
                         </Form.Item>
                         <Form.Item 
                             style={{width:'50%'}}
                             name={['created_at']}>
-                            <DatePicker name='created_at' onChange={handleChange} style={{width:'100%'}} placeholder='created at' />
+                            <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
                             <span className='text-xs text-gray-400'>The date the passport was issued</span>
                         </Form.Item>
                         </div>
