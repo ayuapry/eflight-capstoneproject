@@ -12,7 +12,6 @@ import { Button, Drawer } from 'antd';
 import { getTiket } from '../redux/feature/homeSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-// import moment from "moment";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
