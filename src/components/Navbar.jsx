@@ -84,7 +84,7 @@ export const Navbar = () => {
                     aria-labelledby="menu-button" 
                     tabIndex="-1"
                     >
-                    {notification.length > 0 ? (
+                    {notification?.length > 0 ? (
                       notification.map((notif, i) => (
                         <div>
                           <div key={i} className='mt-3'>

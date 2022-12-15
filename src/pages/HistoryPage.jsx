@@ -38,7 +38,12 @@ export const HistoryPage = () => {
     useEffect(() => {
         dispatch(getProfile(id))
         // console.log(profile)
-    },[]); 
+    },[dispatch, id]); 
+
+    useEffect(() => {
+        dispatch(getHistory(id))
+        // console.log(profile)
+    },[dispatch, id]); 
     
     const logout = async () => {
         localStorage.clear();
