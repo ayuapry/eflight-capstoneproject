@@ -73,7 +73,7 @@ export const getTiket = createAsyncThunk(
             }
           }
           )
-          console.log(res)
+          console.log(res.data.data)
           return res.data.data
       } catch (err) {
           console.log(err)

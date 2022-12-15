@@ -3,15 +3,16 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import LogoText from '../assets/LogoText.png'
 import { Dropdown } from 'antd';
 import {MdCircleNotifications} from 'react-icons/md'
+import userIcon from '../assets/userIcon.png'
+import ButtonPrimary from './ButtonPrimary';
 import { BellIcon, BellSlashIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotification } from '../redux/feature/NotificationSlice';
 
 export const Navbar = () => {
-    const [select, setSelect] = useState('')
-    const navigate = useNavigate()
-
-    const token =  localStorage.getItem('token');
+  const [select, setSelect] = useState('')
+  const navigate = useNavigate()
+  const token =  localStorage.getItem('token');
 
   const logout = async () => {
     localStorage.clear();
@@ -51,17 +52,20 @@ export const Navbar = () => {
         <div className='flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20'>
             {/* <div className='flex gap-3'> */}
                 <div className='md:hidden'>
-                <Dropdown menu={{items,}} placement="bottom" arrow >
-                        <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                </Dropdown>
+                { token ? 
+                  <Dropdown menu={{items,}} placement="bottom" arrow >
+                    <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" /> 
+                  </Dropdown> :
+                  <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" onClick={()=>navigate("/Login")} />
+                }
                 </div>
                 <Link to='/' className='flex items-center'>
                     <img src={LogoText} className='w-40' alt="" />
                 </Link>
                 <ul className='hidden md:flex gap-3 md:text-md mt-3'>
-                  <a href='#Destination' className='hover:text-blue-600 hover:font-semibold'>Destination</a>
-                  <a href='#Booking' className='hover:text-blue-600 hover:font-semibold'>Booking</a>
-                  <a href='#Services' className='hover:text-blue-600 hover:font-semibold'>Services</a>
+                  <a href='/#Destination' className='hover:text-blue-600 hover:font-semibold'>Destination</a>
+                  <a href='/#Booking' className='hover:text-blue-600 hover:font-semibold'>Booking</a>
+                  <a href='/#Services' className='hover:text-blue-600 hover:font-semibold'>Services</a>
                 </ul>
             {/* </div> */}
 
@@ -109,14 +113,17 @@ export const Navbar = () => {
 
                     </div>
                     </div>
-                    <div className='hidden md:flex'>
-                    <Dropdown menu={{items,}} placement="bottom" arrow >
-                        <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                <div className='hidden md:flex cursor-pointer'>
+                    <Dropdown menu={{items}} placement="bottom" arrow >
+                        {
+                          token ? 
+                          <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="" /> :
+                          <ButtonPrimary title="Login" click={() => navigate("/Login")}/>
+                        }
                     </Dropdown>
                 </div>
+              </div>
             </div>
         </div>
-        
-    </div>
   )
 }

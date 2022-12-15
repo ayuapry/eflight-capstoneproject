@@ -9,6 +9,9 @@ import { useState } from 'react';
 import Filter from '../components/Filter';
 import { ChevronUpIcon } from '@heroicons/react/20/solid';
 import { Button, Drawer } from 'antd';
+import { getTiket } from '../redux/feature/homeSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -16,6 +19,14 @@ function classNames(...classes) {
 
 export default function Detail() {
     const navigate = useNavigate()
+    const [open, setOpen] = useState(false);
+    const [placement, setPlacement] = useState('left');
+    const {tiket, loading} = useSelector ((state) => state.homepage)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+      dispatch(getTiket())
+    },[dispatch]); 
 
     const showDrawer = () => {
         setOpen(true);
@@ -24,23 +35,27 @@ export default function Detail() {
         setOpen(false);
       };
 
-    const [open, setOpen] = useState(false);
-    const [placement, setPlacement] = useState('left');
     
   return (
     <div className='w-full'>
-        <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 lg:ml-8 h-fit mb-4'>
-        <div className='flex justify-between'>
-        <p className='font-bold'>Binar</p> 
+      {tiket && tiket.map((tiket,index) => {
+        return (
+      <div>
+      <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 lg:ml-8 h-fit mb-4 bg-white'>
+        <div className='flex justify-between mb-2'>
+        <div className='flex items-center'>
+        <img src={tiket?.airLinesLogoURL} alt='airplane-logo' className='h-6 mr-2'/>
+        <p className='font-bold mb-0'>{tiket.airlines}</p> 
+        </div>
         <ChevronDownIcon onClick={showDrawer} className='h-4 lg:hidden cursor-pointer'/>
         </div>
           <div className='flex justify-between w-full text-sm items-center lg:items-start'>
           <div>
-              <p className='mx-auto'>20.00</p>
-              <p className='px-2 bg-slate-100 w-fit rounded-full text-sm text-gray-400'>CGK</p>
+              <p className='mx-auto'>{(tiket.departureTime).slice(0,-3)}</p>
+              <p className='px-2 bg-slate-100 w-fit rounded-full text-sm text-gray-400'>{tiket.iataOriginAirport}</p>
           </div>
           <div className='text-center text-xs items-center h-full'>
-              <p>23j5m</p>
+              <p>{tiket.flightDuration}</p>
               <div className='flex items-center -mt-2'>
               <div className='p-1 border-[1.5px] border-gray-400 rounded-full'></div>
               <div className='border-b-[1.5px] lg:w-24 w-14 border-gray-400'></div>
@@ -49,15 +64,15 @@ export default function Detail() {
               <p>langsung</p>
           </div>
           <div>
-          <p>10:45<span className='lg:text-sm'>(+1h)</span></p>
-          <p className='px-2 bg-slate-100 w-fit rounded-full text-sm text-gray-400 mx-auto'>DPS</p>
+          <p>{(tiket.arrivalTime).slice(0,-3)}<span className='lg:text-sm'></span></p>
+          <p className='px-2 bg-slate-100 w-fit rounded-full text-sm text-gray-400 mx-auto'>{tiket.iataDestinationAirport}</p>
           </div>
           <div className='lg:flex hidden'>
           <WifiIcon className='h-5 mr-4 text-sky-600'/>
           <ShoppingBagIcon className='h-5 text-sky-600'/>
           </div>
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
-          <h1 className='font-bold lg:text-lg text-sm'>Rp. 2.500.000 / <span className='lg:text-sm text-xs font-normal pt-0'>org</span></h1>
+          <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>org</span></h1>
           <ButtonPrimary title="Pilih" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
           </div>
           </div>
@@ -111,11 +126,11 @@ export default function Detail() {
             <Tab.Panel>
             <div className="flex mx-auto w-full rounded-2xl bg-white">
             <div className='flex flex-col justify-between h-60 w-14 mr-10'>
-              <p className='text-sm'>20.00 <br /> 28 Nov</p>
+              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br /> {tiket.departureDate}</p>
 
-              <p className='text-sm'>23j5m</p>
+              <p className='text-sm'>{tiket.flightDuration}</p>
 
-              <p className='text-sm mb-0'>10:45 <br /> 29 Nov</p>
+              <p className='text-sm mb-0'>{(tiket.arrivalTime).slice(0,-3)} <br /> {tiket.arrivalDate}</p>
             </div>
 
             <div className='flex flex-col justify-between items-center h-60 py-4'>
@@ -125,12 +140,12 @@ export default function Detail() {
             </div>
 
             <div className='flex flex-col justify-between ml-10 h-60 align-bottom w-full'>
-              <p className='mb-0'>Jakarta <br /><span>Bandara Internasional Soekarno Hatta (CGK)</span></p>
+              <p className='mb-0'>{tiket.originCity} <br /><span>{tiket.originAirport}</span></p>
               <div className='p-4 w-full bg-sky-50 rounded-md pb-0'>
-              <p className='border-b-2 border-sky-200 w-full pb-4'>Indonesia BinarAir, QZ 7518 | ECONOMY</p>
-              <p className='flex'><ShoppingBagIcon className='h-5 text-sky-600 mr-2'/><span className='font-medium text-sm'>Kabin : 7 kg  |  Bagasi : 20 kg</span></p>
+              <p className='border-b-2 border-sky-200 w-full pb-4'>Indonesia {tiket.airlines}, {tiket.aircraft.type} | {tiket.flightClass}</p>
+              <p className='flex'><ShoppingBagIcon className='h-5 text-sky-600 mr-2'/><span className='font-medium text-sm'>Kabin : {tiket.aircraft.freeBaggageCabin} KG  |  Bagasi : {tiket.aircraft.freeBaggage} KG</span></p>
               </div>
-              <p className='mb-0'>Bali <br /><span>Bandara Internasional Denpasar Ngurah Rai (DPS)</span></p>
+              <p className='mb-0'>{tiket.destinationCity} <br /> {tiket.destinationAirport}</p>
             </div>
             </div>
             </Tab.Panel>
@@ -161,7 +176,7 @@ export default function Detail() {
         </div>
       </div>
       <Drawer
-        title="JAKARTA - BALI"
+        title={`${tiket.originCity}`+' - '+`${tiket.destinationCity}`}
         placement={"bottom"}
         closable={true}
         onClose={onClose}
@@ -218,12 +233,12 @@ export default function Detail() {
             </div>
 
             <div className='flex flex-col justify-between ml-10 h-60 align-bottom w-full'>
-              <p className='mb-0'><b>28 Nov - 20.00</b> <br /> Jakarta <br /><span>Bandara Internasional Soekarno Hatta (CGK)</span></p>
+              <p className='mb-0'><b>28 Nov - 20.00</b> <br /> <span>{tiket.originAirport}</span></p>
               <div className='p-4 w-full bg-sky-50 rounded-md pb-0'>
-              <p className='border-b-2 border-sky-200 w-full pb-4'>Indonesia BinarAir, QZ 7518 | ECONOMY</p>
-              <p className='flex'><ShoppingBagIcon className='h-5 text-sky-600 mr-2'/><span className='font-medium text-sm'>Kabin : 7 kg  |  Bagasi : 20 kg</span></p>
+              <p className='border-b-2 border-sky-200 w-full pb-4'>Indonesia {tiket.airlines}, {tiket.aircraft.type} | {tiket.flightClass}</p>
+              <p className='flex'><ShoppingBagIcon className='h-5 text-sky-600 mr-2'/><span className='font-medium text-sm'>Kabin : {tiket.aircraft.freeBaggageCabin} KG  |  Bagasi : {tiket.aircraft.freeBaggage} KG</span></p>
               </div>
-              <p className='mb-0'> <b>29 Nov - 10:45</b> <br /> Bali <br /><span>Bandara Internasional Denpasar Ngurah Rai (DPS)</span></p>
+              <p className='mb-0'> <b>29 Nov - 10:45</b> <br /><span>{tiket.destinationAirport}</span></p>
             </div>
             </div>
             </Tab.Panel>
@@ -255,6 +270,11 @@ export default function Detail() {
               </div>
             </div>
       </Drawer>
+      </div>
+        )
+      })
+      }
+      
     </div>
   )
 }

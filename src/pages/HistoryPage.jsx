@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Footer from '../components/Footer'
 import { ArrowLeftCircleIcon, CheckCircleIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { Navbar } from '../components/Navbar'
-import { Form, Select } from 'antd';
 import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
 import ButtonPrimary from '../components/ButtonPrimary'
+import { Button, DatePicker, Form, Input, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
-import { getProfile } from '../redux/feature/UserSlice';
+import { getProfile } from '../redux/feature/UserSlice'
 import axios from 'axios';
+import { useState, useEffect } from 'react'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -26,8 +27,10 @@ export const HistoryPage = () => {
     const handleOnClose = () => setEditProfileModal(false)
     
     const navigate = useNavigate()
-    const {id} = useParams()
     const dispatch = useDispatch()
+
+    const {id} = useParams()
+    
     const {profile} = useSelector((state) => state.user)
 
     useEffect(() => {

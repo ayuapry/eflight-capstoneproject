@@ -49,22 +49,22 @@ export const HeadlineCards = () => {
                 <div className='flex flex-col items-center'>
                     <img src={seat} alt='seat' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>ADITIONAL SEAT</p>
-                    <h3 className='font-light text-justify'>Reserve your seat before flight that best suit for you</h3>
+                    <h3 className='font-light text-center'>Reserve your seat before flight that best suit for you</h3>
                 </div>
                 <div className='flex flex-col items-center'>
                     <img src={bag} alt='bag' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>MORE BAGS</p>
-                    <h3 className='font-light text-justify' style={{textJustify: "inter-character"}}>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
+                    <h3 className='font-light text-center' style={{textcenter: "inter-character"}}>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
                 </div>
                 <div className='flex flex-col items-center'>
                     <img src={meals} alt='meals' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>SPECIAL MEALS</p>
-                    <p className='font-light text-justify'>Make your travel easy and enjoyablewith delicious in-flight meals service</p>
+                    <p className='font-light text-center'>Make your travel easy and enjoyablewith delicious in-flight meals service</p>
                 </div>
                 <div className='flex flex-col items-center'>
                     <img src={baggage} alt='baggage' className='h-16 mb-2' />
                     <p className='font-semibold text-center'>CABIN UPGRADE</p>
-                    <p className='font-light text-justify tracking-normal'>Treat yourself to an upgrade and enjoy better amenities for your flight</p>
+                    <p className='font-light text-center tracking-normal'>Treat yourself to an upgrade and enjoy better amenities for your flight</p>
                 </div>
             </div>
         </div>
