@@ -45,7 +45,7 @@ export const getCount = createAsyncThunk(
   }
 )
 
-export const NotificationSlice = createSlice({
+export const notificationSlice = createSlice({
     name: "notif",
     initialState : {
       notification: [],
@@ -70,4 +70,4 @@ export const NotificationSlice = createSlice({
     },
   });
 
-  export const notifReducer = NotificationSlice.reducer;
+  export const notifReducer = notificationSlice.reducer;
