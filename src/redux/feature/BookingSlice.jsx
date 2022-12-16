@@ -13,6 +13,32 @@ export const getTitel = createAsyncThunk(
     }
 )
 
+export const postBooking = createAsyncThunk(
+  'btnBooking/postBooking',
+  async () => {
+      const token =  localStorage.getItem('token')
+      const id = localStorage.getItem('id')
+      try {
+          const res = await axios.post(`https://binar-air-rest-api-production.up.railway.app/api/v1/booking/userid=${id}`, 
+          {
+            
+
+          },
+          {
+              headers: { 
+                  'Authorization': `Bearer ${token}`
+              },  
+          })
+          // console.log(res.data.data);
+          console.log(res.data)
+          return res.data.data
+      } catch (err) {
+          console.log(err)
+      }
+  }
+)
+
+
 
 export const Booking = createAsyncThunk(
   "user/booking", async (values) => {
@@ -51,7 +77,8 @@ export const BookingSlice = createSlice({
     name: "booking",
     initialState : {
       titel: [],
-      booking: [],
+      btnBooking: [],
+      
     },
     reducers: {},
     extraReducers: {
@@ -63,16 +90,6 @@ export const BookingSlice = createSlice({
         state.titel = payload;
       },
       [getTitel.rejected]: (state) => {
-        state.loading = false;
-      },
-      [Booking.pending]: (state) => {
-        state.loading = true;
-      },
-      [Booking.fulfilled]: (state, { payload }) => {
-        state.loading = false;
-        state.booking = payload;
-      },
-      [Booking.rejected]: (state) => {
         state.loading = false;
       },
     },

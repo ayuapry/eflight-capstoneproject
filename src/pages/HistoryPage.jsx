@@ -14,6 +14,7 @@ import { EditProfileModal } from '../components/EditProfileModal';
 import { getProfile } from '../redux/feature/UserSlice'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
+import { getHistory } from '../redux/feature/historySlice'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -28,11 +29,17 @@ export const HistoryPage = () => {
     const {id} = useParams()
     
     const {profile} = useSelector((state) => state.user)
+    const { history } = useSelector( (state) => state.history );
 
     useEffect(() => {
         dispatch(getProfile(id))
-        console.log(profile)
-    },[]); 
+        // console.log(profile)
+    },[dispatch, id]); 
+
+    useEffect(() => {
+        dispatch(getHistory())
+        // console.log(profile)
+    },[dispatch]); 
     
     const logout = async () => {
         localStorage.clear();
@@ -41,6 +48,19 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
+
+    // const updateProfile = () => {
+    //     axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`, {
+    //         fullName: fullName,
+    //         birthDate: birthDate,
+    //         gender: gender,
+    //     })
+    //     .then((response) => {
+    //         window.location.reload()
+    //     })
+    // }
+
+    console.log(history);
 
   return (
     <div className='bg-slate-100'>
@@ -96,34 +116,53 @@ export const HistoryPage = () => {
                             </Form.Item>     
                         </div>
                     </div>
-                    <div className='mx-2 my-2'>
-                        <div className='bg-white border-2 border-gray-100 shadow-md w-full md:h-[220px] px-3 py-3  rounded-md'>
-                            <div className='flex gap-2 pb-4'>
-                                <GiCommercialAirplane color='skyblue' />
-                                <p>Flights</p>
-                            </div>
-                            <p className='text-gray-400 text-sm'>Order ID: xxxxx</p>
-                            <div className='flex gap-2 font-semibold'>
-                                <p>Jakarta</p>
-                                <BsArrowLeftRight />
-                                <p>Bali</p>
-                            </div>
-                            <div className='md:flex gap-3 text-sm'>
-                                <p>Roundtrip - 2 adults, 1 child</p>
-                                <div className='flex gap-2'>
-                                    <FaPlaneDeparture color='skyblue' />
-                                    <p>Friday, 25 Nov 2022 . 11:27</p>
-                                </div>
-                                <div className='flex gap-2'>
-                                    <FaPlaneArrival color='skyblue' />
-                                    <p>Friday, 27 Nov 2022 . 23:00</p>
-                                </div>
-                            </div>
-                            <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer'>See Details</p>
-                        </div>
-                    </div>
 
-                    <div className='mx-2 my-2'>
+                    {history?.length > 0 && history.map(histo => (
+                        <div className='mx-2 my-2'>
+                            <div className='bg-white border-2 border-gray-100 shadow-md w-full md:h-[220px] px-3 py-3  rounded-md'>
+                                <div className='flex gap-2 pb-4'>
+                                    <GiCommercialAirplane color='skyblue' />
+                                    <p>Flights</p>
+                                </div>
+                                <p className='text-gray-400 text-sm'>
+                                    Order ID: {histo.bookingId}
+                                </p>
+
+                                {histo?.departure?.data.map(city => (
+                                    <>
+                                        <div className='flex gap-2 font-semibold'>
+                                            <p>{city.schedule.originAirport.city}</p>
+                                            <BsArrowLeftRight />
+                                            <p>{city.schedule.destinationAirport.city}</p>
+                                        </div>
+
+                                    </>
+                                ))}
+                                <div className='md:flex gap-3 text-sm'>
+                                    <p>
+                                        {histo.bookingType} - {histo.adult} adults, {histo.child} child
+                                    </p>
+                                    {
+                                            histo?.departure?.data.map(data => (
+                                            <>
+                                                <div className='flex gap-2'>
+                                                    <FaPlaneDeparture color='skyblue' />
+                                                    <p>{data.schedule.departureDate} . {data.schedule.departureTime}</p>
+                                                </div>
+                                                <div className='flex gap-2'>
+                                                    <FaPlaneArrival color='skyblue' />
+                                                </div>
+                                                <p>{data.schedule.arrivalDate} . {data.schedule.arrivalTime}</p>
+                                            </>
+                                            ))
+                                        }
+                                </div>       
+                                        <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer'>See Details</p>
+                            </div>
+                        </div>
+                    ))}
+
+                    {/* <div className='mx-2 my-2'>
                         <div className='bg-white border-2 border-gray-100 shadow-md w-full md:h-[220px] px-3 py-3  rounded-md'>
                             <div className='flex gap-2 pb-4'>
                                 <GiCommercialAirplane color='skyblue' />
@@ -148,7 +187,8 @@ export const HistoryPage = () => {
                             </div>
                             <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer'>See Details</p>
                         </div>
-                    </div>
+                    </div> */}
+
                 </div>
             </div>
         </div>
