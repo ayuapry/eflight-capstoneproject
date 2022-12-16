@@ -51,7 +51,7 @@ export const CheckInPage = () => {
                   <Input />
                 </Form.Item>
                 <div className='flex justify-end'>
-                  <div className='w-fit'>
+                  <div className='w-[30%]'>
                       <ButtonPrimary title='Check In' />
                   </div>
                 </div>

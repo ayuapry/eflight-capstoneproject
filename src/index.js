@@ -23,17 +23,17 @@ root.render(
   <BrowserRouter>
     <Routes>
         <Route path="/" element={<App />} />
-        {/* <Route element = {<PrivateRoutes />} > */}
+        <Route element = {<PrivateRoutes />} >
           <Route path="/notification" element={<NotificationPage />} />
           <Route path="/history" element={<HistoryPage/>} />
-        {/* </Route> */}
+          <Route path="/Booking" element={<BookingPage />} />
+          <Route path="/checkin" element={<CheckInPage />} />
+        </Route>
         <Route path="/Register" element={<RegisterPage/>} />
         <Route path="/Login" element={<LoginPage/>} />
         <Route path="/Filter" element={<FilterPage/>} />
-        <Route path="/Booking" element={<BookingPage />} />
         <Route path="/card" element={<Card />}/>
         <Route path="/coba" element={<Coba />}/>
-        <Route path="/checkin" element={<CheckInPage />} />
       </Routes>
   </BrowserRouter>
   </Provider>

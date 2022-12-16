@@ -1,47 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {AiOutlineClose} from 'react-icons/ai'    
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import ButtonPrimary from './ButtonPrimary';
-import { editProfile } from '../redux/feature/UserSlice';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editProfile, getCity } from '../redux/feature/UserSlice';
 
-const { Option } = Select;
+    const { Option } = Select;
 
-const layout = {
-    labelCol: {
-      span: 10,
-    },
-    wrapperCol: {
-      span: 20,
-    },
-  };
+    const layout = {
+        labelCol: {
+        span: 10,
+        },
+        wrapperCol: {
+        span: 20,
+        },
+    };
 
-const validateMessages = {
-    required: '${label} is required!',
-    types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
-    },
-};
+    const validateMessages = {
+        required: '${label} is required!',
+        types: {
+        email: '${label} is not a valid email!',
+        number: '${label} is not a valid number!',
+        },
+        number: {
+        range: '${label} must be between ${min} and ${max}',
+        },
+    };
 
 export const EditProfileModal = ({open, close}) => {
     const dispatch = useDispatch()
+    const {city, loading} = useSelector ((state) => state.user)
 
     const handleOnClose = (e) => {
         if(e.target.id === 'container') 
         close()
       }
     
+    useEffect(() => {
+      dispatch(getCity())
+    }, [dispatch])
+
     const onFinish = (values) => {
         dispatch(editProfile(values))
         window.location.reload(1)
     };
+    
 
     if(!open) return null
-  return (
+    return (
     <div id='container' onClick={handleOnClose} className='fixed inset-0 bg-black bg-opacity-70 backdropbackdrop-blur-xl flex justify-center items-center text-black'>
         <div className="bg-white p-2 rounded w-[500px]">
             <div className='flex items-center justify-between mb-7 '>
@@ -49,10 +58,10 @@ export const EditProfileModal = ({open, close}) => {
                 <button onClick={close}><AiOutlineClose /></button>
             </div>
             <div className='flex justify-between items-center'>
-            <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+            <Form {...layout} name="update" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item
-                    name="fullName"
-                    label="Name"
+                    name='fullName'
+                    label="FullName"
                     rules={[
                     {
                         required: true,
@@ -85,8 +94,9 @@ export const EditProfileModal = ({open, close}) => {
                     },
                     ]}  >
                     <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
-                </Form.Item>
-                <Form.Item
+                </Form.Item> 
+                
+                {/* <Form.Item
                     name="cityId"
                     label="City"
                     rules={[
@@ -96,6 +106,25 @@ export const EditProfileModal = ({open, close}) => {
                     ]}
                 >
                     <Input />
+                </Form.Item> */}
+                <Form.Item
+                    name="cityId"
+                    label="City"
+                    rules={[
+                    {
+                        required: true,
+                    },
+                    ]}
+                >
+                    <Select placeholder="City" allowClear>
+                    {
+                        city && city.map((city,index) => {
+                            return (
+                                <Option value={city.cityId}>{city.cityName}</Option>
+                            )
+                        })
+                    }
+                    </Select>
                 </Form.Item>
                 <div className="w-full flex items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  >
                     <div className='w-fit'>

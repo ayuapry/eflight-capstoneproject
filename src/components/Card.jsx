@@ -137,7 +137,7 @@ const Card = () => {
                 </h1>
                 </div>
                 <Link to='/checkin' className='flex cursor-pointer' >
-                    <p className='text-blue-600 font-semibold hover:text-blue-400'>Check-In Here</p>
+                    <p className='hidden md:flex text-blue-600 font-semibold hover:text-blue-400'>Check-In Here</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.4} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" color='blue' />
                     </svg>
