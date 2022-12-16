@@ -25,50 +25,50 @@ export default function LoginPage() {
     <div className='flex flex-col justify-between h-screen'>
         <div className='max-w-7xl lg:mx-auto lg:my-auto grid lg:grid-cols-2 md:items-center md:h-[90vh]'>
         <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
-            <img src={LoginBg} alt="Bg-Login" />
+            <img src={LoginBg} />
         </div>
         <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white'>
         {token ? navigate('/') : 
         (login ? <div className='flex justify-center'><Alert message={login} type="error" showIcon className='w-full md:mt-4'/></div>:<div className='hidden'></div>)}
             <h1 className='text-2xl text-slate-700 font-bold my-6'>Login</h1>
-                <Form
-                    name="normal_login"
-                    className="login-form"
-                    onFinish={onFinish}
-                >
-                <Form.Item
-                    name="email"
-                    rules={[
-                        {
-                            type: 'email',
-                            message: 'The input is not valid E-mail!',
-                        },
-                        {
-                            required: true,
-                            message: 'Please input your E-mail!',
-                        },
-                    ]}
-                >
-                    <Input suffix={<MailOutlined />} className="round-input" placeholder="Email Address" />
-                    </Form.Item>
+              <Form
+                  name="normal_login"
+                  className="login-form"
+                  onFinish={onFinish}
+              >
+                  <Form.Item
+                      name="email"
+                      rules={[
+                          {
+                              type: 'email',
+                              message: 'The input is not valid E-mail!',
+                          },
+                          {
+                              required: true,
+                              message: 'Please input your E-mail!',
+                          },
+                      ]}
+                  >
+                      <Input suffix={<MailOutlined />} className="round-input" placeholder="Email Address" />
+                  </Form.Item>
 
-                    <Form.Item
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Password!',
-                            },
-                    ]}
-                >
-                    <Input.Password
-                        className="round-input"
-                        type="password"
-                        placeholder="Password"
-                    />
-                </Form.Item>
+                  <Form.Item
+                      name="password"
+                      rules={[
+                          {
+                              required: true,
+                              message: 'Please input your Password!',
+                          },
+                      ]}
+                  >
+                      <Input.Password
+                          className="round-input"
+                          type="password"
+                          placeholder="Password"
+                      />
+                  </Form.Item>
 
-                    <Form.Item>
+                  <Form.Item>
                     <ButtonPrimary type="submit" title="Login" />
                     <div className='flex justify-center'>
                     <div className='border-b-2 border-slate-700 w-20 mb-6 mr-2'></div>
@@ -78,17 +78,14 @@ export default function LoginPage() {
                     <ButtonBorder title="Login With Google" img={googleIcon}/>
                     <div className='flex'>
                     <p className='mr-2 mt-4 mb-0 text-slate-700'>Don't have an accout?</p>
-                    <a className='text-sky-600 mt-4 mb-0 hover:font-bold hover:text-sky-500' 
-                        onClick={() => navigate(`/Register`)}> 
-                            Register 
-                    </a>
+                    <a className='text-sky-600 mt-4 mb-0 hover:font-bold hover:text-sky-500' onClick={() => navigate(`/Register`)}> Register </a>
                     </div>
-                </Form.Item>
-            </Form>
+                  </Form.Item>
+              </Form>
         </div>
     </div>
         <div className='px-4 lg:hidden'>
-            <img src={LoginBg} alt="Bg-Login"/>
+            <img src={LoginBg} />
         </div>
     <div>
     <SecondFooter />
