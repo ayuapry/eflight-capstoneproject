@@ -24,11 +24,17 @@ export const getProfile = createAsyncThunk(
 )
 
 export const editProfile = createAsyncThunk(
-    "user/editProfile", async () => {
-        const token =  localStorage.getItem('token');
+    "user/editProfile", async (values) => {
         const id = localStorage.getItem('id')
+        const token = localStorage.getItem('token')
         try {
             const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`,
+            {
+                "fullName" : values.fullName,
+                "birthDate" : values.birthDate,
+                "gender" : values.gender,
+                "cityId" : values.cityId 
+            },
             {
                 headers: { 
                     'Authorization': `Bearer ${token}`

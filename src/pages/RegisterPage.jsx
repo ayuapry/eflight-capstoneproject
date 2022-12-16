@@ -19,6 +19,11 @@ export default function RegisterPage() {
         dispatch(Register(values))
     };
 
+    const isRegistered = () => {
+        navigate('/Login')
+        window.location.reload(1)
+    }
+
   return (
     <div className='flex flex-col justify-between h-screen'>
     <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>
@@ -27,7 +32,7 @@ export default function RegisterPage() {
         </div>
         <div className='items-center pt-auto pb-auto'>
         <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white'>
-        {id? navigate('/Login') :
+        {id? (isRegistered()) :
         register.length?<div className='flex justify-center'><Alert message={register} type="error" showIcon className='w-full md:mt-4'/></div>:''}
             <h1 className='text-2xl font-bold my-6 text-slate-700'>Create your account</h1>
                   <Form

@@ -2,6 +2,9 @@ import React from 'react'
 import {AiOutlineClose} from 'react-icons/ai'    
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import ButtonPrimary from './ButtonPrimary';
+import { editProfile } from '../redux/feature/UserSlice';
+import { useDispatch } from 'react-redux';
+
 const { Option } = Select;
 
 const layout = {
@@ -25,13 +28,16 @@ const validateMessages = {
 };
 
 export const EditProfileModal = ({open, close}) => {
+    const dispatch = useDispatch()
+
     const handleOnClose = (e) => {
         if(e.target.id === 'container') 
         close()
       }
     
     const onFinish = (values) => {
-        console.log(values);
+        dispatch(editProfile(values))
+        window.location.reload(1)
     };
 
     if(!open) return null
@@ -45,7 +51,7 @@ export const EditProfileModal = ({open, close}) => {
             <div className='flex justify-between items-center'>
             <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item
-                    name={['user', 'name']}
+                    name="fullName"
                     label="Name"
                     rules={[
                     {
@@ -70,7 +76,8 @@ export const EditProfileModal = ({open, close}) => {
                     <Option value="other">other</Option>
                     </Select>
                 </Form.Item>
-                <Form.Item  name="birth_Date"
+                <Form.Item  
+                    name="birthDate"
                     label="Birth Date"
                     rules={[
                     {
@@ -80,7 +87,7 @@ export const EditProfileModal = ({open, close}) => {
                     <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
                 </Form.Item>
                 <Form.Item
-                    name={['city']}
+                    name="cityId"
                     label="City"
                     rules={[
                     {
