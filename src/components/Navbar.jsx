@@ -2,24 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import LogoText from '../assets/LogoText.png'
 import { Dropdown } from 'antd';
-import {MdCircleNotifications} from 'react-icons/md'
 import userIcon from '../assets/userIcon.png'
 import ButtonPrimary from './ButtonPrimary';
 import { BellIcon, BellSlashIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNotification } from '../redux/feature/NotificationSlice';
+import { getCount, getNotification } from '../redux/feature/NotificationSlice';
 
 export const Navbar = () => {
   const [select, setSelect] = useState('')
   const navigate = useNavigate()
   const token =  localStorage.getItem('token');
 
-  const logout = async () => {
+  const logout = () => {
     localStorage.clear();
     navigate('/')
-    setTimeout(function () {
-        window.location.reload(1);
-      }, 1500);
+    window.location.reload(1);
   };
   const items = [
     {
@@ -38,13 +35,13 @@ export const Navbar = () => {
     },
   ];
   
-  const {notification} = useSelector((state) => state.notification)
+  const {notification, count} = useSelector((state) => state.notification)
   const dispatch = useDispatch()
   const {id} = useParams()
 
   useEffect(() => {
     dispatch(getNotification(id))
-    console.log(notification)
+    dispatch(getCount())
   },[dispatch, id]); 
 
     return (
@@ -73,11 +70,15 @@ export const Navbar = () => {
                 <div className="filter-dropdowns">
                     <div className="relative inline-block text-left">
                     {(token) ?
-                    <div className='h-8 w-8 rounded-full'>
-                    <BellIcon size={38} onClick={() => setSelect(!select)} className='cursor-pointer text-gray-400' />
+                    <div>
+                    <div className='h-4 w-4 bg-blue-600 ml-5 -mb-3 rounded-full border-1 border-gray-300'>
+                      <p className='text-xs text-center text-white'>{count?.unreadCount}</p>
+                    </div>
+                    <div className='h-8 w-8 rounded-full my-0'>
+                    <BellIcon size={30} onClick={() => setSelect(!select)} className='cursor-pointer text-gray-400' />
+                    </div>
                     </div>:
                     <div></div>
-
                     }
                     {(token) ? 
                     <div 
@@ -90,12 +91,12 @@ export const Navbar = () => {
                     >
                     {notification.length > 0 ? (
                       notification.map((notif, i) => (
-                        <div>
-                          <div key={i} className='mt-3'>
-                            <p className='font-semibold'>{notif?.notification.title}Lorem, ipsum.</p>
-                            <span>{notif?.notification.description}</span>
+                        <div className='mx-3 my-3'>
+                          <div key={i} className=''>
+                            <span className='font-semibold'>{notif?.title}</span><br />
+                            <span className='text-sm'>{notif?.description}</span>
                           </div>
-                          <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200'>view all ...</Link>
+                          <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200 b-3'>view all ...</Link>
                         </div>
                       ))
                     ):(

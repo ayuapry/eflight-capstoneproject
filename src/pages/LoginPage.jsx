@@ -9,7 +9,6 @@ import { SecondFooter } from '../components/SecondFooter';
 import googleIcon from '../assets/google.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginEmail } from '../redux/feature/AuthSlice';
-import { useEffect } from 'react';
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -21,6 +20,11 @@ export default function LoginPage() {
         dispatch(LoginEmail(values))
     };
 
+    const isLogin = () => {
+        navigate('/')
+        window.location.reload(1)
+    }
+
   return (
     <div className='flex flex-col justify-between h-screen'>
         <div className='max-w-7xl lg:mx-auto lg:my-auto grid lg:grid-cols-2 md:items-center md:h-[90vh]'>
@@ -28,7 +32,7 @@ export default function LoginPage() {
             <img src={LoginBg} />
         </div>
         <div className='lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white'>
-        {token ? navigate('/') : 
+        {token ? (isLogin()) : 
         (login ? <div className='flex justify-center'><Alert message={login} type="error" showIcon className='w-full md:mt-4'/></div>:<div className='hidden'></div>)}
             <h1 className='text-2xl text-slate-700 font-bold my-6'>Login</h1>
               <Form

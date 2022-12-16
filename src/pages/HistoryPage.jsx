@@ -19,10 +19,6 @@ export const HistoryPage = () => {
     const { Option } = Select;
     const [select, setSelect] = useState('')
 
-    const [fullName, setFullName] = useState('')
-    const [birthDate, setBirthDate] = useState('')
-    const [gender, setGender] = useState('')
-
     const [editProfileModal, setEditProfileModal] = useState(false)
     const handleOnClose = () => setEditProfileModal(false)
     
@@ -45,19 +41,6 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
-
-    const updateProfile = () => {
-        axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`, {
-            fullName: fullName,
-            birthDate: birthDate,
-            gender: gender,
-        })
-        .then((response) => {
-            window.location.reload()
-        })
-    }
-
-    
 
   return (
     <div className='bg-slate-100'>
