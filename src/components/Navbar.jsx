@@ -6,7 +6,7 @@ import userIcon from '../assets/userIcon.png'
 import ButtonPrimary from './ButtonPrimary';
 import { BellIcon, BellSlashIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCount, getNotification } from '../redux/feature/NotificationSlice';
+import { getCount, getNotification } from '../redux/feature/notificationSlice';
 
 export const Navbar = () => {
   const [select, setSelect] = useState('')

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getPromo } from '../redux/feature/UserSlice'
 import { useParams } from 'react-router-dom'
-import { getNotification } from '../redux/feature/NotificationSlice'
+import { getNotification } from '../redux/feature/notificationSlice'
 
 export const NotificationPage = () => {
   const {notification} = useSelector((state) => state.notification)

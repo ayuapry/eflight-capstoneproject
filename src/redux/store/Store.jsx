@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit'
-import { authReducer } from '../feature/AuthSlice'
-import { bookingReducer } from '../feature/BookingSlice'
+import { authReducer } from '../feature/authSlice'
+import { bookingReducer } from '../feature/bookingSlice'
 import { historyReducer } from '../feature/historySlice'
 import { homeReducer } from '../feature/homeSlice'
-import { notifReducer } from '../feature/NotificationSlice'
+import { notifReducer } from '../feature/notificationSlice'
 import { userReducer } from '../feature/UserSlice'
 // import homeSlice from '../feature/homeSlice'
 
