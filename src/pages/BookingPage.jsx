@@ -9,7 +9,7 @@ import { SeatModal } from '../components/SeatModal';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTitel } from '../redux/feature/bookingSlice';
+import { getTitel } from '../redux/feature/BookingSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const BookingPage = () => {

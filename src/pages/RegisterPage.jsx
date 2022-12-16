@@ -6,7 +6,7 @@ import LoginBg from '../assets/login.png';
 import { useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
-import { Register } from '../redux/feature/authSlice';
+import { Register } from '../redux/feature/AuthSlice';
 
 export default function RegisterPage() {
     const navigate = useNavigate()
