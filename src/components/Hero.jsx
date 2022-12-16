@@ -30,7 +30,7 @@ export const Hero = () => {
       return <h2>Loading</h2>
     }
   return (
-    <div className='pt-[65px] pb-10 md:pb-0 md:bg-blue-600 md:h-fit w-full'>
+    <div id='hero' className='pt-[65px] pb-10 md:pb-0 md:bg-blue-600 md:h-fit w-full'>
         <Swiper
           // install Swiper modules
           modules={[Pagination, A11y, Autoplay]}

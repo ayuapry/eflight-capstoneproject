@@ -59,9 +59,9 @@ export const Navbar = () => {
                   <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" onClick={()=>navigate("/Login")} />
                 }
                 </div>
-                <Link to='/' className='flex items-center'>
+                <a href='/#hero' className='flex items-center'>
                     <img src={LogoText} className='w-40' alt="" />
-                </Link>
+                </a>
                 <ul className='hidden md:flex gap-3 md:text-md mt-3'>
                   <a href='/#Destination' className='hover:text-blue-600 hover:font-semibold'>Destination</a>
                   <a href='/#Booking' className='hover:text-blue-600 hover:font-semibold'>Booking</a>
@@ -72,9 +72,13 @@ export const Navbar = () => {
             <div className='flex gap-3 items-center md:w-40 justify-end'>
                 <div className="filter-dropdowns">
                     <div className="relative inline-block text-left">
+                    {(token) ?
                     <div className='h-8 w-8 rounded-full'>
                     <BellIcon size={38} onClick={() => setSelect(!select)} className='cursor-pointer text-gray-400' />
-                    </div>
+                    </div>:
+                    <div></div>
+
+                    }
                     {(token) ? 
                     <div 
                     className={`absolute right-0 z-10 mt-2 w-[300px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black 
