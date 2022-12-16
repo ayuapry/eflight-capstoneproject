@@ -14,12 +14,10 @@ export const Navbar = () => {
   const navigate = useNavigate()
   const token =  localStorage.getItem('token');
 
-  const logout = async () => {
+  const logout = () => {
     localStorage.clear();
     navigate('/')
-    setTimeout(function () {
-        window.location.reload(1);
-      }, 1500);
+    window.location.reload(1);
   };
   const items = [
     {

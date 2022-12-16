@@ -12,6 +12,7 @@ import { Button, Drawer } from 'antd';
 import { getTiket } from '../redux/feature/homeSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import format from 'date-fns/format'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -40,7 +41,7 @@ export default function Detail() {
     <div className='w-full'>
       {tiket && tiket.map((tiket,index) => {
         return (
-      <div>
+      <div key={tiket.id}>
       <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 lg:ml-8 h-fit mb-4 bg-white'>
         <div className='flex justify-between mb-2'>
         <div className='flex items-center'>
@@ -126,7 +127,7 @@ export default function Detail() {
             <Tab.Panel>
             <div className="flex mx-auto w-full rounded-2xl bg-white">
             <div className='flex flex-col justify-between h-60 w-14 mr-10'>
-              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br /> {tiket.departureDate}</p>
+              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br /> {(tiket.departureDate).toString}</p>
 
               <p className='text-sm'>{tiket.flightDuration}</p>
 

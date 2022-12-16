@@ -61,15 +61,16 @@ export const getCabinClass = createAsyncThunk(
 
 export const getTiket = createAsyncThunk(
   'tiket/getTiket',
-  async () => {
-      try {
-          const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fullsearch",
-          {
-            params: {
-              ap: 'DPS.CGK',
-              dt : '25-12-2022.NA',
-              ps : '1.1.0',
-              sc : 'ECONOMY'
+  async (values) => {
+    console.log(values)
+    try {
+      const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fullsearch",
+      {
+        params: {
+              ap : `${values[0]}.${values[1]}`,
+              dt : `${values[2]}.${values[3]}`,
+              ps : `${values[4]}.${values[5]}.${values[6]}`,
+              sc : `${values[7]}`
             }
           }
           )
