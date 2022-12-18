@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonPrimary from '../components/ButtonPrimary'
-import { ChevronDownIcon, ShoppingBagIcon, WifiIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon, ShoppingBagIcon, TvIcon, WifiIcon } from '@heroicons/react/24/outline'
 import { Disclosure } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { Tab } from '@headlessui/react'
@@ -13,6 +13,7 @@ import { getTiket } from '../redux/feature/homeSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import format from 'date-fns/format'
+import { MdFoodBank } from 'react-icons/md'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -69,8 +70,13 @@ export default function Detail() {
           <p className='px-2 bg-slate-100 w-fit rounded-full text-sm text-gray-400 mx-auto'>{tiket.iataDestinationAirport}</p>
           </div>
           <div className='lg:flex hidden'>
-          <WifiIcon className='h-5 mr-4 text-sky-600'/>
-          <ShoppingBagIcon className='h-5 text-sky-600'/>
+              {tiket.facilities && tiket.facilities.map((fc, index) => {
+                  return(
+                    fc.name === 'Meal' ? <p className='mr-4'>Meal</p>: <TvIcon className='h-5 text-sky-600'/>
+                  )
+              })}
+          {/* <WifiIcon className='h-5 mr-4 text-sky-600'/>
+          <ShoppingBagIcon className='h-5 text-sky-600'/> */}
           </div>
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
           <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>org</span></h1>
@@ -126,8 +132,8 @@ export default function Detail() {
             <Tab.Panels className="mt-4 max-h-60">
             <Tab.Panel>
             <div className="flex mx-auto w-full rounded-2xl bg-white">
-            <div className='flex flex-col justify-between h-60 w-14 mr-10'>
-              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br /> {(tiket.departureDate).toString}</p>
+            <div className='flex flex-col justify-between h-60 w-20 mr-10'>
+              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br /> {tiket.departureDate}</p>
 
               <p className='text-sm'>{tiket.flightDuration}</p>
 
