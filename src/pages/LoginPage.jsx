@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SecondFooter } from '../components/SecondFooter';
 import googleIcon from '../assets/google.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoginEmail } from '../redux/feature/authSlice';
+import { LoginEmail } from '../redux/feature/AuthSlice';
 
 export default function LoginPage() {
     const navigate = useNavigate()

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import LogoText from '../assets/LogoText.png'
 import { Dropdown } from 'antd';
-import {MdCircleNotifications} from 'react-icons/md'
 import userIcon from '../assets/userIcon.png'
 import ButtonPrimary from './ButtonPrimary';
 import { BellIcon, BellSlashIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNotification } from '../redux/feature/NotificationSlice';
+import { getCount, getNotification } from '../redux/feature/NotificationSlice';
 
 export const Navbar = () => {
   const [select, setSelect] = useState('')
@@ -36,13 +35,13 @@ export const Navbar = () => {
     },
   ];
   
-  const {notification} = useSelector((state) => state.notification)
+  const {notification, count} = useSelector((state) => state.notification)
   const dispatch = useDispatch()
   const {id} = useParams()
 
   useEffect(() => {
     dispatch(getNotification(id))
-    console.log(notification)
+    dispatch(getCount())
   },[dispatch, id]); 
 
     return (
@@ -57,9 +56,9 @@ export const Navbar = () => {
                   <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" onClick={()=>navigate("/Login")} />
                 }
                 </div>
-                <Link to='/' className='flex items-center'>
+                <a href='/#hero' className='flex items-center'>
                     <img src={LogoText} className='w-40' alt="" />
-                </Link>
+                </a>
                 <ul className='hidden md:flex gap-3 md:text-md mt-3'>
                   <a href='/#Destination' className='hover:text-blue-600 hover:font-semibold'>Destination</a>
                   <a href='/#Booking' className='hover:text-blue-600 hover:font-semibold'>Booking</a>
@@ -70,9 +69,17 @@ export const Navbar = () => {
             <div className='flex gap-3 items-center md:w-40 justify-end'>
                 <div className="filter-dropdowns">
                     <div className="relative inline-block text-left">
-                    <div className='h-8 w-8 rounded-full'>
-                    <BellIcon size={38} onClick={() => setSelect(!select)} className='cursor-pointer text-gray-400' />
+                    {(token) ?
+                    <div>
+                    <div className=' h-4 w-4 bg-blue-600 ml-5 -mb-3 rounded-full border-1 border-gray-300'>
+                      <p className='text-xs text-center text-white'>{count?.unreadCount}</p>
                     </div>
+                    <div className='h-8 w-8 rounded-full my-0 '>
+                    <BellIcon size={30} onClick={() => setSelect(!select)} className='cursor-pointer text-gray-400' />
+                    </div>
+                    </div>:
+                    <div></div>
+                    }
                     {(token) ? 
                     <div 
                     className={`absolute right-0 z-10 mt-2 w-[300px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black 
@@ -82,14 +89,14 @@ export const Navbar = () => {
                     aria-labelledby="menu-button" 
                     tabIndex="-1"
                     >
-                    {notification.length > 0 ? (
+                    {notification?.length > 0 ? (
                       notification.map((notif, i) => (
-                        <div>
-                          <div key={i} className='mt-3'>
-                            <p className='font-semibold'>{notif?.notification.title}Lorem, ipsum.</p>
-                            <span>{notif?.notification.description}</span>
+                        <div className='mx-3 my-3'>
+                          <div key={i} className=''>
+                            <span className='font-semibold'>{notif?.title}</span><br />
+                            <span className='text-sm'>{notif?.description}</span>
                           </div>
-                          <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200'>view all ...</Link>
+                          <Link to='/notification' className='flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200 b-3'>view all ...</Link>
                         </div>
                       ))
                     ):(

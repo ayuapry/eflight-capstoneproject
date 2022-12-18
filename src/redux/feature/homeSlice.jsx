@@ -51,7 +51,7 @@ export const getCabinClass = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/travel/all")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)

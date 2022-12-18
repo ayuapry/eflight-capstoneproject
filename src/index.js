@@ -16,25 +16,24 @@ import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-  <BrowserRouter>
-    <Routes>
+    <BrowserRouter>
+      <Routes>
         <Route path="/" element={<App />} />
-        <Route element = {<PrivateRoutes />} >
+        {/* <Route element={<PrivateRoutes />}> */}
           <Route path="/notification" element={<NotificationPage />} />
-          <Route path="/history" element={<HistoryPage/>} />
+          <Route path="/history" element={<HistoryPage />} />
           <Route path="/Booking" element={<BookingPage />} />
           <Route path="/checkin" element={<CheckInPage />} />
-        </Route>
-        <Route path="/Register" element={<RegisterPage/>} />
-        <Route path="/Login" element={<LoginPage/>} />
-        <Route path="/Filter" element={<FilterPage/>} />
-        <Route path="/card" element={<Card />}/>
-        <Route path="/coba" element={<Coba />}/>
+        {/* </Route> */}
+        <Route path="/Register" element={<RegisterPage />} />
+        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/Filter" element={<FilterPage />} />
+        <Route path="/card" element={<Card />} />
+        <Route path="/coba" element={<Coba />} />
       </Routes>
-  </BrowserRouter>
+    </BrowserRouter>
   </Provider>
 );
