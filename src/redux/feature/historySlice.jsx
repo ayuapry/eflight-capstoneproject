@@ -24,21 +24,13 @@ export const getHistory = createAsyncThunk(
 
 export const getCheckin = createAsyncThunk(
     "user/getCheckin", async (values) => {
-        // const id = localStorage.getItem('id')
-        const token = localStorage.getItem('token')
         try {
             const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/checkin`,
             {
-                "lastName" : values.lastName,
-                "bookingReferenceNumber" : values.bookingReferenceNumber,
-            },
-            {
-                headers: { 
-                    'Authorization': `Bearer ${token}`
-                },
+                "lastName" : `${values.lastName}`,
+                "bookingReferenceNumber" : `${values.bookingReferenceNumber}`,
             },
             )
-            // localStorage.setItem("id",(res.data.data.id))
             console.log(res.data.data)
             return res.data.data
         } catch (error) {
@@ -47,7 +39,6 @@ export const getCheckin = createAsyncThunk(
         }
     }
 )
-
 
 export const historySlice = createSlice({
     name: "history",

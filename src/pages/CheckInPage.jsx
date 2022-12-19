@@ -4,8 +4,18 @@ import { Form, Input } from 'antd';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { SecondFooter } from '../components/SecondFooter';
 import login from '../assets/login.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { getCheckin } from '../redux/feature/historySlice';
 
 export const CheckInPage = () => {
+  const {checkin} = useSelector ((state) => state.history)
+  const dispatch = useDispatch()
+  const [form] = Form.useForm();
+  
+  const onFinish = async (values) => {
+    dispatch(getCheckin(values))
+  };
+
   return (
     <div className='bg-gradient-to-r from-cyan-500 to-blue-500'>
       <Navbar />
@@ -16,7 +26,9 @@ export const CheckInPage = () => {
             <div>
               <h2 className='text-lg '>Your Details</h2>
               <Form
-                name="wrap"
+                form={form}
+                name="checkin"
+                onFinish={onFinish}
                 labelCol={{
                   flex: '150px',
                 }}
@@ -29,7 +41,7 @@ export const CheckInPage = () => {
               >
                 <Form.Item
                   label="LastName"
-                  name="LastName"
+                  name="lastName"
                   rules={[
                     {
                       required: true,
@@ -41,7 +53,7 @@ export const CheckInPage = () => {
 
                 <Form.Item
                   label="Booking Reference Number"
-                  name="Booking Reference Number"
+                  name="bookingReferenceNumber"
                   rules={[
                     {
                       required: true,
@@ -52,7 +64,7 @@ export const CheckInPage = () => {
                 </Form.Item>
                 <div className='flex justify-end'>
                   <div className='w-[30%]'>
-                      <ButtonPrimary title='Check In' />
+                      <ButtonPrimary type="submit" title='Check In' />
                   </div>
                 </div>
               </Form>

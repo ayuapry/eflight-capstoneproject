@@ -70,7 +70,7 @@ export const getBenefit = createAsyncThunk(
                 },
             }
             )
-            // console.log(res)
+            console.log(res)
             return res.data.data
         } catch (error) {
             console.error(error)
