@@ -2,7 +2,7 @@ import React from 'react'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { ChevronDownIcon, ShoppingBagIcon, TvIcon, WifiIcon } from '@heroicons/react/24/outline'
 import { Disclosure } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Tab } from '@headlessui/react'
 import { UserOutlined } from '@ant-design/icons';
 import { useState } from 'react';
@@ -14,6 +14,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import format from 'date-fns/format'
 import { MdFoodBank } from 'react-icons/md'
+import Meal from '../assets/meal.png'
+import Entertain from '../assets/entertain.png'
+import Bagage from '../assets/bagIcon.png'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -25,6 +28,9 @@ export default function Detail() {
     const [placement, setPlacement] = useState('left');
     const {tiket, loading} = useSelector ((state) => state.homepage)
     const dispatch = useDispatch()
+    const {D} = useParams()
+    const {A} = useParams()
+    const {B} = useParams()
 
     useEffect(() => {
       dispatch(getTiket())
@@ -42,8 +48,8 @@ export default function Detail() {
     <div className='w-full'>
       {tiket && tiket.map((tiket,index) => {
         return (
-      <div key={tiket.id}>
-      <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 lg:ml-8 h-fit mb-4 bg-white'>
+      <div key={tiket.id} className='max-w-7xl mx-auto'>
+      <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 h-fit mb-4 bg-white lg:mx-20'>
         <div className='flex justify-between mb-2'>
         <div className='flex items-center'>
         <img src={tiket?.airLinesLogoURL} alt='airplane-logo' className='h-6 mr-2'/>
@@ -63,7 +69,7 @@ export default function Detail() {
               <div className='border-b-[1.5px] lg:w-24 w-14 border-gray-400'></div>
               <div className='p-1 border-[1.5px] border-gray-400 bg-gray-400 rounded-full'></div>
               </div>
-              <p>langsung</p>
+              <p>Direct</p>
           </div>
           <div>
           <p>{(tiket.arrivalTime).slice(0,-3)}<span className='lg:text-sm'></span></p>
@@ -72,15 +78,13 @@ export default function Detail() {
           <div className='lg:flex hidden'>
               {tiket.facilities && tiket.facilities.map((fc, index) => {
                   return(
-                    fc.name === 'Meal' ? <p className='mr-4'>Meal</p>: <TvIcon className='h-5 text-sky-600'/>
+                    fc.name === 'Meal' ? <img src={Meal} className='h-6 mr-2' /> : fc.name === 'Entertainment' ? <img src={Entertain} className='h-6 mr-2' /> : <img src={Bagage} className='h-6 mr-2' />
                   )
               })}
-          {/* <WifiIcon className='h-5 mr-4 text-sky-600'/>
-          <ShoppingBagIcon className='h-5 text-sky-600'/> */}
           </div>
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
-          <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>org</span></h1>
-          <ButtonPrimary title="Pilih" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
+          <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>pax</span></h1>
+          <ButtonPrimary title="SELECT" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
           </div>
           </div>
           <div className='flex mt-2 lg:hidden'>
@@ -113,7 +117,7 @@ export default function Detail() {
                 )
               }
             >
-              Detail Penerbangan
+              Flight Details
             </Tab>
             <Tab
               className={({ selected }) =>
@@ -126,18 +130,18 @@ export default function Detail() {
                 )
               }
             >
-              Detail Harga
+              Price Details
             </Tab>
             </Tab.List>
-            <Tab.Panels className="mt-4 max-h-60">
+            <Tab.Panels className="mt-4 max-h-72">
             <Tab.Panel>
             <div className="flex mx-auto w-full rounded-2xl bg-white">
             <div className='flex flex-col justify-between h-60 w-20 mr-10'>
-              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br /> {tiket.departureDate}</p>
+              <p className='text-sm'>{(tiket.departureTime).slice(0,-3)}<br />{format(new Date(`${tiket.departureDate}`), 'dd MMM')}</p>
 
               <p className='text-sm'>{tiket.flightDuration}</p>
 
-              <p className='text-sm mb-0'>{(tiket.arrivalTime).slice(0,-3)} <br /> {tiket.arrivalDate}</p>
+              <p className='text-sm mb-0'>{(tiket.arrivalTime).slice(0,-3)} <br /> {format(new Date(`${tiket.arrivalDate}`), 'dd MMM')}</p>
             </div>
 
             <div className='flex flex-col justify-between items-center h-60 py-4'>
@@ -157,21 +161,31 @@ export default function Detail() {
             </div>
             </Tab.Panel>
             <Tab.Panel>
-              <p>Tarif</p>
+              <p>Far</p>
+              {D != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Adult (x{D})</li>
+              <p>{tiket.price.amount * D}</p>
+              </div> : ''}
+              {A != 0?<div className='flex justify-between'>
+              <li className='text-gray-400'>Child (x{A})</li>
+              <p>{tiket.price.amount * A}</p>
+              </div>:''}
+              {B != 0?<div className='flex justify-between'>
+              <li className='text-gray-400'>Infant (x{B})</li>
+              <p>{tiket.price.amount * B}</p>
+              </div>:''}
+              <br />
+              <p>Tax and other fees</p>
               <div className='flex justify-between'>
-              <li className='text-gray-400'>Dewasa</li>
-              <p>IDR 875.000</p>
-              </div>
-              <br /><br />
-              <p>Pajak dan Biaya Lainnya</p>
-              <div className='flex justify-between'>
-              <li className='text-gray-400'>Pajak</li>
-              <p>Termasuk</p>
+              <li className='text-gray-400'>Tax</li>
+              <p>Included</p>
               </div>
               <div className='border-b-2 w-full'></div>
               <div className='flex justify-between mt-4'>
-              <li>Total Pembayaran</li>
-              <p className='text-sky-500 font-medium mb-0'>IDR 875.000</p>
+              <p>Total</p>
+              <p className='text-sky-500 font-medium mb-0'>
+              {(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}
+              </p>
               </div>
             </Tab.Panel>
             </Tab.Panels>
@@ -206,7 +220,7 @@ export default function Detail() {
                 )
               }
             >
-              Detail Penerbangan
+              Flight Details
             </Tab>
             <Tab
               className={({ selected }) =>
@@ -219,10 +233,10 @@ export default function Detail() {
                 )
               }
             >
-              Detail Harga
+              Price Detail
             </Tab>
             </Tab.List>
-            <Tab.Panels className="mt-8 max-h-60">
+            <Tab.Panels className="mt-8 max-h-64">
             <Tab.Panel>
             <div className="flex mx-auto w-full rounded-2xl bg-white">
             {/* <div className='flex flex-col justify-between h-60 w-14 mr-10'>
@@ -250,21 +264,31 @@ export default function Detail() {
             </div>
             </Tab.Panel>
             <Tab.Panel>
-              <p>Tarif</p>
-              <div className='flex justify-between'>
-              <li className='text-gray-400'>Dewasa</li>
-              <p>IDR 875.000</p>
-              </div>
+              <p>Far</p>
+              { D != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Adult (x{D})</li>
+              <p>{tiket.price.amount * D}</p>
+              </div> : ''}
+              { A != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Child (x{A})</li>
+              <p>{tiket.price.amount * D}</p>
+              </div> : ''}
+              { B != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Infant (x{B})</li>
+              <p>{tiket.price.amount * D}</p>
+              </div> : ''}
               <br /><br />
-              <p>Pajak dan Biaya Lainnya</p>
+              <p>Tax and other fees</p>
               <div className='flex justify-between'>
-              <li className='text-gray-400'>Pajak</li>
-              <p>Termasuk</p>
+              <li className='text-gray-400'>Tax</li>
+              <p>Included</p>
               </div>
               <div className='border-b-2 w-full'></div>
               <div className='flex justify-between mt-4'>
-              <li>Total Pembayaran</li>
-              <p className='text-sky-500 font-medium mb-0'>IDR 875.000</p>
+              <p>Total</p>
+              <p className='text-sky-500 font-medium mb-0'>
+              {(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}
+              </p>
               </div>
             </Tab.Panel>
             </Tab.Panels>
@@ -273,7 +297,7 @@ export default function Detail() {
             <div className='flex justify-between items-center lg:hidden'>
               <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>IDR 875.000</span></p>
               <div className='w-fit'>
-              <ButtonPrimary title="Pilih" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
+              <ButtonPrimary title="SELECT" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
               </div>
             </div>
       </Drawer>
