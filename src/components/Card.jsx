@@ -62,6 +62,7 @@ const Card = () => {
     const navigate = useNavigate()
     // get the target element to toggle 
     const refOne = useRef(null)
+    const refTwo = useRef(null)
 
     useEffect(() => {
         // set current date on component load
@@ -90,25 +91,25 @@ const Card = () => {
     const hideOnClickOutside = (e) => {
         // console.log(refOne.current)
         // console.log(e.target)
-        if( refOne.current && !refOne.current.contains(e.target) ) {
+        if( refOne.current && !refOne.current.target.name.contains("cal1") ) {
             setOpenDate(false)
         }
     }
     const hideOnClickOutsideGo = (e) => {
-        if( refOne.current && !refOne.current.contains(e.target) ) {
+        if( refTwo.current && !refOne.current.target.name.contains("cal2") ) {
             setOpenDateGo(false)
         }
     }
         
     // on date change, store date in state
     const handleSelect = (date) => {
-        // console.log(date)
-        // console.log(format(date, 'MM/dd/yyyy'))
         setCalendar(format(date, 'dd-MM-yyyy'))
+        setOpenDate(prev => !prev) 
     }
     const handleSelectGo = (date) => {
         setCalendarGo(format(date, 'dd-MM-yyyy'))
-        setOpenDateGo(false)
+        setOpenDateGo(openDateGo => !openDateGo);
+        
     }
     
     const display = countD + countA + countB + " Passenger, ";
@@ -172,7 +173,10 @@ const Card = () => {
                                 <div 
                                     onClick={() => {
                                         setOpen(!open)
-                                         setOpenTo(false)
+                                         setOpenTo(false);
+                                         setOpenDate(false);
+                                         setOpenDateGo(false);
+                                         setOpenClass(false)
                                         }
                                     } 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
@@ -237,7 +241,11 @@ const Card = () => {
                                 className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear'>
                                 <div 
                                     onClick={() => {setOpenTo(!openTo)
-                                        setOpen(false)}} 
+                                        setOpen(false)
+                                        setOpenDate(false)
+                                        setOpenDateGo(false)
+                                        setOpenClass(false)
+                                    }} 
                                     className='flex flex-row items-center py-[0.2rem] px-[0.5rem]'>
                                     <TbPlaneInflight className='mr-3 text-[1.5rem] text-black'/>
                                     <p className='fontMont text-[0.9rem] w-full md:w-40 md:truncate mb-0'>
@@ -314,13 +322,18 @@ const Card = () => {
                                             className="inputBox outline-none bg-transparent cursor-pointer"
                                             value={ calendar }
                                             readOnly
-                                            onClick={ () => setOpenDate(openDate => !openDate) }
+                                            onClick={ () => {setOpenDate(prev => !prev); setOpenDateGo(false)
+                                                setOpen(false)
+                                                setOpenTo(false);
+                                                setOpenClass(false)
+                                            } }
                                             />
                                     </div>
                                         <div 
                                             ref={refOne}>
                                             {openDate && 
                                             <Calendar
+                                            name="cal1"
                                             className=  "calendarElement absolute bottom-[-18.3rem] z-30"
                                             date={ new Date() }
                                             onChange = { handleSelect }/>
@@ -347,7 +360,7 @@ const Card = () => {
                                 </div>
                                 <div className="relative flex flex-col justify-center">
                                     <div
-                                        ref={refOne}
+                                        ref={refTwo}
                                         className={`flex flex-row cursor-pointer border-b-2 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem] 
                                         ${selectRadio !== 'RoundTrip'? "border-gray-300 opacity-70" : "border-blue-400 hover:border-blue-600"}`}>
                                         <TbCalendarStats className='mr-3 text-[1.5rem] text-black'/>
@@ -359,12 +372,18 @@ const Card = () => {
                                             onClick={ () => {
                                                 setOpenDateGo(openDateGo => !openDateGo);
                                                 // setSelectRadio(!selectRadio);
+                                                setOpenDate(false)
+                                                setOpen(false)
+                                                setOpenTo(false);
+                                                setOpenClass(false)
+
                                             }}
                                             />
                                     </div>
-                                        <div ref={refOne}>
+                                        <div ref={refTwo}>
                                             {openDateGo && 
                                             <Calendar
+                                            name='cal2'
                                             className="calendarElement absolute bottom-[-18.3rem] z-30 "
                                             date={ new Date() }
                                             onChange = { handleSelectGo }/>
@@ -385,7 +404,14 @@ const Card = () => {
                         <div 
                             className='relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]'>
                             <div className=' flex flex-row items-center justify-between py-[0.2rem] px-[0.5rem] text-black'
-                                onClick={() => setOpenClass(!openClass)}>
+                                onClick={() => {
+                                    setOpenClass(!openClass)
+                                    setOpen(false)
+                                    setOpenTo(false);
+                                    setOpenDate(false);
+                                    setOpenDateGo(false);
+                                
+                                }}>
                                 <p className='fontMont text-[0.9rem] mb-0'>
                                     {display ? display : "Jumlah Penumpang"}
                                     {selectClass ? selectClass : " Select Cabin Class"}
@@ -403,7 +429,12 @@ const Card = () => {
                                         </p>
                                         <RiCloseFill
                                             className='text-[1.5rem] cursor-pointer lg:text-transparent lg:hover:text-transparent text-gray-300 hover:text-blue-600'
-                                            onClick={() => setOpenClass(!openClass)} />
+                                            onClick={() => {setOpenClass(!openClass)
+                                                setOpen(false)
+                                                setOpenTo(false);
+                                                setOpenDate(false);
+                                                setOpenDateGo(false);}
+                                            } />
                                     </div>
                                     <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600 ' />
                                     <div key={age[0]?.id} className='flex flex-row justify-between'>
@@ -509,7 +540,12 @@ const Card = () => {
                                         </p>
                                         <RiCloseFill
                                             className='text-[1.5rem] cursor-pointer text-transparent md:text-gray-300 md:hover:text-blue-600'
-                                            onClick={() => setOpenClass(!openClass)} />
+                                            onClick={() => {setOpenClass(!openClass)
+                                                setOpen(false)
+                                                setOpenTo(false);
+                                                setOpenDate(false);
+                                                setOpenDateGo(false);
+                                            }} />
                                     </div>
                                     <hr className='hidden md:flex md:my-1 border-b-1 border-blue-600' />
                                     {cabinClass && cabinClass.map((e)=> {
@@ -518,7 +554,7 @@ const Card = () => {
                                                 className='fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 md:py-2 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300 md:border-b-[1px]'
                                                 onClick={() => {
                                                 setOpenClass(false);
-                                                setselectClass(e.travelClassId)}}
+                                                setselectClass(e.travelClassName)}}
                                                 key={e.travelClassId}
                                                 >
                                                 {e.travelClassName}
@@ -532,7 +568,7 @@ const Card = () => {
                         </div>
                     </div>
             </div>
-                       
+
             <div 
                 className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer" >
                 <div className='w-fit'>

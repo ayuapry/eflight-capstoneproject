@@ -10,7 +10,7 @@ const Footer = () => {
           <div className=' flex flex-col'>
             <div className='FooterImg flex justify-center md:justify-start pb-[2rem] md:pb-[2rem]'>
               <img 
-                className='w-40'
+                className='w-40 h-auto'
                 src={BinarLogo} 
                 alt="BinarLogo" />
             </div>
