@@ -12,9 +12,12 @@ import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
 import Logo from '../assets/Logo.png'
+import { getTiket } from '../redux/feature/homeSlice';
 
-export const BookingPage = () => {
+export const BookingPage = (tiket) => {
   const {titel, bagage, benefit } = useSelector((state) => state.booking);
+  // const {tiket, loading} = useSelector ((state) => state.homepage)
+
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -26,6 +29,7 @@ export const BookingPage = () => {
     dispatch(getTitel())
     dispatch(getBagage(id))
     dispatch(getBenefit(id))
+    dispatch(getTiket(id))
   },[dispatch]); 
 
 
@@ -178,7 +182,7 @@ export const BookingPage = () => {
                 <p>DMK</p>
               </div>
               <div>Sat, 24 Dec 2022</div>
-              <div>06.00</div>
+              <div>{tiket?.departureTime}</div>
             </div>
 
             <h2 className='py-3'>Ticket Policy</h2>
