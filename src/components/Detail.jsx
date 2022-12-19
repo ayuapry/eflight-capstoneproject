@@ -25,6 +25,7 @@ export default function Detail() {
     const {tiket, loading} = useSelector ((state) => state.homepage)
     const dispatch = useDispatch()
 
+  
     useEffect(() => {
       dispatch(getTiket())
     },[dispatch]); 
@@ -41,7 +42,7 @@ export default function Detail() {
     <div className='w-full'>
       {tiket && tiket.map((tiket,index) => {
         return (
-      <div key={tiket.id}>
+      <div key={tiket.id} >
       <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 lg:ml-8 h-fit mb-4 bg-white'>
         <div className='flex justify-between mb-2'>
         <div className='flex items-center'>
@@ -74,7 +75,7 @@ export default function Detail() {
           </div>
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
           <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>org</span></h1>
-          <ButtonPrimary title="Pilih" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
+          <ButtonPrimary title="Pilih" click={()=>navigate(`/Booking/${tiket.aircraft.id}`)} className='text-sm lg:text-base'/>
           </div>
           </div>
           <div className='flex mt-2 lg:hidden'>
@@ -267,7 +268,7 @@ export default function Detail() {
             <div className='flex justify-between items-center lg:hidden'>
               <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>IDR 875.000</span></p>
               <div className='w-fit'>
-              <ButtonPrimary title="Pilih" click={()=>navigate('/booking')} className='text-sm lg:text-base'/>
+              <ButtonPrimary title="Pilih" onClick={()=>navigate(`/Booking/${tiket.aircraft.id}`)} className='text-sm lg:text-base'/>
               </div>
             </div>
       </Drawer>

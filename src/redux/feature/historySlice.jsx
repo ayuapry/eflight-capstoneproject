@@ -22,12 +22,12 @@ export const getHistory = createAsyncThunk(
     }
 )
 
-export const postCheckin = createAsyncThunk(
-    "user/postCheckin", async (values) => {
+export const getCheckin = createAsyncThunk(
+    "user/getCheckin", async (values) => {
         // const id = localStorage.getItem('id')
         const token = localStorage.getItem('token')
         try {
-            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/checkin`,
+            const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/checkin`,
             {
                 "lastName" : values.lastName,
                 "bookingReferenceNumber" : values.bookingReferenceNumber,
@@ -62,7 +62,7 @@ export const historySlice = createSlice({
         state.history = payload;
       },
       //checkin
-      [postCheckin.fulfilled]: (state, { payload }) => {
+      [getCheckin.fulfilled]: (state, { payload }) => {
         state.checkin = payload;
       },
     },

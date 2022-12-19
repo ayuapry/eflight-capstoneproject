@@ -4,9 +4,9 @@ import { Navbar } from '../components/Navbar'
 import { DatePicker, Form, Input, Select } from 'antd';
 import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTitel } from '../redux/feature/BookingSlice';
+import { getBagage, getBenefit, getTitel } from '../redux/feature/BookingSlice';
 import ButtonPrimary from '../components/ButtonPrimary';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { GiHandBag} from 'react-icons/gi'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
@@ -14,17 +14,27 @@ import { SeatModal } from '../components/SeatModal';
 import Logo from '../assets/Logo.png'
 
 export const BookingPage = () => {
-  const {titel } = useSelector((state) => state.booking);
+  const {titel, bagage, benefit } = useSelector((state) => state.booking);
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const [seatModal, setSeatModal] = useState(false)
   const handleOnClose = () => setSeatModal(false)
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(getTitel())
+    dispatch(getBagage(id))
+    dispatch(getBenefit(id))
   },[dispatch]); 
+
+
+
+
+  const token = localStorage.getItem('token')
   return (
+    // <div>
+    // {(token) ? 
     <div className='bg-slate-100'>
         <Navbar />
         <div className='max-w-[1240px] mx-auto md:px-14 bg-slate-100 '>
@@ -135,10 +145,9 @@ export const BookingPage = () => {
                             <span className='font-light'>Increase the capacity of your luggage.</span>
                             <Form.Item className='mt-3'>
                                 <Select placeholder='Baggage'>
-                                    <Select.Option value="No Baggage">No Baggage</Select.Option>
-                                    <Select.Option value="10kg">10kg - Rp 50.000</Select.Option>
-                                    <Select.Option value="15kg">15kg - Rp 100.000</Select.Option>
-                                    <Select.Option value="20kg">20kg - Rp 150.000</Select.Option>
+                                  {bagage?.map((e,i) => (
+                                    <Select.Option key={i} >{e?.weight}kg - Rp {e?.price},-</Select.Option>
+                                  ))}
                                 </Select>
                             </Form.Item>
                         </div>
@@ -156,9 +165,9 @@ export const BookingPage = () => {
                 <ArrowLongRightIcon className='h-4 w-4' />
                 <h2>Bangkok</h2>
               </div>
-              <div className='py-5 font-semibold text-blue-600 hover:text-blue-400'>
+              {/* <div className='py-5 font-semibold text-blue-600 hover:text-blue-400'>
                 <Link to='' >Details</Link>
-              </div>
+              </div> */}
             </div>  
 
             <div className='flex items-center gap-6 text-gray-500'>
@@ -173,9 +182,9 @@ export const BookingPage = () => {
             </div>
 
             <h2 className='py-3'>Ticket Policy</h2>
-            <p className='text-sm'>Refund info is not available</p>
-            <p className='text-sm'>Reschedule not allowed</p>
-
+            {benefit?.map((e,i) => (
+              <p key={i} className='text-green-600' >{e?.desription}</p>
+            ))}
             <hr />
 
             <div className='flex justify-between py-4'>
@@ -191,5 +200,12 @@ export const BookingPage = () => {
         <SecondFooter />
         <SeatModal open={seatModal} close={handleOnClose} />
     </div>
+      // :
+      // <div>
+      //   Login Dulu
+      // </div>
+      //       }
+    // </div>
   )
 }
+

@@ -14,7 +14,7 @@ export const getNotification = createAsyncThunk(
             }
             )
             // localStorage.setItem("id",(res.data.data.id))
-            console.log(res)
+            // console.log(res)
             return res.data.data.notifications
         } catch (error) {
             console.error(error)
