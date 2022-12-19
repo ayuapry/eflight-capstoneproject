@@ -6,7 +6,7 @@ import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBagage, getBenefit, getTitel } from '../redux/feature/BookingSlice';
 import ButtonPrimary from '../components/ButtonPrimary';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { GiHandBag} from 'react-icons/gi'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
@@ -35,7 +35,7 @@ export const BookingPage = (props) => {
     dispatch(getBenefit(id))
     dispatch(getTiket())
   },[dispatch]); 
-console.log(tiket)
+
 
 
 
@@ -170,7 +170,7 @@ console.log(tiket)
               <div className='flex gap-3 items-center py-3'>
                 <h2>{tiket?.originCity}</h2>
                 <ArrowLongRightIcon className='h-4 w-4' />
-                <h2>Bangkok</h2>
+                <h2>{tiket?.destinationCity}</h2>
               </div>
               {/* <div className='py-5 font-semibold text-blue-600 hover:text-blue-400'>
                 <Link to='' >Details</Link>
@@ -180,12 +180,12 @@ console.log(tiket)
             <div className='flex items-center gap-6 text-gray-500'>
               <img src={Logo} alt="" className='h-12 w-12'/>
               <div className='flex mt-4'>
-                <p>CGK</p>
+                <p>{tiket?.iataOriginAirport}</p>
                 <p>-</p>
-                <p>DMK</p>
+                <p>{tiket?.iataDestinationAirport}</p>
               </div>
               <div>Sat, 24 Dec 2022</div>
-              <div>{departureTime}</div>
+              <div>06.00</div>
             </div>
 
             <h2 className='py-3'>Ticket Policy</h2>
@@ -196,7 +196,7 @@ console.log(tiket)
 
             <div className='flex justify-between py-4'>
               <h2>Total Payment</h2>
-              <h2 className='text-blue-600'>IDR 2,942,999</h2>
+              {/* <h2 className='text-blue-600'>{`${total}`}</h2> */}
             </div>
             <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }>
               <ButtonPrimary type="submit" title="Booking Now" className='w-fit'/> 

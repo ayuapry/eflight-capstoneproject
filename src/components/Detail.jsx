@@ -25,6 +25,7 @@ function classNames(...classes) {
 export default function Detail() {
     const navigate = useNavigate()
     const [open, setOpen] = useState(false);
+    const [count, setCount] = useState();
     const [placement, setPlacement] = useState('left');
     const {tiket, loading} = useSelector ((state) => state.homepage)
     const dispatch = useDispatch()
@@ -32,6 +33,7 @@ export default function Detail() {
     const {A} = useParams()
     const {B} = useParams()
 
+    
     useEffect(() => {
       dispatch(getTiket())
     },[dispatch]); 
@@ -43,11 +45,11 @@ export default function Detail() {
         setOpen(false);
       };
 
-    
   return (
     <div className='w-full'>
       {tiket && tiket.map((tiket,index) => {
-        return (
+  
+      return (
       <div key={tiket.id} className='max-w-7xl mx-auto'>
       <div className='shadow-sm shadow-gray-400 rounded-xl lg:p-8 p-4 h-fit mb-4 bg-white lg:mx-20'>
         <div className='flex justify-between mb-2'>
@@ -84,7 +86,7 @@ export default function Detail() {
           </div>
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
           <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>pax</span></h1>
-          <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}/${tiket.departureTime}`)} className='text-sm lg:text-base'/>
+          <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/:${tiket.aircraft.id}`, {state:{tiket: tiket, total: `${(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}`}})} className='text-sm lg:text-base'/>
           </div>
           </div>
           <div className='flex mt-2 lg:hidden'>
@@ -184,7 +186,7 @@ export default function Detail() {
               <div className='flex justify-between mt-4'>
               <p>Total</p>
               <p className='text-sky-500 font-medium mb-0'>
-              {(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}
+                {(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}
               </p>
               </div>
             </Tab.Panel>
@@ -239,13 +241,6 @@ export default function Detail() {
             <Tab.Panels className="mt-8 max-h-64">
             <Tab.Panel>
             <div className="flex mx-auto w-full rounded-2xl bg-white">
-            {/* <div className='flex flex-col justify-between h-60 w-14 mr-10'>
-              <p className='text-sm'>20.00 <br /> 28 Nov</p>
-
-              <p className='text-sm'>23j5m</p>
-
-              <p className='text-sm mb-0'>10:45 <br /> 29 Nov</p>
-            </div> */}
 
             <div className='flex flex-col justify-between items-center h-60 py-4'>
               <div className='rounded-full p-1 border-2 border-sky-600 h-2'></div>
@@ -297,7 +292,7 @@ export default function Detail() {
             <div className='flex justify-between items-center lg:hidden'>
               <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>IDR 875.000</span></p>
               <div className='w-fit'>
-              <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}/${tiket.departureTime}`)} className='text-sm lg:text-base'/>
+              <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/:${tiket.aircraft.id}`, {state:{total:`${tiket.price.amount}`}})} className='text-sm lg:text-base'/>
               </div>
             </div>
       </Drawer>
