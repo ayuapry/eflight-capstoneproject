@@ -38,7 +38,46 @@ export const postBooking = createAsyncThunk(
   }
 )
 
+export const getBagage = createAsyncThunk(
+  "user/getBagage", async (id) => {
+      const token =  localStorage.getItem('token');
+    //   const id = localStorage.getItem('id')
+      try {
+          const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/bagage/?aircraftId=${id}`,
+          {
+              headers: { 
+                  'Authorization': `Bearer ${token}`
+              },
+          }
+          )
+        //   console.log(res)
+          return res.data.data
+      } catch (error) {
+          console.error(error)
+          return error.response.data.data
+      }
+  }
+)
 
+export const getBenefit = createAsyncThunk(
+    "user/getBenefit", async (id) => {
+        const token =  localStorage.getItem('token');
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/benefit/?aircraftid=${id}`,
+            {
+                headers: { 
+                    'Authorization': `Bearer ${token}`
+                },
+            }
+            )
+            // console.log(res)
+            return res.data.data
+        } catch (error) {
+            console.error(error)
+            return error.response.data.data
+        }
+    }
+  )
 
 export const Booking = createAsyncThunk(
   "user/booking", async (values) => {
@@ -78,6 +117,8 @@ export const BookingSlice = createSlice({
     initialState : {
       titel: [],
       btnBooking: [],
+      bagage: [],
+      benefit: [],
       
     },
     reducers: {},
@@ -90,6 +131,26 @@ export const BookingSlice = createSlice({
         state.titel = payload;
       },
       [getTitel.rejected]: (state) => {
+        state.loading = false;
+      },
+      [getBagage.pending]: (state) => {
+        state.loading = true;
+      },
+      [getBagage.fulfilled]: (state, { payload }) => {
+        state.loading = false;
+        state.bagage = payload;
+      },
+      [getBagage.rejected]: (state) => {
+        state.loading = false;
+      },
+      [getBenefit.pending]: (state) => {
+        state.loading = true;
+      },
+      [getBenefit.fulfilled]: (state, { payload }) => {
+        state.loading = false;
+        state.benefit = payload;
+      },
+      [getBenefit.rejected]: (state) => {
         state.loading = false;
       },
     },

@@ -32,6 +32,7 @@ export default function Detail() {
     const {A} = useParams()
     const {B} = useParams()
 
+  
     useEffect(() => {
       dispatch(getTiket())
     },[dispatch]); 
