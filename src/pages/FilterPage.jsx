@@ -9,8 +9,8 @@ export const FilterPage = () => {
   return (
     <div className='bg-slate-50 h-[100vh]'>
     <Navbar className="mb-4"/>
-    <div className='h-screen w-full lg:px-16 p-4 pt-24 lg:flex lg:pt-24'>
-      <Filter />
+    <div className='h-screen w-full lg:px-16 p-4 pt-24 lg:flex lg:pt-24 justify-center'>
+      {/* <Filter /> */}
       <Detail />
     </div>
     <Footer />

@@ -120,7 +120,7 @@ export const EditProfileModal = ({open, close}) => {
                     {
                         city && city.map((city,index) => {
                             return (
-                                <Option value={city.cityId}>{city.cityName}</Option>
+                                <Option key={index} value={city.cityId}>{city.cityName}</Option>
                             )
                         })
                     }

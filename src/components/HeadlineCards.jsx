@@ -1,12 +1,13 @@
 import React from 'react'
 import { HeadingCard } from './HeadingCard'
 import Holiday from '../assets/Holiday.png'
-import {MdAirlineSeatLegroomExtra} from 'react-icons/md'
-import {GiHotMeal,GiHandBag, GiUpgrade} from 'react-icons/gi'
 import meals from '../assets/meals.png'
 import seat from '../assets/seat.png'
 import bag from '../assets/bag.png'
 import baggage from '../assets/baggage.png'
+import promo1 from '../assets/promo1.png'
+import promo2 from '../assets/promo2.png'
+import promo3 from '../assets/promo3.png'
 
 export const HeadlineCards = () => {
   return (
@@ -40,6 +41,22 @@ export const HeadlineCards = () => {
                         <p className='text-justify'>Many promos for your favorite airline tickets. Get the best price discounts so that your vacation budget is even more economical. There is no more reason to postpone your vacation.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div className='max-w-[1024px] mx-auto px-4 grid grid-cols-2 lg:grid-cols-4 md:gap-10 gap-5'>
+            <div className=' md:w-[250px]'>
+                <img src={promo1} alt="" className='rounded-md object-cover' />
+            </div>
+            <div className=' md:w-[250px]'>
+                <img src={promo2} alt="" className='rounded-md object-cover' />
+            </div>
+            <div className=' md:w-[250px]'>
+                <img src={promo3} alt="" className='rounded-md object-cover' />
+            </div>
+            <div className=' md:w-[250px]'>
+                {/* <img src={promo3} alt="" /> */}
+
             </div>
         </div>
 

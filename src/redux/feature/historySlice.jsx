@@ -22,16 +22,48 @@ export const getHistory = createAsyncThunk(
     }
 )
 
+export const getCheckin = createAsyncThunk(
+    "user/getCheckin", async (values) => {
+        // const id = localStorage.getItem('id')
+        const token = localStorage.getItem('token')
+        try {
+            const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/checkin`,
+            {
+                "lastName" : values.lastName,
+                "bookingReferenceNumber" : values.bookingReferenceNumber,
+            },
+            {
+                headers: { 
+                    'Authorization': `Bearer ${token}`
+                },
+            },
+            )
+            // localStorage.setItem("id",(res.data.data.id))
+            console.log(res.data.data)
+            return res.data.data
+        } catch (error) {
+            console.error(error)
+            return error.response.data.data
+        }
+    }
+)
+
+
 export const historySlice = createSlice({
     name: "history",
     initialState : {
         history: [],
+        checkin: [],
     },
     reducers: {},
     extraReducers: {
       //tiket
       [getHistory.fulfilled]: (state, { payload }) => {
         state.history = payload;
+      },
+      //checkin
+      [getCheckin.fulfilled]: (state, { payload }) => {
+        state.checkin = payload;
       },
     },
   });

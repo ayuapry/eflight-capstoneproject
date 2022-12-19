@@ -113,10 +113,10 @@ const Card = () => {
     }
     
     const display = countD + countA + countB + " Passenger, ";
-    
+
     const onFinish = (values) => {
         dispatch(getTiket(values))
-        navigate('/Filter')
+        navigate(`/Filter/${countD}/${countA}/${countB}?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)
     };
 
   return (
@@ -571,9 +571,9 @@ const Card = () => {
 
             <div 
                 className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer" >
-                <div className='w-fit' onClick={() => {onFinish([`${iata.iata1}`, `${iata.iata2}`, `${calendar}`, `${selectRadio === 'RoundTrip' ? calendarGo : "NA"}`, `${countD}`, `${countA}`, `${countB}`, `${selectClass}`])}}>
+                <div className='w-fit'>
                 {/* <div className='w-fit' onClick={()=>navigate(`/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)}> */}
-                <ButtonPrimary title='SEARCH FLIGHTS' />
+                <ButtonPrimary title='SEARCH FLIGHTS' click={() => {onFinish([`${iata.iata1}`, `${iata.iata2}`, `${calendar}`, `${selectRadio === 'RoundTrip' ? calendarGo : "NA"}`, `${countD}`, `${countA}`, `${countB}`, `${selectClass}`])}}/>
                 {/* <ButtonPrimary click={() => {onFinish([`${iata.iata1}`, `${iata.iata2}`, `${calendar}`, `${selectRadio === 'RoundTrip' ? calendarGo : "NA"}`, `${countD}`, `${countA}`, `${countB}`, `${selectClass}`])}} title='SEARCH FLIGHTS' /> */}
                 </div>
             </div>

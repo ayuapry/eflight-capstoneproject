@@ -51,7 +51,7 @@ export const getCabinClass = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/travel/all")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -71,6 +71,10 @@ export const getTiket = createAsyncThunk(
               dt : `${values[2]}.${values[3]}`,
               ps : `${values[4]}.${values[5]}.${values[6]}`,
               sc : `${values[7]}`
+              // ap : 'DPS.CGK',
+              // dt : '25-12-2022.NA',
+              // ps : '1.1.0',
+              // sc : 'ECONOMY'
             }
           }
           )
@@ -91,7 +95,6 @@ export const homeSlice = createSlice({
       age: [],
       cabinClass: [],
       tiket: [],
-
     },
     reducers: {},
     extraReducers: {

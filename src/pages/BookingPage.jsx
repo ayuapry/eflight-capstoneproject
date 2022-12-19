@@ -1,184 +1,125 @@
 import React, { useState, useEffect } from 'react'
+import { ArrowLongRightIcon, UsersIcon } from '@heroicons/react/20/solid'
 import { Navbar } from '../components/Navbar'
-import { FaUserCircle} from 'react-icons/fa'
-import { Select, Form, Input, DatePicker } from 'antd';
+import { DatePicker, Form, Input, Select } from 'antd';
+import { SecondFooter } from '../components/SecondFooter';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBagage, getBenefit, getTitel } from '../redux/feature/BookingSlice';
+import ButtonPrimary from '../components/ButtonPrimary';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { GiHandBag} from 'react-icons/gi'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
-import ButtonPrimary from '../components/ButtonPrimary';
-import { SecondFooter } from '../components/SecondFooter';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTitel } from '../redux/feature/BookingSlice';
-import { useNavigate } from 'react-router-dom';
+import Logo from '../assets/Logo.png'
 
 export const BookingPage = () => {
-    const navigate = useNavigate()
-    const userid = localStorage.getItem('id');
-    const [seatModal, setSeatModal] = useState(false)
-    const handleOnClose = () => setSeatModal(false)
-    // const [formValues, setFormValues] = useState([]);
+  const {titel, bagage, benefit } = useSelector((state) => state.booking);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
-    // const handleChange = e => {
-    //     const {name, value} = e.target;
-    //     setFormValues({ ...formValues, [name]: value});
-    // }
+  const [seatModal, setSeatModal] = useState(false)
+  const handleOnClose = () => setSeatModal(false)
+  const {id} = useParams()
 
-    // const submitForm = () => {
-    //     setFormValues((prevFormValues) => [...prevFormValues]);
-    //   };
+  useEffect(() => {
+    dispatch(getTitel())
+    dispatch(getBagage(id))
+    dispatch(getBenefit(id))
+  },[dispatch]); 
 
-    //   useEffect(() => {
-    //     localStorage.setItem("formValues", JSON.stringify(formValues));
-    //   }, [formValues]);
 
-    // const onFinish = (values) => {
-    //     localStorage.setItem("values", JSON.stringify(value));
-    //   };
 
-      const onChange = (value) => {
-        console.log(`selected ${value}`);
-      };
-      const onSearch = (value) => {
-        console.log('search:', value);
-      };
 
-      const validateMessages = {
-        required: '${label} is required!',
-        types: {
-          email: '${label} is not a valid email!',
-          number: '${label} is not a valid number!',
-        },
-        number: {
-          range: '${label} must be between ${min} and ${max}',
-        },
-      };
-
-    const {titel } = useSelector((state) => state.booking);
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(getTitel())
-    },[dispatch]); 
-
-    return (
+  const token = localStorage.getItem('token')
+  return (
+    // <div>
+    // {(token) ? 
     <div className='bg-slate-100'>
         <Navbar />
-        <div className='py-[100px] mx-5 md:mx-14'>
-            <div className=' bg-white shadow-lg rounded-md py-5 px-3 md:w-[1200px] md:mx-[100px]'>
-                <div className='flex items-center gap-3'>
-                    <FaUserCircle size={30} />
-                    <div className='text-lg'>Passenger Details</div>  
-                </div>
-                <div className='bg-slate-100 rounded-md'>
-                    <p className=' mt-5 py-3 px-3'>Passenger 1: Adults</p>
-                </div>
-                <div className='pt-1'>
-                    <Form validateMessages={validateMessages}>
-                        <Form.Item style={{width:'49%'}} >
-                            <Select placeholder='Title'>
-                                {titel?.map((e,i) => (
-                                    <Select.Option key={i} >{e?.titelName}</Select.Option>
-                                ))}
-                            </Select>
-                            <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
-                        </Form.Item>
-                        {/* <div className='flex gap-2'> */}
-                            <Form.Item
-                                name={['FirstName']}
-                                rules={[
-                                    {
-                                    required: true,
-                                    },
-                                ]}
-                                >
-                                <Input name='firstName' placeholder="FirstName and MidlleName" />
-                                <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
-                            </Form.Item>
-                            <Form.Item
-                                name={['LastName']}
-                                rules={[
-                                    {
-                                    required: true,
-                                    },
-                                ]}
-                                >
-                                <Input name='lastName' placeholder="LastName" />
-                                <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
-                            </Form.Item>
-                        {/* </div> */}
-                        <div className='flex gap-2'>
-                            {/* <Form.Item style={{width:'50%'}}>
-                                <Select 
-                                    showSearch
-                                    placeholder="Citizenship       "
-                                    optionFilterProp="children"
-                                    onChange={onChange}
-                                    onSearch={onSearch}
-                                    filterOption={(input, option) =>
-                                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                                    }
-                                    options={[
-                                    {
-                                        value: 'Indonesia',
-                                        label: 'Indonesia',
-                                    },
-                                    {
-                                        value: 'Germany',
-                                        label: 'Germany',
-                                    },
-                                    {
-                                        value: 'England',
-                                        label: 'England',
-                                    },
-                                    ]}
-                                    />
-                                    <span className='text-xs text-gray-400'>Citizenship</span>
-                            </Form.Item> */}
-                            <Form.Item
-                                style={{width:'50%'}}
-                                name={['Citizenship']}
-                                rules={[
-                                    {
-                                    required: true,
-                                    },
-                                ]}
-                                >
-                                <Input name='citizenship' placeholder="citizenship" />
-                                <span className='text-xs text-gray-400'>Citizenship</span>
-                            </Form.Item>
-                            <Form.Item style={{width:'50%'}} name={['birthdate']}  >
-                                <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
-                                <span className='text-xs text-gray-400'>Birth Date</span>
-                            </Form.Item>
-                        </div>
-                        <div className='flex gap-2'>
-                        <Form.Item
-                            style={{width:'50%'}}
-                            name={['pasport_number']}
-                            rules={[
-                                {
-                                required: true,
-                                },
-                            ]}
-                            >
-                            <Input name='pasportNumber' placeholder="Passport Number" />
-                            <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
-                        </Form.Item>
-                        <Form.Item 
-                            style={{width:'50%'}}
-                            name={['created_at']}>
-                            <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
-                            <span className='text-xs text-gray-400'>The date the passport was issued</span>
-                        </Form.Item>
-                        </div>
-                    </Form>
-                </div>
-            </div>
+        <div className='max-w-[1240px] mx-auto md:px-14 bg-slate-100 '>
+            <div className='grid md:grid-cols md:grid-cols-[60%_40%] gap-2 py-5'>
+              <div>
+                <div className='bg-white mt-20 rounded-md shadow-md py-5 px-5'>
+                  <div className='flex items-center gap-3'>
+                      <UsersIcon className='h-7 w-7' />
+                      <div className='text-lg font-semibold'>Passenger Details</div>  
+                  </div>
+                  <div className='bg-slate-100 rounded-md'>
+                      <p className=' mt-5 py-3 px-3'>Passenger 1: Adults</p>
+                  </div>
+                  <Form
+                      name="wrap"
+                      labelCol={{ flex: '110px' }}
+                      labelAlign="left"
+                      labelWrap
+                      wrapperCol={{ flex: 1 }}
+                      colon={false}
+                  >
+                    <Form.Item style={{width:'49%'}} >
+                      <Select placeholder='Title'>
+                        {titel?.map((e,i) => (
+                          <Select.Option key={i} >{e?.titelName}</Select.Option>
+                        ))}
+                      </Select>
+                      <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                    </Form.Item>
 
-            
+                    <Form.Item name={['FirstName']} rules={[{ required: true}]}>
+                      <Input name='firstName' placeholder="FirstName and MidlleName" />
+                      <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                    </Form.Item> 
 
-            <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3  md:w-[1200px] md:mx-[100px]'>
+                    <Form.Item name={['LastName']} rules={[{required: true}]}>
+                      <Input name='lastName' placeholder="LastName" />
+                      <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                    </Form.Item>
+
+                    <div className='flex gap-2'>
+                      <Form.Item
+                        style={{width:'50%'}}
+                        name={['Citizenship']}
+                        rules={[
+                            {
+                            required: true,
+                            },
+                        ]}
+                      >
+                        <Input name='citizenship' placeholder="citizenship" />
+                        <span className='text-xs text-gray-400'>Citizenship</span>
+                      </Form.Item>
+
+                      <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                          <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                          <span className='text-xs text-gray-400'>Birth Date</span>
+                      </Form.Item>
+                    </div>
+
+                    <div className='flex gap-2'>
+                      <Form.Item
+                        style={{width:'50%'}}
+                        name={['pasport_number']}
+                        rules={[
+                            {
+                            required: true,
+                            },
+                        ]}
+                        >
+                        <Input name='pasportNumber' placeholder="Passport Number" />
+                        <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                      </Form.Item>
+
+                      <Form.Item 
+                        style={{width:'50%'}}
+                        name={['created_at']}>
+                        <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                        <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                      </Form.Item>
+                    </div>
+                  </Form>
+                  </div>
+
+                <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3'>
                 <div className='flex items-center gap-3'>
                     <AiOutlineAppstoreAdd size={30} />
                     <div className='text-lg'>Extra Facilities</div>  
@@ -204,31 +145,67 @@ export const BookingPage = () => {
                             <span className='font-light'>Increase the capacity of your luggage.</span>
                             <Form.Item className='mt-3'>
                                 <Select placeholder='Baggage'>
-                                    <Select.Option value="No Baggage">No Baggage</Select.Option>
-                                    <Select.Option value="10kg">10kg - Rp 50.000</Select.Option>
-                                    <Select.Option value="15kg">15kg - Rp 100.000</Select.Option>
-                                    <Select.Option value="20kg">20kg - Rp 150.000</Select.Option>
+                                  {bagage?.map((e,i) => (
+                                    <Select.Option key={i} >{e?.weight}kg - Rp {e?.price},-</Select.Option>
+                                  ))}
                                 </Select>
                             </Form.Item>
                         </div>
                         </div>
                     </div>
                 </div>
-            <div className='max-w-7xl mt-10'
-            onClick={() => 
-                navigate(`/history?sort=DESC`)
-            }>
-                {/* <button className='md:w-[700px] bg-yellow-400 hover:bg-yellow-300 py-2 rounded-full' onSubmit={submitForm}>Booking</button> */}
-                <ButtonPrimary 
-                    type="submit" 
-                    title="Booking Now"
-                    
-                    className='w-fit'/> 
             </div>
+          </div>
+          <div className='bg-white rounded-md shadow-md md:mt-20 px-5 py-5 md:h-[535px]'>
+            <div className='text-lg font-semibold'>Flight</div>
+
+            <div className='flex justify-between'>
+              <div className='flex gap-3 items-center py-3'>
+                <h2>Jakarta</h2>
+                <ArrowLongRightIcon className='h-4 w-4' />
+                <h2>Bangkok</h2>
+              </div>
+              {/* <div className='py-5 font-semibold text-blue-600 hover:text-blue-400'>
+                <Link to='' >Details</Link>
+              </div> */}
+            </div>  
+
+            <div className='flex items-center gap-6 text-gray-500'>
+              <img src={Logo} alt="" className='h-12 w-12'/>
+              <div className='flex mt-4'>
+                <p>CGK</p>
+                <p>-</p>
+                <p>DMK</p>
+              </div>
+              <div>Sat, 24 Dec 2022</div>
+              <div>06.00</div>
             </div>
+
+            <h2 className='py-3'>Ticket Policy</h2>
+            {benefit?.map((e,i) => (
+              <p key={i} className='text-green-600' >{e?.desription}</p>
+            ))}
+            <hr />
+
+            <div className='flex justify-between py-4'>
+              <h2>Total Payment</h2>
+              <h2 className='text-blue-600'>IDR 2,942,999</h2>
+            </div>
+            <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }>
+              <ButtonPrimary type="submit" title="Booking Now" className='w-fit'/> 
+            </div>
+          </div>
         </div>
-        <SeatModal open={seatModal} close={handleOnClose} />
+      </div>
         <SecondFooter />
+        <SeatModal open={seatModal} close={handleOnClose} />
     </div>
+      // :
+      // <div>
+      //   Login Dulu
+      // </div>
+      //       }
+    // </div>
   )
 }
+
