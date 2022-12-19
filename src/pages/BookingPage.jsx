@@ -13,9 +13,13 @@ import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
 import Logo from '../assets/Logo.png'
 import { getTiket } from '../redux/feature/homeSlice';
+import { useLocation } from 'react-router-dom';
 
-export const BookingPage = (tiket) => {
+export const BookingPage = (props) => {
   const {titel, bagage, benefit } = useSelector((state) => state.booking);
+  const {tiket } = useSelector((state) => state.homepage);
+  const location = useLocation()
+  const data = location.state?.data;
   // const {tiket, loading} = useSelector ((state) => state.homepage)
 
   const dispatch = useDispatch();
@@ -23,15 +27,15 @@ export const BookingPage = (tiket) => {
 
   const [seatModal, setSeatModal] = useState(false)
   const handleOnClose = () => setSeatModal(false)
-  const {id} = useParams()
+  const {id, departureTime} = useParams()
 
   useEffect(() => {
     dispatch(getTitel())
     dispatch(getBagage(id))
     dispatch(getBenefit(id))
-    dispatch(getTiket(id))
+    dispatch(getTiket())
   },[dispatch]); 
-
+console.log(tiket)
 
 
 
@@ -162,10 +166,9 @@ export const BookingPage = (tiket) => {
           </div>
           <div className='bg-white rounded-md shadow-md md:mt-20 px-5 py-5 md:h-[535px]'>
             <div className='text-lg font-semibold'>Flight</div>
-
             <div className='flex justify-between'>
               <div className='flex gap-3 items-center py-3'>
-                <h2>Jakarta</h2>
+                <h2>{tiket?.originCity}</h2>
                 <ArrowLongRightIcon className='h-4 w-4' />
                 <h2>Bangkok</h2>
               </div>
@@ -182,7 +185,7 @@ export const BookingPage = (tiket) => {
                 <p>DMK</p>
               </div>
               <div>Sat, 24 Dec 2022</div>
-              <div>{tiket?.departureTime}</div>
+              <div>{departureTime}</div>
             </div>
 
             <h2 className='py-3'>Ticket Policy</h2>

@@ -25,7 +25,7 @@ root.render(
         {/* <Route element={<PrivateRoutes />}> */}
           <Route path="/notification" element={<NotificationPage />} />
           <Route path="/history" element={<HistoryPage />} />
-          <Route path="/Booking/:id" element={<BookingPage />} />
+          <Route path="/Booking/:id/:departureTime" element={<BookingPage />} />
           <Route path="/checkin" element={<CheckInPage />} />
         {/* </Route> */}
         <Route path="/Register" element={<RegisterPage />} />
