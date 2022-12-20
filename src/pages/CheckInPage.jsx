@@ -6,14 +6,17 @@ import { SecondFooter } from '../components/SecondFooter';
 import login from '../assets/login.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCheckin } from '../redux/feature/historySlice';
+import { useNavigate } from 'react-router-dom';
 
 export const CheckInPage = () => {
   const {checkin} = useSelector ((state) => state.history)
   const dispatch = useDispatch()
   const [form] = Form.useForm();
+  const navigate = useNavigate()
   
   const onFinish = async (values) => {
     dispatch(getCheckin(values))
+    navigate('/history')
   };
 
   return (
