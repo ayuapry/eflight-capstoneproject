@@ -116,7 +116,7 @@ const Card = () => {
 
     const onFinish = (values) => {
         dispatch(getTiket(values))
-        navigate(`/Filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`, {state: {D : {countD}, A: {countA}, B:{countB} }})
+        navigate(`/Filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`, {state: {D : `${countD}`, A: `${countA}`, B:`${countB}` }})
     };
 
   return (

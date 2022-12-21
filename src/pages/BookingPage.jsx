@@ -32,8 +32,14 @@ export const BookingPage = (props) => {
   const location = useLocation();
   console.log(location)
   const tiket = location.state?.tiket;
+  const total = location.state?.total;
 
-  const token = localStorage.getItem('token')
+  const numberFormat = (value) =>
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'IDR'
+    }).format(value);
+
   return (
     // <div>
     // {(token) ? 
@@ -192,7 +198,7 @@ export const BookingPage = (props) => {
 
         <div className='flex justify-between py-4'>
           <h2>Total Payment</h2>
-          {/* <h2 className='text-blue-600'>{`${total}`}</h2> */}
+          <h2 className='text-blue-600'>{numberFormat(total).slice(0,-3)}</h2>
         </div>
         <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }>
           <ButtonPrimary type="submit" title="Booking Now" className='w-fit'/> 
