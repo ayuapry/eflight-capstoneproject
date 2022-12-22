@@ -31,7 +31,7 @@ root.render(
         {/* </Route> */}
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Filter/:D/:A/:B" element={<FilterPage />} />
+        <Route path="/Filter/" element={<FilterPage />} />
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/card" element={<Card />} />
         <Route path="/coba" element={<Coba />} />
