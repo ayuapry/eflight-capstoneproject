@@ -59,6 +59,26 @@ export const getBagage = createAsyncThunk(
   }
 )
 
+export const getSeat = createAsyncThunk(
+  "user/getSeat", async (id) => {
+      const token =  localStorage.getItem('token');
+      try {
+          const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/aircraftseat?aircraftid=${id}`,
+          {
+              headers: { 
+                  'Authorization': `Bearer ${token}`
+              },
+          }
+          )
+          console.log(res)
+          return res.data.data
+      } catch (error) {
+          console.error(error)
+          return error.response.data.data
+      }
+  }
+)
+
 export const getBenefit = createAsyncThunk(
     "user/getBenefit", async (id) => {
         const token =  localStorage.getItem('token');
@@ -119,7 +139,7 @@ export const BookingSlice = createSlice({
       btnBooking: [],
       bagage: [],
       benefit: [],
-      
+      seat: []
     },
     reducers: {},
     extraReducers: {
@@ -151,6 +171,16 @@ export const BookingSlice = createSlice({
         state.benefit = payload;
       },
       [getBenefit.rejected]: (state) => {
+        state.loading = false;
+      },
+      [getSeat.pending]: (state) => {
+        state.loading = true;
+      },
+      [getSeat.fulfilled]: (state, { payload }) => {
+        state.loading = false;
+        state.seat = payload;
+      },
+      [getSeat.rejected]: (state) => {
         state.loading = false;
       },
     },

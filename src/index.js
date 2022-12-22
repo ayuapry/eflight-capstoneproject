@@ -34,7 +34,6 @@ root.render(
         <Route path="/Filter/" element={<FilterPage />} />
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/card" element={<Card />} />
-        <Route path="/coba" element={<Coba />} />
       </Routes>
     </BrowserRouter>
   </Provider>
