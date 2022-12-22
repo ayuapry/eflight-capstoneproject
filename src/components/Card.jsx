@@ -46,11 +46,12 @@ const Card = () => {
         "OneWay"
     )
     const [calendar, setCalendar] = useState('')
-    const [calendarGo, setCalendarGo] = useState()
+    const [calendarGo, setCalendarGo] = useState("")
     const [iata, setIata] = useState({
         iata1: '',
         iata2: ''
     })
+    // console.log('calender: ', calendar)
     // console.log('calender: ', calendar)
     const [openDate, setOpenDate] = useState(false)
     const [openDateGo, setOpenDateGo] = useState(false)
@@ -113,19 +114,16 @@ const Card = () => {
     }
     const display = countD + countA + countB + " Passenger, ";
 
-    const onFinish = (values) => {
+    const onFinishOne = (values) => {
         dispatch(getTiket(values))
-        navigate(`/Filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`, {state: {D : `${countD}`, A: `${countA}`, B:`${countB}` }})
-        // console.log(values);
-        const passAmount = {
-            adult: values[4],
-            child: values[5],
-            infant: values[6],
-        }
-        // console.log(passAmount)
-        localStorage.setItem('passAmount', JSON.stringify(passAmount))
+        navigate(`/Filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`, {state: {D : countD, A: countA, B: countB }})
+        console.log(values)
     };
     
+    const onFinishRound = (values) => {
+        console.log(values)
+    }
+
 
   return (
     <div id='Booking' className='bg-slate-50 md:bg-transparent h-auto pb-5 md:py-0 flex justify-center'>
@@ -223,7 +221,7 @@ const Card = () => {
                                                         <BsBuilding className='mr-3 text-[1.2rem] text-blue-600'/>
                                                         <div className='flex flex-col'>
                                                             <h2 className='fontMont text-[0.8rem] font-semibold'>
-                                                                {e?.city}, {e?.country}
+                                                                {e?.city},{e?.country}
                                                             </h2>
                                                             <h3 className='fontMont text-[0.7rem]'>
                                                                 {e?.name}
@@ -580,9 +578,7 @@ const Card = () => {
             <div 
                 className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer" >
                 <div className='w-fit'>
-                {/* <div className='w-fit' onClick={()=>navigate(`/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)}> */}
-                <ButtonPrimary title='SEARCH FLIGHTS' click={() => {onFinish([`${iata.iata1}`, `${iata.iata2}`, `${calendar}`, `${selectRadio === 'RoundTrip' ? calendarGo : "NA"}`, `${countD}`, `${countA}`, `${countB}`, `${selectClass}`])}}/>
-                {/* <ButtonPrimary click={() => {onFinish([`${iata.iata1}`, `${iata.iata2}`, `${calendar}`, `${selectRadio === 'RoundTrip' ? calendarGo : "NA"}`, `${countD}`, `${countA}`, `${countB}`, `${selectClass}`])}} title='SEARCH FLIGHTS' /> */}
+                <ButtonPrimary title='SEARCH FLIGHTS' click={() => {onFinishOne({ap1: iata.iata1,ap2:iata.iata2,dt1:calendar,dt2:selectRadio === 'RoundTrip' ? calendarGo : "NA",psD:countD,psA:countA,psB:countB,sc:selectClass})}}/>
                 </div>
             </div>
 

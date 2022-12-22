@@ -8,7 +8,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Filter from '../components/Filter';
 import { ChevronUpIcon } from '@heroicons/react/20/solid';
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Popover } from 'antd';
 import { getTiket } from '../redux/feature/homeSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -298,7 +298,7 @@ export default function Detail() {
           </Tab.Group>
           </div>
             <div className='flex justify-between items-center lg:hidden'>
-              <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>IDR 875.000</span></p>
+              <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>{numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)}</span></p>
               <div className='w-fit'>
               <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}`, {state:{total:`${tiket.price.amount}`}})} className='text-sm lg:text-base'/>
               </div>

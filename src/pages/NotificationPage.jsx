@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { getPromo } from '../redux/feature/UserSlice'
 import { useParams } from 'react-router-dom'
 import { getNotification } from '../redux/feature/NotificationSlice'
+import ScrollToTop from '../components/ScrollToTop'
 
 export const NotificationPage = () => {
   const {notification} = useSelector((state) => state.notification)
@@ -20,6 +21,7 @@ export const NotificationPage = () => {
   })
   return (
   <div className='h-screen bg-white'>
+    <ScrollToTop />
     <Navbar />
       <div className='pt-[100px] h-screen'>
         <button className='font-semibold text-white mx-5 md:mx-[75px] text-xl mb-5 bg-blue-600 hover:bg-blue-300  px-4 py-1 rounded-[100px]'>All Notification</button>

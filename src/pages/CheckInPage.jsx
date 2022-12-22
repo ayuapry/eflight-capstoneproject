@@ -7,6 +7,7 @@ import login from '../assets/login.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCheckin } from '../redux/feature/historySlice';
 import { useNavigate } from 'react-router-dom';
+import ScrollToTop from '../components/ScrollToTop';
 
 export const CheckInPage = () => {
   const {checkin} = useSelector ((state) => state.history)
@@ -21,6 +22,7 @@ export const CheckInPage = () => {
 
   return (
     <div className='bg-gradient-to-r from-cyan-500 to-blue-500'>
+      <ScrollToTop />
       <Navbar />
       <div className='max-w-[1240px] mx-auto h-screen md:h-[670px]'>
         <div className='md:pt-40 pt-20'>

@@ -9,13 +9,14 @@ import ButtonPrimary from '../components/ButtonPrimary'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getProfile } from '../redux/feature/UserSlice'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { getHistory } from '../redux/feature/historySlice'
 import { data } from 'autoprefixer'
+import ScrollToTop from '../components/ScrollToTop'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -46,8 +47,12 @@ export const HistoryPage = () => {
       };
     console.log(history);
 
+    const location = useLocation()
+    console.log(location)
+
   return (
     <div className='bg-slate-100'>
+        <ScrollToTop />
         <Navbar />
         <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>

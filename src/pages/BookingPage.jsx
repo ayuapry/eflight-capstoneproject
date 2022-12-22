@@ -29,7 +29,7 @@ export const BookingPage = (props) => {
     dispatch(getBenefit(id))
     dispatch(getSeat(id))
   },[dispatch, id]); 
-  
+    
   const location = useLocation();
   console.log(location)
   const tiket = location.state?.tiket;
