@@ -113,7 +113,7 @@ export const DetailsHistory = () => {
                 </div>
               </div>
               <p className='text-xs text-gray-400'>Ordered At {e?.orderedAt}</p>
-              <div className='mt-40'>
+              <div className='md:mt-40'>
                 <ButtonPrimary title='Download Ticket Here' />
               </div>
             </div>

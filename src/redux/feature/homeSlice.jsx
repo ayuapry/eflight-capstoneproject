@@ -62,7 +62,7 @@ export const getCabinClass = createAsyncThunk(
 export const getTiket = createAsyncThunk(
   'tiket/getTiket',
   async (values) => {
-    // console.log(values)
+    console.log(values)
     try {
       const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fullsearch",
       {
@@ -77,6 +77,7 @@ export const getTiket = createAsyncThunk(
               // sc : 'ECONOMY'
             }
           }
+          
           )
           console.log(res.data.data)
           return res.data.data

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ArrowLongRightIcon, UsersIcon } from '@heroicons/react/20/solid'
 import { Navbar } from '../components/Navbar'
-import { DatePicker, Form, Input, Select } from 'antd';
+import { Button, DatePicker, Form, Input, Select } from 'antd';
 import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBagage, getBenefit, getTitel } from '../redux/feature/BookingSlice';
@@ -20,20 +20,67 @@ export const BookingPage = (props) => {
   const navigate = useNavigate()
 
   const [seatModal, setSeatModal] = useState(false)
+  const [passengers, setPassengers] = useState([{
+    title: '',
+    firstName: '',
+    lastName: '',
+    citizenship:'',
+    birthDate: '',
+    passportNumber:'',
+    createdAt:''
+  }])
   const handleOnClose = () => setSeatModal(false)
   const {id} = useParams()
+
+  const passenger = {
+    title: '',
+    firstName: '',
+    lastName: '',
+    citizenship:'',
+    birthDate: '',
+    passportNumber:'',
+    createdAt:''
+  }
+  
+  // const passAmountTotal = Number(passAmount.adult) + Number(passAmount.child) + Number(passAmount.infant)
+  
+  // console.log(passAmountTotal)
+  
+  const location = useLocation();
+  console.log(location)
+  const tiket = location.state?.tiket;
+  
+  
+  const onFinish = (values) => {
+    console.log(values);
+  }
+  const [passAmount, setPassAmount] = useState() 
+  // const [penumpang, setPenumpang] = useState();
+
+  const temp = () => {
+    let tempValue = [];
+    for (let i = 0; i < passAmount; i++) {
+      tempValue.push({
+        title: [i],
+        name: [i],
+        seatNo: [i],
+      });
+    }
+    // console.log(setPenumpang);
+    return tempValue;
+  };
+  const penumpang = temp()
+  console.log(passAmount)
+  console.log(penumpang)
 
   useEffect(() => {
     dispatch(getTitel())
     dispatch(getBagage(id))
     dispatch(getBenefit(id))
-  },[dispatch]); 
-
-  const location = useLocation();
-  console.log(location)
-  const tiket = location.state?.tiket;
-
-  const token = localStorage.getItem('token')
+    const passAmount = JSON.parse(localStorage.getItem('passAmount'))
+    setPassAmount(Number(passAmount.adult) + Number(passAmount.child) + Number(passAmount.infant));
+  },[dispatch, id]); 
+  // const token = localStorage.getItem('token')
   return (
     // <div>
     // {(token) ? 
@@ -47,6 +94,7 @@ export const BookingPage = (props) => {
                   <UsersIcon className='h-7 w-7' />
                   <div className='text-lg font-semibold'>Passenger Details</div>  
               </div>
+
               <div className='bg-slate-100 rounded-md'>
                   <p className=' mt-5 py-3 px-3'>Passenger 1: Adults</p>
               </div>
@@ -119,6 +167,445 @@ export const BookingPage = (props) => {
                   </Form.Item>
                 </div>
               </Form>
+              {/* <Button onClick={temp}>temp</Button> */}
+              {/* {penumpang.map((item, i) => (
+                <div>
+                  <p>apaaja</p>
+                </div>
+              ))} */}
+              {/* {passAmount === 1 ? 
+              <Form
+                  name="wrap"
+                  labelCol={{ flex: '110px' }}
+                  labelAlign="left"
+                  labelWrap
+                  wrapperCol={{ flex: 1 }}
+                  colon={false}
+              >
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Title'>
+                    {titel?.map((e,i) => (
+                      <Select.Option key={i} >{e?.titelName}</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                </Form.Item>
+
+                <Form.Item name={['FirstName']} rules={[{ required: true}]}>
+                  <Input name='firstName' placeholder="FirstName and MidlleName" />
+                  <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                </Form.Item> 
+
+                <Form.Item name={['LastName']} rules={[{required: true}]}>
+                  <Input name='lastName' placeholder="LastName" />
+                  <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                </Form.Item>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['Citizenship']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                  >
+                    <Input name='citizenship' placeholder="citizenship" />
+                    <span className='text-xs text-gray-400'>Citizenship</span>
+                  </Form.Item>
+
+                  <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                      <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                      <span className='text-xs text-gray-400'>Birth Date</span>
+                  </Form.Item>
+                </div>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['pasport_number']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                    >
+                    <Input name='pasportNumber' placeholder="Passport Number" />
+                    <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                  </Form.Item>
+
+                  <Form.Item 
+                    style={{width:'50%'}}
+                    name={['created_at']}>
+                    <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                    <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                  </Form.Item>
+                </div>
+              </Form>
+              :
+              null  
+              }
+              {passAmount === 2 ? 
+              <>
+              <Form
+                  name="wrap"
+                  labelCol={{ flex: '110px' }}
+                  labelAlign="left"
+                  labelWrap
+                  wrapperCol={{ flex: 1 }}
+                  colon={false}
+              >
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Title'>
+                    {titel?.map((e,i) => (
+                      <Select.Option key={i} >{e?.titelName}</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                </Form.Item>
+
+                <Form.Item name={['FirstName']} rules={[{ required: true}]}>
+                  <Input name='firstName' placeholder="FirstName and MidlleName" />
+                  <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                </Form.Item> 
+
+                <Form.Item name={['LastName']} rules={[{required: true}]}>
+                  <Input name='lastName' placeholder="LastName" />
+                  <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                </Form.Item>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['Citizenship']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                  >
+                    <Input name='citizenship' placeholder="citizenship" />
+                    <span className='text-xs text-gray-400'>Citizenship</span>
+                  </Form.Item>
+
+                  <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                      <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                      <span className='text-xs text-gray-400'>Birth Date</span>
+                  </Form.Item>
+                </div>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['pasport_number']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                    >
+                    <Input name='pasportNumber' placeholder="Passport Number" />
+                    <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                  </Form.Item>
+
+                  <Form.Item 
+                    style={{width:'50%'}}
+                    name={['created_at']}>
+                    <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                    <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                  </Form.Item>
+                </div>
+              </Form>
+              <Form
+                  name="wrap"
+                  labelCol={{ flex: '110px' }}
+                  labelAlign="left"
+                  labelWrap
+                  wrapperCol={{ flex: 1 }}
+                  colon={false}
+              >
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Title'>
+                    {titel?.map((e,i) => (
+                      <Select.Option key={i} >{e?.titelName}</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                </Form.Item>
+
+                <Form.Item name={['FirstName']} rules={[{ required: true}]}>
+                  <Input name='firstName' placeholder="FirstName and MidlleName" />
+                  <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                </Form.Item> 
+
+                <Form.Item name={['LastName']} rules={[{required: true}]}>
+                  <Input name='lastName' placeholder="LastName" />
+                  <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                </Form.Item>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['Citizenship']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                  >
+                    <Input name='citizenship' placeholder="citizenship" />
+                    <span className='text-xs text-gray-400'>Citizenship</span>
+                  </Form.Item>
+
+                  <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                      <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                      <span className='text-xs text-gray-400'>Birth Date</span>
+                  </Form.Item>
+                </div>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['pasport_number']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                    >
+                    <Input name='pasportNumber' placeholder="Passport Number" />
+                    <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                  </Form.Item>
+
+                  <Form.Item 
+                    style={{width:'50%'}}
+                    name={['created_at']}>
+                    <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                    <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                  </Form.Item>
+                </div>
+              </Form>
+              </>
+              :
+              null  
+              }
+              {passAmount === 3 ?
+              <>
+              <Form
+                  name="wrap"
+                  labelCol={{ flex: '110px' }}
+                  labelAlign="left"
+                  labelWrap
+                  wrapperCol={{ flex: 1 }}
+                  colon={false}
+              >
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Title'>
+                    {titel?.map((e,i) => (
+                      <Select.Option key={i} >{e?.titelName}</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                </Form.Item>
+
+                <Form.Item name={['FirstName']} rules={[{ required: true}]}>
+                  <Input name='firstName' placeholder="FirstName and MidlleName" />
+                  <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                </Form.Item> 
+
+                <Form.Item name={['LastName']} rules={[{required: true}]}>
+                  <Input name='lastName' placeholder="LastName" />
+                  <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                </Form.Item>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['Citizenship']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                  >
+                    <Input name='citizenship' placeholder="citizenship" />
+                    <span className='text-xs text-gray-400'>Citizenship</span>
+                  </Form.Item>
+
+                  <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                      <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                      <span className='text-xs text-gray-400'>Birth Date</span>
+                  </Form.Item>
+                </div>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['pasport_number']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                    >
+                    <Input name='pasportNumber' placeholder="Passport Number" />
+                    <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                  </Form.Item>
+
+                  <Form.Item 
+                    style={{width:'50%'}}
+                    name={['created_at']}>
+                    <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                    <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                  </Form.Item>
+                </div>
+              </Form>
+              <Form
+                  name="wrap"
+                  labelCol={{ flex: '110px' }}
+                  labelAlign="left"
+                  labelWrap
+                  wrapperCol={{ flex: 1 }}
+                  colon={false}
+              >
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Title'>
+                    {titel?.map((e,i) => (
+                      <Select.Option key={i} >{e?.titelName}</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                </Form.Item>
+
+                <Form.Item name='FirstName' rules={[{ required: true}]}>
+                  <Input name='firstName' placeholder="FirstName and MidlleName" />
+                  <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                </Form.Item> 
+
+                <Form.Item name='LastName' rules={[{required: true}]}>
+                  <Input name='lastName' placeholder="LastName" />
+                  <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                </Form.Item>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name='Citizenship'
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                  >
+                    <Input name='citizenship' placeholder="citizenship" />
+                    <span className='text-xs text-gray-400'>Citizenship</span>
+                  </Form.Item>
+
+                  <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                      <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                      <span className='text-xs text-gray-400'>Birth Date</span>
+                  </Form.Item>
+                </div>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['pasport_number']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                    >
+                    <Input name='pasportNumber' placeholder="Passport Number" />
+                    <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                  </Form.Item>
+
+                  <Form.Item 
+                    style={{width:'50%'}}
+                    name={['created_at']}>
+                    <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                    <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                  </Form.Item>
+                </div>
+              </Form>
+              <Form
+                  onFinish={onFinish}
+                  name="wrap"
+                  labelCol={{ flex: '110px' }}
+                  labelAlign="left"
+                  labelWrap
+                  wrapperCol={{ flex: 1 }}
+                  colon={false}
+              >
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Title'>
+                    {titel?.map((e,i) => (
+                      <Select.Option key={i} >{e?.titelName}</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Mr/Mrs/Ms</span>
+                </Form.Item>
+
+                <Form.Item name={['FirstName']} rules={[{ required: true}]}>
+                  <Input name='firstName' placeholder="FirstName and MidlleName" />
+                  <span className='text-xs text-gray-400'>Fill in according to KTP / Passport / SIM (without punctuation and titles)</span>
+                </Form.Item> 
+
+                <Form.Item name={['LastName']} rules={[{required: true}]}>
+                  <Input name='lastName' placeholder="LastName" />
+                  <span className='text-xs text-gray-400'>As in KTP/Passport/SIM (without punctuation and title) & must be a single name.</span>
+                </Form.Item>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['Citizenship']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                  >
+                    <Input name='citizenship' placeholder="citizenship" />
+                    <span className='text-xs text-gray-400'>Citizenship</span>
+                  </Form.Item>
+
+                  <Form.Item style={{width:'50%'}} name={['birthdate']}  >
+                      <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
+                      <span className='text-xs text-gray-400'>Birth Date</span>
+                  </Form.Item>
+                </div>
+
+                <div className='flex gap-2'>
+                  <Form.Item
+                    style={{width:'50%'}}
+                    name={['pasport_number']}
+                    rules={[
+                        {
+                        required: true,
+                        },
+                    ]}
+                    >
+                    <Input name='pasportNumber' placeholder="Passport Number" />
+                    <span className='text-xs text-gray-400'>Valid for at least 6 months from the date of departure</span>
+                  </Form.Item>
+
+                  <Form.Item 
+                    style={{width:'50%'}}
+                    name={['created_at']}>
+                    <DatePicker name='created_at' style={{width:'100%'}} placeholder='created at' />
+                    <span className='text-xs text-gray-400'>The date the passport was issued</span>
+                  </Form.Item>
+                </div>
+                <Button htmlType='submit' >click</Button>
+              </Form>
+
+              </>
+              :
+              null  
+              } */}
               </div>
 
             <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3'>

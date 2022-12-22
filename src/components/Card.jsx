@@ -111,13 +111,21 @@ const Card = () => {
         setOpenDateGo(openDateGo => !openDateGo);
         
     }
-    
     const display = countD + countA + countB + " Passenger, ";
 
     const onFinish = (values) => {
         dispatch(getTiket(values))
         navigate(`/Filter/${countD}/${countA}/${countB}?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`)
+        // console.log(values);
+        const passAmount = {
+            adult: values[4],
+            child: values[5],
+            infant: values[6],
+        }
+        // console.log(passAmount)
+        localStorage.setItem('passAmount', JSON.stringify(passAmount))
     };
+    
 
   return (
     <div id='Booking' className='bg-slate-50 md:bg-transparent h-auto pb-5 md:py-0 flex justify-center'>
