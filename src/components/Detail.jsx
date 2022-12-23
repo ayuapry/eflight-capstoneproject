@@ -132,7 +132,7 @@ export default function Detail() {
                       <ButtonPrimary
                         title="SELECT"
                         click={() =>
-                          navigate(`/Booking/${tiket.aircraft.id}`, {
+                          navigate(`/booking/${tiket.aircraft.id}`, {
                             state: {
                               tiket: tiket,
                               passenger: Passenger,
@@ -479,7 +479,7 @@ export default function Detail() {
                     <ButtonPrimary
                       title="SELECT"
                       click={() =>
-                        navigate(`/Booking/${tiket.aircraft.id}`, {
+                        navigate(`/booking/${tiket.aircraft.id}`, {
                           state: { total: `${tiket.price.amount}` },
                         })
                       }
