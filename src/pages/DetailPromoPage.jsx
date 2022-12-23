@@ -32,16 +32,19 @@ const DetailPromoPage = () => {
                     {
                         pagination.length > 0 ? pagination.map(e => (
                         <div key={e.id} className="haii md:max-w-7xl mx-auto bg-white shadow-md p-5 rounded-md mb-2">
-                            <div className='imgDet  max-w-[12rem] flex items-center justify-center pb-2' to={`/detail-promo/${e?.id}`}>
-                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
-                            </div>
-                            <div className='md:max-w-7xl mx-auto flex flex-col justify-center'>
-                                <h1 className='text-[1rem] font-semibold mb-0 pb-1 text-justify'>
-                                    {e?.title}
-                                </h1>
-                                <h2 className='text-[0.6rem] text-gray-600 text-justify mb-0 leading-relaxed'>
-                                {e?.description}
-                                </h2>
+                            <div className=' grid md:grid-cols md:grid-cols-[25%_75%] gap-2 py-5'>
+                                <div className='imgDet  max-w-[12rem] flex items-center justify-center' to={`/detail-promo/${e?.id}`}>
+                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
+                                </div>
+                                <div className='flex flex-col justify-center items-center pr-5'>
+                                    <h1 className='text-[1rem] font-semibold mb-0 text-justify leading-relaxed'>
+                                        {e?.title}
+                                    </h1>
+                                    <h2 className='text-[0.6rem] text-gray-600 text-justify mb-0 leading-relaxed'>
+                                    {e?.description}
+                                    </h2>
+                                {/* </div> */}
+                                </div>
                             </div>
                         </div>
                         )) : (
