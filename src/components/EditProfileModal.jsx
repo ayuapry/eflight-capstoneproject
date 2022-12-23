@@ -51,7 +51,9 @@ export const EditProfileModal = ({open, close}) => {
 
     if(!open) return null
     return (
-    <div id='container' onClick={handleOnClose} className='fixed inset-0 bg-black bg-opacity-70 backdropbackdrop-blur-xl flex justify-center items-center text-black'>
+    <div id='container' 
+        onClick={handleOnClose} 
+        className='fixed inset-0 bg-black bg-opacity-70 backdropbackdrop-blur-xl flex justify-center items-center text-black'>
         <div className="bg-white p-2 rounded w-1/3">
             <div className='flex items-center justify-between mb-7 mx-2 '>
                 <p className='font-semibold mt-3'>Edit Account</p>
