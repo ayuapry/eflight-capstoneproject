@@ -85,6 +85,7 @@ export const getTiket = createAsyncThunk(
 )
 
 
+
 export const homeSlice = createSlice({
   name: "homepage",
   initialState: {

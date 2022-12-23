@@ -3,14 +3,14 @@ import { Navbar } from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getPromo } from '../redux/feature/UserSlice'
+import { getPromo } from '../redux/feature/promoSlice'
 import { useParams } from 'react-router-dom'
 import { getNotification } from '../redux/feature/NotificationSlice'
 import ScrollToTop from '../components/ScrollToTop'
 
 export const NotificationPage = () => {
   const {notification} = useSelector((state) => state.notification)
-  const {promo } = useSelector((state) => state.user);
+  const {promo } = useSelector((state) => state.promo);
   const dispatch = useDispatch()
   const {id} = useParams()
 
