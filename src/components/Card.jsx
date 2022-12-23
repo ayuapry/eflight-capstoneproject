@@ -18,8 +18,8 @@ import ButtonPrimary from './ButtonPrimary';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 
 const Card = () => {
-    // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
-    // const AgeCategory = "https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all"
+    // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=5&size=1&sort=string"
+        // const AgeCategory = "https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all"
 
     const {country, age, cabinClass } = useSelector((state) => state.homepage);
     const dispatch = useDispatch();

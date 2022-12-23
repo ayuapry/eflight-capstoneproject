@@ -8,8 +8,34 @@ import baggage from '../assets/baggage.png'
 import promo1 from '../assets/promo1.png'
 import promo2 from '../assets/promo2.png'
 import promo3 from '../assets/promo3.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getPromo } from '../redux/feature/promoSlice'
+import { useState } from 'react'
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
+import { Link, useNavigate } from 'react-router-dom'
 
 export const HeadlineCards = () => {
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const {promo } = useSelector((state) => state.promo);
+    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      dispatch(getPromo())
+    },[dispatch]); 
+
   return (
     <>
     <div id='Destination' className='py-10'>
@@ -25,6 +51,7 @@ export const HeadlineCards = () => {
             <HeadingCard bg='https://media.istockphoto.com/id/500798563/id/foto/city-skyline-at-sunset-jakarta-indonesia.jpg?s=612x612&w=0&k=20&c=dICfiBlbElOeu0UceZMoFpBJ7xJF5bKyriTRZmGXHO4=' text='Jakarta' />
             <HeadingCard bg='https://media.istockphoto.com/id/1164092944/id/foto/lanskap-perkebunan-teh-yang-indah-di-pagi-hari.jpg?s=612x612&w=0&k=20&c=PjbtnvVtI0MLMu8jFEoeiFlGI0uGqRBkZwO7O92tuPI=' text='Bandung' />
         </div>
+        
         <div className='max-w-[1240px] mx-auto px-4 hidden md:flex items-center '>
             <div className='w-[40%]'>
                 <img src={Holiday} alt="/" className='h-auto w-auto object-cover ' />
@@ -44,21 +71,36 @@ export const HeadlineCards = () => {
             </div>
         </div>
 
-        <div className='max-w-[1024px] mx-auto px-4 grid grid-cols-2 lg:grid-cols-4 md:gap-10 gap-5'>
-            <div className=' md:w-[250px]'>
-                <img src={promo1} alt="" className='rounded-md object-cover' />
+        {/* Promo */}
+            <div className='Promo max-w-[1024px] mx-auto px-4 py-10 flex flex-row justify-between items-center'>
+                <div className='w-[30%] flex items-center'>
+                    <h1 className='text-[1.6rem] leading-tight font-semibold m-0'>Yuk Cek Promo Sebelum Bepergian!</h1>
+                </div>
+                <div className='w-[68%] flex flex-row'>
+                    <Swiper
+                    slidesPerView={2.5}
+                    spaceBetween={10}
+                    slidesPerGroup={1}
+                    loop={true}
+                    pagination={{
+                    type: "progressbar",
+                    clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                    >
+                        {promo?.map((e) => (
+                                <SwiperSlide>
+                            <Link className='md:w-[250px]' to={`/detail-promo/${e?.id}`}>
+                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                            </Link>
+                            </SwiperSlide>  
+                            ))}
+                    </Swiper>
+                </div>
             </div>
-            <div className=' md:w-[250px]'>
-                <img src={promo2} alt="" className='rounded-md object-cover' />
-            </div>
-            <div className=' md:w-[250px]'>
-                <img src={promo3} alt="" className='rounded-md object-cover' />
-            </div>
-            <div className=' md:w-[250px]'>
-                {/* <img src={promo3} alt="" /> */}
 
-            </div>
-        </div>
 
         <div className='max-w-[1240px] mx-auto px-4'>
             <h1 id='Services' className='text-center py-4'>Discover further services</h1>
