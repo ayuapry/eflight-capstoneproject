@@ -35,7 +35,7 @@ export const LoginEmail = createAsyncThunk(
             })
             setTimeout(function () {
                 window.location.reload(1);
-              }, 500)
+            }, 500)
             localStorage.removeItem("id")
             localStorage.setItem("token",(res.data.data.jwtToken))
             localStorage.setItem("id",(res.data.data.id))

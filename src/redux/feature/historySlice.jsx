@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { Navigate } from 'react-router-dom'
 
 //Hero
 export const getHistory = createAsyncThunk(
@@ -30,6 +31,9 @@ export const getCheckin = createAsyncThunk(
                 "lastName" : `${values.lastName}`,
                 "bookingReferenceNumber" : `${values.bookingReferenceNumber}`,
             },
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 500)
             )
             console.log(res.data.data)
             return res.data.data

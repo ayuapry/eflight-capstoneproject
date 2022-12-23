@@ -56,7 +56,7 @@ export const Navbar = () => {
                   <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" onClick={()=>navigate("/Login")} />
                 }
                 </div>
-                <a href='/#hero' className='flex items-center'>
+                <a href='/' className='flex items-center'>
                     <img src={LogoText} className='w-40' alt="" />
                 </a>
                 <ul className='hidden md:flex gap-3 md:text-md mt-3'>

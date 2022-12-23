@@ -12,10 +12,10 @@ import { editProfile, getCity } from '../redux/feature/UserSlice';
 
     const layout = {
         labelCol: {
-        span: 10,
+        span: 8,
         },
         wrapperCol: {
-        span: 20,
+        span: 14,
         },
     };
 
@@ -52,13 +52,13 @@ export const EditProfileModal = ({open, close}) => {
     if(!open) return null
     return (
     <div id='container' onClick={handleOnClose} className='fixed inset-0 bg-black bg-opacity-70 backdropbackdrop-blur-xl flex justify-center items-center text-black'>
-        <div className="bg-white p-2 rounded w-[500px]">
+        <div className="bg-white p-2 rounded w-1/3">
             <div className='flex items-center justify-between mb-7 '>
                 <p className='font-semibold '>Edit Account</p>
                 <button onClick={close}><AiOutlineClose /></button>
             </div>
-            <div className='flex justify-between items-center'>
-            <Form {...layout} name="update" onFinish={onFinish} validateMessages={validateMessages}>
+            <div className='flex items-center w-full'>
+            <Form {...layout} style={{width: '100%'}} name="update" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item
                     name='fullName'
                     label="FullName"
@@ -96,17 +96,6 @@ export const EditProfileModal = ({open, close}) => {
                     <DatePicker name='birthDate'  style={{width:'100%'}} placeholder='Birth Date' />
                 </Form.Item> 
                 
-                {/* <Form.Item
-                    name="cityId"
-                    label="City"
-                    rules={[
-                    {
-                        required: true,
-                    },
-                    ]}
-                >
-                    <Input />
-                </Form.Item> */}
                 <Form.Item
                     name="cityId"
                     label="City"
@@ -126,7 +115,7 @@ export const EditProfileModal = ({open, close}) => {
                     }
                     </Select>
                 </Form.Item>
-                <div className="w-full flex items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  >
+                <div className="w-full flex items-center justify-center px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer"  >
                     <div className='w-fit'>
                         <ButtonPrimary type='submit' title='Edit Profile' />
                     </div>

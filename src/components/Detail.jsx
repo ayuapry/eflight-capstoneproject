@@ -2,13 +2,13 @@ import React from 'react'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { ChevronDownIcon, ShoppingBagIcon, TvIcon, WifiIcon } from '@heroicons/react/24/outline'
 import { Disclosure } from '@headlessui/react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { Tab } from '@headlessui/react'
 import { UserOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Filter from '../components/Filter';
 import { ChevronUpIcon } from '@heroicons/react/20/solid';
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Popover } from 'antd';
 import { getTiket } from '../redux/feature/homeSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -29,10 +29,6 @@ export default function Detail() {
     const [placement, setPlacement] = useState('left');
     const {tiket, loading} = useSelector ((state) => state.homepage)
     const dispatch = useDispatch()
-    const {D} = useParams()
-    const {A} = useParams()
-    const {B} = useParams()
-
     
     useEffect(() => {
       dispatch(getTiket())
@@ -44,6 +40,16 @@ export default function Detail() {
       const onClose = () => {
         setOpen(false);
       };
+
+    const numberFormat = (value) =>
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'IDR'
+    }).format(value);
+
+    const location = useLocation();
+    console.log(location)
+    const Passenger = location.state;
 
   return (
     <div className='w-full'>
@@ -85,8 +91,10 @@ export default function Detail() {
               })}
           </div>
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
-          <h1 className='font-bold lg:text-lg text-sm'>{(tiket.price.display).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>pax</span></h1>
-          <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}`, {state:{tiket: tiket, total: `${(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}`}})} className='text-sm lg:text-base'/>
+          <h1 className='font-bold lg:text-lg text-sm'>{numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>pax</span></h1>
+          <div className='w-32 mr-0 ml-auto'>
+          <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}`, {state:{tiket: tiket, passenger : Passenger, total: `${(tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)}`}})}/>
+          </div>
           </div>
           </div>
           <div className='flex mt-2 lg:hidden'>
@@ -164,17 +172,17 @@ export default function Detail() {
             </Tab.Panel>
             <Tab.Panel>
               <p>Far</p>
-              {D != 0 ? <div className='flex justify-between'>
-              <li className='text-gray-400'>Adult (x{D})</li>
-              <p>{tiket.price.amount * D}</p>
+              {Passenger.D != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Adult (x{Passenger.D})</li>
+              <p>{numberFormat(tiket.price.amount * Passenger.D).slice(0,-3)}</p>
               </div> : ''}
-              {A != 0?<div className='flex justify-between'>
-              <li className='text-gray-400'>Child (x{A})</li>
-              <p>{tiket.price.amount * A}</p>
+              {Passenger.A != 0?<div className='flex justify-between'>
+              <li className='text-gray-400'>Child (x{Passenger.A})</li>
+              <p>{numberFormat(tiket.price.amount * Passenger.A).slice(0,-3)}</p>
               </div>:''}
-              {B != 0?<div className='flex justify-between'>
-              <li className='text-gray-400'>Infant (x{B})</li>
-              <p>{tiket.price.amount * B}</p>
+              {Passenger.B != 0?<div className='flex justify-between'>
+              <li className='text-gray-400'>Infant (x{Passenger.B})</li>
+              <p>{numberFormat(tiket.price.amount * Passenger.B).slice(0,-3)}</p>
               </div>:''}
               <br />
               <p>Tax and other fees</p>
@@ -186,7 +194,7 @@ export default function Detail() {
               <div className='flex justify-between mt-4'>
               <p>Total</p>
               <p className='text-sky-500 font-medium mb-0'>
-                {(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}
+              {numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)}
               </p>
               </div>
             </Tab.Panel>
@@ -260,17 +268,17 @@ export default function Detail() {
             </Tab.Panel>
             <Tab.Panel>
               <p>Far</p>
-              { D != 0 ? <div className='flex justify-between'>
-              <li className='text-gray-400'>Adult (x{D})</li>
-              <p>{tiket.price.amount * D}</p>
+              { Passenger.D != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Adult (x{Passenger.D})</li>
+              <p>{numberFormat(tiket.price.amount * Passenger.D).slice(0,-3)}</p>
               </div> : ''}
-              { A != 0 ? <div className='flex justify-between'>
-              <li className='text-gray-400'>Child (x{A})</li>
-              <p>{tiket.price.amount * D}</p>
+              { Passenger.A != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Child (x{Passenger.A})</li>
+              <p>{numberFormat(tiket.price.amount * Passenger.A).slice(0,-3)}</p>
               </div> : ''}
-              { B != 0 ? <div className='flex justify-between'>
-              <li className='text-gray-400'>Infant (x{B})</li>
-              <p>{tiket.price.amount * D}</p>
+              { Passenger.B != 0 ? <div className='flex justify-between'>
+              <li className='text-gray-400'>Infant (x{Passenger.B})</li>
+              <p>{numberFormat(tiket.price.amount * Passenger.B).slice(0,-3)}</p>
               </div> : ''}
               <br /><br />
               <p>Tax and other fees</p>
@@ -282,7 +290,7 @@ export default function Detail() {
               <div className='flex justify-between mt-4'>
               <p>Total</p>
               <p className='text-sky-500 font-medium mb-0'>
-              {(tiket.price.amount * D) + (tiket.price.amount * A) + (tiket.price.amount * B)}
+              {numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)}
               </p>
               </div>
             </Tab.Panel>
@@ -290,7 +298,7 @@ export default function Detail() {
           </Tab.Group>
           </div>
             <div className='flex justify-between items-center lg:hidden'>
-              <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>IDR 875.000</span></p>
+              <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>{numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)}</span></p>
               <div className='w-fit'>
               <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}`, {state:{total:`${tiket.price.amount}`}})} className='text-sm lg:text-base'/>
               </div>

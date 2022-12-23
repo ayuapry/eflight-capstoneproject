@@ -9,12 +9,14 @@ import ButtonPrimary from '../components/ButtonPrimary'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getProfile } from '../redux/feature/UserSlice'
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { getHistory } from '../redux/feature/historySlice'
+import { data } from 'autoprefixer'
+import ScrollToTop from '../components/ScrollToTop'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -33,13 +35,8 @@ export const HistoryPage = () => {
 
     useEffect(() => {
         dispatch(getProfile(id))
-        // console.log(profile)
-    },[dispatch, id]); 
-
-    useEffect(() => {
         dispatch(getHistory())
-        // console.log(profile)
-    },[dispatch]); 
+    },[dispatch, id]); 
     
     const logout = async () => {
         localStorage.clear();
@@ -48,22 +45,14 @@ export const HistoryPage = () => {
             window.location.reload(1);
           }, 1500);
       };
-
-    // const updateProfile = () => {
-    //     axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`, {
-    //         fullName: fullName,
-    //         birthDate: birthDate,
-    //         gender: gender,
-    //     })
-    //     .then((response) => {
-    //         window.location.reload()
-    //     })
-    // }
-
     console.log(history);
+
+    const location = useLocation()
+    console.log(location)
 
   return (
     <div className='bg-slate-100'>
+        <ScrollToTop />
         <Navbar />
         <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>
@@ -100,6 +89,7 @@ export const HistoryPage = () => {
                             <span className='text-gray-400'>This is the history of your trip</span>
                         </div>
                         <div className='my-4'>
+                            <Form>
                             <Form.Item
                             name="sort"
                             style={{width:'100%'}}
@@ -113,12 +103,13 @@ export const HistoryPage = () => {
                             <Option value="recent">Recently purchased</Option>
                             <Option value="early">Early trip date</Option>
                             </Select>
-                            </Form.Item>     
+                            </Form.Item>    
+                            </Form> 
                         </div>
                     </div>
 
-                    {history?.length > 0 && history.map(histo => (
-                        <div className='mx-2 my-2'>
+                    {history?.length > 0 && history.map((histo, i) => (
+                        <div key={i} className='mx-2 my-2'>
                             <div className='bg-white border-2 border-gray-100 shadow-md w-full md:h-[220px] px-3 py-3  rounded-md'>
                                 <div className='flex gap-2 pb-4'>
                                     <GiCommercialAirplane color='skyblue' />
@@ -138,26 +129,35 @@ export const HistoryPage = () => {
 
                                     </>
                                 ))}
-                                <div className='md:flex gap-3 text-sm'>
+                                <div className='md:flex gap-3 items-center text-sm'>
                                     <p>
                                         {histo.bookingType} - {histo.adult} adults, {histo.child} child
                                     </p>
                                     {
-                                            histo?.departure?.data.map(data => (
+                                            histo?.departure?.data.map((data, i) => (
                                             <>
-                                                <div className='flex gap-2'>
+                                                <div key={i} className='flex gap-2'>
                                                     <FaPlaneDeparture color='skyblue' />
                                                     <p>{data.schedule.departureDate} . {data.schedule.departureTime}</p>
                                                 </div>
                                                 <div className='flex gap-2'>
                                                     <FaPlaneArrival color='skyblue' />
+                                                    <p>{data.schedule.arrivalDate} . {data.schedule.arrivalTime}</p>                                               
                                                 </div>
-                                                <p>{data.schedule.arrivalDate} . {data.schedule.arrivalTime}</p>
+                                                <div className=''>
+                                                <p>
+                                                    {(data?.checkInStatus === true) ?
+                                                    <div className='w-fit bg-green-500 rounded-full text-white px-3 py-1'>Already checked in</div>
+                                                    :
+                                                    <div className='w-fit bg-red-500 rounded-full text-white px-3 py-1'>Haven't checked in</div>
+                                                    }
+                                                </p>
+                                                </div>
                                             </>
                                             ))
                                         }
                                 </div>       
-                                        <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer'>See Details</p>
+                                <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer' onClick={() => (navigate(`/detailhistory/${histo.bookingId}`))}>See Details</p>
                             </div>
                         </div>
                     ))}

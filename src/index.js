@@ -15,7 +15,7 @@ import LoginPage from "./pages/LoginPage";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
-import DetailPromoPage from "./pages/DetailPromoPage";
+import { DetailsHistory } from "./pages/DetailsHistory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,11 +31,9 @@ root.render(
         {/* </Route> */}
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Filter/:D/:A/:B" element={<FilterPage />} />
+        <Route path="/Filter/" element={<FilterPage />} />
+        <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/card" element={<Card />} />
-        <Route path="/coba" element={<Coba />} />
-        <Route path="/coba" element={<Coba />} />
-        <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
       </Routes>
     </BrowserRouter>
   </Provider>
