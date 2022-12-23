@@ -15,6 +15,7 @@ import LoginPage from "./pages/LoginPage";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
+import DetailPromoPage from "./pages/DetailPromoPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,16 +24,18 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         {/* <Route element={<PrivateRoutes />}> */}
-          <Route path="/notification" element={<NotificationPage />} />
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/Booking/:id" element={<BookingPage />} />
-          <Route path="/checkin" element={<CheckInPage />} />
+        <Route path="/notification" element={<NotificationPage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/Booking/:id" element={<BookingPage />} />
+        <Route path="/checkin" element={<CheckInPage />} />
         {/* </Route> */}
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Filter/:D/:A/:B" element={<FilterPage />} />
         <Route path="/card" element={<Card />} />
         <Route path="/coba" element={<Coba />} />
+        <Route path="/coba" element={<Coba />} />
+        <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
       </Routes>
     </BrowserRouter>
   </Provider>

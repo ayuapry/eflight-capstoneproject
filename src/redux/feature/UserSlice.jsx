@@ -65,26 +65,12 @@ export const getCity = createAsyncThunk(
     }
 )
 
-export const getPromo = createAsyncThunk(
-    'user/getPromo',
-    async () => {
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/promobanner/all`)
-            console.log(res)
-            return res.data.data.content
-        } catch (err) {
-            console.log(err)
-        }
-    }
-)
-
 export const UserSlice = createSlice({
     name: "auth",
     initialState: {
         profile: [],
         editProfile: [],
         city: [],
-        promo: [],
         loading: false,
     },
     reducers: {},
@@ -118,18 +104,7 @@ export const UserSlice = createSlice({
         },
         [getCity.rejected]: (state) => {
             state.loading = false
-        },
-        [getPromo.pending]: (state) => {
-            state.loading = true
-        },
-        [getPromo.fulfilled]: (state, { payload }) => {
-            state.loading = false
-            state.promo = payload
-        },
-        [getPromo.rejected]: (state) => {
-            state.loading = false
-        },
-
+        }
     }
 })
 

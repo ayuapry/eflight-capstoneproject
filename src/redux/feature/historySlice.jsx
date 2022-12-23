@@ -48,7 +48,7 @@ export const historySlice = createSlice({
     },
     reducers: {},
     extraReducers: {
-      //tiket
+      //history
       [getHistory.fulfilled]: (state, { payload }) => {
         state.history = payload;
       },
