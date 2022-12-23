@@ -21,16 +21,15 @@ export const NotificationPage = () => {
   <div className='h-screen bg-slate-100'>
     <ScrollToTop />
     <Navbar />
-    <div className='max-w-[1240px] mx-auto md:px-14 bg-slate-100 '>
+    <div className='max-w-[1240px] mx-auto px-5 md:px-14 bg-slate-100 '>
       <div className='pt-[100px] h-screen'>
-        <button className='font-semibold text-white text-xl mb-5 bg-blue-600 hover:bg-blue-300  px-4 py-1 rounded-[100px]'>All Notification</button>
+        <div className='font-semibold text-blue-600 text-xl mb-5 bg-yellow-400 w-fit px-4 py-1 rounded-[100px]'>All Notification</div>
         {notification?.notifications.slice(0,3).map((e, i) => (
         <div key={i} className=' pb-5 '> 
           <article className='border-b-2 border-white bg-blue-600 shadow-md rounded-md '>
             <div className='flex gap-5 items-center'>
               <div className=" mb-4 space-x-4 mt-5">
                 <SpeakerWaveIcon className='h-16 w-16 text-white mx-5' />
-                {/* <img className="w-[200px] h-[100px] object-contain rounded-full" src='https://th.bing.com/th/id/R.9d32bec8058bd3595a63a08a8cc12ade?rik=9cCTin36GLU%2f5w&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_87237.png&ehk=hVpH%2bC7rwlA1j2KqxGpMs1sp9l0RgM0jjRJsJsvDoPc%3d&risl=&pid=ImgRaw&r=0' alt="" /> */}
               </div>
               <div className='mt-5'>
                 <p className="mb-2 text-semibold text-white">{e?.title}</p>

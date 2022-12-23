@@ -116,7 +116,7 @@ const Card = () => {
 
     const onFinishOne = (values) => {
         dispatch(getTiket(values))
-        navigate(`/Filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`, {state: {D : countD, A: countA, B: countB }})
+        navigate(`/filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${selectRadio === 'RoundTrip' ? calendarGo : "NA"}&ps=${countD}.${countA}.${countB}&sc=${selectClass}`, {state: {D : countD, A: countA, B: countB }})
         console.log(values)
     };
     
@@ -139,11 +139,11 @@ const Card = () => {
                 src={Logo} 
                 alt="BinarLogo" />
                 <h1
-                    className='fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0'>
+                    className='fontMont text-[1.3rem] text-black font-extrabold  px-[0.5rem] mb-0'>
                     Find Flights Tickets
                 </h1>
                 </div>
-                <Link to='/checkin' className='flex cursor-pointer' >
+                <Link to='/checkin' className='hidden md:flex cursor-pointer' >
                     <p className='hidden md:flex text-blue-600 font-semibold hover:text-blue-400'>Check-In Here</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.4} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" color='blue' />

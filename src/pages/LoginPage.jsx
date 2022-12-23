@@ -82,7 +82,7 @@ export default function LoginPage() {
                     <ButtonBorder title="Login With Google" img={googleIcon}/>
                     <div className='flex'>
                     <p className='mr-2 mt-4 mb-0 text-slate-700'>Don't have an accout?</p>
-                    <a href className='text-sky-600 mt-4 mb-0 hover:font-bold hover:text-sky-500' onClick={() => navigate(`/Register`)}> Register </a>
+                    <a href className='text-sky-600 mt-4 mb-0 hover:font-bold hover:text-sky-500' onClick={() => navigate(`/register`)}> Register </a>
                     </div>
                   </Form.Item>
               </Form>

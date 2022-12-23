@@ -63,7 +63,7 @@ export const Navbar = () => {
                   <Dropdown menu={{items,}} placement="bottom" arrow >
                     <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" /> 
                   </Dropdown> :
-                  <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" onClick={()=>navigate("/Login")} />
+                  <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="profile" onClick={()=>navigate("/login")} />
                 }
                 </div>
                 <a href='/' className='flex items-center'>
@@ -133,7 +133,7 @@ export const Navbar = () => {
                         {
                           token ? 
                           <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="" /> :
-                          <ButtonPrimary title="Login" click={() => navigate("/Login")}/>
+                          <ButtonPrimary title="Login" click={() => navigate("/login")}/>
                         }
                     </Dropdown>
                 </div>

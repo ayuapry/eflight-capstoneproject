@@ -93,7 +93,7 @@ export default function Detail() {
           <div className='lg:-mt-2 lg:block ml-4 lg:ml-0'>
           <h1 className='font-bold lg:text-lg text-sm'>{numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)} / <span className='lg:text-sm text-xs font-normal pt-0'>pax</span></h1>
           <div className='w-32 mr-0 ml-auto'>
-          <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}`, {state:{tiket: tiket, passenger : Passenger, total: `${(tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)}`}})}/>
+          <ButtonPrimary title="SELECT" click={()=>navigate(`/booking/${tiket.aircraft.id}`, {state:{tiket: tiket, passenger : Passenger, total: `${(tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)}`}})}/>
           </div>
           </div>
           </div>
@@ -300,7 +300,7 @@ export default function Detail() {
             <div className='flex justify-between items-center lg:hidden'>
               <p className='font-medium mb-0'>Total <br /> <span className='text-base font-medium'>{numberFormat((tiket.price.amount * Passenger.D) + (tiket.price.amount * Passenger.A) + (tiket.price.amount * Passenger.B)).slice(0,-3)}</span></p>
               <div className='w-fit'>
-              <ButtonPrimary title="SELECT" click={()=>navigate(`/Booking/${tiket.aircraft.id}`, {state:{total:`${tiket.price.amount}`}})} className='text-sm lg:text-base'/>
+              <ButtonPrimary title="SELECT" click={()=>navigate(`/booking/${tiket.aircraft.id}`, {state:{total:`${tiket.price.amount}`}})} className='text-sm lg:text-base'/>
               </div>
             </div>
       </Drawer>

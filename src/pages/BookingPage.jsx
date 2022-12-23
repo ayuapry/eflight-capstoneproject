@@ -6,10 +6,7 @@ import { SecondFooter } from '../components/SecondFooter';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBagage, getBenefit, getSeat, getTitel } from '../redux/feature/BookingSlice';
 import ButtonPrimary from '../components/ButtonPrimary';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { GiHandBag} from 'react-icons/gi'
-import { AiOutlineAppstoreAdd } from 'react-icons/ai'
-import { MdEventSeat} from 'react-icons/md'
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { SeatModal } from '../components/SeatModal';
 import Logo from '../assets/Logo.png';
 import format from 'date-fns/format'
@@ -30,6 +27,7 @@ export const BookingPage = (props) => {
     dispatch(getBenefit(id))
     dispatch(getSeat(id))
   },[dispatch, id]); 
+  console.log(benefit)
     
   const location = useLocation();
   console.log(location)
@@ -46,19 +44,9 @@ export const BookingPage = (props) => {
   const countPass = pass.A + pass.B + pass.D
   console.log(countPass)
   
-  const token = localStorage.getItem('token')
+  // const token = localStorage.getItem('token')
 
-  function ValidateForm()
-{
-    if(token)
-    {
-        return true;
-    }
-    else
-    {
-        return <LoginPage />;
-    }
-}
+
   return (
      // <div>
     // {(token) ? 
@@ -66,7 +54,6 @@ export const BookingPage = (props) => {
     <Navbar />
     <div className='max-w-[1240px] mx-auto md:px-14 bg-slate-100 '>
         <div className='grid md:grid-cols md:grid-cols-[60%_40%] gap-2 py-5'>
-          <div>
             <div className='bg-white mt-20 rounded-md shadow-md py-5 px-5'>
               <div className='flex items-center gap-3'>
                   <UsersIcon className='h-7 w-7' />
@@ -147,6 +134,7 @@ export const BookingPage = (props) => {
                   </Form.Item>
 
                 </div>
+                <div className='flex gap-2'>
                   <Form.Item style={{width:'49%'}} >
                   <Select placeholder='Seat'>
                     {seat?.map((e,i) => (
@@ -155,11 +143,22 @@ export const BookingPage = (props) => {
                   </Select>
                   <span className='text-xs text-gray-400'>Choose your seat</span>
                 </Form.Item>
+
+                <Form.Item style={{width:'49%'}} >
+                  <Select placeholder='Baggage'>
+                    {bagage?.map((e,i) => (
+                      <Select.Option key={i} >{e?.weight}kg - Rp {e?.price},-</Select.Option>
+                    ))}
+                  </Select>
+                  <span className='text-xs text-gray-400'>Increase the capacity of your luggage</span>
+                </Form.Item>
+                </div>
+
               </Form>
               </>
               )})}
               </div>
-
+{/* 
             <div className='bg-white shadow-lg rounded-md mt-5 py-5 px-3'>
             <div className='flex items-center gap-3'>
                 <AiOutlineAppstoreAdd size={30} />
@@ -195,8 +194,7 @@ export const BookingPage = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
-      </div>
+        </div> */}
       <div className='bg-white rounded-md shadow-md md:mt-20 px-5 py-5 md:h-fit'>
         <div className='text-lg font-semibold'>Flight</div>
 
@@ -233,7 +231,7 @@ export const BookingPage = (props) => {
           <h2>Total Payment</h2>
           <h2 className='text-blue-600'>{numberFormat(total).slice(0,-3)}</h2>
         </div>
-        <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }>
+        <div className='max-w-7xl'  onClick={() => navigate(`/history?sort=DESC`) }>
           <ButtonPrimary onClick='return validateform()' type="submit" title="Booking Now" className='w-fit'/>
         </div>
       </div>
