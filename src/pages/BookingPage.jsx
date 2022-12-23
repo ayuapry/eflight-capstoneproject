@@ -13,6 +13,7 @@ import { MdEventSeat} from 'react-icons/md'
 import { SeatModal } from '../components/SeatModal';
 import Logo from '../assets/Logo.png';
 import format from 'date-fns/format'
+import LoginPage from './LoginPage'
 
 export const BookingPage = (props) => {
   const {titel, bagage, benefit, seat } = useSelector((state) => state.booking);
@@ -45,7 +46,19 @@ export const BookingPage = (props) => {
   const countPass = pass.A + pass.B + pass.D
   console.log(countPass)
   
-  // const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token')
+
+  function ValidateForm()
+{
+    if(token)
+    {
+        return true;
+    }
+    else
+    {
+        return <LoginPage />;
+    }
+}
   return (
      // <div>
     // {(token) ? 
@@ -221,7 +234,7 @@ export const BookingPage = (props) => {
           <h2 className='text-blue-600'>{numberFormat(total).slice(0,-3)}</h2>
         </div>
         <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }>
-          <ButtonPrimary type="submit" title="Booking Now" className='w-fit'/> 
+          <ButtonPrimary onClick='return validateform()' type="submit" title="Booking Now" className='w-fit'/>
         </div>
       </div>
     </div>

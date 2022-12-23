@@ -14,7 +14,7 @@ export const getProfile = createAsyncThunk(
             }
             )
             // localStorage.setItem("id",(res.data.data.id))
-            console.log(res.data.data)
+            // console.log(res.data.data)
             return res.data.data
         } catch (error) {
             console.error(error)
@@ -57,7 +57,7 @@ export const getCity = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/city/all ")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)
@@ -71,7 +71,7 @@ export const getPromo = createAsyncThunk(
         try {
             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/promobanner/all`)
             console.log(res)
-            return res.data.data.content
+            // return res.data.data.content
         } catch (err) {
             console.log(err)
         }
