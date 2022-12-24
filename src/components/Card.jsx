@@ -7,7 +7,6 @@ import {
   TbCalendarStats,
 } from "react-icons/tb";
 import {
-  BiSearchAlt,
   BiChevronDown,
   BiPlusCircle,
   BiMinusCircle,
@@ -21,7 +20,6 @@ import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCountry,
@@ -30,12 +28,8 @@ import {
   getTiket,
 } from "../redux/feature/homeSlice";
 import ButtonPrimary from "./ButtonPrimary";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const Card = () => {
-  // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
-  // const AgeCategory = "https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all"
-
   const { country, age, cabinClass } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
 
@@ -135,10 +129,6 @@ const Card = () => {
       }&ps=${countD}.${countA}.${countB}&sc=${selectClass}`,
       { state: { D: countD, A: countA, B: countB } }
     );
-    console.log(values);
-  };
-
-  const onFinishRound = (values) => {
     console.log(values);
   };
 
@@ -691,7 +681,7 @@ const Card = () => {
         </div>
 
         <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer">
-          <div className="w-fit">
+          <div className="w-full md:w-fit">
             <ButtonPrimary
               title="SEARCH FLIGHTS"
               click={() => {

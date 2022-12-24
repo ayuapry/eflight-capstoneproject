@@ -35,7 +35,7 @@ const AllPromo = () => {
                                                 {e?.title}
                                             </h1>
                                             <div  className='mt-2 w-full'>
-                                                <ButtonPrimary title="View Detail" key={e.id} click={() => seeMore(e.id)}/>
+                                                <ButtonPrimary title="VIEW DETAIL" key={e.id} click={() => seeMore(e.id)}/>
                                             </div>
                                         </div>
                                     </div>
