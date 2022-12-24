@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react'
 import { getHistory } from '../redux/feature/historySlice'
 import { data } from 'autoprefixer'
 import ScrollToTop from '../components/ScrollToTop'
+import Swal from 'sweetalert2'
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -38,12 +39,20 @@ export const HistoryPage = () => {
         dispatch(getHistory())
     },[dispatch, id]); 
     
-    const logout = async () => {
-        localStorage.clear();
-        navigate('/')
-        setTimeout(function () {
-            window.location.reload(1);
-          }, 1500);
+    const logout = () => {
+        Swal.fire({
+          title: 'Do you want to Log Out?',
+          showDenyButton: true,
+          confirmButtonText: 'Yes',
+          denyButtonText: `No`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            localStorage.clear();
+            navigate('/');
+          } else if (result.isDenied) {
+            Swal.fire('Log Out Failed!', '', 'info');
+          }
+        });
       };
     console.log(history);
 
@@ -119,9 +128,9 @@ export const HistoryPage = () => {
                                     Order ID: {histo.bookingId}
                                 </p>
 
-                                {histo?.departure?.data.map(city => (
+                                {histo?.departure?.data.map((city, i) => (
                                     <>
-                                        <div className='flex gap-2 font-semibold'>
+                                        <div key={i} className='flex gap-2 font-semibold'>
                                             <p>{city.schedule.originAirport.city}</p>
                                             <BsArrowLeftRight />
                                             <p>{city.schedule.destinationAirport.city}</p>

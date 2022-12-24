@@ -60,6 +60,7 @@ export const getCabinClass = createAsyncThunk(
   }
 )
 
+
 export const getTiket = createAsyncThunk(
   'tiket/getTiket',
   async (values) => {

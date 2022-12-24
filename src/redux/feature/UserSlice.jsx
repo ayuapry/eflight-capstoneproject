@@ -14,7 +14,7 @@ export const getProfile = createAsyncThunk(
             }
             )
             // localStorage.setItem("id",(res.data.data.id))
-            console.log(res.data.data)
+            // console.log(res.data.data)
             return res.data.data
         } catch (error) {
             console.error(error)
@@ -57,13 +57,15 @@ export const getCity = createAsyncThunk(
     async () => {
         try {
             const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/city/all ")
-            console.log(res)
+            // console.log(res)
             return res.data.data
         } catch (err) {
             console.log(err)
         }
     }
 )
+
+
 
 export const UserSlice = createSlice({
     name: "auth",
@@ -104,7 +106,7 @@ export const UserSlice = createSlice({
         },
         [getCity.rejected]: (state) => {
             state.loading = false
-        }
+        },
     }
 })
 

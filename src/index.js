@@ -13,12 +13,12 @@ import Card from "./components/Card";
 import { FilterPage } from "./pages/FilterPage";
 import LoginPage from "./pages/LoginPage";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
-import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
 import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
+import { DetailArticle } from "./pages/DetailArticle";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,17 +29,18 @@ root.render(
         {/* <Route element={<PrivateRoutes />}> */}
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/history" element={<HistoryPage />} />
-        <Route path="/Booking/:id" element={<BookingPage />} />
+        <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/checkin" element={<CheckInPage />} />
         {/* </Route> */}
-        <Route path="/Register" element={<RegisterPage />} />
-        <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Filter/" element={<FilterPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/filter/" element={<FilterPage />} />
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
         <Route path="/detailpromo/:id" element={<DetPromoPage />} />
         <Route path="/allpromo" element={<AllPromo />} />
         <Route path="/card" element={<Card />} />
+        <Route path="/detail-places/:id" element={<DetailArticle />} />
       </Routes>
     </BrowserRouter>
   </Provider>
