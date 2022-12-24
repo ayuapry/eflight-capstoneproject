@@ -71,7 +71,7 @@ export const CancelCheckinPage = () => {
                 </Form.Item>
                 <div className="flex justify-end">
                   <div className="w-[30%]">
-                    <ButtonPrimary type="submit" title="Check In" />
+                    <ButtonPrimary type="submit" title="Cancel CheckIn Now" />
                   </div>
                 </div>
               </Form>
