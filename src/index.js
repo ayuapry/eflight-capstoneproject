@@ -17,6 +17,7 @@ import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
 import { DetailArticle } from "./pages/DetailArticle";
+import { CancelCheckinPage } from "./pages/CancelCheckinPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -37,6 +38,7 @@ root.render(
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
         <Route path="/card" element={<Card />} />
         <Route path="/detail-places/:id" element={<DetailArticle />} />
+        <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
       </Routes>
     </BrowserRouter>
   </Provider>
