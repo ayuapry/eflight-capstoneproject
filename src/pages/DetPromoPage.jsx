@@ -1,13 +1,10 @@
-import { data } from 'autoprefixer';
 import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
-import Pagination from '../components/Pagination';
 import { getDetPromo } from '../redux/feature/promoSlice';
 import  promoImg from '../assets/promo4.png'
-import { GrFormNextLink } from 'react-icons/gr'
 import ButtonPrimary from '../components/ButtonPrimary';
 
 const DetPromoPage = () => {

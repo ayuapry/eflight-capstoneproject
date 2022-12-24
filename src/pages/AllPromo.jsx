@@ -21,17 +21,15 @@ const AllPromo = () => {
         <Navbar />
         <div className='min-h-screen'>
             <div className='w-full md:max-w-[1240px] mx-auto px-4 md:px-14 bg-slate-100 pt-[30px] md:pt-[65px]'>
-                
-                {/* <div className='grid md:grid-cols md:grid-cols-[65%_35%] gap-2 py-5'> */}
                 <div className='h-full md:h-[80vh]'>
                     <div className='flex flex-col md:grid gap-2 md:gap-4 md:grid-cols-2 rounded-md md:max-w-[1240px] md:mx-auto pt-10'>
                         {pagination && pagination.map((e) => {
                             return (
                                 <div key={e.id} className="haii w-full md:max-w-7xl bg-white shadow-md p-3 md:p-5 rounded-md mb-0">
                                     <div className='hidden md:grid md:grid-rows md:grid-cols-[45%_55%] gap-2'>
-                                            <div className='imgDet w-full flex items-center justify-center'>
-                                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
-                                            </div>
+                                        <div className='imgDet w-full flex items-center justify-center'>
+                                            <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
+                                        </div>
                                         <div className='hidden md:flex flex-col justify-center items-start pl-2 pr-5'>
                                             <h1 className='text-[1rem] font-semibold mb-0 leading-relaxed text-justify '>
                                                 {e?.title}
@@ -41,12 +39,12 @@ const AllPromo = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
+        
                                     {/* mobile */}
                                     <Link className='flex md:hidden' to={`/detailpromo/${e?.id}`}>
-                                            <div className='imgDet w-full flex items-center justify-center'>
-                                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
-                                            </div>
+                                        <div className='imgDet w-full flex items-center justify-center'>
+                                            <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
+                                        </div>
                                     </Link>
                                 </div>
                             )
@@ -62,6 +60,5 @@ const AllPromo = () => {
     </div>
   )
 }
-
 
 export default AllPromo

@@ -8,22 +8,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getPromo } from '../redux/feature/promoSlice'
 import { useState } from 'react'
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 // import required modules
 import { Pagination, Navigation } from "swiper";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-
 import { Link, useNavigate } from 'react-router-dom'
 import ButtonPrimary from './ButtonPrimary'
 import axios from 'axios'
