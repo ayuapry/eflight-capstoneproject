@@ -138,7 +138,7 @@ export default function RegisterPage() {
                 />
               </Form.Item>
 
-              <ButtonPrimary type="submit" title="Register Now" />
+              <ButtonPrimary type="submit" title="REGISTER NOW" />
               <div className="flex mb-6">
                 <p className="mr-2 mt-4 mb-0 text-slate-700">Have an accout?</p>
                 <a

@@ -16,6 +16,8 @@ import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
+import DetPromoPage from "./pages/DetPromoPage";
+import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
 import { CancelCheckinPage } from "./pages/CancelCheckinPage";
 
@@ -36,6 +38,8 @@ root.render(
         <Route path="/filter/" element={<FilterPage />} />
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
+        <Route path="/detailpromo/:id" element={<DetPromoPage />} />
+        <Route path="/allpromo" element={<AllPromo />} />
         <Route path="/card" element={<Card />} />
         <Route path="/detail-places/:id" element={<DetailArticle />} />
         <Route path="/cancel-checkin" element={<CancelCheckinPage />} />

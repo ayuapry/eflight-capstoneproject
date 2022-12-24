@@ -133,7 +133,7 @@ export const Navbar = () => {
                         {
                           token ? 
                           <img className="h-8 w-8 rounded-full bg-gray-400 p-1" src={userIcon} alt="" /> :
-                          <ButtonPrimary title="Login" click={() => navigate("/login")}/>
+                          <ButtonPrimary title="LOGIN" click={() => navigate("/login")}/>
                         }
                     </Dropdown>
                 </div>

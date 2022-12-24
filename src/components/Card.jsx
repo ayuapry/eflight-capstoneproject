@@ -7,12 +7,12 @@ import {
   TbCalendarStats,
 } from "react-icons/tb";
 import {
-  BiSearchAlt,
   BiChevronDown,
   BiPlusCircle,
   BiMinusCircle,
 } from "react-icons/bi";
 import { RiCloseFill } from "react-icons/ri";
+import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { ImManWoman } from "react-icons/im";
 import { BsBuilding } from "react-icons/bs";
 import { FaBabyCarriage, FaChild } from "react-icons/fa";
@@ -21,7 +21,6 @@ import format from "date-fns/format";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCountry,
@@ -30,12 +29,8 @@ import {
   getTiket,
 } from "../redux/feature/homeSlice";
 import ButtonPrimary from "./ButtonPrimary";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const Card = () => {
-  // const ApiCountry = "https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all"
-  // const AgeCategory = "https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all"
-
   const { country, age, cabinClass } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
 
@@ -138,10 +133,6 @@ const Card = () => {
     console.log(values);
   };
 
-  const onFinishRound = (values) => {
-    console.log(values);
-  };
-
   return (
     <div
       id="Booking"
@@ -152,12 +143,12 @@ const Card = () => {
         <div className="TitleCard flex justify-between flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]">
           <div className="flex items-center">
             <img className="w-[3rem]" src={Logo} alt="BinarLogo" />
-            <h1 className="fontMont text-[1.3rem] text-black font-extrabold px-[0.5rem] mb-0">
+            <h1 className="text-[1.8rem] px-[0.5rem] mb-0">
               Find Flights Tickets
             </h1>
           </div>
           <Link to="/checkin" className="flex cursor-pointer">
-            <p className="hidden md:flex text-blue-600 font-semibold hover:text-blue-400">
+            <p className="hidden md:flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
               Check-In Here
             </p>
             <svg
@@ -190,7 +181,7 @@ const Card = () => {
                 value="OneWay"
                 className="cursor-pointer"
               />
-              <label htmlFor="OneWay" className="p-2 mr-5 cursor-pointer">
+              <label htmlFor="OneWay" className="p-2 mr-5 cursor-pointer font-semibold">
                 One Way
               </label>
             </div>
@@ -211,7 +202,7 @@ const Card = () => {
               />
               <label
                 htmlFor="RpundTrip"
-                className="p-2 cursor-pointer fontMont"
+                className="p-2 cursor-pointer font-semibold"
               >
                 RoundTrip
               </label>
@@ -223,7 +214,7 @@ const Card = () => {
           <div className="flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-blue-200 md:py-2">
             <div className="flex w-full flex-col md:flex-row md:items-center md:pr-[4rem] mb-3 md:mb-0">
               <div className="FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black">
-                <h2 className="fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]">
+                <h2 className="text-[0.9rem] font-semibold hidden md:flex py-[0.2rem]">
                   From
                 </h2>
                 <div className="relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear md:mr-[1rem]">
@@ -237,8 +228,8 @@ const Card = () => {
                     }}
                     className="flex flex-row items-center py-[0.2rem] px-[0.5rem]"
                   >
-                    <TbPlaneDeparture className="mr-3 text-[1.5rem] text-black" />
-                    <p className="fontMont text-[0.9rem] w-full wmd:w-40 md:truncate mb-0">
+                    <TbPlaneDeparture className="mr-3 text-[1.5rem] text-blue-600 " />
+                    <p className="text-[0.9rem] w-full wmd:w-40 md:truncate mb-0">
                       {selectCity ? selectCity : "City or Airport"}
                     </p>
                   </div>
@@ -250,7 +241,7 @@ const Card = () => {
                     <ul className="overflow-y-auto w-full h-full">
                       <div className="flex border-b-2 border-blue-600 px-2 w-full flex-row justify-between items-center bg-white sticky top-0">
                         <input
-                          className="fontMont text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black"
+                          className="text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black"
                           type="text"
                           value={inputCity}
                           placeholder="Select City or Airport"
@@ -288,15 +279,15 @@ const Card = () => {
                             <div className="flex flex-row">
                               <BsBuilding className="mr-3 text-[1.2rem] text-blue-600" />
                               <div className="flex flex-col">
-                                <h2 className="fontMont text-[0.8rem] font-semibold">
+                                <h2 className="text-[0.8rem] font-semibold">
                                   {e?.city},{e?.country}
                                 </h2>
-                                <h3 className="fontMont text-[0.7rem]">
+                                <h3 className="text-[0.7rem]">
                                   {e?.name}
                                 </h3>
                               </div>
                             </div>
-                            <h4 className="fontMont text-[0.6rem] text-gray-400 bg-gray-200 p-1 rounded-md w-[2.5rem] flex justify-center">
+                            <h4 className="text-[0.6rem] text-gray-400 bg-gray-200 p-1 rounded-md w-[2.5rem] flex justify-center">
                               {e?.iata}
                             </h4>
                           </div>
@@ -308,7 +299,7 @@ const Card = () => {
               </div>
 
               <div className="ToWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black">
-                <h2 className="fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]">
+                <h2 className="text-[0.9rem] font-semibold hidden md:flex py-[0.2rem]">
                   To
                 </h2>
                 <div className="relative flex flex-col cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear">
@@ -322,8 +313,8 @@ const Card = () => {
                     }}
                     className="flex flex-row items-center py-[0.2rem] px-[0.5rem]"
                   >
-                    <TbPlaneInflight className="mr-3 text-[1.5rem] text-black" />
-                    <p className="fontMont text-[0.9rem] w-full md:w-40 md:truncate mb-0">
+                    <TbPlaneInflight className="mr-3 text-[1.5rem] text-blue-600 " />
+                    <p className="text-[0.9rem] w-full md:w-40 md:truncate mb-0">
                       {selectCityTo ? selectCityTo : "Going Anywhere?"}
                     </p>
                   </div>
@@ -335,7 +326,7 @@ const Card = () => {
                     <ul className="overflow-y-auto w-full h-full">
                       <div className="flex border-b-2 border-blue-600 px-2 w-full flex-row justify-between items-center bg-white sticky top-0">
                         <input
-                          className="fontMont text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black"
+                          className="text-[0.9rem] w-full  p-2 focus:outline-none  outline-[#0099b7] text-black"
                           type="text"
                           value={inputCityTo}
                           placeholder="Going Anywhere?"
@@ -375,15 +366,15 @@ const Card = () => {
                             <div className="flex flex-row">
                               <BsBuilding className="mr-3 text-[1.2rem] text-blue-600" />
                               <div className="flex flex-col">
-                                <h2 className="fontMont text-[0.8rem] font-semibold">
+                                <h2 className="text-[0.8rem] font-semibold">
                                   {e?.city}, {e?.country}
                                 </h2>
-                                <h3 className="fontMont text-[0.7rem]">
+                                <h3 className="text-[0.7rem]">
                                   {e?.name}
                                 </h3>
                               </div>
                             </div>
-                            <h4 className="fontMont text-[0.6rem] text-gray-400 bg-gray-200 p-1 rounded-md w-[2.5rem] flex justify-center">
+                            <h4 className="text-[0.6rem] text-gray-400 bg-gray-200 p-1 rounded-md w-[2.5rem] flex justify-center">
                               {e?.iata}
                             </h4>
                           </div>
@@ -400,17 +391,16 @@ const Card = () => {
               <div className="DateWrap flex flex-col md:flex-row md:items-center mb-3 md:mb-1 w-full md:pr-[4rem] text-black">
                 {/* OneWay */}
                 <div className="flex flex-col mb-3 md:mb-0 md:w-[50%]">
-                  <h2 className="fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem]">
+                  <h2 className="text-[0.9rem] font-semibold hidden md:flex py-[0.2rem]">
                     Departure
                   </h2>
                   <div className="relative flex flex-col justify-center md:mr-[1rem]">
                     <div
                       ref={refOne}
-                      className="tranform flex flex-row cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem]"
-                    >
-                      <TbCalendarEvent className="mr-3 text-[1.5rem] text-black" />
+                      className="tranform flex flex-row cursor-pointer border-b-2 border-blue-400 hover:border-blue-600 transition-all duration-[0.2s] ease-linear py-[0.2rem] px-[0.5rem]">
+                      <TbCalendarEvent className="mr-3 text-[1.5rem] text-blue-600"/>
                       <input
-                        className="inputBox outline-none bg-transparent cursor-pointer"
+                        className="inputBox outline-none bg-transparent cursor-pointer w-full"
                         value={calendar}
                         readOnly
                         onClick={() => {
@@ -450,7 +440,7 @@ const Card = () => {
                         )
                       }
                     />
-                    <h2 className="fontMont text-[0.9rem] font-bold hidden md:flex flex-col md:flex-row select-none">
+                    <h2 className="text-[0.9rem] font-semibold hidden md:flex flex-col md:flex-row select-none">
                       Return
                     </h2>
                   </div>
@@ -464,9 +454,9 @@ const Card = () => {
                                             : "border-blue-400 hover:border-blue-600"
                                         }`}
                     >
-                      <TbCalendarStats className="mr-3 text-[1.5rem] text-black" />
+                      <TbCalendarStats className="mr-3 text-[1.5rem] text-blue-600" />
                       <input
-                        className={`inputBox outline-none  disabled:opacity-30 bg-transparent cursor-pointer
+                        className={`inputBox outline-none  disabled:opacity-30 bg-transparent cursor-pointer w-full
                                             ${
                                               selectRadio !== "RoundTrip"
                                                 ? "opacity-70"
@@ -502,7 +492,7 @@ const Card = () => {
 
           <div className="AirClass flex flex-col w-full md:w-[50%]  md:pl-[4rem] py-2">
             <div className="jPenumpang">
-              <h2 className="fontMont text-[0.9rem] font-bold hidden md:flex py-[0.2rem] text-black">
+              <h2 className="text-[0.9rem] font-semibold hidden md:flex py-[0.2rem] text-black">
                 Passenger & Cabin Class
               </h2>
             </div>
@@ -518,10 +508,13 @@ const Card = () => {
                   setOpenDateGo(false);
                 }}
               >
-                <p className="fontMont text-[0.9rem] mb-0">
+                <div className="flex flex-row items-center">
+                <MdOutlineAirlineSeatReclineNormal className="mr-3 text-[1.5rem] text-blue-600"/>
+                <p className="text-[0.9rem] mb-0">
                   {display ? display : "Jumlah Penumpang"}
                   {selectClass ? selectClass : " Select Cabin Class"}
                 </p>
+                </div>
                 <BiChevronDown className="text-[1.5rem] cursor-pointer text-blue-400 hover:text-blue-600" />
               </div>
 
@@ -535,8 +528,8 @@ const Card = () => {
                     openClass ? "flex" : "hidden"
                   }`}
                 >
-                  <div className="fontMont text-[0.9rem] font-bold hidden md:flex flex-row items-center justify-between sticky top-0 my-3 md:my-1">
-                    <p className="mb-0">Passenger</p>
+                  <div className="text-[0.9rem] font-semibold hidden md:flex flex-row items-center justify-between sticky top-0 my-3 md:my-1">
+                    <p className="mb-0 font-normal">Passenger</p>
                     <RiCloseFill
                       className="text-[1.5rem] cursor-pointer lg:text-transparent lg:hover:text-transparent text-gray-300 hover:text-blue-600"
                       onClick={() => {
@@ -554,12 +547,12 @@ const Card = () => {
                     className="flex flex-row justify-between"
                   >
                     <div className="flex flex-row items-center py-[0.2rem] px-[0.5rem]">
-                      <ImManWoman className="text-[2rem] mr-3 text-blue-600" />
+                      <ImManWoman className="text-[1.3rem] mr-3 text-blue-600 w-[1.5rem]" />
                       <div className="flex flex-col">
-                        <h1 className="fontMont text-[0.9rem] font-bold mb-0 leading-loose">
+                        <h1 className="text-[0.9rem] font-semibold mb-0 leading-loose">
                           {age[0]?.categoryName}
                         </h1>
-                        <h2 className="fontMont text-[0.7rem] text-gray-500 mb-0">
+                        <h2 className="text-[0.7rem] text-gray-500 mb-0">
                           {age[0]?.description}
                         </h2>
                       </div>
@@ -572,7 +565,7 @@ const Card = () => {
                       >
                         <BiMinusCircle />
                       </button>
-                      <h2 className="fontMont mb-0 font-bold">{countD}</h2>
+                      <h2 className="mb-0 font-semibold">{countD}</h2>
                       <button
                         className="cursor-pointer ml-2 hover:text-blue-600"
                         onClick={() => setCountD(countD + 1)}
@@ -587,12 +580,12 @@ const Card = () => {
                     className="flex flex-row justify-between"
                   >
                     <div className="flex flex-row items-center py-[0.2rem] px-[0.5rem]">
-                      <FaChild className="text-[1.5rem] mr-3 text-blue-600" />
+                      <FaChild className="text-[1.2rem] mr-3 text-blue-600 w-[1.5rem]" />
                       <div className="flex flex-col">
-                        <h1 className="fontMont text-[0.9rem] font-bold mb-0 leading-loose">
+                        <h1 className="text-[0.9rem] font-semibold mb-0 leading-loose">
                           {age[1]?.categoryName}
                         </h1>
-                        <h2 className="fontMont text-[0.7rem] text-gray-500 mb-0">
+                        <h2 className="text-[0.7rem] text-gray-500 mb-0">
                           {age[1]?.description}
                         </h2>
                       </div>
@@ -605,7 +598,7 @@ const Card = () => {
                       >
                         <BiMinusCircle />
                       </button>
-                      <h2 className="fontMont mb-0 font-bold">{countA}</h2>
+                      <h2 className="mb-0 font-semibold">{countA}</h2>
                       <button
                         className="cursor-pointer ml-2 hover:text-blue-600"
                         onClick={() => setCountA(countA + 1)}
@@ -620,12 +613,12 @@ const Card = () => {
                     className="flex flex-row justify-between"
                   >
                     <div className="flex flex-row items-center py-[0.2rem] px-[0.5rem]">
-                      <FaBabyCarriage className="text-[1.5rem] mr-3 text-blue-600" />
+                      <FaBabyCarriage className="text-[1.2rem] mr-3 text-blue-600 w-[1.5rem]" />
                       <div className="flex flex-col">
-                        <h1 className="fontMont text-[0.9rem] font-bold mb-0 leading-loose">
+                        <h1 className="text-[0.9rem] font-semibold mb-0 leading-loose">
                           {age[2]?.categoryName}
                         </h1>
-                        <h2 className="fontMont text-[0.7rem] text-gray-500 mb-0">
+                        <h2 className="text-[0.7rem] text-gray-500 mb-0">
                           {age[2]?.description}
                         </h2>
                       </div>
@@ -638,7 +631,7 @@ const Card = () => {
                       >
                         <BiMinusCircle />
                       </button>
-                      <h2 className="fontMont mb-0 font-bold">{countB}</h2>
+                      <h2 className="mb-0 font-semibold">{countB}</h2>
                       <button
                         className="cursor-pointer ml-2 hover:text-blue-600"
                         onClick={() => setCountB(countB + 1)}
@@ -652,10 +645,10 @@ const Card = () => {
 
                 <div className="w-full md:w-[45%]">
                   <ul
-                    className={`fontMont flex flex-row md:flex-col flex-wrap justify-center md:justify-start text-[0.9rem] bg-white py-[0.5rem] px-[0.5rem] mb-0 overflow-y-auto w-full h-full`}
+                    className={`flex flex-row md:flex-col flex-wrap justify-center md:justify-start text-[0.9rem] bg-white py-[0.5rem] px-[0.5rem] mb-0 overflow-y-auto w-full h-full`}
                   >
-                    <div className="fontMont text-[0.9rem] font-bold hidden md:flex flex-row items-center justify-between sticky top-0 my-3 md:my-1">
-                      <p className="mb-0">Cabin Class</p>
+                    <div className="text-[0.9rem] font-semibold hidden md:flex flex-row items-center justify-between sticky top-0 my-3 md:my-1">
+                      <p className="mb-0 font-normal">Cabin Class</p>
                       <RiCloseFill
                         className="text-[1.5rem] cursor-pointer text-transparent md:text-gray-300 md:hover:text-blue-600"
                         onClick={() => {
@@ -672,7 +665,7 @@ const Card = () => {
                       cabinClass.map((e) => {
                         return (
                           <li
-                            className="fontMont text-[0.8rem] font-bold mb-[1em] md:mb-1 mr-1 md:py-2 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300 md:border-b-[1px]"
+                            className="text-[0.8rem] font-semibold mb-[1em] md:mb-1 mr-1 md:py-2 max-md:py-1 max-md:px-2 max-md:border-solid max-md:border-[0.1rem] max-md:rounded-md hover:max-md:border-blue-600 md:hover:bg-sky-50 max-md:border-blue-300 md:border-b-[1px]"
                             onClick={() => {
                               setOpenClass(false);
                               setselectClass(e.travelClassName);
@@ -691,7 +684,7 @@ const Card = () => {
         </div>
 
         <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer">
-          <div className="w-fit">
+          <div className="w-full md:w-fit">
             <ButtonPrimary
               title="SEARCH FLIGHTS"
               click={() => {

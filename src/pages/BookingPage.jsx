@@ -329,7 +329,7 @@ export const BookingPage = (props) => {
             {/* <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }> */}
             <ButtonPrimary
               type="submit"
-              title="Booking Now"
+              title="BOOKING NOW"
               className="w-fit"
             />
             {/* </div> */}
