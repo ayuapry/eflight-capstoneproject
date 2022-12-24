@@ -17,6 +17,8 @@ import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
+import DetPromoPage from "./pages/DetPromoPage";
+import AllPromo from "./pages/AllPromo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -35,6 +37,8 @@ root.render(
         <Route path="/Filter/" element={<FilterPage />} />
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
+        <Route path="/detailpromo/:id" element={<DetPromoPage />} />
+        <Route path="/allpromo" element={<AllPromo />} />
         <Route path="/card" element={<Card />} />
       </Routes>
     </BrowserRouter>

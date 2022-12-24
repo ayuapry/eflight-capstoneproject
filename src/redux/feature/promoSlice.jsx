@@ -45,9 +45,11 @@ export const getDetPromo = createAsyncThunk(
 
 export const getPagination = createAsyncThunk(
     'pagination/getPagination',
-    async (size) => {
+    // async (size) => {
+    async (page) => {
         try {
-            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=1&size=${size}&sort=string` 
+            // const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=1&size=${size}&sort=string` 
+            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=${page}&sort=string` 
             )
             console.log(res.data)
             return res.data.data.content

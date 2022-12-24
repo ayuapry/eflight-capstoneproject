@@ -23,7 +23,13 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
 import { Link, useNavigate } from 'react-router-dom'
+import ButtonPrimary from './ButtonPrimary'
 
 export const HeadlineCards = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -35,6 +41,10 @@ export const HeadlineCards = () => {
     useEffect(() => {
       dispatch(getPromo())
     },[dispatch]); 
+
+    const SeePromos = () => {
+        navigate("/allpromo")
+    }
 
   return (
     <>
@@ -72,33 +82,63 @@ export const HeadlineCards = () => {
         </div>
 
         {/* Promo */}
-            <div className='Promo max-w-[1024px] mx-auto px-4 py-10 flex flex-row justify-between items-center'>
-                <div className='w-[30%] flex items-center'>
-                    <h1 className='text-[1.6rem] leading-tight font-semibold m-0'>Yuk Cek Promo Sebelum Bepergian!</h1>
+            <div className='Promo max-w-[1024px] mx-auto px-4 pb-10 flex flex-col md:flex-row justify-between items-center'>
+                <div className='w-full md:w-[32%] hidden md:flex items-start flex-col mr-5'>
+                    <h1 className='md:text-[1.9rem] md:text-start leading-tight font-semibold m-0 text-justify'>
+                        Check out the promo before you go!
+                    </h1>
+                    <div className='mt-3 w-fit'>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                    </div>
                 </div>
-                <div className='w-[68%] flex flex-row'>
+                <div className='w-full md:w-[30%] md:hidden flex justify-center items-center py-4'>
+                    <h1 className='md:text-[2.1rem] text-center md:text-start leading-tight font-semibold m-0'>
+                        Promo Highlight
+                    </h1>
+                </div>
+                <div className='w-full md:w-[68%] hidden md:flex flex-row'>
                     <Swiper
-                    slidesPerView={2.5}
-                    spaceBetween={10}
-                    slidesPerGroup={1}
-                    loop={true}
-                    pagination={{
-                    type: "progressbar",
-                    clickable: true,
-                    }}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
-                    className="mySwiper"
-                    >
-                        {promo?.map((e) => (
+                        slidesPerView={2.5}
+                        spaceBetween={10}
+                        slidesPerGroup={1}
+                        loop={true}
+                        pagination={{
+                        type: "progressbar",
+                        clickable: true,
+                        }}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className="mySwiper"
+                        >
+                            {promo?.map((e) => (
                                 <SwiperSlide>
-                            <Link className='md:w-[250px]' to={`/detail-promo/${e?.id}`}>
+                            <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
                                 <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
                             </Link>
                             </SwiperSlide>  
                             ))}
                     </Swiper>
                 </div>
+                {/* Mobile */}
+                    <div className='w-full md:w-[68%] md:hidden flex flex-row'>
+                        <Swiper 
+                            slidesPerGroup={1}
+                            loop={true}
+                            navigation={true} 
+                            modules={[Navigation]} 
+                            className="mySwiper">
+                                {promo?.map((e) => (
+                                    <SwiperSlide>
+                                <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
+                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                                </Link>
+                                </SwiperSlide>  
+                                ))}
+                        </Swiper>
+                    </div>
+                    <div className='mt-3 w-full md:hidden flex'>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                    </div>
             </div>
 
 
