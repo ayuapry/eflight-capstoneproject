@@ -9,11 +9,11 @@ import { SecondFooter } from "../components/SecondFooter";
 import { Register } from "../redux/feature/AuthSlice";
 
 export default function RegisterPage() {
-  const navigate = useNavigate();
-  const [form] = Form.useForm();
-  const { register, loading } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const id = localStorage.getItem("id");
+    const navigate = useNavigate()
+    const [form] = Form.useForm();
+    const {register} = useSelector ((state) => state.auth)
+    const dispatch = useDispatch();
+    const id =  localStorage.getItem('id');
 
   const onFinish = async (values) => {
     dispatch(Register(values));
@@ -25,10 +25,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col justify-between h-screen">
-      <div className="max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]">
-        <div className="hidden ml-20 p-2 lg:w-[100%] lg:block">
-          <img src={LoginBg} />
+    <div className='flex flex-col justify-between h-screen'>
+    <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>
+        <div className='hidden ml-20 p-2 lg:w-[100%] lg:block'>
+            <img src={LoginBg} alt='/' />
         </div>
         <div className="items-center pt-auto pb-auto">
           <div className="lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white">
@@ -138,7 +138,7 @@ export default function RegisterPage() {
                 />
               </Form.Item>
 
-              <ButtonPrimary type="submit" title="Register Now" />
+              <ButtonPrimary type="submit" title="REGISTER NOW" />
               <div className="flex mb-6">
                 <p className="mr-2 mt-4 mb-0 text-slate-700">Have an accout?</p>
                 <a
@@ -152,8 +152,8 @@ export default function RegisterPage() {
             </Form>
           </div>
         </div>
-        <div className="px-4 lg:hidden">
-          <img src={LoginBg} />
+        <div className='px-4 lg:hidden'>
+            <img src={LoginBg} alt='/'/>
         </div>
       </div>
       <SecondFooter />

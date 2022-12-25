@@ -5,12 +5,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 
 @layer utilities {
-  .fontMont {
-    font-family: "Montserrat", sans-serif;
-  }
-}
-
-@layer utilities {
   .LiGradien {
     color: transparent;
     background-clip: text;

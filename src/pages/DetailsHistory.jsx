@@ -5,18 +5,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { Navbar } from '../components/Navbar';
 import { SecondFooter } from '../components/SecondFooter';
-import { getHistory } from '../redux/feature/historySlice';
+import { getHistory, getJasper } from '../redux/feature/historySlice';
 
 export const DetailsHistory = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {id} = useParams()
-    const { history } = useSelector( (state) => state.history );
+    const {id, bookingId} = useParams()
+    const { history, jasper } = useSelector( (state) => state.history );
 
     useEffect(() => {
         dispatch(getHistory(id))
-    },[dispatch, id]); 
+        dispatch(getJasper(bookingId))
+    },[dispatch, id, bookingId]); 
     console.log(history);
+
 
   return (
     <div className='bg-slate-100'>
@@ -113,7 +115,7 @@ export const DetailsHistory = () => {
                 </div>
               </div>
               <p className='text-xs text-gray-400'>Ordered At {e?.orderedAt}</p>
-              <div className='mt-40'>
+              <div className='md:mt-40'>
                 <ButtonPrimary title='Download Ticket Here' />
               </div>
             </div>

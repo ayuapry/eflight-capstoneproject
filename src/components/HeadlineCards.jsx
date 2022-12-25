@@ -1,40 +1,59 @@
 import React from 'react'
-import { HeadingCard } from './HeadingCard'
 import Holiday from '../assets/Holiday.png'
 import meals from '../assets/meals.png'
 import seat from '../assets/seat.png'
 import bag from '../assets/bag.png'
 import baggage from '../assets/baggage.png'
-import promo1 from '../assets/promo1.png'
-import promo2 from '../assets/promo2.png'
-import promo3 from '../assets/promo3.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getPromo } from '../redux/feature/promoSlice'
 import { useState } from 'react'
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 // import required modules
 import { Pagination, Navigation } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
 import { Link, useNavigate } from 'react-router-dom'
+import ButtonPrimary from './ButtonPrimary'
+import axios from 'axios'
 
-export const HeadlineCards = () => {
+export const HeadlineCards = (props) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const {promo } = useSelector((state) => state.promo);
-    // const dispatch = useDispatch();
     const dispatch = useDispatch();
     const navigate = useNavigate();
   
     useEffect(() => {
       dispatch(getPromo())
     },[dispatch]); 
+
+    const SeePromos = () => {
+        navigate("/allpromo")
+    }
+    const [allArticle, setAllArticle] = useState([]);
+    const getAllArticle = async (id) => {
+        try {
+          const response = await axios.get(`https://63a5b0fc318b23efa79ae8d9.mockapi.io/api/v1/topplaces/article`);
+          console.log(response);
+          setAllArticle(response.data);
+        } catch (e) {
+          console.log(e.message);
+        }
+      };
+    
+      useEffect(() => {
+        getAllArticle();
+      }, []);
+
+      const handleClick = (id) => {
+        navigate(`/detail-places/${id}`);
+      };
 
   return (
     <>
@@ -44,13 +63,18 @@ export const HeadlineCards = () => {
             <span className=''>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</span>
         </div>
         <div className='max-w-[1024px] mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer'>
-            <HeadingCard bg='https://media.istockphoto.com/id/474127808/id/foto/makam-kuno-yang-ditempa-di-batu.jpg?s=612x612&w=0&k=20&c=Cx0uX_fDvPjVz-9Kgw828cJLsnCbCRFqoMQ-MAisdMw=' text='Toraja Island' />
-            <HeadingCard bg='https://media.istockphoto.com/id/653953140/id/foto/candi-hindu-di-bali.jpg?s=612x612&w=0&k=20&c=RHnKo1W5qOArOWwR3BHgd2GiAquTB0FGMouoEFlIXT4=' text='Bali' />
-            <HeadingCard bg='https://media.istockphoto.com/id/692520370/id/foto/candi-prambanan.jpg?s=612x612&w=0&k=20&c=Vf2-yCqTbMLn-D6-7gKjK29jjFR00OdChCf2D3FA4ls=' text='Yogyakarta' />
-            <HeadingCard bg='https://media.istockphoto.com/id/909449006/id/foto/pulau-padar.jpg?s=612x612&w=0&k=20&c=dODNFZUa47JpBSP9FQ_1nXhqki82tOEMdBRg6AImmxQ=' text='Labuan Bajo' />
-            <HeadingCard bg='https://media.istockphoto.com/id/500798563/id/foto/city-skyline-at-sunset-jakarta-indonesia.jpg?s=612x612&w=0&k=20&c=dICfiBlbElOeu0UceZMoFpBJ7xJF5bKyriTRZmGXHO4=' text='Jakarta' />
-            <HeadingCard bg='https://media.istockphoto.com/id/1164092944/id/foto/lanskap-perkebunan-teh-yang-indah-di-pagi-hari.jpg?s=612x612&w=0&k=20&c=PjbtnvVtI0MLMu8jFEoeiFlGI0uGqRBkZwO7O92tuPI=' text='Bandung' />
+        {allArticle.map((item,i) => (
+            <div className='relative' onClick={() => handleClick(item.id)}>
+                <img className='w-full h-full object-cover rounded-md' src={item.image} alt="/" />
+                <div className='bg-gray-900/30 absolute top-0 left-0 w-full h-full rounded-md'>
+                    <p className='left-4 bottom-4 text-2xl font-bold text-white absolute'>
+                        {item.title}
+                    </p>
+                </div>
+            </div>
+            ))}
         </div>
+          
         
         <div className='max-w-[1240px] mx-auto px-4 hidden md:flex items-center '>
             <div className='w-[40%]'>
@@ -72,33 +96,63 @@ export const HeadlineCards = () => {
         </div>
 
         {/* Promo */}
-            <div className='Promo max-w-[1024px] mx-auto px-4 py-10 flex flex-row justify-between items-center'>
-                <div className='w-[30%] flex items-center'>
-                    <h1 className='text-[1.6rem] leading-tight font-semibold m-0'>Yuk Cek Promo Sebelum Bepergian!</h1>
+            <div className='Promo max-w-[1024px] mx-auto px-4 pb-10 flex flex-col md:flex-row justify-between items-center'>
+                <div className='w-full md:w-[32%] hidden md:flex items-start flex-col mr-5'>
+                    <h1 className='md:text-[1.9rem] md:text-start leading-tight font-semibold m-0 text-justify'>
+                        Check out the promo before you go!
+                    </h1>
+                    <div className='mt-3 w-fit'>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                    </div>
                 </div>
-                <div className='w-[68%] flex flex-row'>
+                <div className='w-full md:w-[30%] md:hidden flex justify-center items-center py-4'>
+                    <h1 className='md:text-[2.1rem] text-center md:text-start leading-tight font-semibold m-0'>
+                        Promo Highlight
+                    </h1>
+                </div>
+                <div className='w-full md:w-[68%] hidden md:flex flex-row'>
                     <Swiper
-                    slidesPerView={2.5}
-                    spaceBetween={10}
-                    slidesPerGroup={1}
-                    loop={true}
-                    pagination={{
-                    type: "progressbar",
-                    clickable: true,
-                    }}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
-                    className="mySwiper"
-                    >
-                        {promo?.map((e) => (
+                        slidesPerView={2.5}
+                        spaceBetween={10}
+                        slidesPerGroup={1}
+                        loop={true}
+                        pagination={{
+                        type: "progressbar",
+                        clickable: true,
+                        }}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className="mySwiper"
+                        >
+                            {promo?.map((e) => (
                                 <SwiperSlide>
-                            <Link className='md:w-[250px]' to={`/detail-promo/${e?.id}`}>
+                            <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
                                 <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
                             </Link>
                             </SwiperSlide>  
                             ))}
                     </Swiper>
                 </div>
+                {/* Mobile */}
+                    <div className='w-full md:w-[68%] md:hidden flex flex-row'>
+                        <Swiper 
+                            slidesPerGroup={1}
+                            loop={true}
+                            navigation={true} 
+                            modules={[Navigation]} 
+                            className="mySwiper">
+                                {promo?.map((e) => (
+                                    <SwiperSlide>
+                                <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
+                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                                </Link>
+                                </SwiperSlide>  
+                                ))}
+                        </Swiper>
+                    </div>
+                    <div className='mt-3 w-full md:hidden flex'>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                    </div>
             </div>
 
 

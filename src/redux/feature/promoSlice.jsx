@@ -28,6 +28,7 @@ export const getPromo = createAsyncThunk("promo/getPromo", async () => {
 });
 
 export const getDetPromo = createAsyncThunk(
+<<<<<<< HEAD
   "detPromo/getDetPromo",
   async (id) => {
     console.log("testtt");
@@ -40,11 +41,26 @@ export const getDetPromo = createAsyncThunk(
     } catch (error) {
       console.error(error);
       return error.response.data.data;
+=======
+    'detPromo/getDetPromo',
+    async (id) => {
+        console.log("testtt");
+        try {
+            const res = await axios.get(`https://binar-air.azurewebsites.net/api/v1/promobanner?id=${id}` 
+            )
+            console.log(res.data)
+            return res.data
+        } catch (error) {
+            console.error(error)
+            return error.response.data.data
+        }
+>>>>>>> 3e4e2105a2b918cdc1c88ee97b93568beea4b041
     }
   }
 );
 
 export const getPagination = createAsyncThunk(
+<<<<<<< HEAD
   "pagination/getPagination",
   async (size) => {
     try {
@@ -56,6 +72,21 @@ export const getPagination = createAsyncThunk(
     } catch (error) {
       console.error(error);
       return error.response.data.data;
+=======
+    'pagination/getPagination',
+    // async (size) => {
+    async (page) => {
+        try {
+            // const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=1&size=${size}&sort=string` 
+            const res = await axios.get(`https://binar-air.azurewebsites.net/api/v1/promobanner/all?page=${page}&sort=string` 
+            )
+            console.log(res.data)
+            return res.data.data.content
+        } catch (error) {
+            console.error(error)
+            return error.response.data.data
+        }
+>>>>>>> 3e4e2105a2b918cdc1c88ee97b93568beea4b041
     }
   }
 );

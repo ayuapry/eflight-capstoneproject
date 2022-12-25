@@ -13,11 +13,17 @@ import Card from "./components/Card";
 import { FilterPage } from "./pages/FilterPage";
 import LoginPage from "./pages/LoginPage";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
-import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
+<<<<<<< HEAD
 import LoopTest from "./pages/LoopTest";
+=======
+import DetPromoPage from "./pages/DetPromoPage";
+import AllPromo from "./pages/AllPromo";
+import { DetailArticle } from "./pages/DetailArticle";
+import { CancelCheckinPage } from "./pages/CancelCheckinPage";
+>>>>>>> 3e4e2105a2b918cdc1c88ee97b93568beea4b041
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,16 +34,23 @@ root.render(
         {/* <Route element={<PrivateRoutes />}> */}
         <Route path="/notification" element={<NotificationPage />} />
         <Route path="/history" element={<HistoryPage />} />
-        <Route path="/Booking/:id" element={<BookingPage />} />
+        <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/checkin" element={<CheckInPage />} />
         {/* </Route> */}
-        <Route path="/Register" element={<RegisterPage />} />
-        <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Filter/" element={<FilterPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/filter/" element={<FilterPage />} />
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
+        <Route path="/detailpromo/:id" element={<DetPromoPage />} />
+        <Route path="/allpromo" element={<AllPromo />} />
         <Route path="/card" element={<Card />} />
+<<<<<<< HEAD
         <Route path="/loop" element={<LoopTest />} />
+=======
+        <Route path="/detail-places/:id" element={<DetailArticle />} />
+        <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
+>>>>>>> 3e4e2105a2b918cdc1c88ee97b93568beea4b041
       </Routes>
     </BrowserRouter>
   </Provider>

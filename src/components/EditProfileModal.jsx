@@ -60,7 +60,7 @@ export const EditProfileModal = ({ open, close }) => {
     >
       <div className="bg-white p-2 rounded w-1/3">
         <div className="flex items-center justify-between mb-7 ">
-          <p className="font-semibold ">Edit Account</p>
+          <p className="font-semibold mt-3 ">Edit Account</p>
           <button onClick={close}>
             <AiOutlineClose />
           </button>
