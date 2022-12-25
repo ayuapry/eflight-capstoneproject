@@ -22,7 +22,6 @@ import { MdFoodBank } from "react-icons/md";
 import Meal from "../assets/meal.png";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
-import noFlightData from "../assets/NoFlightData.svg";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -34,13 +33,9 @@ export default function Detail() {
   const [placement, setPlacement] = useState("left");
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
-  const location = useLocation();
-  console.log(location);
-  const Passenger = location.state;
-  const values = location.state.values;
 
   useEffect(() => {
-    dispatch(getTiket(values));
+    dispatch(getTiket());
   }, [dispatch]);
 
   const showDrawer = () => {
@@ -56,25 +51,12 @@ export default function Detail() {
       currency: "IDR",
     }).format(value);
 
-  const noData = () => {
-    return (
-      <div className="h-full flex justify-center items-center text-center">
-        <div>
-          <img src={noFlightData} className="h-96" />
-          <p className="font-semibold mb-0 text-lg">No flights available</p>
-          <p className="text-gray-400 md:text-base text-sm">
-            Change your search with a different date or cabin class.
-          </p>
-        </div>
-      </div>
-    );
-  };
-
-  console.log(tiket);
+  const location = useLocation();
+  console.log(location);
+  const Passenger = location.state;
 
   return (
     <div className="w-full">
-      {tiket ? "" : noData()}
       {tiket &&
         tiket.map((tiket, index) => {
           return (
@@ -149,7 +131,7 @@ export default function Detail() {
                       <ButtonPrimary
                         title="SELECT"
                         click={() =>
-                          navigate(`/booking/${tiket.aircraft.id}`, {
+                          navigate(`/Booking/${tiket.aircraft.id}`, {
                             state: {
                               tiket: tiket,
                               passenger: Passenger,
@@ -497,10 +479,7 @@ export default function Detail() {
                       title="SELECT"
                       click={() =>
                         navigate(`/Booking/${tiket.aircraft.id}`, {
-                          state: {
-                            total: `${tiket.price.amount}`,
-                            tiket: tiket,
-                          },
+                          state: { total: `${tiket.price.amount}` },
                         })
                       }
                       className="text-sm lg:text-base"
