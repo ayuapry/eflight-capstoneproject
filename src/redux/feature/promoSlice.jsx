@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
-import { useParams } from "react-router-dom";
 
 export const getPromo = createAsyncThunk(
     'promo/getPromo',
     async () => {
         // const token =  localStorage.getItem('token')
         try {
-            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all`, {
+            const res = await axios.get(`https://binar-air.azurewebsites.net/api/v1/promobanner/all`, {
             // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/promobanner/all`, {
                 // "page" :"1",
                 // "size" :"1",
