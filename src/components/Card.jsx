@@ -128,17 +128,13 @@ const Card = () => {
   const display = countD + countA + countB + " Passenger, ";
 
   const onFinishOne = (values) => {
-    dispatch(getTiket(values));
+    // dispatch(getTiket(values));
     navigate(
       `/Filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${
         selectRadio === "RoundTrip" ? calendarGo : "NA"
       }&ps=${countD}.${countA}.${countB}&sc=${selectClass}`,
-      { state: { D: countD, A: countA, B: countB } }
+      { state: { values, D: countD, A: countA, B: countB } }
     );
-    console.log(values);
-  };
-
-  const onFinishRound = (values) => {
     console.log(values);
   };
 

@@ -17,6 +17,7 @@ import { Coba } from "./pages/Coba";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
+import LoopTest from "./pages/LoopTest";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,6 +37,7 @@ root.render(
         <Route path="/detailhistory/:id" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
         <Route path="/card" element={<Card />} />
+        <Route path="/loop" element={<LoopTest />} />
       </Routes>
     </BrowserRouter>
   </Provider>
