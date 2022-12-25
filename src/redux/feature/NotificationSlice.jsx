@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getNotification = createAsyncThunk(
-  "user/getNotification",
+  "notification/getNotification",
   async () => {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
@@ -17,7 +17,7 @@ export const getNotification = createAsyncThunk(
       );
       // localStorage.setItem("id",(res.data.data.id))
       // console.log(res)
-      return res.data.data.notifications;
+      return res.data.data.notifications.slice(0,3);
     } catch (error) {
       console.error(error);
       return error.response.data.data;

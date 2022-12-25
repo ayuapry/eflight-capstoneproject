@@ -12,11 +12,13 @@ export const NotificationPage = () => {
   const {notification} = useSelector((state) => state.notification)
   const dispatch = useDispatch()
   const {id} = useParams()
+  console.log(id)
 
   
   useEffect(() => {
     dispatch(getNotification(id))
-  })
+  }, [dispatch, id])
+  
   return (
   <div className='h-screen bg-slate-100'>
     <ScrollToTop />
@@ -24,7 +26,8 @@ export const NotificationPage = () => {
     <div className='max-w-[1240px] mx-auto px-5 md:px-14 bg-slate-100 '>
       <div className='pt-[100px] h-screen'>
         <div className='font-semibold text-blue-600 text-xl mb-5 bg-yellow-400 w-fit px-4 py-1 rounded-[100px]'>All Notification</div>
-        {notification?.notifications.slice(0,3).map((e, i) => (
+        {/* {notification?.notifications.slice(0,3).map((e, i) => ( */}
+        {notification?.notifications.map((e, i) => (
         <div key={i} className=' pb-5 '> 
           <article className='border-b-2 border-white bg-blue-600 shadow-md rounded-md '>
             <div className='flex gap-5 items-center'>

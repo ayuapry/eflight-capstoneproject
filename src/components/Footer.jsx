@@ -14,26 +14,26 @@ const Footer = () => {
 
           <div className="FooterText flex items-center md:items-start md:justify-between flex-col md:flex-row">
             <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
-              <h2 className="text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
+              <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
                 BinarAir
               </h2>
               <div className="FooterOneLink flex flex-col items-center md:items-start text-gray-500 ">
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/binar-bootcamp"
                   target="blank"
                 >
                   About Us
                 </a>
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/binar-insight"
                   target="blank"
                 >
                   Travel Warnings
                 </a>
                 <a
-                  className="fontMont text-[0.82rem] md:text-sm"
+                  className="fontPopp text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/old-design/binar-go-6-sep"
                   target="blank"
                 >
@@ -43,26 +43,26 @@ const Footer = () => {
             </div>
 
             <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
-              <h2 className="text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
+              <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
                 BinarAir Service
               </h2>
               <div className="FooterOneLink flex flex-col items-center md:items-start text-gray-500 ">
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/job-portal"
                   target="blank"
                 >
                   News
                 </a>
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/old-design/rekrut-talent-digital-old"
                   target="blank"
                 >
                   Partners
                 </a>
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/job-portal"
                   target="blank"
                 >
@@ -72,40 +72,40 @@ const Footer = () => {
             </div>
 
             <div className="FooterOne flex items-center md:items-start flex-col mb-5 md:mb-0">
-              <h2 className="text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
+              <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
                 About BinarAir
               </h2>
               <div className="FooterOneLink flex flex-col items-center md:items-start text-gray-500">
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/id/about"
                   target="blank"
                 >
                   About Us
                 </a>
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/blog"
                   target="blank"
                 >
                   Corporate Travel
                 </a>
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/promo"
                   target="blank"
                 >
                   Pomotion & Discounts
                 </a>
                 <a
-                  className="pb-1 text-[0.82rem] md:text-sm"
+                  className="fontPopp pb-1 text-[0.82rem] md:text-sm"
                   href="https://binaracademy.jobseeker.software/"
                   target="blank"
                 >
                   Career
                 </a>
                 <a
-                  className="fontMont text-[0.82rem] md:text-sm"
+                  className="fontPopp text-[0.82rem] md:text-sm"
                   href="https://www.binaracademy.com/privacy-policy"
                   target="blank"
                 >
@@ -115,7 +115,7 @@ const Footer = () => {
             </div>
 
             <div className="FooterOne flex items-center md:items-start flex-col">
-              <h2 className="text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
+              <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
                 FollowUs
               </h2>
               <div className="FooterOneLink flex flex-row gap-4 items-center md:items-start">
