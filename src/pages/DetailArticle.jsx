@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Navbar } from '../components/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
-import Footer from '../components/Footer';
 import { SecondFooter } from '../components/SecondFooter';
 
 export const DetailArticle = () => {
@@ -30,17 +29,17 @@ export const DetailArticle = () => {
     <div className=''>
         <ScrollToTop />
         <Navbar />
-        <div className='pt-[90px]'>
-        <div className='max-w-[1240px] mx-auto md:px-14 md:h-screen'>
+        <div className='pt-[80px]'>
+        <div className='max-w-[1240px] mx-auto md:px-14 px-5 md:h-screen'>
         {detailArticle.map((item) => {
             if (item.id === id) {
                 return (
                 <div key={item.id} className="mt-5">
-                    <h1 className="text-center">{item.title}</h1>
                     <div className='flex align-center '>
                         <img src={item.image} alt="" className="mb-5 mx-auto rounded-md shadow-lg " />
                     </div>
-                    <h6 className="fw-semibold mb-3 fs-5 fst-italic">{item.description}</h6>
+                    <h1 className="text-center">{item.title}</h1>
+                    <h6 className="mb-3 font-normal">{item.description}</h6>
                 </div>
                 );
             }
@@ -50,7 +49,6 @@ export const DetailArticle = () => {
         })}
         </div>
         </div>
-        <Footer />
         <SecondFooter />
     </div>
   )

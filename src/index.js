@@ -19,6 +19,7 @@ import DetailPromoPage from "./pages/DetailPromoPage";
 import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
+import { CancelCheckinPage } from "./pages/CancelCheckinPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -41,6 +42,7 @@ root.render(
         <Route path="/allpromo" element={<AllPromo />} />
         <Route path="/card" element={<Card />} />
         <Route path="/detail-places/:id" element={<DetailArticle />} />
+        <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
       </Routes>
     </BrowserRouter>
   </Provider>

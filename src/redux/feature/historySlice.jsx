@@ -44,11 +44,56 @@ export const getCheckin = createAsyncThunk(
     }
 )
 
+export const getCheckinCancel = createAsyncThunk(
+    "user/getCheckinCancel", async (values) => {
+        try {
+            const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/checkin/cancel`,
+            {
+                "lastName" : `${values.lastName}`,
+                "bookingReferenceNumber" : `${values.bookingReferenceNumber}`,
+            },
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 500)
+            )
+            console.log(res.data.data)
+            return res.data.data
+        } catch (error) {
+            console.error(error)
+            return error.response.data.data
+        }
+    }
+)
+
+export const getJasper = createAsyncThunk(
+    'history/getJasper',
+    async (bookingId) => {
+        const token =  localStorage.getItem('token')
+        // const id = localStorage.getItem('id')
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/jasperreport/eticket/${bookingId}`, {
+                headers: { 
+                    'Authorization': `Bearer ${token}`
+                },  
+            })
+            // console.log(res.data.data);
+            console.log(res)
+            return res.data.data
+        } catch (err) {
+            console.log(err)
+        }
+    }
+)
+
+
+
 export const historySlice = createSlice({
     name: "history",
     initialState : {
         history: [],
         checkin: [],
+        cancel: [],
+        jasper: [],
     },
     reducers: {},
     extraReducers: {
@@ -60,6 +105,15 @@ export const historySlice = createSlice({
       [getCheckin.fulfilled]: (state, { payload }) => {
         state.checkin = payload;
       },
+      [getCheckinCancel.fulfilled]: (state, { payload }) => {
+        state.cancel = payload;
+      },
+      [getJasper.fulfilled]: (state, { payload }) => {
+        state.jasper = payload;
+      },
+      
+      
+
     },
   });
 
