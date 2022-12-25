@@ -100,12 +100,14 @@ const Card = () => {
   const hideOnClickOutside = (e) => {
     // console.log(refOne.current)
     // console.log(e.target)
-    if (refOne.current && !refOne.current.target.name.contains("cal1")) {
+    // if (refOne.current && !refOne.current.target.name.contains("cal1")) {
+    if (refOne.current && !refOne.current.children[0]) {
       setOpenDate(false);
     }
   };
   const hideOnClickOutsideGo = (e) => {
-    if (refTwo.current && !refOne.current.target.name.contains("cal2")) {
+    // if (refTwo.current && !refOne.current.target.name.contains("cal2")) {
+    if (refOne.current && !refOne.current.children[0]) {
       setOpenDateGo(false);
     }
   };
@@ -139,8 +141,9 @@ const Card = () => {
       className="bg-slate-50 md:bg-transparent h-auto pb-5 md:py-0 flex justify-center"
     >
       <div className="h-[10%] md:bg-blue-600 w-full absolute"></div>
-      <div className=" CardWrap bg-white shadow md:shadow-md md:max-w-5xl md:mx-auto m-0 px-4 rounded-md md:rounded-xl z-10">
-        <div className="TitleCard flex justify-between flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]">
+      <div className=" CardWrap bg-white shadow md:shadow-md w-[90%] md:max-w-5xl md:mx-auto m-0 px-4 rounded-md md:rounded-xl z-10">
+        
+        <div className="TitleCard hidden md:flex justify-between flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]">
           <div className="flex items-center">
             <img className="w-[3rem]" src={Logo} alt="BinarLogo" />
             <h1 className="text-[1.8rem] px-[0.5rem] mb-0">
@@ -148,8 +151,37 @@ const Card = () => {
             </h1>
           </div>
           <Link to="/checkin" className="flex cursor-pointer">
-            <p className="hidden md:flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
+            <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
               Check-In Here
+            </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.4}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                color="blue"
+              />
+            </svg>
+          </Link>
+        </div>
+        {/* Mobile */}
+        <div className="TitleCard md:hidden flex justify-between flex-row items-center px-0 md:px-[3rem] py-[2rem] md:py-[2rem]">
+          <div className="flex items-center">
+            <img className="w-[3rem]" src={Logo} alt="BinarLogo" />
+            <h1 className="text-[1.8rem] px-[0.5rem] mb-0">
+              Flights
+            </h1>
+          </div>
+          <Link to="/checkin" className="flex cursor-pointer">
+            <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
+              Check-In
             </p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +242,7 @@ const Card = () => {
           </form>
         </div>
 
-        <div className="flex flex-col justify-between md:flex-row px-[1.5rem] md:px-[4rem] md:border-double md:border-y-2 md:border-blue-300">
+        <div className="flex flex-col justify-between md:flex-row px-0 md:px-[4rem] md:border-double md:border-y-2 md:border-blue-300">
           <div className="flex flex-col w-full md:w-[50%] md:border-double md:border-r-2 md:border-blue-200 md:py-2">
             <div className="flex w-full flex-col md:flex-row md:items-center md:pr-[4rem] mb-3 md:mb-0">
               <div className="FromWrap flex flex-col mb-3 md:mb-1 md:w-[50%] text-black">
@@ -683,7 +715,7 @@ const Card = () => {
           </div>
         </div>
 
-        <div className="w-full flex flex-row items-center justify-end px-[1.5rem] md:px-[4rem] py-[1rem] cursor-pointer">
+        <div className="w-full flex flex-row items-center justify-end px-0 md:px-[4rem] py-[1rem] cursor-pointer">
           <div className="w-full md:w-fit">
             <ButtonPrimary
               title="SEARCH FLIGHTS"

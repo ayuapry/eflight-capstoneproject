@@ -7,7 +7,7 @@ export const getHero = createAsyncThunk(
   'promo/getHero',
   async () => {
     try {
-      const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/herobanner/all
+      const res = await axios.get(`https://binar-air.azurewebsites.net/api/v1/herobanner/all
             `)
       // console.log(res.data.data);
       // console.log(res.data)
@@ -23,7 +23,7 @@ export const getCountry = createAsyncThunk(
   'country/getCountry',
   async () => {
     try {
-      const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/airport/all")
+      const res = await axios.get("https://binar-air.azurewebsites.net/api/v1/airport/all")
       // console.log(res)
       return res.data.data
     } catch (err) {
@@ -37,7 +37,7 @@ export const getAge = createAsyncThunk(
   'age/getAge',
   async () => {
     try {
-      const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/agecategory/all")
+      const res = await axios.get("https://binar-air.azurewebsites.net/api/v1/agecategory/all")
       // console.log(res)
       return res.data.data
     } catch (err) {
@@ -51,7 +51,7 @@ export const getCabinClass = createAsyncThunk(
   'cabinClass/getCabinClass',
   async () => {
     try {
-      const res = await axios.get("https://binar-air-rest-api-production.up.railway.app/api/v1/travel/all")
+      const res = await axios.get("https://binar-air.azurewebsites.net/api/v1/travel/all")
       // console.log(res)
       return res.data.data
     } catch (err) {
@@ -76,7 +76,7 @@ export const getTiket = createAsyncThunk(
       // sc : 'ECONOMY'
     }
     try {
-      const res = await axios.get(values.dt2 === 'NA' ? `https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fullsearch?${qs.stringify(payload)}` : `https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fulltwosearch?${qs.stringify(payload)}`)
+      const res = await axios.get(values.dt2 === 'NA' ? `https://binar-air.azurewebsites.net/api/v1/flight/fullsearch?${qs.stringify(payload)}` : `https://binar-air-rest-api-production.up.railway.app/api/v1/flight/fulltwosearch?${qs.stringify(payload)}`)
   console.log(res.data.data)
       return res.data.data
     } catch (err) {

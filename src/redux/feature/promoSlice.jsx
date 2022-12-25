@@ -32,7 +32,7 @@ export const getDetPromo = createAsyncThunk(
     async (id) => {
         console.log("testtt");
         try {
-            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner?id=${id}` 
+            const res = await axios.get(`https://binar-air.azurewebsites.net/api/v1/promobanner?id=${id}` 
             )
             console.log(res.data)
             return res.data
@@ -49,7 +49,7 @@ export const getPagination = createAsyncThunk(
     async (page) => {
         try {
             // const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=1&size=${size}&sort=string` 
-            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/promobanner/all?page=${page}&sort=string` 
+            const res = await axios.get(`https://binar-air.azurewebsites.net/api/v1/promobanner/all?page=${page}&sort=string` 
             )
             console.log(res.data)
             return res.data.data.content
