@@ -56,11 +56,11 @@ export default function Card() {
     iata2: "",
   });
   // console.log('calender: ', calendar)
-  // console.log('calender: ', calendar)
+  // console.log('calender: ', calendarGo)
   const [openDate, setOpenDate] = useState(false);
   const [openDateGo, setOpenDateGo] = useState(false);
   const [openClass, setOpenClass] = useState(false);
-  const [selectClass, setselectClass] = useState("ECONOMY");
+  const [selectClass, setselectClass] = useState("Economy");
   const [countD, setCountD] = useState(1);
   const [countA, setCountA] = useState(0);
   const [countB, setCountB] = useState(0);
@@ -103,7 +103,7 @@ export default function Card() {
   };
   const hideOnClickOutsideGo = (e) => {
     // if (refTwo.current && !refOne.current.target.name.contains("cal2")) {
-    if (refOne.current && !refOne.current.children[0]) {
+    if (refTwo.current && !refTwo.current.children[0]) {
       setOpenDateGo(false);
     }
   };
