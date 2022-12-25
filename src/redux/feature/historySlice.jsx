@@ -9,12 +9,12 @@ export const getHistory = createAsyncThunk(
         const token =  localStorage.getItem('token')
         const id = localStorage.getItem('id')
         try {
-            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/history?userid=${id}&sort=DESC`, {
+            const res = await axios.get(`https://binar-air-rest-api-production.up.railway.app/api/v1/history?userid=ur-5e2c2e57-e1b4-4094-84d5-119340372e79&sort=DESC`, {
                 headers: { 
                     'Authorization': `Bearer ${token}`
                 },  
             })
-            // console.log(res.data.data);
+            console.log(res.data.data);
             // console.log(res.data)
             return res.data.data
         } catch (err) {
@@ -65,25 +65,25 @@ export const getCheckinCancel = createAsyncThunk(
     }
 )
 
-export const getJasper = createAsyncThunk(
-    'history/getJasper',
-    async (bookingId) => {
-        const token =  localStorage.getItem('token')
-        // const id = localStorage.getItem('id')
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/jasperreport/eticket/${bookingId}`, {
-                headers: { 
-                    'Authorization': `Bearer ${token}`
-                },  
-            })
-            // console.log(res.data.data);
-            console.log(res)
-            return res.data.data
-        } catch (err) {
-            console.log(err)
-        }
-    }
-)
+// export const getJasper = createAsyncThunk(
+//     'history/getJasper',
+//     async (bookingId) => {
+//         const token =  localStorage.getItem('token')
+//         // const id = localStorage.getItem('id')
+//         try {
+//             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/jasperreport/eticket/${bookingId}`, {
+//                 headers: { 
+//                     'Authorization': `Bearer ${token}`
+//                 },  
+//             })
+//             // console.log(res.data.data);
+//             console.log(res)
+//             return res.data.data
+//         } catch (err) {
+//             console.log(err)
+//         }
+//     }
+// )
 
 
 
@@ -108,9 +108,9 @@ export const historySlice = createSlice({
       [getCheckinCancel.fulfilled]: (state, { payload }) => {
         state.cancel = payload;
       },
-      [getJasper.fulfilled]: (state, { payload }) => {
-        state.jasper = payload;
-      },
+    //   [getJasper.fulfilled]: (state, { payload }) => {
+    //     state.jasper = payload;
+    //   },
       
       
 
