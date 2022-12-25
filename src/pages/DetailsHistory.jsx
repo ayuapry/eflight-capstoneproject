@@ -10,12 +10,12 @@ import { getHistory, getJasper } from '../redux/feature/historySlice';
 export const DetailsHistory = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {id} = useParams()
+    const {bookingId} = useParams()
     const { history } = useSelector( (state) => state.history );
 
     useEffect(() => {
-        dispatch(getHistory(id))
-    },[dispatch, id]); 
+        dispatch(getHistory(bookingId))
+    },[dispatch, bookingId]); 
     console.log(history);
 
 
