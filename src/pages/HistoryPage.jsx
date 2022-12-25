@@ -166,7 +166,7 @@ export const HistoryPage = () => {
                                             ))
                                         }
                                 </div>       
-                                <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer' onClick={() => (navigate(`/detailhistory/${histo.bookingId}`))}>See Details</p>
+                                <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer' onClick={() => navigate(`/detailhistory/${histo.bookingId}`)}>See Details</p>
                             </div>
                         </div>
                     ))}

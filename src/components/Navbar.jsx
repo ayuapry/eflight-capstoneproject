@@ -7,6 +7,7 @@ import ButtonPrimary from "./ButtonPrimary";
 import { BellIcon, BellSlashIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { getCount, getNotification } from "../redux/feature/NotificationSlice";
+import Swal from "sweetalert2";
 
 export const Navbar = () => {
   const [select, setSelect] = useState("");
@@ -14,9 +15,19 @@ export const Navbar = () => {
   const token = localStorage.getItem("token");
 
   const logout = () => {
-    localStorage.clear();
-    navigate("/");
-    window.location.reload(1);
+    Swal.fire({
+      title: 'Do you want to Log Out?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        navigate('/');
+      } else if (result.isDenied) {
+        Swal.fire('Log Out Failed!', '', 'info');
+      }
+    });
   };
   const items = [
     {
@@ -29,13 +40,13 @@ export const Navbar = () => {
     },
   ];
 
-  const { notification, count } = useSelector((state) => state.notification);
+  const { notification } = useSelector((state) => state.notification);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getNotification(id));
-    dispatch(getCount());
+    // dispatch(getCount());
   }, [dispatch, id]);
 
   console.log(notification);
@@ -93,7 +104,7 @@ export const Navbar = () => {
                 <div>
                   <div className=" h-4 w-4 bg-blue-600 ml-5 -mb-3 rounded-full border-1 border-gray-300">
                     <p className="text-xs text-center text-white">
-                      {count?.unreadCount}
+                      {notification?.unreadCount}
                     </p>
                   </div>
                   <div className="h-8 w-8 rounded-full my-0 ">
@@ -120,8 +131,8 @@ export const Navbar = () => {
                   aria-labelledby="menu-button"
                   // tabIndex="-1"
                 >
-                  {notification?.length > 0 ? (
-                    notification.map((notif, i) => (
+                  {notification?.notifications?.length > 0 ? (
+                    notification?.notifications?.map((notif, i) => (
                       <div className="mx-3 my-3">
                         <div key={i} className="">
                           <span className="font-semibold">{notif?.title}</span>
