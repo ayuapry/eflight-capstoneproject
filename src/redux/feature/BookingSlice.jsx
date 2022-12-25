@@ -129,7 +129,7 @@ export const Booking = createAsyncThunk("user/booking", async (values) => {
             {
               scheduleId: values.scheduleId,
               titelId: values.Title0,
-              ageCategoryId: "ac-e0bae223-674b-4c96-916c-503f09fc7f56",
+              ageCategoryId: "ac-0e341f65-9150-4abf-8e35-1fbfcfe49057",
               firstName: values.FirstName0,
               lastName: values.LastName0,
               birthDate: format(new Date(`${values.birthdate0}`), "yyyy-MM-dd"),

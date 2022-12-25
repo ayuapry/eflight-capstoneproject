@@ -16,14 +16,10 @@ import { PrivateRoutes } from "./utils/PrivateRoutes";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
 import DetailPromoPage from "./pages/DetailPromoPage";
-<<<<<<< HEAD
-import LoopTest from "./pages/LoopTest";
-=======
 import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
 import { CancelCheckinPage } from "./pages/CancelCheckinPage";
->>>>>>> 3e4e2105a2b918cdc1c88ee97b93568beea4b041
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -45,12 +41,8 @@ root.render(
         <Route path="/detailpromo/:id" element={<DetPromoPage />} />
         <Route path="/allpromo" element={<AllPromo />} />
         <Route path="/card" element={<Card />} />
-<<<<<<< HEAD
-        <Route path="/loop" element={<LoopTest />} />
-=======
         <Route path="/detail-places/:id" element={<DetailArticle />} />
         <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
->>>>>>> 3e4e2105a2b918cdc1c88ee97b93568beea4b041
       </Routes>
     </BrowserRouter>
   </Provider>
