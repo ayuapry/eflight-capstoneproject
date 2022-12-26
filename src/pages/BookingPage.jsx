@@ -21,11 +21,13 @@ import {
   getCountry,
 } from "../redux/feature/BookingSlice";
 import dayjs from "dayjs";
+import { getAge } from "../redux/feature/homeSlice";
 
 export const BookingPage = (props) => {
   const { titel, bagage, benefit, seat, country } = useSelector(
     (state) => state.booking
   );
+  const { age } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,9 +41,10 @@ export const BookingPage = (props) => {
     dispatch(getBenefit(id));
     dispatch(getSeat(id));
     dispatch(getCountry());
+    dispatch(getAge());
   }, [dispatch]);
 
-  console.log(country);
+  console.log(age);
 
   const location = useLocation();
   console.log(location);
@@ -68,10 +71,19 @@ export const BookingPage = (props) => {
         pass: pass,
         scheduleId: idSch,
         countPass: countPass,
+        ageCategoryId: ageId,
       })
     );
-    console.log({ ...values, total: total, ageCategory: agectr });
-    console.log(`${format(new Date(`${values.birthdate}`), "dd MMM yyyy")}`);
+    console.log({
+      ...values,
+      total: total,
+      ageCategory: agectr,
+      scheduleId: idSch,
+      countPass: countPass,
+      ageCategoryId: ageId,
+    });
+    // navigate("/history");
+    window.location.reload(1);
   };
 
   const [seatPrice, setseatPrice] = useState();
@@ -85,23 +97,23 @@ export const BookingPage = (props) => {
       });
   };
 
+  const object = { a: 1, b: 2, c: 3 };
+  for (const property in object) {
+    console.log(`${property}: ${object[property]}`);
+  }
+
   console.log(seatPrice);
 
   const onChangeBaggage = (values) => {
-    setbaggagePrice(values);
+    bagage
+      ?.filter((bagage) => bagage.weight === values)
+      .map((e, i) => {
+        setbaggagePrice(e.price);
+      });
   };
 
   console.log(baggagePrice);
 
-  const data = [];
-
-  for (let i = 0; i < countPass; i++) {
-    data.push({ nama: "", ttl: "" });
-  }
-
-  data.push({ nama: "tes", ttl: "2022-03-08" });
-
-  console.log(data);
   const agectr = [];
 
   for (let index = 0; index < pass.D; index++) {
@@ -115,6 +127,23 @@ export const BookingPage = (props) => {
   for (let index = 0; index < pass.B; index++) {
     agectr.push("Infant");
   }
+
+  const ageId = [];
+  for (let i = 0; i < countPass; i++) {
+    age
+      ?.filter((age) => age.categoryName === agectr[i])
+      .map((e, i) => {
+        ageId.push(e.id);
+      });
+  }
+
+  // const test = [];
+  // for (let i = 0; i < 2; i++) {
+  //   test.push({ `${tes{i}} : ${tes${i}}`, ha: "2" });
+  //   console.log(test[i].test1);
+  // }
+
+  console.log(ageId);
 
   const total = parseInt(hargaTiket) + baggagePrice + seatPrice;
 
@@ -359,7 +388,7 @@ export const BookingPage = (props) => {
                                 onChange={onChangeBaggage}
                               >
                                 {bagage?.map((e, i) => (
-                                  <Select.Option key={i} value={e?.price}>
+                                  <Select.Option key={i} value={e?.weight}>
                                     {e?.weight}kg -{" "}
                                     {numberFormat(e?.price).slice(0, -3)}
                                   </Select.Option>
