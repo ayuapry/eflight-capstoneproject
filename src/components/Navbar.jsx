@@ -139,7 +139,7 @@ export const Navbar = () => {
                           <span className="text-sm">{notif?.description}</span>
                         </div>
                         <Link
-                          to="/notification"
+                          to={`/notification/${notif?.id}`}
                           className="flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200 b-3"
                         >
                           view all ...

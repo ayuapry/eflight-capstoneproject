@@ -77,7 +77,7 @@ export const HistoryPage = () => {
     <div className='bg-slate-100'>
         <ScrollToTop />
         <Navbar />
-        <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
+        <div className='max-w-[1240px] mx-auto px-4 pb-10 bg-slate-100 md:min-h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>
                 <div className='bg-white mt-20 rounded-md shadow-md md:h-[350px] '>
                     <div className=' my-4 gap-2 mx-16 items-center text-center'>
