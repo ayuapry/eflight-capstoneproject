@@ -69,46 +69,57 @@ export const getCheckinCancel = createAsyncThunk(
   }
 );
 
-export const getJasper = createAsyncThunk(
-  "history/getJasper",
-  async (bookingId) => {
-    const token = localStorage.getItem("token");
-    // const id = localStorage.getItem('id')
-    try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/jasperreport/eticket/${bookingId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      // console.log(res.data.data);
-      console.log(res);
-      return res.data.data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
+// export const getJasper = createAsyncThunk(
+//     'history/getJasper',
+//     async (bookingId) => {
+//         const token =  localStorage.getItem('token')
+//         // const id = localStorage.getItem('id')
+//         try {
+//             const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/jasperreport/eticket/${bookingId}`, {
+//                 headers: { 
+//                     'Authorization': `Bearer ${token}`
+//                 },  
+//             })
+//             // console.log(res.data.data);
+//             console.log(res)
+//             return res.data.data
+//         } catch (err) {
+//             console.log(err)
+//         }
+//     }
+// )
+
+
 
 export const historySlice = createSlice({
-  name: "history",
-  initialState: {
-    history: [],
-    checkin: [],
-  },
-  reducers: {},
-  extraReducers: {
-    //history
-    [getHistory.fulfilled]: (state, { payload }) => {
-      state.history = payload;
+    name: "history",
+    initialState : {
+        history: [],
+        checkin: [],
+        cancel: [],
+        jasper: [],
     },
-    //checkin
-    [getCheckin.fulfilled]: (state, { payload }) => {
-      state.checkin = payload;
+    reducers: {},
+    extraReducers: {
+      //history
+      [getHistory.fulfilled]: (state, { payload }) => {
+        state.history = payload;
+      },
+      //checkin
+      [getCheckin.fulfilled]: (state, { payload }) => {
+        state.checkin = payload;
+      },
+      [getCheckinCancel.fulfilled]: (state, { payload }) => {
+        state.cancel = payload;
+      },
+    //   [getJasper.fulfilled]: (state, { payload }) => {
+    //     state.jasper = payload;
+    //   },
+      
+      
+
     },
-  },
-});
+  });
+
 
 export const historyReducer = historySlice.reducer;

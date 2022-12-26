@@ -5,19 +5,17 @@ import { Navbar } from '../components/Navbar'
 import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
-import ButtonPrimary from '../components/ButtonPrimary'
 import { Button, DatePicker, Form, Input, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getProfile } from '../redux/feature/UserSlice'
-import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { getHistory } from '../redux/feature/historySlice'
-import { data } from 'autoprefixer'
 import ScrollToTop from '../components/ScrollToTop'
 import Swal from 'sweetalert2'
+import noFlightData from "../assets/NoFlightData.svg";
 
 export const HistoryPage = () => {
     const { Option } = Select;
@@ -59,11 +57,27 @@ export const HistoryPage = () => {
     const location = useLocation()
     console.log(location)
 
+    const handleClick = (bookingId) => {
+        navigate(`/detail-history/${bookingId}`);
+      };
+
+      const noData = () => {
+        return (
+          <div className="flex justify-center items-center text-center">
+            <div>
+              <img src={noFlightData} className="h-66 pt-4" alt='/' />
+              <p className="font-semibold mb-0 text-lg">You don't have a booking history</p>
+              <p className="text-gray-400 md:text-base text-sm">Book your flight tickets now</p>
+            </div>
+          </div>
+        );
+      };
+
   return (
     <div className='bg-slate-100'>
         <ScrollToTop />
         <Navbar />
-        <div className='max-w-[1240px] mx-auto px-4 bg-slate-100 md:h-screen'>
+        <div className='max-w-[1240px] mx-auto px-4 pb-10 bg-slate-100 md:min-h-screen'>
             <div className='grid md:grid-cols md:grid-cols-[30%_70%] gap-2'>
                 <div className='bg-white mt-20 rounded-md shadow-md md:h-[350px] '>
                     <div className=' my-4 gap-2 mx-16 items-center text-center'>
@@ -116,7 +130,7 @@ export const HistoryPage = () => {
                             </Form> 
                         </div>
                     </div>
-
+                    {history ? "" : noData()}
                     {history?.length > 0 && history.map((histo, i) => (
                         <div key={i} className='mx-2 my-2'>
                             <div className='bg-white border-2 border-gray-100 shadow-md w-full md:h-[220px] px-3 py-3  rounded-md'>
@@ -166,38 +180,10 @@ export const HistoryPage = () => {
                                             ))
                                         }
                                 </div>       
-                                <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer' onClick={() => (navigate(`/detailhistory/${histo.bookingId}`))}>See Details</p>
+                                <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer' onClick={() => handleClick(histo.bookingId)}>See Details</p>
                             </div>
                         </div>
                     ))}
-
-                    {/* <div className='mx-2 my-2'>
-                        <div className='bg-white border-2 border-gray-100 shadow-md w-full md:h-[220px] px-3 py-3  rounded-md'>
-                            <div className='flex gap-2 pb-4'>
-                                <GiCommercialAirplane color='skyblue' />
-                                <p>Flights</p>
-                            </div>
-                            <p className='text-gray-400 text-sm'>Order ID: xxxxx</p>
-                            <div className='flex gap-2 font-semibold'>
-                                <p>Jakarta</p>
-                                <BsArrowLeftRight />
-                                <p>Bali</p>
-                            </div>
-                            <div className='md:flex gap-3 text-sm'>
-                                <p>Roundtrip - 2 adults, 1 child</p>
-                                <div className='flex gap-2'>
-                                    <FaPlaneDeparture color='skyblue' />
-                                    <p>Friday, 25 Nov 2022 . 11:27</p>
-                                </div>
-                                <div className='flex gap-2'>
-                                    <FaPlaneArrival color='skyblue' />
-                                    <p>Friday, 27 Nov 2022 . 23:00</p>
-                                </div>
-                            </div>
-                            <p className='text-end text-sm text-blue-600 hover:text-[#a6c2d0] pr-2 cursor-pointer'>See Details</p>
-                        </div>
-                    </div> */}
-
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         {/* <Route element={<PrivateRoutes />}> */}
-        <Route path="/notification" element={<NotificationPage />} />
+        <Route path="/notification/:id" element={<NotificationPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/checkin" element={<CheckInPage />} />
@@ -36,7 +36,7 @@ root.render(
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/filter/" element={<FilterPage />} />
-        <Route path="/detailhistory/:id" element={<DetailsHistory />} />
+        <Route path="/detail-history/:bookingId" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
         <Route path="/detailpromo/:id" element={<DetPromoPage />} />
         <Route path="/allpromo" element={<AllPromo />} />

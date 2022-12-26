@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getNotification = createAsyncThunk(
-  "user/getNotification",
+  "notification/getNotification",
   async () => {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
@@ -16,8 +16,8 @@ export const getNotification = createAsyncThunk(
         }
       );
       // localStorage.setItem("id",(res.data.data.id))
-      // console.log(res)
-      return res.data.data.notifications;
+      console.log(res)
+      return res.data.data;
     } catch (error) {
       console.error(error);
       return error.response.data.data;
@@ -25,32 +25,10 @@ export const getNotification = createAsyncThunk(
   }
 );
 
-export const getCount = createAsyncThunk("user/getCount", async () => {
-  const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
-  try {
-    const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/notification/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    // localStorage.setItem("id",(res.data.data.id))
-    // console.log(res)
-    return res.data.data;
-  } catch (error) {
-    console.error(error);
-    return error.response.data.data;
-  }
-});
-
 export const notificationSlice = createSlice({
   name: "notif",
   initialState: {
     notification: [],
-    count: [],
   },
   reducers: {},
   extraReducers: {
@@ -63,10 +41,6 @@ export const notificationSlice = createSlice({
     },
     [getNotification.rejected]: (state) => {
       state.loading = false;
-    },
-    [getCount.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.count = payload;
     },
   },
 });

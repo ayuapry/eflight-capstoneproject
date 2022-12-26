@@ -60,7 +60,7 @@ export default function Detail() {
     return (
       <div className="h-full flex justify-center items-center text-center">
         <div>
-          <img src={noFlightData} className="h-96" />
+          <img src={noFlightData} className="h-96" alt="/" />
           <p className="font-semibold mb-0 text-lg">No flights available</p>
           <p className="text-gray-400 md:text-base text-sm">
             Change your search with a different date or cabin class.
@@ -125,11 +125,11 @@ export default function Detail() {
                     {tiket.facilities &&
                       tiket.facilities.map((fc, index) => {
                         return fc.name === "Meal" ? (
-                          <img src={Meal} className="h-6 mr-2" />
+                          <img src={Meal} className="h-6 mr-2" alt="/" />
                         ) : fc.name === "Entertainment" ? (
-                          <img src={Entertain} className="h-6 mr-2" />
+                          <img src={Entertain} className="h-6 mr-2" alt="/" />
                         ) : (
-                          <img src={Bagage} className="h-6 mr-2" />
+                          <img src={Bagage} className="h-6 mr-2" alt="/" />
                         );
                       })}
                   </div>
@@ -269,7 +269,7 @@ export default function Detail() {
                               </Tab.Panel>
                               <Tab.Panel>
                                 <p>Far</p>
-                                {Passenger.D != 0 ? (
+                                {Passenger.D !== 0 ? (
                                   <div className="flex justify-between">
                                     <li className="text-gray-400">
                                       Adult (x{Passenger.D})
@@ -283,7 +283,7 @@ export default function Detail() {
                                 ) : (
                                   ""
                                 )}
-                                {Passenger.A != 0 ? (
+                                {Passenger.A !== 0 ? (
                                   <div className="flex justify-between">
                                     <li className="text-gray-400">
                                       Child (x{Passenger.A})
@@ -297,7 +297,7 @@ export default function Detail() {
                                 ) : (
                                   ""
                                 )}
-                                {Passenger.B != 0 ? (
+                                {Passenger.B !== 0 ? (
                                   <div className="flex justify-between">
                                     <li className="text-gray-400">
                                       Infant (x{Passenger.B})
@@ -417,7 +417,7 @@ export default function Detail() {
                       </Tab.Panel>
                       <Tab.Panel>
                         <p>Far</p>
-                        {Passenger.D != 0 ? (
+                        {Passenger.D !== 0 ? (
                           <div className="flex justify-between">
                             <li className="text-gray-400">
                               Adult (x{Passenger.D})
@@ -431,7 +431,7 @@ export default function Detail() {
                         ) : (
                           ""
                         )}
-                        {Passenger.A != 0 ? (
+                        {Passenger.A !== 0 ? (
                           <div className="flex justify-between">
                             <li className="text-gray-400">
                               Child (x{Passenger.A})
@@ -445,7 +445,7 @@ export default function Detail() {
                         ) : (
                           ""
                         )}
-                        {Passenger.B != 0 ? (
+                        {Passenger.B !== 0 ? (
                           <div className="flex justify-between">
                             <li className="text-gray-400">
                               Infant (x{Passenger.B})

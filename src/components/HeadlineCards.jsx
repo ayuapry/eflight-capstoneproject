@@ -40,7 +40,6 @@ export const HeadlineCards = (props) => {
     const getAllArticle = async (id) => {
         try {
           const response = await axios.get(`https://63a5b0fc318b23efa79ae8d9.mockapi.io/api/v1/topplaces/article`);
-          console.log(response);
           setAllArticle(response.data);
         } catch (e) {
           console.log(e.message);
@@ -64,7 +63,7 @@ export const HeadlineCards = (props) => {
         </div>
         <div className='max-w-[1024px] mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer'>
         {allArticle.map((item,i) => (
-            <div className='relative' onClick={() => handleClick(item.id)}>
+            <div key={i} className='relative' onClick={() => handleClick(item.id)}>
                 <img className='w-full h-full object-cover rounded-md' src={item.image} alt="/" />
                 <div className='bg-gray-900/30 absolute top-0 left-0 w-full h-full rounded-md'>
                     <p className='left-4 bottom-4 text-2xl font-bold text-white absolute'>

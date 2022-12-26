@@ -22,7 +22,7 @@ export const getCountry = createAsyncThunk("country/getCountry", async () => {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/airport/all`
     );
-    console.log(res);
+    // console.log(res);
     return res.data.data;
   } catch (err) {
     console.log(err);
