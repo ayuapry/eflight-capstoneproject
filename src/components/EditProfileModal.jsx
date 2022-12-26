@@ -42,7 +42,7 @@ export const EditProfileModal = ({ open, close }) => {
   useEffect(() => {
     dispatch(getCity());
     dispatch(getProfile(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const onFinish = (values) => {
     dispatch(editProfile(values));

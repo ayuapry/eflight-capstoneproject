@@ -11,30 +11,6 @@ export const getTitel = createAsyncThunk("booking/getTitel", async () => {
   }
 });
 
-export const postBooking = createAsyncThunk(
-  "btnBooking/postBooking",
-  async () => {
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/booking/userid=${id}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      // console.log(res.data.data);
-      console.log(res.data);
-      return res.data.data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
-
 export const getBagage = createAsyncThunk("user/getBagage", async (id) => {
   const token = localStorage.getItem("token");
   //   const id = localStorage.getItem('id')
@@ -75,7 +51,6 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
 });
 
 export const getCountry = createAsyncThunk("user/getCountry", async (id) => {
-  const token = localStorage.getItem("token");
   try {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/country/all`

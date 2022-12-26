@@ -131,8 +131,9 @@ export const Navbar = () => {
                   // tabIndex="-1"
                 >
                   {notification?.notifications?.length > 0 ? (
+                    
                     notification?.notifications?.map((notif, i) => (
-                      <div className="mx-3 my-3">
+                      <div className="mx-3 my-3 hover:bg-gray-100">
                         <div key={i} className="">
                           <span className="font-semibold">{notif?.title}</span>
                           <br />
