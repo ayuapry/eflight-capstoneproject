@@ -14,7 +14,6 @@ export const DetailArticle = () => {
     const getDetailArticle = async () => {
       try {
         let response = await axios.get("https://63a5b0fc318b23efa79ae8d9.mockapi.io/api/v1/topplaces/article");
-        console.log();
         setDetailArticle(response.data);
       } catch (e) {
         console.log(e.message);

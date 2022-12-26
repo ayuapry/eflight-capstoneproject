@@ -49,7 +49,6 @@ export const Navbar = () => {
     // dispatch(getCount());
   }, [dispatch, id]);
 
-  console.log(notification);
   return (
     <div className="py-3 w-screen bg-white fixed z-50">
       <div className="flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20">
