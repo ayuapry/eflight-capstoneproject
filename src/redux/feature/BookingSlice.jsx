@@ -85,11 +85,15 @@ export const getBenefit = createAsyncThunk("user/getBenefit", async (id) => {
 export const Booking = createAsyncThunk("user/booking", async (values) => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  console.log(values);
-  // for (let i = 0; index < values.; index++) {
-  //   const element = array[index];
+  // const payload = [];
+  // const data = [];
 
+  // payload.push({ data });
+  // for (const property in values) {
+  //   data.push(values[property]);
   // }
+
+  // console.log("payload", payload);
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/booking/${id}`,
@@ -104,7 +108,7 @@ export const Booking = createAsyncThunk("user/booking", async (values) => {
             {
               scheduleId: values.scheduleId,
               titelId: values.Title0,
-              ageCategoryId: "ac-0e341f65-9150-4abf-8e35-1fbfcfe49057",
+              ageCategoryId: values.ageCategoryId[0],
               firstName: values.FirstName0,
               lastName: values.LastName0,
               birthDate: format(new Date(`${values.birthdate0}`), "yyyy-MM-dd"),
@@ -115,7 +119,7 @@ export const Booking = createAsyncThunk("user/booking", async (values) => {
                 id: values.seat0,
               },
               baggage: {
-                total: 20,
+                total: values.baggage0,
               },
             },
           ],
@@ -128,7 +132,6 @@ export const Booking = createAsyncThunk("user/booking", async (values) => {
         },
       }
     );
-    localStorage.setItem("id", res.data.data.id);
     console.log(res.data);
     return res.data.data;
   } catch (error) {
