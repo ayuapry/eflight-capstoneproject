@@ -6,7 +6,7 @@ import userIcon from "../assets/userIcon.png";
 import ButtonPrimary from "./ButtonPrimary";
 import { BellIcon, BellSlashIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { getCount, getNotification } from "../redux/feature/NotificationSlice";
+import { getNotification } from "../redux/feature/NotificationSlice";
 import Swal from "sweetalert2";
 
 export const Navbar = () => {
@@ -19,6 +19,8 @@ export const Navbar = () => {
       title: 'Do you want to Log Out?',
       showDenyButton: true,
       confirmButtonText: 'Yes',
+      confirmButtonColor: "#2563eb",
+      denyButtonColor: "#facc15",
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -46,7 +48,6 @@ export const Navbar = () => {
 
   useEffect(() => {
     dispatch(getNotification(id));
-    // dispatch(getCount());
   }, [dispatch, id]);
 
   return (

@@ -4,7 +4,7 @@ import { Form, Input, Modal, Space, Alert } from "antd";
 import ButtonPrimary from "../components/ButtonPrimary";
 import ButtonBorder from "../components/ButtonBorder";
 import LoginBg from "../assets/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SecondFooter } from "../components/SecondFooter";
 import googleIcon from "../assets/google.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { LoginEmail } from "../redux/feature/AuthSlice";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { login, loading } = useSelector((state) => state.auth);
+  const { login } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
 
@@ -21,7 +21,7 @@ export default function LoginPage() {
   };
 
   const isLogin = () => {
-    // navigate('/')
+    navigate('/')
     window.location.reload(1);
   };
 
@@ -76,6 +76,10 @@ export default function LoginPage() {
                   required: true,
                   message: "Please input your Password!",
                 },
+              //   {
+              //     pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
+              //     message: `Password Pattern`
+              //  },              
               ]}
             >
               <Input.Password

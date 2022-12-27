@@ -10,7 +10,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import ButtonPrimary from "../components/ButtonPrimary";
 import { Navbar } from "../components/Navbar";
-import { SeatModal } from "../components/SeatModal";
 import { SecondFooter } from "../components/SecondFooter";
 import {
   getBagage,
@@ -31,8 +30,6 @@ export const BookingPage = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [seatModal, setSeatModal] = useState(false);
-  const handleOnClose = () => setSeatModal(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -42,7 +39,7 @@ export const BookingPage = (props) => {
     dispatch(getSeat(id));
     dispatch(getCountry());
     dispatch(getAge());
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   console.log(age);
 
@@ -464,7 +461,6 @@ export const BookingPage = (props) => {
         </Form>
       </div>
       <SecondFooter />
-      <SeatModal open={seatModal} close={handleOnClose} />
     </div>
     // :
     // <div>

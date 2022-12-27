@@ -90,7 +90,7 @@ export const HistoryPage = () => {
                             <span className='text-sm'>{profile?.email}</span>
                         </div>
                     </div>
-                    <div className='hidden md:block mx-10 my-10'>
+                    <div className=' md:block mx-10 my-10'>
                         <div className='flex gap-2 cursor-pointer' onClick={() => setEditProfileModal(true)} >
                             <UserCircleIcon className="h-6 w-6 text-blue-600"/>
                             <p className='font-semibold'>Account</p>

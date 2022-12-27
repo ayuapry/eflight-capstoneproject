@@ -42,6 +42,8 @@ export const editProfile = createAsyncThunk(
           },
         }
       );
+      window.location.reload(1);
+
       // localStorage.setItem("id",(res.data.data.id))
       console.log(res.data.data);
       return res.data.data;
