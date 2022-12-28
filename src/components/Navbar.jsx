@@ -103,20 +103,19 @@ export const Navbar = () => {
           <div className="filter-dropdowns">
             <div className="relative inline-block text-left">
               {token ? (
-                <div>
-                  <div className=" h-4 w-4 bg-blue-600 ml-5 -mb-3 rounded-full border-1 border-gray-300">
-                    <p className="text-xs text-center text-white">
+                <div 
+                  className="cursor-pointer"
+                  onClick={() => 
+                  setSelect(!select)
+                  
+                }>
+                  <div className=" h-4 w-auto bg-blue-600 ml-4 -mb-4 rounded-full border-1 border-gray-300 relative text-xs text-center text-white">
                       {notification?.unreadCount}
-                    </p>
                   </div>
-                  <div className="h-8 w-8 rounded-full my-0 ">
+                  <div className="h-8 w-8 rounded-full my-0 relative -z-10 ">
                     <BellIcon
                       size={30}
-                      onClick={() => 
-                        setSelect(!select)
-                        
-                      }
-                      className="cursor-pointer text-gray-400"
+                      className="text-gray-400"
                     />
                   </div>
                 </div>
