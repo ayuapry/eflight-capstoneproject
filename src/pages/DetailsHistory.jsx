@@ -5,17 +5,55 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import { Navbar } from '../components/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
 import { SecondFooter } from '../components/SecondFooter';
-import { getHistory } from '../redux/feature/historySlice';
+import { getHistory, getJasper } from '../redux/feature/historySlice';
 
 export const DetailsHistory = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {bookingId} = useParams()
-    const { history } = useSelector( (state) => state.history );
+    const { history, jasper } = useSelector( (state) => state.history );
 
     useEffect(() => {
         dispatch(getHistory())
-    },[dispatch]); 
+        dispatch(getJasper(bookingId))
+    },[dispatch, bookingId]); 
+
+    const onButtonClick = () => {
+      const imgurl = "https://cdn62.picsart.com/182788826000202.jpg?type=webp&to=crop&r=256"
+      fetch(imgurl)
+        .then(response => response.blob())
+        .then(myBlob => {
+        var urlCreator = window.URL || window.webkitURL;
+        var imageUrl = urlCreator.createObjectURL(myBlob);
+        const myImgElem = document.getElementById('my-img');
+        myImgElem.src = imageUrl
+      })
+      // const token =  localStorage.getItem('token')
+      // // using Java Script method to get PDF file
+      // fetch(`http://localhost:8080/api/v1/jasperreport/eticket/44E95EA3`, {
+      //   method: 'GET',
+      //   headers: { 
+      //     'Authorization': `Bearer ${token}`
+      //   }, 
+      // }).then((data) => {
+      //     data.blob().then(blob => download(blob, "filename.pdf"))
+      //     console.log(data);
+      // })
+      // const download = (blob) => {
+      //   const url = window.createObjectURL(blob);
+      //   const a = document.createElement('a');
+      //   a.style.display = 'none';
+      //   a.href = url;
+
+      //   a.download = jasper;
+      //   document.body.appendChild(a);
+      //   a.click();
+      //   document.body.removeChild(a);
+      //   window.URL.revokeObjectURL(url);      } 
+    }
+
+
+
 
   return (
     <div className='bg-slate-100'>
@@ -117,7 +155,7 @@ export const DetailsHistory = () => {
                 </div>
               </div>
               <p className='text-xs text-gray-400'>Ordered At {e?.orderedAt}</p>
-              <div className='md:mt-40'>
+              <div className='md:mt-40' onClick={onButtonClick}>
                 <ButtonPrimary title='Download Ticket Here' />
               </div>
             </div>
