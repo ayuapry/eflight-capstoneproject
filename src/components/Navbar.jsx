@@ -31,6 +31,8 @@ export const Navbar = () => {
       title: 'Do you want to Log Out?',
       showDenyButton: true,
       confirmButtonText: 'Yes',
+      confirmButtonColor: "#2563eb",
+      denyButtonColor: "#facc15",
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {

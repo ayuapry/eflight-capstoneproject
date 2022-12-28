@@ -30,7 +30,7 @@ const validateMessages = {
 
 export const EditProfileModal = ({ open, close }) => {
   const dispatch = useDispatch();
-  const { city, loading } = useSelector((state) => state.user);
+  const { city } = useSelector((state) => state.user);
   const { profile } = useSelector((state) => state.user);
   const id = localStorage.getItem("id");
   const bodyStyle = document.body.style;
@@ -42,11 +42,10 @@ export const EditProfileModal = ({ open, close }) => {
   useEffect(() => {
     dispatch(getCity());
     dispatch(getProfile(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const onFinish = (values) => {
     dispatch(editProfile(values));
-    window.location.reload(1);
   };
 
   console.log(profile);
