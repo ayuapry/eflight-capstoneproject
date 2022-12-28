@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -5,17 +6,36 @@ import ButtonPrimary from '../components/ButtonPrimary';
 import { Navbar } from '../components/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
 import { SecondFooter } from '../components/SecondFooter';
-import { getHistory } from '../redux/feature/historySlice';
+import { getHistory, getJasper } from '../redux/feature/historySlice';
 
 export const DetailsHistory = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {bookingId} = useParams()
-    const { history } = useSelector( (state) => state.history );
+    const { history, jasper } = useSelector( (state) => state.history );
 
     useEffect(() => {
         dispatch(getHistory())
-    },[dispatch]); 
+        dispatch(getJasper(bookingId))
+    },[dispatch, bookingId]); 
+
+    const onButtonClick = () => {
+      const token = localStorage.getItem('token')
+      fetch(`https://localhost:8080/api/v1/jasperreport/eticket/312C752F`, {
+          method: 'GET',
+          headers: { 
+            Authorization : `Bearer ${token}`
+          }, 
+          responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'file.pdf');
+        document.body.appendChild(link);
+        link.click();
+      });
+    }
 
   return (
     <div className='bg-slate-100'>
@@ -117,7 +137,7 @@ export const DetailsHistory = () => {
                 </div>
               </div>
               <p className='text-xs text-gray-400'>Ordered At {e?.orderedAt}</p>
-              <div className='md:mt-40'>
+              <div className='md:mt-40' onClick={onButtonClick}>
                 <ButtonPrimary title='Download Ticket Here' />
               </div>
             </div>

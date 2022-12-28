@@ -15,8 +15,32 @@ export const getNotification = createAsyncThunk(
           },
         }
       );
-      // localStorage.setItem("id",(res.data.data.id))
-      console.log(res)
+      return res.data.data;
+    } catch (error) {
+      console.error(error);
+      return error.response.data.data;
+    }
+  }
+);
+
+export const AllNotification = createAsyncThunk(
+  "allNotif/AllNotification",
+  async (id) => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("id");
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_BASE_URL}/notification/${userId}/${id}`,
+        {
+          read: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(res.data.data)
       return res.data.data;
     } catch (error) {
       console.error(error);
@@ -29,6 +53,7 @@ export const notificationSlice = createSlice({
   name: "notif",
   initialState: {
     notification: [],
+    allNotif: [],
   },
   reducers: {},
   extraReducers: {
@@ -41,6 +66,9 @@ export const notificationSlice = createSlice({
     },
     [getNotification.rejected]: (state) => {
       state.loading = false;
+    },
+    [AllNotification.fulfilled]: (state, { payload }) => {
+      state.allNotif = payload;
     },
   },
 });

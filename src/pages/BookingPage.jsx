@@ -15,7 +15,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import ButtonPrimary from "../components/ButtonPrimary";
 import { Navbar } from "../components/Navbar";
-import { SeatModal } from "../components/SeatModal";
 import { SecondFooter } from "../components/SecondFooter";
 import {
   getBagage,
@@ -38,8 +37,6 @@ export const BookingPage = () => {
   const { age } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [seatModal, setSeatModal] = useState(false);
-  const handleOnClose = () => setSeatModal(false);
   const { id } = useParams();
   const bookingId = localStorage.getItem("bookingId");
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -66,7 +63,7 @@ export const BookingPage = () => {
     dispatch(getSeat(id));
     dispatch(getCountry());
     dispatch(getAge());
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const location = useLocation();
   const tiket = location.state?.tiket;
@@ -255,7 +252,7 @@ export const BookingPage = () => {
         >
           <div className="grid md:grid-cols md:grid-cols-[60%_40%] gap-2 py-5">
             <div>
-              <div className="bg-white mt-20 rounded-md shadow-md py-5 px-5">
+              <div className="bg-white mt-14 rounded-md shadow-md py-5 px-5">
                 <div className="flex items-center gap-3">
                   <UsersIcon className="h-7 w-7" />
                   <div className="text-lg font-semibold">Passenger Details</div>
@@ -552,7 +549,6 @@ export const BookingPage = () => {
         </Form>
       </div>
       <SecondFooter />
-      <SeatModal open={seatModal} close={handleOnClose} />
     </div>
     // :
     // <div>

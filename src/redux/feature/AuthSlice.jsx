@@ -41,6 +41,7 @@ export const LoginEmail = createAsyncThunk("user/Login", async (values) => {
     localStorage.removeItem("id");
     localStorage.setItem("token", res.data.data.jwtToken);
     localStorage.setItem("id", res.data.data.id);
+    localStorage.setItem("role", res.data.data.role);
     return res.data.data;
   } catch (error) {
     console.error(error);

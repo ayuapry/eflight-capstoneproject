@@ -1,23 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 export const getPromo = createAsyncThunk("promo/getPromo", async () => {
-  // const token =  localStorage.getItem('token')
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/promobanner/all`,
-      {
-        // const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/promobanner/all`, {
-        // "page" :"1",
-        // "size" :"1",
-        // "sort": [
-        //     "string"
-        //   ],
-        // headers: {
-        //     'Authorization': `Bearer ${token}`
-        // },
-      }
+      `${process.env.REACT_APP_BASE_URL}/promobanner/all`
     );
     console.log(res.data);
     return res.data.data.content;
@@ -46,10 +33,10 @@ export const getDetPromo = createAsyncThunk(
 
 export const getPagination = createAsyncThunk(
   "pagination/getPagination",
-  async (size) => {
+  async (page) => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/promobanner/all?page=1&size=${size}&sort=string`
+        `${process.env.REACT_APP_BASE_URL}/promobanner/all?page=${page}&sort=string`
       );
       console.log(res.data);
       return res.data.data.content;

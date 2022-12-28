@@ -21,7 +21,7 @@ export const CheckInPage = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-cyan-500 to-blue-500">
+    <div className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
       <ScrollToTop />
       <Navbar />
       <div className="max-w-[1240px] mx-auto h-screen md:h-[670px]">

@@ -7,7 +7,7 @@ import ButtonPrimary from "../components/ButtonPrimary";
 import { Navbar } from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import { SecondFooter } from "../components/SecondFooter";
-import { getCheckin, getCheckinCancel } from "../redux/feature/historySlice";
+import { getCheckinCancel } from "../redux/feature/historySlice";
 
 export const CancelCheckinPage = () => {
   const { cancel } = useSelector((state) => state.history);
@@ -28,7 +28,7 @@ export const CancelCheckinPage = () => {
         <div className="md:pt-40 pt-20">
           <div className="bg-white md:mx-14 rounded-md shadow-md md:py-20 py-5 mx-2 px-5 md:h-[400px]">
             <p className="text-gray-500 text-sm">
-            Cancel Your Checkin
+            Cancel Your Checkin Here 
             </p>
             <div>
               <h2 className="text-lg ">Your Details</h2>
@@ -70,7 +70,7 @@ export const CancelCheckinPage = () => {
                   <Input />
                 </Form.Item>
                 <div className="flex justify-end">
-                  <div className="w-[30%]">
+                  <div className="md:w-[30%]">
                     <ButtonPrimary type="submit" title="Cancel CheckIn Now" />
                   </div>
                 </div>

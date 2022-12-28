@@ -95,13 +95,14 @@ export const HeadlineCards = (props) => {
         </div>
 
         {/* Promo */}
-            <div className='Promo max-w-[1024px] mx-auto px-4 pb-10 flex flex-col md:flex-row justify-between items-center'>
+            <div className='Promo max-w-[1024px] md:h-[400px] mx-auto px-4 pb-10 flex flex-col md:flex-row justify-between items-center'>
                 <div className='w-full md:w-[32%] hidden md:flex items-start flex-col mr-5'>
                     <h1 className='md:text-[1.9rem] md:text-start leading-tight font-semibold m-0 text-justify'>
                         Check out the promo before you go!
                     </h1>
                     <div className='mt-3 w-fit'>
-                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                        {/* <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/> */}
+                        <p className='text-lg font-semibold text-blue-600 hover:text-blue-300 cursor-pointer'>View All Promo ...</p>
                     </div>
                 </div>
                 <div className='w-full md:w-[30%] md:hidden flex justify-center items-center py-4'>
@@ -111,7 +112,7 @@ export const HeadlineCards = (props) => {
                 </div>
                 <div className='w-full md:w-[68%] hidden md:flex flex-row'>
                     <Swiper
-                        slidesPerView={2.5}
+                        slidesPerView={2}
                         spaceBetween={10}
                         slidesPerGroup={1}
                         loop={true}
