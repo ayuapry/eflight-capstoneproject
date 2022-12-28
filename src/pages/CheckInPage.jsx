@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import login from "../assets/login.png";
 import ButtonPrimary from "../components/ButtonPrimary";
+import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import { SecondFooter } from "../components/SecondFooter";
@@ -21,10 +22,10 @@ export const CheckInPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
+    <div className="h-full md:min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
       <ScrollToTop />
       <Navbar />
-      <div className="max-w-[1240px] mx-auto h-screen md:h-[670px]">
+      <div className="max-w-[1240px] mx-auto h-full md:min-h-[90vh]">
         <div className="md:pt-40 pt-20">
           <div className="bg-white md:mx-14 rounded-md shadow-md md:py-20 py-5 mx-2 px-5 md:h-[400px]">
             <p className="text-gray-500 text-sm">
