@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -16,37 +15,21 @@ export const DetailsHistory = () => {
 
     useEffect(() => {
         dispatch(getHistory())
-        dispatch(getJasper(bookingId))
     },[dispatch, bookingId]); 
 
     const onButtonClick = () => {
-      const token = localStorage.getItem('token')
-      fetch(`https://localhost:8080/api/v1/jasperreport/eticket/312C752F`, {
-          method: 'GET',
-          headers: { 
-            Authorization : `Bearer ${token}`
-          }, 
-          responseType: 'blob', // important
-      }).then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'file.pdf');
-        document.body.appendChild(link);
-        link.click();
-      });
+      dispatch(getJasper(bookingId))
     }
 
   return (
     <div className='bg-slate-100'>
     <ScrollToTop />
     <Navbar />
-    {/* <div className='pt-[80px]'>
-    <div className='max-w-[1240px] mx-auto md:px-14 px-5 md:h-screen'> */}
-    {history.map((e) => {
+    <div className='pt-[1px]'>
+    {history.slice(0, 2).map((e) => {
         if (e.bookingId === bookingId) {
         return (
-        <div key={e.bookingId} className='max-w-[1240px] md:px-14 mx-auto bg-slate-100 md:h-screen'>
+        <div key={e.bookingId} className='max-w-[1240px] md:px-14 mx-auto bg-slate-100 min-h-screen '>
           <div className='grid md:grid-cols md:grid-cols-[60%_40%] gap-2'>
             <div className='bg-white mt-20 rounded-md shadow-md'>
               <div className='bg-slate-100 py-2 px-2 mx-3 my-3 rounded-full'>
@@ -115,7 +98,7 @@ export const DetailsHistory = () => {
                 ))}
               </div>
             </div>
-            {e && e?.departure?.data.map((item,i) => (
+            {e && e?.departure?.data.slice(0,1).map((item,i) => (
             <div key={i} className='bg-white rounded-md shadow-md md:mt-20 px-5 py-5 '>
               <p className='font-bold'>Amount Details</p>
               <div className='bg-slate-100 rounded-lg px-2 py-2'>
@@ -138,7 +121,7 @@ export const DetailsHistory = () => {
               </div>
               <p className='text-xs text-gray-400'>Ordered At {e?.orderedAt}</p>
               <div className='md:mt-40' onClick={onButtonClick}>
-                <ButtonPrimary title='Download Ticket Here' />
+                <ButtonPrimary title='Download Your E-Ticket Here' />
               </div>
             </div>
             ))}
@@ -153,6 +136,7 @@ export const DetailsHistory = () => {
     {/* </div>
     </div> */}
     <SecondFooter />
+    </div>
 </div>
   )
 }

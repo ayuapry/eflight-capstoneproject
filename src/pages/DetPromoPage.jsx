@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { getDetPromo } from '../redux/feature/promoSlice';
-import  promoImg from '../assets/promo4.png'
 import ButtonPrimary from '../components/ButtonPrimary';
 import Footer from '../components/Footer'
 import { SecondFooter } from '../components/SecondFooter';
@@ -12,10 +11,8 @@ import { SecondFooter } from '../components/SecondFooter';
 const DetPromoPage = () => {
     const {detPromo,pagination } = useSelector((state) => state.promo);
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
     const {id} = useParams();
-    console.log(id);
 
     useEffect(() => {
       dispatch(getDetPromo(id))
@@ -25,8 +22,6 @@ const DetPromoPage = () => {
         navigate("/allpromo")
     }
 
-    console.log("detpromo",detPromo);
-    console.log("data pegination",pagination);
   return (
     <div className='bg-slate-100 min-h-screen'>
         <Navbar />

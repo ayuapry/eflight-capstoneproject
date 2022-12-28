@@ -13,7 +13,6 @@ const AllNotifPage = () => {
     const dispatch = useDispatch()
     const { id } = useParams();
     const userId = localStorage.getItem('id');
-    console.log(notification);
     
     useEffect(() => {
     dispatch(getNotification(id))
@@ -34,7 +33,6 @@ const AllNotifPage = () => {
                                     className='flex flex-row gap-5 items-center justify-between py-3 px-2 md:px-0'>
                                         <div className='flex flex-row'>
                                             <div className="flex items-center">
-                                                {/* <SpeakerWaveIcon className='h-16 w-16 text-white mx-5' /> */}
                                                 <SpeakerWaveIcon className={`${ e?.read ? 'text-black' : 'text-white' } h-16 w-16 m-2 md:mx-5`} />
                                             </div>
                                             <div className='flex flex-col justify-center items-start ml-2 md:ml-5'>

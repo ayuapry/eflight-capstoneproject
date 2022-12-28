@@ -31,13 +31,7 @@ export default function Card() {
 
   useEffect(() => {
     dispatch(getCountry());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getAge());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getCabinClass());
   }, [dispatch]);
 
@@ -54,8 +48,7 @@ export default function Card() {
     iata1: "",
     iata2: "",
   });
-  // console.log('calender: ', calendar)
-  // console.log('calender: ', calendarGo)
+
   const [openDate, setOpenDate] = useState(false);
   const [openDateGo, setOpenDateGo] = useState(false);
   const [openClass, setOpenClass] = useState(false);
@@ -93,15 +86,11 @@ export default function Card() {
 
   // Hide on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
-    // if (refOne.current && !refOne.current.target.name.contains("cal1")) {
     if (refOne.current && !refOne.current.children[0]) {
       setOpenDate(false);
     }
   };
   const hideOnClickOutsideGo = (e) => {
-    // if (refTwo.current && !refOne.current.target.name.contains("cal2")) {
     if (refTwo.current && !refTwo.current.children[0]) {
       setOpenDateGo(false);
     }
@@ -120,7 +109,6 @@ export default function Card() {
   const display = countD + countA + countB + " Passenger, ";
 
   const onFinishOne = (values) => {
-    // dispatch(getTiket(values));
     navigate(
       `/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${
         selectRadio === "RoundTrip" ? calendarGo : "NA"

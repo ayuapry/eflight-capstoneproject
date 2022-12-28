@@ -101,8 +101,8 @@ export const HeadlineCards = (props) => {
                         Check out the promo before you go!
                     </h1>
                     <div className='mt-3 w-fit'>
-                        {/* <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/> */}
-                        <p className='text-lg font-semibold text-blue-600 hover:text-blue-300 cursor-pointer'>View All Promo ...</p>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                        {/* <p className='text-lg font-semibold text-blue-600 hover:text-blue-300 cursor-pointer'>View All Promo ...</p> */}
                     </div>
                 </div>
                 <div className='w-full md:w-[30%] md:hidden flex justify-center items-center py-4'>
@@ -116,10 +116,6 @@ export const HeadlineCards = (props) => {
                         spaceBetween={10}
                         slidesPerGroup={1}
                         loop={true}
-                        pagination={{
-                        type: "progressbar",
-                        clickable: true,
-                        }}
                         navigation={true}
                         modules={[Pagination, Navigation]}
                         className="mySwiper"

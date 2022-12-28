@@ -10,7 +10,6 @@ import { SecondFooter } from "../components/SecondFooter";
 import { getCheckinCancel } from "../redux/feature/historySlice";
 
 export const CancelCheckinPage = () => {
-  const { cancel } = useSelector((state) => state.history);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const navigate = useNavigate();

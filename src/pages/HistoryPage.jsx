@@ -5,7 +5,7 @@ import { Navbar } from '../components/Navbar'
 import { GiCommercialAirplane } from 'react-icons/gi'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { FaPlaneArrival, FaPlaneDeparture } from 'react-icons/fa'
-import { Button, DatePicker, Form, Input, Select } from 'antd';
+import { Form, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
 import { SecondFooter } from '../components/SecondFooter';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -36,6 +36,11 @@ export const HistoryPage = () => {
         dispatch(getProfile(id))
         dispatch(getHistory())
     },[dispatch, id]); 
+
+    const sorting = (values) => {
+        // dispatch(getHistory(values))
+        console.log(values)
+    }
     
     const logout = () => {
         Swal.fire({
@@ -52,10 +57,6 @@ export const HistoryPage = () => {
           }
         });
       };
-    console.log(history);
-
-    const location = useLocation()
-    console.log(location)
 
     const handleClick = (bookingId) => {
         navigate(`/detail-history/${bookingId}`);
@@ -112,7 +113,7 @@ export const HistoryPage = () => {
                             <span className='text-gray-400'>This is the history of your trip</span>
                         </div>
                         <div className='my-4'>
-                            <Form>
+                            {/* <Form>
                             <Form.Item
                             name="sort"
                             style={{width:'100%'}}
@@ -121,13 +122,13 @@ export const HistoryPage = () => {
                                 required: true,
                             },
                             ]}
-                            >
+                            > */}
                             <Select placeholder="Sort By" allowClear>
-                            <Option value="recent">Recently purchased</Option>
-                            <Option value="early">Early trip date</Option>
+                            <Option onClick={sorting("ASC")} value="recent">ASCENDING</Option>
+                            <Option onClick={sorting("DESC")} value="early">DESCENDING</Option>
                             </Select>
-                            </Form.Item>    
-                            </Form> 
+                            {/* </Form.Item>    
+                            </Form>  */}
                         </div>
                     </div>
                     {history ? "" : noData()}
@@ -142,7 +143,7 @@ export const HistoryPage = () => {
                                     Order ID: {histo.bookingId}
                                 </p>
 
-                                {histo?.departure?.data.map((city, i) => (
+                                {histo?.departure?.data.slice(0,1).map((city, i) => (
                                     <>
                                         <div key={i} className='flex gap-2 font-semibold'>
                                             <p>{city.schedule.originAirport.city}</p>
@@ -157,7 +158,7 @@ export const HistoryPage = () => {
                                         {histo.bookingType} - {histo.adult} adults, {histo.child} child
                                     </p>
                                     {
-                                            histo?.departure?.data.map((data, i) => (
+                                            histo?.departure?.data.slice(0,1).map((data, i) => (
                                             <>
                                                 <div key={i} className='flex gap-2'>
                                                     <FaPlaneDeparture color='skyblue' />

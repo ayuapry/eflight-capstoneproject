@@ -47,31 +47,11 @@ export const Navbar = () => {
       }
     });
   };
-  const items = [
-    {
-      key: "1",
-      label: <Link to="/history">Profile</Link>,
-    },
-    {
-      key: "2",
-      label: <div onClick={logout}>Logout</div>,
-    },
-  ];
-
   return (
     <div className="py-3 w-screen bg-white fixed z-50">
       <div className="flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20">
         <div className="md:hidden">
           {token ? (
-            // <Dropdown menu={{ items }} placement="bottom" arrow>
-            //   <img
-            //     className="h-8 w-8 rounded-full bg-gray-400 p-1"
-            //     src={userIcon}
-            //     alt="profile"
-            //   />
-            // </Dropdown>
-            // <UserNotif/>
-            // <FaRegUser/>
             <div>
                     <Menu as="div">
                       <div>
@@ -179,8 +159,6 @@ export const Navbar = () => {
                   className="cursor-pointer"
                   onClick={() => 
                   setSelect(!select)
-                  
-                  
                 }>
                   <div className=" h-4 w-auto bg-blue-600 ml-4 -mb-4 rounded-full border-1 border-gray-300 relative text-xs text-center text-white">
                       {notification?.unreadCount}
@@ -191,7 +169,6 @@ export const Navbar = () => {
                       className="text-gray-400"
                     />
                   </div>
-                  {/* <user/> */}
                 </div>
               ) : (
                 <div></div>

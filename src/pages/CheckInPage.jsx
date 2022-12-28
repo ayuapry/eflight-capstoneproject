@@ -1,5 +1,6 @@
 import { Form, Input } from "antd";
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import login from "../assets/login.png";
@@ -8,18 +9,21 @@ import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import { SecondFooter } from "../components/SecondFooter";
-import { getCheckin } from "../redux/feature/historySlice";
+import { getBoardingPass, getCheckin, getHistory } from "../redux/feature/historySlice";
 
 export const CheckInPage = () => {
-  const { checkin } = useSelector((state) => state.history);
+  const { checkin, history } = useSelector((state) => state.history);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const onFinish = async (values) => {
-    dispatch(getCheckin(values));
+
+  const onFinish = (values) => {
+    // dispatch(getBoardingPass(values))
+    dispatch(getCheckin(values))
     navigate("/history");
   };
+
 
   return (
     <div className="h-full md:min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -77,7 +81,7 @@ export const CheckInPage = () => {
                 </div>
               </Form>
             </div>
-            <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p>
+            {/* <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p> */}
           </div>
           <div className="md:hidden mt-20">
             <img src={login} alt="/" />

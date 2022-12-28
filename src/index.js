@@ -14,7 +14,6 @@ import { FilterPage } from "./pages/FilterPage";
 import LoginPage from "./pages/LoginPage";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
-import DetailPromoPage from "./pages/DetailPromoPage";
 import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
@@ -23,45 +22,23 @@ import AllNotifPage from "./pages/AllNotifPage";
 import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
-import { AdminHomepage } from "./admin/AdminHomepage";
+// import { AdminHomepage } from "./admin/AdminHomepage";
 import { Unauthorized } from "./utils/Unauthorized";
-
+import {Admin} from './admin/Admin'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        {/* <Route element={<PrivateRoutes />}> */}
-        <Route
-          path="/notification/:userId/:id"
-          element={<NotificationPage />}
-        />
-        <Route path="/allnotif" element={<AllNotifPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/booking/:id" element={<BookingPage />} />
-        <Route path="/checkin" element={<CheckInPage />} />
-        {/* </Route> */}
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/filter/" element={<FilterPage />} />
-        <Route path="/detailhistory/:id" element={<DetailsHistory />} />
-        <Route path="/detailpromo/:id" element={<DetPromoPage />} />
-        <Route path="/allpromo" element={<AllPromo />} />
-        <Route path="/card" element={<Card />} />
-        <Route path="/detail-places/:id" element={<DetailArticle />} />
-        <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
         {/* Protect User Page*/}
         <Route element={<RequireAuth allowedRoles={["ADMIN", "BUYER"]} />}>
-          <Route path="/notification/:id" element={<NotificationPage />} />
+          <Route path="/notification/:userId/:id" element={<NotificationPage />}/>
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/booking/:id" element={<BookingPage />} />
           <Route path="/checkin" element={<CheckInPage />} />
-          <Route
-            path="/detail-history/:bookingId"
-            element={<DetailsHistory />}
-          />
+          <Route  path="/detail-history/:bookingId"element={<DetailsHistory />} />
           <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
+          <Route path="/allnotif" element={<AllNotifPage />} />
         </Route>
 
         {/* Public Routes */}
@@ -70,7 +47,6 @@ root.render(
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/filter/" element={<FilterPage />} />
-          {/* <Route path="/detail-promo/:id" element={<DetailPromoPage />} /> */}
           <Route path="/detailpromo/:id" element={<DetPromoPage />} />
           <Route path="/allpromo" element={<AllPromo />} />
           <Route path="/card" element={<Card />} />
@@ -80,7 +56,7 @@ root.render(
 
         {/* Protect Admin Page */}
         <Route path="/admin" element={<RequireAuth allowedRoles={["ADMIN"]} />}>
-          <Route path="adminHomepage" element={<AdminHomepage />} />
+          <Route path="admin-homepage" element={<Admin />} />
         </Route>
 
         <Route path="*" element={<Missing />} />

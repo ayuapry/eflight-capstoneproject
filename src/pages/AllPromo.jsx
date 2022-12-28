@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import Pagination from '../components/Pagination';
-import  promoImg from '../assets/promo4.png'
 import ButtonPrimary from '../components/ButtonPrimary';
 import Footer from '../components/Footer';
 import { SecondFooter } from '../components/SecondFooter';
@@ -11,11 +10,7 @@ import ScrollToTop from '../components/ScrollToTop';
 
 const AllPromo = () => {
     const { pagination } = useSelector((state) => state.promo);
-    const {id} = useParams();
-    console.log(id);
-    console.log("data pegination",pagination);
     const navigate = useNavigate();
-
     const seeMore = (id) => {
         navigate(`/detailpromo/${id}`);
     };
