@@ -116,10 +116,10 @@ export const HeadlineCards = (props) => {
                         spaceBetween={10}
                         slidesPerGroup={1}
                         loop={true}
-                        pagination={{
-                        type: "progressbar",
-                        clickable: true,
-                        }}
+                        // pagination={{
+                        // type: "progressbar",
+                        // clickable: true,
+                        // }}
                         navigation={true}
                         modules={[Pagination, Navigation]}
                         className="mySwiper"
