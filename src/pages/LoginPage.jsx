@@ -21,7 +21,7 @@ export default function LoginPage() {
   };
 
   const isLogin = () => {
-    navigate('/')
+    navigate("/");
     window.location.reload(1);
   };
 
@@ -76,10 +76,10 @@ export default function LoginPage() {
                   required: true,
                   message: "Please input your Password!",
                 },
-              //   {
-              //     pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
-              //     message: `Password Pattern`
-              //  },              
+                //   {
+                //     pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
+                //     message: `Password Pattern`
+                //  },
               ]}
             >
               <Input.Password

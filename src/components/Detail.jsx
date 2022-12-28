@@ -7,7 +7,7 @@ import {
   WifiIcon,
 } from "@heroicons/react/24/outline";
 import { Disclosure } from "@headlessui/react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { Tab } from "@headlessui/react";
 import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
@@ -51,7 +51,7 @@ export default function Detail() {
   };
 
   const numberFormat = (value) =>
-    new Intl.NumberFormat("en-US", {
+    new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(value);
@@ -135,12 +135,7 @@ export default function Detail() {
                   </div>
                   <div className="lg:-mt-2 lg:block ml-4 lg:ml-0">
                     <h1 className="font-bold lg:text-lg text-sm">
-                      {numberFormat(
-                        tiket.price.amount * Passenger.D +
-                          tiket.price.amount * Passenger.A +
-                          tiket.price.amount * Passenger.B
-                      ).slice(0, -3)}{" "}
-                      /{" "}
+                      {numberFormat(tiket.price.amount).slice(0, -3)} /{" "}
                       <span className="lg:text-sm text-xs font-normal pt-0">
                         pax
                       </span>
@@ -498,8 +493,13 @@ export default function Detail() {
                       click={() =>
                         navigate(`/Booking/${tiket.aircraft.id}`, {
                           state: {
-                            total: `${tiket.price.amount}`,
                             tiket: tiket,
+                            passenger: Passenger,
+                            total: `${
+                              tiket.price.amount * Passenger.D +
+                              tiket.price.amount * Passenger.A +
+                              tiket.price.amount * Passenger.B
+                            }`,
                           },
                         })
                       }

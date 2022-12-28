@@ -123,7 +123,7 @@ export default function Card() {
   const onFinishOne = (values) => {
     // dispatch(getTiket(values));
     navigate(
-      `/filter/?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${
+      `/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${
         selectRadio === "RoundTrip" ? calendarGo : "NA"
       }&ps=${countD}.${countA}.${countB}&sc=${selectClass}`,
       { state: { values, D: countD, A: countA, B: countB } }
