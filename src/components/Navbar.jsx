@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import LogoText from "../assets/LogoText.png";
 import { Dropdown } from "antd";
@@ -8,6 +8,10 @@ import { BellIcon, BellSlashIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { getNotification } from "../redux/feature/NotificationSlice";
 import Swal from "sweetalert2";
+import { FaRegUser, FaRegUserCircle } from 'react-icons/fa';
+import { RiUserReceived2Line } from 'react-icons/ri';
+import { Menu, Transition } from '@headlessui/react'
+// import { user } from "./SecondFooter";
 
 export const Navbar = () => {
   const { notification } = useSelector((state) => state.notification);
@@ -59,13 +63,80 @@ export const Navbar = () => {
       <div className="flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20">
         <div className="md:hidden">
           {token ? (
-            <Dropdown menu={{ items }} placement="bottom" arrow>
-              <img
-                className="h-8 w-8 rounded-full bg-gray-400 p-1"
-                src={userIcon}
-                alt="profile"
-              />
-            </Dropdown>
+            // <Dropdown menu={{ items }} placement="bottom" arrow>
+            //   <img
+            //     className="h-8 w-8 rounded-full bg-gray-400 p-1"
+            //     src={userIcon}
+            //     alt="profile"
+            //   />
+            // </Dropdown>
+            // <UserNotif/>
+            // <FaRegUser/>
+            <div>
+                    <Menu as="div">
+                      <div>
+                        <Menu.Button >
+                          <img
+                            className="h-8 w-8 rounded-full bg-gray-400 p-1"
+                            src={userIcon}
+                            alt="profile"
+                          />
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                        >
+                        <Menu.Items className="absolute mt-2 w-[10rem] origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <div className="px-1 py-1 ">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <button
+                                  onClick={() => navigate("/history")}
+                                  className={`${active ? 'bg-yellow-300 text-blue-500 focus:outline-none focus:ring-2 focus:ring-[#FFE69A]' : 'text-black'} group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold`}>
+                                  {active ? (
+                                    <FaRegUser
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"/>
+                                  ) : (
+                                    <FaRegUser
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"/>
+                                  )}
+                                  Profile
+                                </button>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <button
+                                  onClick={logout}
+                                  className={`${active ? 'bg-yellow-300 text-blue-500 focus:outline-none focus:ring-2 focus:ring-[#FFE69A]' : 'text-black'} group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold`}>
+                                  {active ? (
+                                    <RiUserReceived2Line
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"
+                                    />
+                                  ) : (
+                                    <RiUserReceived2Line
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                  Logout
+                                </button>
+                              )}
+                            </Menu.Item>
+                          </div>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </div>
           ) : (
             <img
               className="h-8 w-8 rounded-full bg-gray-400 p-1"
@@ -97,8 +168,9 @@ export const Navbar = () => {
           >
             Services
           </a>
+          
         </ul>
-
+        
         <div className="flex gap-3 items-center md:w-40 justify-end">
           <div className="filter-dropdowns">
             <div className="relative inline-block text-left">
@@ -107,6 +179,7 @@ export const Navbar = () => {
                   className="cursor-pointer"
                   onClick={() => 
                   setSelect(!select)
+                  
                   
                 }>
                   <div className=" h-4 w-auto bg-blue-600 ml-4 -mb-4 rounded-full border-1 border-gray-300 relative text-xs text-center text-white">
@@ -118,6 +191,7 @@ export const Navbar = () => {
                       className="text-gray-400"
                     />
                   </div>
+                  {/* <user/> */}
                 </div>
               ) : (
                 <div></div>
@@ -136,9 +210,8 @@ export const Navbar = () => {
                         aria-labelledby="menu-button">
                         <div>
 
-                        </div>
+                      </div>
                       {notification?.notifications?.length > 0 ? (
-                      // Notif 3 data terbaru
                       notification?.notifications?.slice(-3).map((notif) => (
                         <div>
                           <div className="mx-3 my-3">
@@ -150,8 +223,7 @@ export const Navbar = () => {
                           </div>
                         </div>
                         
-                      )
-                      )
+                      ))
                     ) : (
                       <div>
                         <div className="h-10 w-10 flex items-center text-center mx-auto my-5">
@@ -163,9 +235,9 @@ export const Navbar = () => {
                       </div>
                     )}
                     {notification?.notifications?.length > 0 && (
-                    <div className='flex flex-col justify-start'>
-                      <div className='mb-2 w-full'>
-                        <p className="flex justify-end text-blue-600 hover:text-blue-300 cursor-pointer" onClick={SeeAllNotif}>view all ...</p>
+                    <div className='flex flex-col items-end justify-end w-full'>
+                      <div className='mb-2'>
+                        <p className="flex w-fit justify-end text-blue-600 hover:text-blue-300 cursor-pointer" onClick={SeeAllNotif}>view all ...</p>
                       </div>
                     </div>
                     )}
@@ -177,20 +249,78 @@ export const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:flex cursor-pointer">
-            <Dropdown menu={{ items }} placement="bottom" arrow>
               {token ? (
-                <img
-                  className="h-8 w-8 rounded-full bg-gray-400 p-1"
-                  src={userIcon}
-                  alt=""
-                />
+                <div>
+                    <Menu as="div">
+                      <div>
+                        <Menu.Button >
+                          <img
+                            className="h-8 w-8 rounded-full bg-gray-400 p-1"
+                            src={userIcon}
+                            alt="profile"
+                          />
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                        >
+                        <Menu.Items className="absolute mt-2 w-[11rem] origin-top-left divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <div className="px-1 py-1 ">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <button
+                                  onClick={() => navigate("/history")}
+                                  className={`${active ? 'bg-yellow-300 text-blue-500 focus:outline-none focus:ring-2 focus:ring-[#FFE69A]' : 'text-black'} group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold`}>
+                                  {active ? (
+                                    <FaRegUser
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"/>
+                                  ) : (
+                                    <FaRegUser
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"/>
+                                  )}
+                                  Profile
+                                </button>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <button
+                                  className={`${active ? 'bg-yellow-300 text-blue-500 focus:outline-none focus:ring-2 focus:ring-[#FFE69A]' : 'text-black'} group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold`}
+                                  onClick={logout}
+                                >
+                                  {active ? (
+                                    <RiUserReceived2Line
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"
+                                    />
+                                  ) : (
+                                    <RiUserReceived2Line
+                                      className="mr-2 h-5 w-5 text-blue-600 font-extrabold"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                  Logout
+                                </button>
+                              )}
+                            </Menu.Item>
+                          </div>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </div>
               ) : (
                 <ButtonPrimary title="Login" click={() => navigate("/Login")} />
               )}
-            </Dropdown>
           </div>
         </div>
-        
       </div>
     </div>
   );

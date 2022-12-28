@@ -22,7 +22,6 @@ import {
   getCountry,
   getAge,
   getCabinClass,
-  getTiket,
 } from "../redux/feature/homeSlice";
 import ButtonPrimary from "./ButtonPrimary";
 
