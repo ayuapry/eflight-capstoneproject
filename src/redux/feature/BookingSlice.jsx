@@ -50,7 +50,8 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
   }
 });
 
-export const getCountry = createAsyncThunk("user/getCountry", async (id) => {
+export const getCountry = createAsyncThunk("user/getCountry", async () => {
+  const token = localStorage.getItem("token");
   try {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/country/all`
@@ -82,47 +83,21 @@ export const getBenefit = createAsyncThunk("user/getBenefit", async (id) => {
   }
 });
 
-export const Booking = createAsyncThunk("user/booking", async (values) => {
+export const Booking = createAsyncThunk("user/booking", async (data) => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  // const payload = [];
-  // const data = [];
-
-  // payload.push({ data });
-  // for (const property in values) {
-  //   data.push(values[property]);
-  // }
-
-  // console.log("payload", payload);
+  console.log(data);
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/booking/${id}`,
       {
-        amount: values.total,
+        amount: data.total,
         bookingType: "One Way",
-        adult: values.pass.D,
-        child: values.pass.A,
-        infant: values.pass.B,
+        adult: data.pass.D,
+        child: data.pass.A,
+        infant: data.pass.B,
         departures: {
-          data: [
-            {
-              scheduleId: values.scheduleId,
-              titelId: values.Title0,
-              ageCategoryId: values.ageCategoryId[0],
-              firstName: values.FirstName0,
-              lastName: values.LastName0,
-              birthDate: format(new Date(`${values.birthdate0}`), "yyyy-MM-dd"),
-              passportNumber: values.pasport_number0,
-              issuingCountryId: values.Citizenship0,
-              citizenshipId: values.Citizenship0,
-              aircraftSeat: {
-                id: values.seat0,
-              },
-              baggage: {
-                total: values.baggage0,
-              },
-            },
-          ],
+          data: data.data,
         },
         returns: null,
       },
@@ -132,7 +107,8 @@ export const Booking = createAsyncThunk("user/booking", async (values) => {
         },
       }
     );
-    console.log(res.data);
+    console.log(res.data.data);
+    localStorage.setItem("bookingId", res.data.data.bookingId);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -144,7 +120,7 @@ export const BookingSlice = createSlice({
   name: "booking",
   initialState: {
     titel: [],
-    btnBooking: [],
+    booking: [],
     bagage: [],
     benefit: [],
     seat: [],
@@ -189,7 +165,7 @@ export const BookingSlice = createSlice({
       state.loading = false;
       state.seat = payload;
     },
-    [getCountry.rejected]: (state) => {
+    [getCountry.pending]: (state) => {
       state.loading = false;
     },
     [getCountry.fulfilled]: (state, { payload }) => {
@@ -197,6 +173,16 @@ export const BookingSlice = createSlice({
       state.country = payload;
     },
     [getCountry.rejected]: (state) => {
+      state.loading = false;
+    },
+    [Booking.pending]: (state) => {
+      state.loading = false;
+    },
+    [Booking.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.booking = payload;
+    },
+    [Booking.rejected]: (state) => {
       state.loading = false;
     },
   },

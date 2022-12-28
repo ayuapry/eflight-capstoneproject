@@ -8,9 +8,7 @@ import { SecondFooter } from '../components/SecondFooter';
 
 export const DetailArticle = () => {
     const { id } = useParams();
-
     const [detailArticle, setDetailArticle] = useState([]);
-  
     const getDetailArticle = async () => {
       try {
         let response = await axios.get("https://63a5b0fc318b23efa79ae8d9.mockapi.io/api/v1/topplaces/article");
@@ -19,7 +17,6 @@ export const DetailArticle = () => {
         console.log(e.message);
       }
     };
-  
     useEffect(() => {
       getDetailArticle();
     }, []);

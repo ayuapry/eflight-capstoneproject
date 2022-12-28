@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { getPagination } from '../redux/feature/promoSlice';
+import ScrollToTop from './ScrollToTop';
 
 const Pagination = () => {
     const [count, setCount] = useState(0-1)
@@ -16,6 +17,7 @@ const Pagination = () => {
 
   return (
     <div className="flex items-center justify-between  bg-gray-1s00 px-4 py-3 sm:px-6">
+      <ScrollToTop />
       <div className="flex flex-1 items-center justify-center">
           <div>
               <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">

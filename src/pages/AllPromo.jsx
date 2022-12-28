@@ -7,6 +7,7 @@ import  promoImg from '../assets/promo4.png'
 import ButtonPrimary from '../components/ButtonPrimary';
 import Footer from '../components/Footer';
 import { SecondFooter } from '../components/SecondFooter';
+import ScrollToTop from '../components/ScrollToTop';
 
 const AllPromo = () => {
     const { pagination } = useSelector((state) => state.promo);
@@ -20,6 +21,7 @@ const AllPromo = () => {
     };
   return (
     <div className='bg-slate-100 min-h-screen'>
+        <ScrollToTop />
         <Navbar />
         <div className='min-h-screen'>
             <div className='w-full md:max-w-[1240px] mx-auto px-4 md:px-14 bg-slate-100 pt-[30px] md:pt-[65px]'>

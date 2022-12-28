@@ -165,7 +165,7 @@ export const Navbar = () => {
                     {notification?.notifications?.length > 0 && (
                     <div className='flex flex-col justify-start'>
                       <div className='mb-2 w-full'>
-                        <ButtonPrimary title='VIEW ALL' click={SeeAllNotif} className='w-full'/>
+                        <p className="flex justify-end text-blue-600 hover:text-blue-300 cursor-pointer" onClick={SeeAllNotif}>view all ...</p>
                       </div>
                     </div>
                     )}

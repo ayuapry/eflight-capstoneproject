@@ -23,6 +23,8 @@ import AllNotifPage from "./pages/AllNotifPage";
 import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
+import { AdminHomepage } from "./admin/AdminHomepage";
+import { Unauthorized } from "./utils/Unauthorized";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -73,6 +75,12 @@ root.render(
           <Route path="/allpromo" element={<AllPromo />} />
           <Route path="/card" element={<Card />} />
           <Route path="/detail-places/:id" element={<DetailArticle />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
+        </Route>
+
+        {/* Protect Admin Page */}
+        <Route path="/admin" element={<RequireAuth allowedRoles={["ADMIN"]} />}>
+          <Route path="adminHomepage" element={<AdminHomepage />} />
         </Route>
 
         <Route path="*" element={<Missing />} />

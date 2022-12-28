@@ -7,7 +7,7 @@ import ButtonPrimary from "../components/ButtonPrimary";
 import { Navbar } from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import { SecondFooter } from "../components/SecondFooter";
-import { getCheckin, getCheckinCancel } from "../redux/feature/historySlice";
+import { getCheckinCancel } from "../redux/feature/historySlice";
 
 export const CancelCheckinPage = () => {
   const { cancel } = useSelector((state) => state.history);
