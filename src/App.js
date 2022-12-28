@@ -1,17 +1,13 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
-import { Navbar } from "./components/Navbar";
-import Footer from "./components/Footer";
+import 'antd/dist/reset.css';
+// import 'antd/dist/antd.min.css';
+import "./index.css";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-      </Routes>
-      <Footer />
+      <Homepage />
     </div>
   );
 }
