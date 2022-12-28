@@ -70,7 +70,7 @@ root.render(
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/filter/" element={<FilterPage />} />
-          <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
+          {/* <Route path="/detail-promo/:id" element={<DetailPromoPage />} /> */}
           <Route path="/detailpromo/:id" element={<DetPromoPage />} />
           <Route path="/allpromo" element={<AllPromo />} />
           <Route path="/card" element={<Card />} />
