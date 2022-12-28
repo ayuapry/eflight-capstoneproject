@@ -5,6 +5,8 @@ import { Navbar } from '../components/Navbar';
 import Pagination from '../components/Pagination';
 import  promoImg from '../assets/promo4.png'
 import ButtonPrimary from '../components/ButtonPrimary';
+import Footer from '../components/Footer';
+import { SecondFooter } from '../components/SecondFooter';
 
 const AllPromo = () => {
     const { pagination } = useSelector((state) => state.promo);
@@ -50,13 +52,12 @@ const AllPromo = () => {
                             )
                         })}  
                     </div>
-                    {/* <div className='hidden md:flex py-5 max-w-[1240px] mx-auto bg-white shadow-md rounded-md h-fit'>
-                        <img src={promoImg} alt="PromoImg" />
-                    </div> */}
                 </div>
                     <Pagination/>
             </div>
         </div>
+        <Footer/>
+        <SecondFooter/>
     </div>
   )
 }

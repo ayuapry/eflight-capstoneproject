@@ -6,13 +6,25 @@ import userIcon from "../assets/userIcon.png";
 import ButtonPrimary from "./ButtonPrimary";
 import { BellIcon, BellSlashIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { getCount, getNotification } from "../redux/feature/NotificationSlice";
+import { getNotification } from "../redux/feature/NotificationSlice";
 import Swal from "sweetalert2";
 
 export const Navbar = () => {
+  const { notification } = useSelector((state) => state.notification);
   const [select, setSelect] = useState("");
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getNotification(id));
+  }, [dispatch, id]);
+  console.log(notification);
+
+  const SeeAllNotif = () => {
+    window.location.replace("/allnotif");
+  }
 
   const logout = () => {
     Swal.fire({
@@ -40,20 +52,9 @@ export const Navbar = () => {
     },
   ];
 
-  const { notification } = useSelector((state) => state.notification);
-  const dispatch = useDispatch();
-  const { id } = useParams();
-
-  useEffect(() => {
-    dispatch(getNotification(id));
-    // dispatch(getCount());
-  }, [dispatch, id]);
-
-  console.log(notification);
   return (
     <div className="py-3 w-screen bg-white fixed z-50">
       <div className="flex justify-between items-center px-5 max-w-7xl mx-auto md:px-20">
-        {/* <div className='flex gap-3'> */}
         <div className="md:hidden">
           {token ? (
             <Dropdown menu={{ items }} placement="bottom" arrow>
@@ -95,7 +96,6 @@ export const Navbar = () => {
             Services
           </a>
         </ul>
-        {/* </div> */}
 
         <div className="flex gap-3 items-center md:w-40 justify-end">
           <div className="filter-dropdowns">
@@ -110,7 +110,10 @@ export const Navbar = () => {
                   <div className="h-8 w-8 rounded-full my-0 ">
                     <BellIcon
                       size={30}
-                      onClick={() => setSelect(!select)}
+                      onClick={() => 
+                        setSelect(!select)
+                        
+                      }
                       className="cursor-pointer text-gray-400"
                     />
                   </div>
@@ -119,45 +122,54 @@ export const Navbar = () => {
                 <div></div>
               )}
               {token ? (
-                <div
-                  className={`absolute right-0 z-10 mt-2 w-[300px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black 
-                    ring-opacity-5 focus:outline-none transition ease-out duration-100 ${
-                      select
-                        ? "visible transform opacity-100 scale-100"
-                        : "invisible transform opacity-0 scale-95"
-                    }`}
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="menu-button"
-                  // tabIndex="-1"
-                >
-                  {notification?.notifications?.length > 0 ? (
-                    notification?.notifications?.map((notif, i) => (
-                      <div className="mx-3 my-3">
-                        <div key={i} className="">
-                          <span className="font-semibold">{notif?.title}</span>
-                          <br />
-                          <span className="text-sm">{notif?.description}</span>
+                <>
+                  <div
+                    className={`absolute right-0 z-10 mt-2 w-[300px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition ease-out duration-100 px-2 
+                      ${
+                          select
+                            ? "visible transform opacity-100 scale-100"
+                            : "invisible transform opacity-0 scale-95"
+                        }`}
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="menu-button">
+                        <div>
+
                         </div>
-                        <Link
-                          to={`/notification/${notif?.id}`}
-                          className="flex justify-end mt-6 text-blue-400 cursor-pointer hover:text-blue-200 b-3"
-                        >
-                          view all ...
-                        </Link>
+                      {notification?.notifications?.length > 0 ? (
+                      // Notif 3 data terbaru
+                      notification?.notifications?.slice(-3).map((notif) => (
+                        <div>
+                          <div className="mx-3 my-3">
+                            <div key={notif.id}>
+                              <span className="font-semibold">{notif?.title}</span>
+                              <br />
+                              <span className="text-[0.78rem]">{notif?.description}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      )
+                      )
+                    ) : (
+                      <div>
+                        <div className="h-10 w-10 flex items-center text-center mx-auto my-5">
+                          <BellSlashIcon className="text-gray-200" />
+                        </div>
+                        <p className="mx-auto text-center text-gray-300">
+                          You don't have any notifications ..
+                        </p>
                       </div>
-                    ))
-                  ) : (
-                    <div>
-                      <div className="h-10 w-10 flex items-center text-center mx-auto my-5">
-                        <BellSlashIcon className="text-gray-200" />
+                    )}
+                    {notification?.notifications?.length > 0 && (
+                    <div className='flex flex-col justify-start'>
+                      <div className='mb-2 w-full'>
+                        <ButtonPrimary title='VIEW ALL' click={SeeAllNotif} className='w-full'/>
                       </div>
-                      <p className="mx-auto text-center text-gray-300">
-                        You don't have any notifications ..
-                      </p>
                     </div>
-                  )}
+                    )}
                 </div>
+                </>
               ) : (
                 <div></div>
               )}
@@ -177,6 +189,7 @@ export const Navbar = () => {
             </Dropdown>
           </div>
         </div>
+        
       </div>
     </div>
   );

@@ -20,6 +20,7 @@ import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
 import { CancelCheckinPage } from "./pages/CancelCheckinPage";
+import AllNotifPage from "./pages/AllNotifPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,7 +29,11 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         {/* <Route element={<PrivateRoutes />}> */}
-        <Route path="/notification/:id" element={<NotificationPage />} />
+        <Route
+          path="/notification/:userId/:id"
+          element={<NotificationPage />}
+        />
+        <Route path="/allnotif" element={<AllNotifPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/checkin" element={<CheckInPage />} />

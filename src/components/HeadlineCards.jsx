@@ -112,7 +112,7 @@ export const HeadlineCards = (props) => {
                 </div>
                 <div className='w-full md:w-[68%] hidden md:flex flex-row'>
                     <Swiper
-                        slidesPerView={2.5}
+                        slidesPerView={2.2}
                         spaceBetween={10}
                         slidesPerGroup={1}
                         loop={true}
