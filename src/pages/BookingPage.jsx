@@ -1,7 +1,12 @@
-import { ArrowLongRightIcon, UsersIcon } from "@heroicons/react/20/solid";
-import { DatePicker, Form, Input, Select } from "antd";
-import format from "date-fns/format";
+import {
+  ArrowLongRightIcon,
+  CheckCircleIcon,
+  UsersIcon,
+  XCircleIcon,
+} from "@heroicons/react/20/solid";
+import { DatePicker, Form, Input, Select, Modal } from "antd";
 import React, { useEffect, useState } from "react";
+import format from "date-fns/format";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { GiHandBag } from "react-icons/gi";
 import { MdEventSeat } from "react-icons/md";
@@ -22,18 +27,37 @@ import {
 } from "../redux/feature/BookingSlice";
 import dayjs from "dayjs";
 import { getAge } from "../redux/feature/homeSlice";
+import { data } from "autoprefixer";
+import failed from "../assets/failed.svg";
+import success from "../assets/success.svg";
 
-export const BookingPage = (props) => {
-  const { titel, bagage, benefit, seat, country } = useSelector(
+export const BookingPage = () => {
+  const { titel, bagage, benefit, seat, country, booking } = useSelector(
     (state) => state.booking
   );
   const { age } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [seatModal, setSeatModal] = useState(false);
   const handleOnClose = () => setSeatModal(false);
   const { id } = useParams();
+  const bookingId = localStorage.getItem("bookingId");
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    window.location.reload(1);
+  };
+
+  const toHistory = () => {
+    localStorage.removeItem("bookingId");
+    navigate("/history");
+    window.location.reload(1);
+  };
 
   useEffect(() => {
     dispatch(getTitel());
@@ -44,17 +68,16 @@ export const BookingPage = (props) => {
     dispatch(getAge());
   }, [dispatch]);
 
-  console.log(age);
-
   const location = useLocation();
-  console.log(location);
   const tiket = location.state?.tiket;
   const hargaTiket = location.state?.total;
   const pass = location.state?.passenger;
   const idSch = location.state?.tiket.id;
 
+  console.log(location);
+
   const numberFormat = (value) =>
-    new Intl.NumberFormat("en-US", {
+    new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(value);
@@ -62,57 +85,78 @@ export const BookingPage = (props) => {
   const countPass = pass.A + pass.B + pass.D;
   console.log(countPass);
 
+  const [total, setTotal] = useState(hargaTiket);
+
   const onFinish = (values) => {
-    dispatch(
-      Booking({
-        ...values,
-        total: total,
-        ageCategory: agectr,
-        pass: pass,
-        scheduleId: idSch,
-        countPass: countPass,
-        ageCategoryId: ageId,
-      })
+    let keys = [
+      "citizenshipId",
+      "firstName",
+      "lastName",
+      "birthDate",
+      "titelId",
+      "baggage",
+      "passportNumber",
+      "seatId",
+      "createdAt",
+    ];
+    let number = countPass;
+
+    let arr = Array.from({ length: number }, (_, i) =>
+      Object.fromEntries(keys.map((key) => [key, values[key + i]]))
     );
-    console.log({
-      ...values,
-      total: total,
-      ageCategory: agectr,
-      scheduleId: idSch,
-      countPass: countPass,
-      ageCategoryId: ageId,
-    });
-    // navigate("/history");
-    window.location.reload(1);
-  };
 
-  const [seatPrice, setseatPrice] = useState();
-  const [baggagePrice, setbaggagePrice] = useState();
+    const data = [];
+    const seatPrice = [];
+    const baggagePrice = [];
+    let totalSeat = 0;
+    let totalBaggage = 0;
 
-  const onChangeSeat = (values) => {
-    seat
-      ?.filter((seat) => seat.seatId === values)
-      .map((e, i) => {
-        setseatPrice(e.price.amount);
+    for (let i = 0; i < countPass; i++) {
+      data.push({
+        ...arr[i],
+        scheduleId: idSch,
+        titelId: arr[i].titelId,
+        ageCategoryId: ageId[i],
+        firstName: arr[i].firstName,
+        lastName: arr[i].lastName,
+        birthDate: arr[i].birthDate,
+        passportNumber: arr[i].passportNumber,
+        issuingCountryId: arr[i].citizenshipId,
+        citizenshipId: arr[i].citizenshipId,
+        aircraftSeat: {
+          id: arr[i].seatId,
+        },
+        baggage: {
+          total: arr[i].baggage,
+        },
       });
+
+      seat
+        ?.filter((seat) => seat.seatId === arr[i].seatId)
+        .map((e, i) => {
+          // setseatPrice((seatPrice) => seatPrice + e.price.amount);
+          seatPrice.push(e.price.amount);
+        });
+
+      bagage
+        ?.filter((bagage) => bagage.weight === arr[i].baggage)
+        .map((e, i) => {
+          // setbaggagePrice((baggagePrice) => baggagePrice + e.price);
+          baggagePrice.push(e.price);
+        });
+    }
+
+    for (let j = 0; j < countPass; j++) {
+      totalSeat += seatPrice[j];
+      totalBaggage += baggagePrice[j];
+    }
+
+    const total = parseInt(hargaTiket) + totalSeat + totalBaggage;
+    setTotal(total);
+    console.log(data, total);
+
+    dispatch(Booking({ data, pass, total: total }));
   };
-
-  const object = { a: 1, b: 2, c: 3 };
-  for (const property in object) {
-    console.log(`${property}: ${object[property]}`);
-  }
-
-  console.log(seatPrice);
-
-  const onChangeBaggage = (values) => {
-    bagage
-      ?.filter((bagage) => bagage.weight === values)
-      .map((e, i) => {
-        setbaggagePrice(e.price);
-      });
-  };
-
-  console.log(baggagePrice);
 
   const agectr = [];
 
@@ -137,15 +181,42 @@ export const BookingPage = (props) => {
       });
   }
 
-  // const test = [];
-  // for (let i = 0; i < 2; i++) {
-  //   test.push({ `${tes{i}} : ${tes${i}}`, ha: "2" });
-  //   console.log(test[i].test1);
-  // }
+  console.log(ageId[0]);
 
-  console.log(ageId);
+  // const total = parseInt(hargaTiket) + baggagePrice + seatPrice;
+  console.log(seat);
+  console.log(booking);
 
-  const total = parseInt(hargaTiket) + baggagePrice + seatPrice;
+  const responModal = (props) => {
+    return (
+      <Modal
+        title=""
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        centered={true}
+        closable={false}
+      >
+        <div className="flex items-center">
+          {props.type === "success" ? (
+            <CheckCircleIcon className="h-7 text-green-500 mr-2" />
+          ) : (
+            <XCircleIcon className="h-7 text-red-500 mr-2" />
+          )}
+          <p className="text-lg font-semibold m-0 items-center">
+            {props.title}
+          </p>
+        </div>
+
+        <img src={props.resImg} alt={props.type} className="h-72 mx-auto" />
+        <p>{props.message}</p>
+        <div className="mr-0 ml-auto">
+          <ButtonPrimary title={props.resTitle} click={props.resClick} />
+        </div>
+      </Modal>
+    );
+  };
 
   return (
     // <div>
@@ -153,6 +224,26 @@ export const BookingPage = (props) => {
     <div className="bg-slate-100">
       <Navbar />
       <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 ">
+        {bookingId ? (
+          responModal({
+            title: "Booking Success",
+            resImg: success,
+            resClick: toHistory,
+            type: "success",
+            resTitle: "Go To History",
+          })
+        ) : booking[0] ? (
+          responModal({
+            title: "Booking Failed",
+            message: booking,
+            resImg: failed,
+            resClick: handleCancel,
+            type: "failed",
+            resTitle: "OK",
+          })
+        ) : (
+          <div className="hidden"></div>
+        )}
         <Form
           name="wrap"
           labelCol={{ flex: "110px" }}
@@ -190,7 +281,14 @@ export const BookingPage = (props) => {
                       > */}
                         <Form.Item
                           style={{ width: "50%", marginBottom: 0 }}
-                          name={`Title${idx}`}
+                          name={`titelId${idx}`}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your title!",
+                              whitespace: true,
+                            },
+                          ]}
                         >
                           <Select placeholder="Title">
                             {titel?.map((e, i) => (
@@ -204,7 +302,7 @@ export const BookingPage = (props) => {
 
                         <Form.Item
                           style={{ marginBottom: 0 }}
-                          name={`FirstName${idx}`}
+                          name={`firstName${idx}`}
                           rules={[
                             {
                               required: true,
@@ -221,7 +319,7 @@ export const BookingPage = (props) => {
                         </p>
 
                         <Form.Item
-                          name={`LastName${idx}`}
+                          name={`lastName${idx}`}
                           rules={[
                             {
                               required: true,
@@ -242,7 +340,7 @@ export const BookingPage = (props) => {
                           <div className="w-full">
                             <Form.Item
                               style={{ marginBottom: 0 }}
-                              name={`Citizenship${idx}`}
+                              name={`citizenshipId${idx}`}
                               rules={[
                                 {
                                   required: true,
@@ -270,10 +368,9 @@ export const BookingPage = (props) => {
                           <div className="w-full">
                             <Form.Item
                               style={{ marginBottom: 0 }}
-                              name={`birthdate${idx}`}
+                              name={`birthDate${idx}`}
                               rules={[
                                 {
-                                  type: "object",
                                   required: true,
                                   message: "Please select your birthdate!",
                                 },
@@ -283,7 +380,6 @@ export const BookingPage = (props) => {
                                 style={{ width: "100%" }}
                                 placeholder="Birth Date"
                                 format="YYYY-MM-DD"
-                                value={format}
                               />
                             </Form.Item>
                             <p className="text-xs text-gray-400 mb-4">
@@ -296,7 +392,7 @@ export const BookingPage = (props) => {
                           <div className="w-full">
                             <Form.Item
                               style={{ marginBottom: 0 }}
-                              name={`pasport_number${idx}`}
+                              name={`passportNumber${idx}`}
                               rules={[
                                 {
                                   required: true,
@@ -319,15 +415,13 @@ export const BookingPage = (props) => {
                           <div className="w-full">
                             <Form.Item
                               style={{ marginBottom: 0 }}
-                              name={`created_at${idx}`}
+                              name={`createdAt${idx}`}
                               rules={[
                                 {
-                                  type: "object",
                                   required: true,
                                   message: "Please select your  passport date!",
                                 },
                               ]}
-                              format="YYYY-MM-DD"
                             >
                               <DatePicker
                                 name="created_at"
@@ -344,7 +438,7 @@ export const BookingPage = (props) => {
                         <div className="flex gap-2">
                           <div className="w-full">
                             <Form.Item
-                              name={`seat${idx}`}
+                              name={`seatId${idx}`}
                               style={{ marginBottom: 0 }}
                               rules={[
                                 {
@@ -354,10 +448,7 @@ export const BookingPage = (props) => {
                                 },
                               ]}
                             >
-                              <Select
-                                placeholder="Seat"
-                                onChange={onChangeSeat}
-                              >
+                              <Select placeholder="Seat">
                                 {seat?.map((e, i) => (
                                   <Select.Option key={i} value={e?.seatId}>
                                     {e?.seatCode}
@@ -383,10 +474,7 @@ export const BookingPage = (props) => {
                                 },
                               ]}
                             >
-                              <Select
-                                placeholder="Baggage"
-                                onChange={onChangeBaggage}
-                              >
+                              <Select placeholder="Baggage">
                                 {bagage?.map((e, i) => (
                                   <Select.Option key={i} value={e?.weight}>
                                     {e?.weight}kg -{" "}

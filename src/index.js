@@ -35,7 +35,7 @@ root.render(
         {/* </Route> */}
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/filter/" element={<FilterPage />} />
+        <Route path="/filter" element={<FilterPage />} />
         <Route path="/detail-history/:bookingId" element={<DetailsHistory />} />
         <Route path="/detail-promo/:id" element={<DetailPromoPage />} />
         <Route path="/detailpromo/:id" element={<DetPromoPage />} />

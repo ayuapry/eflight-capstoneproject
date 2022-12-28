@@ -46,7 +46,7 @@ export const EditProfileModal = ({ open, close }) => {
 
   const onFinish = (values) => {
     dispatch(editProfile(values));
-    window.location.reload(1);
+    // window.location.reload(1);
   };
 
   console.log(profile);

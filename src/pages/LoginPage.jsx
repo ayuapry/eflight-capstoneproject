@@ -21,7 +21,7 @@ export default function LoginPage() {
   };
 
   const isLogin = () => {
-    // navigate('/')
+    navigate("/");
     window.location.reload(1);
   };
 
