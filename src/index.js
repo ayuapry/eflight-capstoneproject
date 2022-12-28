@@ -14,7 +14,6 @@ import { FilterPage } from "./pages/FilterPage";
 import LoginPage from "./pages/LoginPage";
 import { CheckInPage } from "./pages/CheckInPage";
 import { DetailsHistory } from "./pages/DetailsHistory";
-import DetailPromoPage from "./pages/DetailPromoPage";
 import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
@@ -23,7 +22,7 @@ import AllNotifPage from "./pages/AllNotifPage";
 import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
-import { AdminHomepage } from "./admin/AdminHomepage";
+// import { AdminHomepage } from "./admin/AdminHomepage";
 import { Unauthorized } from "./utils/Unauthorized";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -79,9 +78,9 @@ root.render(
         </Route>
 
         {/* Protect Admin Page */}
-        <Route path="/admin" element={<RequireAuth allowedRoles={["ADMIN"]} />}>
+        {/* <Route path="/admin" element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="adminHomepage" element={<AdminHomepage />} />
-        </Route>
+        </Route> */}
 
         <Route path="*" element={<Missing />} />
       </Routes>
