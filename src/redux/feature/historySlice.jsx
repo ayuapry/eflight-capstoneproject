@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Hero
-export const getHistory = createAsyncThunk("history/getHistory", async () => {
+export const getHistory = createAsyncThunk("history/getHistory", async (values) => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
   try {

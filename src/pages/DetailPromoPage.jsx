@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,10 +9,8 @@ import  promoImg from '../assets/promo4.png'
 
 const DetailPromoPage = () => {
     const {detPromo,pagination } = useSelector((state) => state.promo);
-
     const dispatch = useDispatch();
     const {id} = useParams();
-    console.log(id);
 
     useEffect(() => {
       dispatch(getDetPromo(id))
@@ -23,7 +20,6 @@ const DetailPromoPage = () => {
     console.log("data pegination",pagination);
   return (
     <div className='bg-slate-100'>
-        {/* <div className='max-w-[1240px] mx-auto px-4 flex items-center'> */}
         <Navbar />
         <div className='flex items-center h-screen justify-center '>
         <div className=' max-w-[1240px] mx-auto md:px-14 bg-slate-100 pt-[65px]'>
@@ -43,14 +39,10 @@ const DetailPromoPage = () => {
                                     <h2 className='text-[0.6rem] text-gray-600 text-justify mb-0 leading-relaxed'>
                                     {e?.description}
                                     </h2>
-                                {/* </div> */}
                                 </div>
                             </div>
                         </div>
-                        )) : (
-                            // <div className=''>
-
-                            
+                        )) : (               
                             <div key={detPromo.id} className="haii md:max-w-7xl mx-auto bg-white shadow-md p-5 rounded-md" >
                             <div className='img md:max-w-7xl flex items-center justify-center pb-5' to={`/detail-promo/${detPromo?.data?.id}`}>
                                 <img src={detPromo?.data?.imageURL} alt="PromoBanner" className='rounded-md flex '/>
@@ -63,7 +55,6 @@ const DetailPromoPage = () => {
                                 {detPromo?.data?.description}
                                 </p>
                             </div>
-                        {/* </div> */}
                         </div>
                         )
                     }

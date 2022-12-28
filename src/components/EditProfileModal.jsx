@@ -33,7 +33,6 @@ export const EditProfileModal = ({ open, close }) => {
   const { city } = useSelector((state) => state.user);
   const { profile } = useSelector((state) => state.user);
   const id = localStorage.getItem("id");
-  const bodyStyle = document.body.style;
 
   const handleOnClose = (e) => {
     if (e.target.id === "container") close();
@@ -47,8 +46,6 @@ export const EditProfileModal = ({ open, close }) => {
   const onFinish = (values) => {
     dispatch(editProfile(values));
   };
-
-  console.log(profile);
 
   if (!open) return null;
   return (

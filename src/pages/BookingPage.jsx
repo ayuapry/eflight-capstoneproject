@@ -7,9 +7,6 @@ import {
 import { DatePicker, Form, Input, Select, Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import format from "date-fns/format";
-import { AiOutlineAppstoreAdd } from "react-icons/ai";
-import { GiHandBag } from "react-icons/gi";
-import { MdEventSeat } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Logo from "../assets/Logo.png";
@@ -24,16 +21,12 @@ import {
   Booking,
   getCountry,
 } from "../redux/feature/BookingSlice";
-import dayjs from "dayjs";
 import { getAge } from "../redux/feature/homeSlice";
-import { data } from "autoprefixer";
 import failed from "../assets/failed.svg";
 import success from "../assets/success.svg";
 
 export const BookingPage = () => {
-  const { titel, bagage, benefit, seat, country, booking } = useSelector(
-    (state) => state.booking
-  );
+  const { titel, bagage, benefit, seat, country, booking } = useSelector((state) => state.booking);
   const { age } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -71,17 +64,13 @@ export const BookingPage = () => {
   const pass = location.state?.passenger;
   const idSch = location.state?.tiket.id;
 
-  console.log(location);
-
   const numberFormat = (value) =>
-    new Intl.NumberFormat("id-ID", {
+    new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "IDR",
     }).format(value);
 
   const countPass = pass.A + pass.B + pass.D;
-  console.log(countPass);
-
   const [total, setTotal] = useState(hargaTiket);
 
   const onFinish = (values) => {
@@ -97,7 +86,6 @@ export const BookingPage = () => {
       "createdAt",
     ];
     let number = countPass;
-
     let arr = Array.from({ length: number }, (_, i) =>
       Object.fromEntries(keys.map((key) => [key, values[key + i]]))
     );
@@ -131,14 +119,12 @@ export const BookingPage = () => {
       seat
         ?.filter((seat) => seat.seatId === arr[i].seatId)
         .map((e, i) => {
-          // setseatPrice((seatPrice) => seatPrice + e.price.amount);
           seatPrice.push(e.price.amount);
         });
 
       bagage
         ?.filter((bagage) => bagage.weight === arr[i].baggage)
         .map((e, i) => {
-          // setbaggagePrice((baggagePrice) => baggagePrice + e.price);
           baggagePrice.push(e.price);
         });
     }
@@ -178,12 +164,6 @@ export const BookingPage = () => {
       });
   }
 
-  console.log(ageId[0]);
-
-  // const total = parseInt(hargaTiket) + baggagePrice + seatPrice;
-  console.log(seat);
-  console.log(booking);
-
   const responModal = (props) => {
     return (
       <Modal
@@ -216,11 +196,9 @@ export const BookingPage = () => {
   };
 
   return (
-    // <div>
-    // {(token) ?
     <div className="bg-slate-100">
       <Navbar />
-      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 ">
+      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 h-screen ">
         {bookingId ? (
           responModal({
             title: "Booking Success",
@@ -267,15 +245,6 @@ export const BookingPage = () => {
                             Passenger {idx + 1} : {agectr[idx]}
                           </p>
                         </div>
-                        {/* <Form
-                        name="wrap"
-                        labelCol={{ flex: "110px" }}
-                        labelAlign="left"
-                        labelWrap
-                        wrapperCol={{ flex: 1 }}
-                        colon={false}
-                        onFinish={onFinish}
-                      > */}
                         <Form.Item
                           style={{ width: "50%", marginBottom: 0 }}
                           name={`titelId${idx}`}
@@ -437,6 +406,7 @@ export const BookingPage = () => {
                             <Form.Item
                               name={`seatId${idx}`}
                               style={{ marginBottom: 0 }}
+                              placement={'bottomLeft'}
                               rules={[
                                 {
                                   required: true,
@@ -448,7 +418,7 @@ export const BookingPage = () => {
                               <Select placeholder="Seat">
                                 {seat?.map((e, i) => (
                                   <Select.Option key={i} value={e?.seatId}>
-                                    {e?.seatCode}
+                                    {e?.seatCode} - {numberFormat(e?.price.amount)}
                                   </Select.Option>
                                 ))}
                               </Select>
@@ -484,11 +454,7 @@ export const BookingPage = () => {
                               Choose your baggage
                             </p>
                           </div>
-                          {/* <div className="hidden"> */}
-                          {/* </div> */}
                         </div>
-                        {/* <ButtonPrimary type="submit" title="Booking Now" /> */}
-                        {/* </Form> */}
                       </>
                     );
                   })}
@@ -504,9 +470,6 @@ export const BookingPage = () => {
                   <ArrowLongRightIcon className="h-4 w-4" />
                   <h2 className="mb-0">{tiket?.destinationCity}</h2>
                 </div>
-                {/* <div className='py-5 font-semibold text-blue-600 hover:text-blue-400'>
-            <Link to='' >Details</Link>
-          </div> */}
               </div>
 
               <div className="flex items-center justify-between text-gray-500">
@@ -528,7 +491,6 @@ export const BookingPage = () => {
                   {e?.desription}
                 </p>
               ))}
-              {/* <p>{tiket?.benefits.desription}</p> */}
               <hr />
 
               <div className="flex justify-between py-4">
@@ -537,24 +499,16 @@ export const BookingPage = () => {
                   {numberFormat(total).slice(0, -3)}
                 </h2>
               </div>
-              {/* <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }> */}
               <ButtonPrimary
                 type="submit"
                 title="Booking Now"
                 className="w-fit"
               />
-              {/* </div> */}
             </div>
           </div>
         </Form>
       </div>
       <SecondFooter />
     </div>
-    // :
-    // <div>
-    //   Login Dulu
-    // </div>
-    //       }
-    // </div>
   );
 };

@@ -1,7 +1,6 @@
 // import Swiper core and required modules
 import React, { useEffect } from 'react';
-import {  Pagination, A11y, Autoplay, Navigation } from 'swiper';
-
+import {  Pagination, A11y, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -9,14 +8,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-import Banner1 from '../assets/Banner1.jpg'
-import Banner2 from '../assets/Banner2.jpg'
-import Banner3 from '../assets/Banner3.jpg'
-
 import { useDispatch, useSelector } from 'react-redux';
 import { getHero } from '../redux/feature/homeSlice';
-
 
 export const Hero = () => {
     const {hero, loading} = useSelector((state) => state.homepage);
@@ -24,7 +17,7 @@ export const Hero = () => {
   
     useEffect(() => {
       dispatch(getHero())
-    },[]);  
+    },[dispatch]);  
   
     if(loading){
       return <h2>Loading</h2>
@@ -34,7 +27,6 @@ export const Hero = () => {
         <Swiper
           // install Swiper modules
           modules={[Pagination, A11y, Autoplay]}
-          // modules={[Pagination, A11y]}
           autoplay={{
             delay: 10000,
             disableOnInteraction: false,
@@ -43,8 +35,6 @@ export const Hero = () => {
           slidesPerView={1}
           loop={true}
           pagination={{ clickable: true }}
-          // onSwiper={(swiper) => console.log(swiper)}
-          // onSlideChange={() => console.log('slide change')}
         >
             <SwiperSlide>
                 <img 

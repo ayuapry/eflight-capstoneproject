@@ -13,7 +13,6 @@ const Pagination = () => {
             dispatch(getPagination(count))
         }
     },[dispatch, count]); 
-    console.log(count)
 
   return (
     <div className="flex items-center justify-between  bg-gray-1s00 px-4 py-3 sm:px-6">

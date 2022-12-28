@@ -17,9 +17,9 @@ export const CheckInPage = () => {
   const navigate = useNavigate();
 
 
-  const onFinish = async (values) => {
-    dispatch(getCheckin(values));
-    dispatch(getBoardingPass(values))
+  const onFinish = (values) => {
+    // dispatch(getBoardingPass(values))
+    dispatch(getCheckin(values))
     navigate("/history");
   };
 
@@ -80,7 +80,7 @@ export const CheckInPage = () => {
                 </div>
               </Form>
             </div>
-            <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p>
+            {/* <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p> */}
           </div>
           <div className="md:hidden mt-20">
             <img src={login} alt="/" />
