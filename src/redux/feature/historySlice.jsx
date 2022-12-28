@@ -70,40 +70,48 @@ export const getCheckinCancel = createAsyncThunk(
 export const getJasper = createAsyncThunk(
     'history/getJasper',
     async (bookingId) => {
-        const token =  localStorage.getItem('token')
-        // const id = localStorage.getItem('id')
-        try {
-            const res = await axios.get(`http://localhost:8080/api/v1/jasperreport/eticket/${bookingId}`, {
-                headers: { 
-                    'Authorization': `Bearer ${token}`
-                },  
-            })
-            .then((data) => {
-              data.blob().then(blob => download(blob, "jasper.pdf"))
-              console.log(data)
-            })
-            function download(blob, jasper){
-              const url = window.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.style.display = 'none';
-              a.href = url;
-
-              a.download = jasper;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              window.URL.revokeObjectURL(url);
-
-            }
-            // console.log(res.data.data);
-            console.log(res)
-            return res.data.data
-        } catch (err) {
-            console.log(err)
-        }
+      const token = localStorage.getItem('token')
+      fetch(`https://binar-air.azurewebsites.net/api/v1/jasperreport/eticket/${bookingId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+      })
+        .then(res => res.blob())
+        .then(res => {
+            const aElement = document.createElement('a');
+            aElement.setAttribute('download', "E-Ticket.pdf");
+            const href = URL.createObjectURL(res);
+            aElement.href = href;
+            aElement.setAttribute('target', '_blank');
+            aElement.click();
+            URL.revokeObjectURL(href);
+        });
     }
 )
 
+export const getBoardingPass = createAsyncThunk(
+  'history/getBoardingPass',
+  async (values) => {
+    const token = localStorage.getItem('token')
+    fetch(`https://binar-air.azurewebsites.net/api/v1/jasperreport/boardingpass/${values.lastName}/${values.bookingReferenceNumber}`, {
+      method: 'GET',
+      headers: {
+          'Authorization': `Bearer ${token}`,
+      },
+    })
+      .then(res => res.blob())
+      .then(res => {
+          const aElement = document.createElement('a');
+          aElement.setAttribute('download', "BoardingPass.pdf");
+          const href = URL.createObjectURL(res);
+          aElement.href = href;
+          aElement.setAttribute('target', '_blank');
+          aElement.click();
+          URL.revokeObjectURL(href);
+      });
+  }
+)
 
 
 export const historySlice = createSlice({
@@ -113,6 +121,7 @@ export const historySlice = createSlice({
         checkin: [],
         cancel: [],
         jasper: [],
+        boardingPass: [],
     },
     reducers: {},
     extraReducers: {
@@ -130,9 +139,9 @@ export const historySlice = createSlice({
       [getJasper.fulfilled]: (state, { payload }) => {
         state.jasper = payload;
       },
-      
-      
-
+      [getBoardingPass.fulfilled]: (state, { payload }) => {
+        state.boardingPass = payload;
+      },
     },
   });
 

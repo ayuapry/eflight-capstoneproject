@@ -142,7 +142,7 @@ export const HistoryPage = () => {
                                     Order ID: {histo.bookingId}
                                 </p>
 
-                                {histo?.departure?.data.map((city, i) => (
+                                {histo?.departure?.data.slice(0,1).map((city, i) => (
                                     <>
                                         <div key={i} className='flex gap-2 font-semibold'>
                                             <p>{city.schedule.originAirport.city}</p>
@@ -157,7 +157,7 @@ export const HistoryPage = () => {
                                         {histo.bookingType} - {histo.adult} adults, {histo.child} child
                                     </p>
                                     {
-                                            histo?.departure?.data.map((data, i) => (
+                                            histo?.departure?.data.slice(0,1).map((data, i) => (
                                             <>
                                                 <div key={i} className='flex gap-2'>
                                                     <FaPlaneDeparture color='skyblue' />
