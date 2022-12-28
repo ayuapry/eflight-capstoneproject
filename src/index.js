@@ -19,6 +19,7 @@ import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
 import { CancelCheckinPage } from "./pages/CancelCheckinPage";
+import AllNotifPage from "./pages/AllNotifPage";
 import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import {Layout} from './utils/Layout'
@@ -30,13 +31,36 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<App />} />
+        {/* <Route element={<PrivateRoutes />}> */}
+        <Route
+          path="/notification/:userId/:id"
+          element={<NotificationPage />}
+        />
+        <Route path="/allnotif" element={<AllNotifPage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/booking/:id" element={<BookingPage />} />
+        <Route path="/checkin" element={<CheckInPage />} />
+        {/* </Route> */}
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/filter/" element={<FilterPage />} />
+        <Route path="/detailhistory/:id" element={<DetailsHistory />} />
+        <Route path="/detailpromo/:id" element={<DetPromoPage />} />
+        <Route path="/allpromo" element={<AllPromo />} />
+        <Route path="/card" element={<Card />} />
+        <Route path="/detail-places/:id" element={<DetailArticle />} />
+        <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
         {/* Protect User Page*/}
-        <Route element={<RequireAuth allowedRoles={['ADMIN', 'BUYER']} />}>
+        <Route element={<RequireAuth allowedRoles={["ADMIN", "BUYER"]} />}>
           <Route path="/notification/:id" element={<NotificationPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/booking/:id" element={<BookingPage />} />
           <Route path="/checkin" element={<CheckInPage />} />
-          <Route path="/detail-history/:bookingId" element={<DetailsHistory />} />
+          <Route
+            path="/detail-history/:bookingId"
+            element={<DetailsHistory />}
+          />
           <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
         </Route>
 
@@ -59,7 +83,7 @@ root.render(
           <Route path="adminHomepage" element={<AdminHomepage />} />
         </Route>
 
-        <Route path="*" element={<Missing/>} />
+        <Route path="*" element={<Missing />} />
       </Routes>
     </BrowserRouter>
   </Provider>

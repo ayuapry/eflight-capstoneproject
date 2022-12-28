@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -19,41 +20,22 @@ export const DetailsHistory = () => {
     },[dispatch, bookingId]); 
 
     const onButtonClick = () => {
-      const imgurl = "https://cdn62.picsart.com/182788826000202.jpg?type=webp&to=crop&r=256"
-      fetch(imgurl)
-        .then(response => response.blob())
-        .then(myBlob => {
-        var urlCreator = window.URL || window.webkitURL;
-        var imageUrl = urlCreator.createObjectURL(myBlob);
-        const myImgElem = document.getElementById('my-img');
-        myImgElem.src = imageUrl
-      })
-      // const token =  localStorage.getItem('token')
-      // // using Java Script method to get PDF file
-      // fetch(`http://localhost:8080/api/v1/jasperreport/eticket/44E95EA3`, {
-      //   method: 'GET',
-      //   headers: { 
-      //     'Authorization': `Bearer ${token}`
-      //   }, 
-      // }).then((data) => {
-      //     data.blob().then(blob => download(blob, "filename.pdf"))
-      //     console.log(data);
-      // })
-      // const download = (blob) => {
-      //   const url = window.createObjectURL(blob);
-      //   const a = document.createElement('a');
-      //   a.style.display = 'none';
-      //   a.href = url;
-
-      //   a.download = jasper;
-      //   document.body.appendChild(a);
-      //   a.click();
-      //   document.body.removeChild(a);
-      //   window.URL.revokeObjectURL(url);      } 
+      const token = localStorage.getItem('token')
+      fetch(`https://localhost:8080/api/v1/jasperreport/eticket/312C752F`, {
+          method: 'GET',
+          headers: { 
+            Authorization : `Bearer ${token}`
+          }, 
+          responseType: 'blob', // important
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'file.pdf');
+        document.body.appendChild(link);
+        link.click();
+      });
     }
-
-
-
 
   return (
     <div className='bg-slate-100'>
