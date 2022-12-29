@@ -22,7 +22,7 @@ export const CheckInPage = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState();
   const checkinId = localStorage.getItem("checkinId");
 
@@ -30,7 +30,7 @@ export const CheckInPage = () => {
     return (
       <Modal
         title=""
-        open={true}
+        open={isModalOpen}
         footer={null}
         centered={true}
         closable={false}
@@ -60,36 +60,21 @@ export const CheckInPage = () => {
     setLastName(e);
   };
 
-  // const onFinish = (values) => {
-  //   dispatch(getBoardingPass(values))
-  //   // dispatch(getCheckin(values))
-  //   // navigate("/history");
-  // };
-
-  const download = () => {
-    const tiket = {
-      lastName: lastNames,
-      bookingReferenceNumber: bookingReferenceNumbers,
-    };
-    dispatch(getBoardingPass(tiket));
-    dispatch(getCheckin(tiket));
-    console.log(tiket);
+  const downloadBoardPass = () => {
+    dispatch(getBoardingPass(data));
+    localStorage.removeItem("checkinId");
+    setIsModalOpen(false);
   };
 
   const onFinish = (values) => {
     dispatch(getCheckin(values));
     setData(values);
-  };
-
-  const downloadBoardPass = () => {
-    dispatch(getBoardingPass(data));
-    localStorage.removeItem("checkinId");
-    setIsModalOpen(false);
-    // navigate("/history");
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    window.location.reload(1);
+    // window.location.reload(1);
+    return setIsModalOpen(false);
   };
 
   return (
@@ -112,8 +97,8 @@ export const CheckInPage = () => {
             message: checkin,
           })
         : ""}
-      <div className="max-w-[1240px] mx-auto h-full md:min-h-[90vh]">
-        <div className="md:pt-40 pt-20">
+      <div className="max-w-[1240px] mx-auto h-full md:min-h-screen">
+        <div className="md:pt-32 pt-20">
           <div className="bg-white md:mx-14 rounded-md shadow-md md:py-20 py-5 mx-2 px-5 md:h-[400px]">
             <p className="text-gray-500 text-sm">
               Start check-in with your departure date and booking reference
@@ -123,7 +108,7 @@ export const CheckInPage = () => {
               <Form
                 form={form}
                 name="checkin"
-                // onFinish={onFinish}
+                onFinish={onFinish}
                 labelCol={{
                   flex: "150px",
                 }}
@@ -158,7 +143,7 @@ export const CheckInPage = () => {
                   <Input onChange={(e) => change(e.target.value)} />
                 </Form.Item>
                 <div className="flex justify-end">
-                  <div className="w-[30%]" onClick={download}>
+                  <div className="w-[30%]">
                     <ButtonPrimary type="submit" title="Check In" />
                   </div>
                 </div>
