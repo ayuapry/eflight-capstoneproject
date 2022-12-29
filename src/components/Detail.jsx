@@ -41,7 +41,7 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getTiket(values));
-  }, [dispatch]);
+  }, [dispatch, values]);
 
   const showDrawer = () => {
     setOpen(true);

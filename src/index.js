@@ -23,7 +23,11 @@ import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
 import { Unauthorized } from "./utils/Unauthorized";
-import { Admin } from './admin/Admin'
+import { DashboardAdmin } from './admin/DashboardAdmin'
+import { Aircraft } from "./admin/Aircraft";
+import { HeroList } from "./admin/HeroList";
+import { CityList } from "./admin/CityList";
+import { Airport } from "./admin/Airport";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -55,8 +59,12 @@ root.render(
 
         {/* Protect Admin Page */}
         <Route path="/admin" element={<RequireAuth allowedRoles={["ADMIN"]} />}>
-          <Route path="admin-homepage" element={<Admin />} />
+          <Route path="dashboard-admin" element={<DashboardAdmin />} />
           <Route path="cancel-checkin" element={<CancelCheckinPage />} />
+          <Route path="aircraft" element={<Aircraft />} />
+          <Route path="hero-list" element={<HeroList />} />
+          <Route path="city-list" element={<CityList />} />
+          <Route path="airport" element={<Airport />} />
         </Route>
 
         <Route path="*" element={<Missing />} />

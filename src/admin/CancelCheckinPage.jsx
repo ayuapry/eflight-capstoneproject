@@ -2,12 +2,9 @@ import { Form, Input } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import login from "../assets/login.png";
 import ButtonPrimary from "../components/ButtonPrimary";
-import { Navbar } from "../components/Navbar";
-import ScrollToTop from "../components/ScrollToTop";
-import { SecondFooter } from "../components/SecondFooter";
 import { getCheckinCancel } from "../redux/feature/historySlice";
+import { Sidebar } from "./Sidebar";
 
 export const CancelCheckinPage = () => {
   const dispatch = useDispatch();
@@ -20,17 +17,12 @@ export const CancelCheckinPage = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-cyan-500 to-yellow-500">
-      <ScrollToTop />
-      <Navbar />
-      <div className="max-w-[1240px] mx-auto h-screen md:h-[670px]">
-        <div className="md:pt-40 pt-20">
-          <div className="bg-white md:mx-14 rounded-md shadow-md md:py-20 py-5 mx-2 px-5 md:h-[400px]">
-            <p className="text-gray-500 text-sm">
-            Cancel Your Checkin Here 
-            </p>
-            <div>
-              <h2 className="text-lg ">Your Details</h2>
+    <div className='bg-slate-100'>
+         <div className='grid grid-cols-[15%_85%]'>
+            <div className=''>
+                <Sidebar />
+            </div>
+            <div className="mx-20 my-auto bg-white px-5 py-20 shadow-md h-[300px]">
               <Form
                 form={form}
                 name="checkin"
@@ -75,13 +67,7 @@ export const CancelCheckinPage = () => {
                 </div>
               </Form>
             </div>
-          </div>
-          <div className="md:hidden mt-20">
-            <img src={login} alt="/" />
-          </div>
         </div>
-      </div>
-      <SecondFooter />
     </div>
   );
 };

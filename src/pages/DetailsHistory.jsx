@@ -14,7 +14,7 @@ export const DetailsHistory = () => {
     const { history, jasper } = useSelector( (state) => state.history );
 
     useEffect(() => {
-        dispatch(getHistory())
+        dispatch(getHistory('ASC'))
     },[dispatch, bookingId]); 
 
     const onButtonClick = () => {
