@@ -28,17 +28,12 @@ export const getCheckin = createAsyncThunk(
   "user/getCheckin",
   async (values) => {
     try {
-      const res = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/checkin`,
-        {
-          lastName: `${values.lastName}`,
-          bookingReferenceNumber: `${values.bookingReferenceNumber}`,
-        },
-        setTimeout(function () {
-          window.location.reload(1);
-        }, 500)
-      );
+      const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/checkin`, {
+        lastName: `${values.lastName}`,
+        bookingReferenceNumber: `${values.bookingReferenceNumber}`,
+      });
       console.log(res.data.data);
+      localStorage.setItem("checkinId", res.data.data.id);
       return res.data.data;
     } catch (error) {
       console.error(error);
