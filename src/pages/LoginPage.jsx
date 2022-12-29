@@ -96,7 +96,7 @@ export default function LoginPage() {
                 <p className="text-center text-slate-700 mt-2">Or</p>
                 <div className="border-b-2 border-slate-700 w-20 mb-6 ml-2"></div>
               </div>
-              <ButtonBorder title="Login With Google" img={googleIcon} />
+              {/* <ButtonBorder title="Login With Google" img={googleIcon} /> */}
               <div className="flex">
                 <p className="mr-2 mt-4 mb-0 text-slate-700">
                   Don't have an accout?

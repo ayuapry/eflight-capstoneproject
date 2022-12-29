@@ -64,6 +64,7 @@ export const CheckInPage = () => {
     dispatch(getBoardingPass(data));
     localStorage.removeItem("checkinId");
     setIsModalOpen(false);
+    navigate("/history");
   };
 
   const onFinish = (values) => {

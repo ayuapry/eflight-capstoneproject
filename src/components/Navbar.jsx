@@ -134,8 +134,8 @@ export const Navbar = () => {
             </div>
           ) : (
             <img
-              className="h-8 w-8 rounded-full bg-gray-400 p-1"
-              src={profile?.imageURL || userIcon}
+              className="h-8 w-8 rounded-full bg-gray-400"
+              src={userIcon}
               alt="profile"
               onClick={() => navigate("/Login")}
             />
@@ -172,11 +172,12 @@ export const Navbar = () => {
                 <div
                   className="cursor-pointer"
                   onClick={() => setSelect(!select)}
-                >{notification?.unreadCount === 0 ? null :
-                  <div className=" h-4 w-auto bg-blue-600 ml-4 -mb-4 rounded-full border-1 border-gray-300 relative text-xs text-center text-white">
-                    {notification?.unreadCount}
-                  </div>
-                 }
+                >
+                  {notification?.unreadCount === 0 ? null : (
+                    <div className=" h-4 w-auto bg-blue-600 ml-4 -mb-4 rounded-full border-1 border-gray-300 relative text-xs text-center text-white">
+                      {notification?.unreadCount}
+                    </div>
+                  )}
                   <div className="h-8 w-8 rounded-full my-0 relative -z-10 ">
                     <BellIcon size={30} className="text-gray-400" />
                   </div>
