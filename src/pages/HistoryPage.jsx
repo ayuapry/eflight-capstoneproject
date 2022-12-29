@@ -147,14 +147,14 @@ export const HistoryPage = () => {
         <div className="grid md:grid-cols md:grid-cols-[30%_70%] gap-2">
           <div className="bg-white mt-20 rounded-md shadow-md md:h-[350px] ">
             <div className=" mt-6 mb-4 gap-2 mx-16 items-center text-center">
-              <div>
+              <div className="w-fit mx-auto">
                 <img
                   src={profile.imageURL || userIcon}
                   alt="nope"
                   className="h-24 w-24 object-cover rounded-full mx-auto bg-gray-400"
                 />
                 <CameraIcon
-                  className="text-white bg-blue-500 p-1 rounded-full w-6 absolute -mt-8 ml-32 cursor-pointer"
+                  className="text-white bg-blue-500 p-1 rounded-full w-6 absolute -mt-8 ml-20 cursor-pointer"
                   onClick={showModal}
                 />
                 <Modal
