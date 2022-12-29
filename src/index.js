@@ -17,15 +17,14 @@ import { DetailsHistory } from "./pages/DetailsHistory";
 import DetPromoPage from "./pages/DetPromoPage";
 import AllPromo from "./pages/AllPromo";
 import { DetailArticle } from "./pages/DetailArticle";
-import { CancelCheckinPage } from "./pages/CancelCheckinPage";
+import { CancelCheckinPage } from "./admin/CancelCheckinPage";
 import AllNotifPage from "./pages/AllNotifPage";
 import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
-// import { AdminHomepage } from "./admin/AdminHomepage";
 import { Unauthorized } from "./utils/Unauthorized";
-import {Admin} from './admin/Admin'
-import { NewDetailHistory } from "./pages/NewDetailHistory";
+import { Admin } from './admin/Admin'
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -38,9 +37,7 @@ root.render(
           <Route path="/booking/:id" element={<BookingPage />} />
           <Route path="/checkin" element={<CheckInPage />} />
           <Route  path="/detail-history/:bookingId"element={<DetailsHistory />} />
-          <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
           <Route path="/allnotif" element={<AllNotifPage />} />
-          <Route path="/dh/:bookingId" element={<NewDetailHistory />} />
         </Route>
 
         {/* Public Routes */}
@@ -59,6 +56,7 @@ root.render(
         {/* Protect Admin Page */}
         <Route path="/admin" element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="admin-homepage" element={<Admin />} />
+          <Route path="cancel-checkin" element={<CancelCheckinPage />} />
         </Route>
 
         <Route path="*" element={<Missing />} />

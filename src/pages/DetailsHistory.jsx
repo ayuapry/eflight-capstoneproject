@@ -21,6 +21,12 @@ export const DetailsHistory = () => {
       dispatch(getJasper(bookingId))
     }
 
+    const numberFormat = (value) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "IDR",
+    }).format(value);
+
   return (
     <div className='bg-slate-100'>
     <ScrollToTop />
@@ -29,16 +35,15 @@ export const DetailsHistory = () => {
     {history.map((e, i) => {
         if (e.bookingId === bookingId) {
         return (
-        <div key={e.bookingId} className='max-w-[1240px] md:px-14 mx-auto bg-slate-100 md:h-screen'>
+        <div key={e.bookingId} className='max-w-[1240px] md:px-14 mx-auto bg-slate-100 min-h-screen'>
           <div className='grid md:grid-cols md:grid-cols-[60%_40%] gap-2'>
             <div className='bg-white mt-20 rounded-md shadow-md'>
               <div className='bg-slate-100 py-2 px-2 mx-3 my-3 rounded-full'>
                 <div className='flex justify-between'>
                   <div className='flex font-bold items-center gap-1 mx-3'>
-                    {e && e?.departure?.data.map(city => (
+                    {e && e?.departure?.data.slice(0,1).map(city => (
                       <>
                           <div>{city.schedule.originAirport.city}</div>
-                          {/* <ArrowRightIcon className='h-4 w-4'  /> */}
                           <div>to</div>
                           <div>{city.schedule.destinationAirport.city}</div>
                       </>
@@ -99,28 +104,28 @@ export const DetailsHistory = () => {
               </div>
             </div>
             {e && e?.departure?.data.slice(0,1).map((item,i) => (
-            <div key={i} className='bg-white rounded-md shadow-md md:mt-20 px-5 py-5 '>
+            <div key={i} className='bg-white rounded-md shadow-md md:mt-20 px-5 py-5 h-[400px] '>
               <p className='font-bold'>Amount Details</p>
               <div className='bg-slate-100 rounded-lg px-2 py-2'>
                 <div className='flex justify-between mb-2'>
                   <div>Flight Ticket</div>
-                  <div>{item?.schedule?.price?.display}</div>
+                  <div>{numberFormat(item?.schedule?.price?.amount)}</div>
                 </div>
                 <div className='flex justify-between mb-2'>
                   <div>Extra Bagage {item?.bagage?.extraBagage}kg</div>
-                  <div>{item?.bagage?.price?.display}</div>
+                  <div>{numberFormat(item?.bagage?.price?.amount)}</div>
                 </div>
                 <div className='flex justify-between mb-2'>
                   <div>Seat Code {item?.aircraftSeat?.seatCode}</div>
-                  <div>{item?.aircraftSeat?.price?.display}</div>
+                  <div>{numberFormat(item?.aircraftSeat?.price?.amount)}</div>
                 </div>
                 <div className='flex justify-between mt-5 mb-2 text-blue-600'>
                   <div className='font-bold'>Total Amount </div>
-                  <div className='font-bold ite'>{e?.totalAmount?.display}</div>
+                  <div className='font-bold ite'>{numberFormat(e?.totalAmount?.amount)}</div>
                 </div>
               </div>
               <p className='text-xs text-gray-400'>Ordered At {e?.orderedAt}</p>
-              <div className='md:mt-40' onClick={onButtonClick}>
+              <div className='md:mt-10' onClick={onButtonClick}>
                 <ButtonPrimary title='Download Your E-Ticket Here' />
               </div>
             </div>
@@ -132,9 +137,7 @@ export const DetailsHistory = () => {
         else {
             return (<p></p>)
         }
-    })}zz
-    {/* </div>
-    </div> */}
+    })}
     <SecondFooter />
     </div>
 </div>
