@@ -143,7 +143,7 @@ export const HistoryPage = () => {
                                     Order ID: {histo.bookingId}
                                 </p>
 
-                                {histo?.departure?.data.slice(0,1).map((city, i) => (
+                                {histo?.departure?.data.map((city, i) => (
                                     <>
                                         <div key={i} className='flex gap-2 font-semibold'>
                                             <p>{city.schedule.originAirport.city}</p>

@@ -25,6 +25,7 @@ import { Layout } from "./utils/Layout";
 // import { AdminHomepage } from "./admin/AdminHomepage";
 import { Unauthorized } from "./utils/Unauthorized";
 import {Admin} from './admin/Admin'
+import { NewDetailHistory } from "./pages/NewDetailHistory";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -39,6 +40,7 @@ root.render(
           <Route  path="/detail-history/:bookingId"element={<DetailsHistory />} />
           <Route path="/cancel-checkin" element={<CancelCheckinPage />} />
           <Route path="/allnotif" element={<AllNotifPage />} />
+          <Route path="/dh/:bookingId" element={<NewDetailHistory />} />
         </Route>
 
         {/* Public Routes */}

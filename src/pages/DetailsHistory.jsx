@@ -25,11 +25,11 @@ export const DetailsHistory = () => {
     <div className='bg-slate-100'>
     <ScrollToTop />
     <Navbar />
-    <div className='pt-[1px]'>
-    {history.slice(0, 2).map((e) => {
+    <div className='pt-[10px]'>
+    {history.map((e, i) => {
         if (e.bookingId === bookingId) {
         return (
-        <div key={e.bookingId} className='max-w-[1240px] md:px-14 mx-auto bg-slate-100 min-h-screen '>
+        <div key={e.bookingId} className='max-w-[1240px] md:px-14 mx-auto bg-slate-100 md:h-screen'>
           <div className='grid md:grid-cols md:grid-cols-[60%_40%] gap-2'>
             <div className='bg-white mt-20 rounded-md shadow-md'>
               <div className='bg-slate-100 py-2 px-2 mx-3 my-3 rounded-full'>
@@ -132,7 +132,7 @@ export const DetailsHistory = () => {
         else {
             return (<p></p>)
         }
-    })}
+    })}zz
     {/* </div>
     </div> */}
     <SecondFooter />

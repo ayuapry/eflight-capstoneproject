@@ -198,7 +198,7 @@ export const BookingPage = () => {
   return (
     <div className="bg-slate-100">
       <Navbar />
-      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 h-screen ">
+      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 min-h-screen ">
         {bookingId ? (
           responModal({
             title: "Booking Success",
