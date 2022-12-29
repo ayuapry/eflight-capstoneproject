@@ -163,7 +163,7 @@ export const HistoryPage = () => {
                   onOk={handleOk}
                   onCancel={handleCancel}
                   footer={null}
-                  width={"20%"}
+                  width={"20rem"}
                 >
                   <div className="w-full flex justify-center">
                     <div className="w-fit mt-4">
