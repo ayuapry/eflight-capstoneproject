@@ -49,6 +49,32 @@ export const CheckInPage = () => {
       </Modal>
     );
   };
+  const [lastNames, setLastName] = useState();
+  const [bookingReferenceNumbers, setBookingReferenceNumber] = useState();
+
+  const change = (e) => {
+    setBookingReferenceNumber(e);
+  };
+
+  const changege = (e) => {
+    setLastName(e);
+  };
+
+  // const onFinish = (values) => {
+  //   dispatch(getBoardingPass(values))
+  //   // dispatch(getCheckin(values))
+  //   // navigate("/history");
+  // };
+
+  const download = () => {
+    const tiket = {
+      lastName: lastNames,
+      bookingReferenceNumber: bookingReferenceNumbers,
+    };
+    dispatch(getBoardingPass(tiket));
+    dispatch(getCheckin(tiket));
+    console.log(tiket);
+  };
 
   const onFinish = (values) => {
     dispatch(getCheckin(values));
@@ -97,7 +123,7 @@ export const CheckInPage = () => {
               <Form
                 form={form}
                 name="checkin"
-                onFinish={onFinish}
+                // onFinish={onFinish}
                 labelCol={{
                   flex: "150px",
                 }}
@@ -117,7 +143,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input />
+                  <Input onChange={(e) => changege(e.target.value)} />
                 </Form.Item>
 
                 <Form.Item
@@ -129,10 +155,10 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input />
+                  <Input onChange={(e) => change(e.target.value)} />
                 </Form.Item>
                 <div className="flex justify-end">
-                  <div className="w-[30%]">
+                  <div className="w-[30%]" onClick={download}>
                     <ButtonPrimary type="submit" title="Check In" />
                   </div>
                 </div>

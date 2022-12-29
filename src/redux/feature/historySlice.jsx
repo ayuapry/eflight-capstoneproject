@@ -94,25 +94,23 @@ export const getJasper = createAsyncThunk(
 export const getBoardingPass = createAsyncThunk(
   "history/getBoardingPass",
   async (values) => {
-    const token = localStorage.getItem("token");
-    fetch(
-      `https://binar-air.azurewebsites.net/api/v1/jasperreport/boardingpass/${values.lastName}/${values.bookingReferenceNumber}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-      .then((res) => res.blob())
-      .then((res) => {
-        const aElement = document.createElement("a");
-        aElement.setAttribute("download", "BoardingPass.pdf");
-        const href = URL.createObjectURL(res);
-        aElement.href = href;
-        aElement.setAttribute("target", "_blank");
-        aElement.click();
-        URL.revokeObjectURL(href);
+    console.log(values)
+    const token = localStorage.getItem('token')
+    fetch(`https://binar-air.azurewebsites.net/api/v1/jasperreport/boardingpass/${values.lastName}/${values.bookingReferenceNumber}`, {
+      method: 'GET',
+      headers: {
+          'Authorization': `Bearer ${token}`,
+      },
+    })
+      .then(res => res.blob())
+      .then(res => {
+          const aElement = document.createElement('a');
+          aElement.setAttribute('download', "BoardingPass.pdf");
+          const href = URL.createObjectURL(res);
+          aElement.href = href;
+          aElement.setAttribute('target', '_blank');
+          aElement.click();
+          URL.revokeObjectURL(href);
       });
   }
 );

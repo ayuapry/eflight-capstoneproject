@@ -57,6 +57,8 @@ export const HistoryPage = () => {
       showDenyButton: true,
       confirmButtonText: "Yes",
       denyButtonText: `No`,
+      confirmButtonColor: "#2563eb",
+      denyButtonColor: "#facc15",
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear();
@@ -145,7 +147,7 @@ export const HistoryPage = () => {
       <Navbar />
       <div className="max-w-[1240px] mx-auto md:px-16 px-4 pb-10 bg-slate-100 md:min-h-screen">
         <div className="grid md:grid-cols md:grid-cols-[30%_70%] gap-2">
-          <div className="bg-white mt-20 rounded-md shadow-md md:h-[350px] ">
+          <div className="bg-white mt-20 rounded-md shadow-md md:h-[333px] ">
             <div className=" mt-6 mb-4 gap-2 mx-16 items-center text-center">
               <div className="w-fit mx-auto">
                 <img
