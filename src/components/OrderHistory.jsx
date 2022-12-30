@@ -43,7 +43,7 @@ export const OrderHistory = () => {
     };
   
   return (
-    <div className="mx-2 md:mt-[90px] md:ml-5 bg-white shadow-md">
+    <div className="mx-2 md:mt-[90px] md:ml-5 bg-white shadow-md rounded-md">
          <div className="grid md:grid-cols md:grid-cols-[75%_25%] px-4 my-4 border-b-2">
               <div className="">
                 <h1>Order History</h1>
