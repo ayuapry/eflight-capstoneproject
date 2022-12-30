@@ -6,6 +6,7 @@ import { promoReducer } from '../feature/promoSlice'
 import { homeReducer } from '../feature/homeSlice'
 import { notifReducer } from '../feature/NotificationSlice'
 import { userReducer } from '../feature/UserSlice'
+import { adminReducer } from '../feature/AdminSlice'
 
 export default configureStore ({
     reducer: {
@@ -16,5 +17,6 @@ export default configureStore ({
         booking: bookingReducer,
         history: historyReducer,
         promo: promoReducer,
+        admin: adminReducer,
     },
 })

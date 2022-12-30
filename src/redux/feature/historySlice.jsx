@@ -9,7 +9,7 @@ export const getHistory = createAsyncThunk(
     const id = localStorage.getItem("id");
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/history?userid=${id}&sort=DESC`,
+        `${process.env.REACT_APP_BASE_URL}/history?userid=${id}&sort=${values}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

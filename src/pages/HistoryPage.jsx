@@ -41,15 +41,12 @@ export const HistoryPage = () => {
   const { profile } = useSelector((state) => state.user);
   const { history } = useSelector((state) => state.history);
 
+  const [sorting, setSorting] = useState('ASC')
+
   useEffect(() => {
     dispatch(getProfile(id));
-    dispatch(getHistory());
-  }, [dispatch, id]);
-
-  const sorting = (values) => {
-    // dispatch(getHistory(values))
-    console.log(values);
-  };
+    dispatch(getHistory(sorting));
+  }, [dispatch, id, sorting]);
 
   const logout = () => {
     Swal.fire({
@@ -212,7 +209,7 @@ export const HistoryPage = () => {
             </div>
           </div>
           <div className="bg-white rounded-md shadow-md md:mt-20">
-            <div className="grid md:grid-cols md:grid-cols-[60%_40%] px-4 my-4 border-b-2 bor">
+            <div className="grid md:grid-cols md:grid-cols-[75%_25%] px-4 my-4 border-b-2">
               <div className="">
                 <h1>Order History</h1>
                 <span className="text-gray-400">
@@ -220,14 +217,8 @@ export const HistoryPage = () => {
                 </span>
               </div>
               <div className="my-4">
-                <Select placeholder="Sort By" allowClear>
-                  <Option onClick={sorting("ASC")} value="recent">
-                    ASCENDING
-                  </Option>
-                  <Option onClick={sorting("DESC")} value="early">
-                    DESCENDING
-                  </Option>
-                </Select>
+                <button className="border-2 px-2 py-2 rounded-full text-gray-600 hover:bg-slate-200 items-center  bg-slate-100 mr-2" onClick={() => setSorting('DESC')} >Recently </button>
+                <button className="border-2 px-2 py-2 rounded-full text-gray-600 hover:bg-slate-200 items-center bg-slate-100 " onClick={() => setSorting('ASC')}>Long Ago</button>
               </div>
             </div>
             {history ? "" : noData()}
