@@ -22,13 +22,23 @@ export const Hero = () => {
 
   if (loading) {
     return (
-      <div className="pt-[65px] md:pb-0 md:bg-blue-600 md:h-96 mb-0">
-        <div className="w-fit mx-auto">
+      <div>
+        <div className="hidden md:block pt-[65px] w-fit mx-auto h-96 bg-blue-600">
           <Skeleton.Button
             active={true}
             shape={"default"}
             style={{
-              height: "23rem",
+              height: "24rem",
+              width: "48rem",
+            }}
+          />
+        </div>
+        <div className="md:hidden pt-[65px] w-fit mx-auto h-96">
+          <Skeleton.Button
+            active={true}
+            shape={"default"}
+            style={{
+              height: "12rem",
               width: "48rem",
             }}
           />
@@ -66,17 +76,16 @@ export const Hero = () => {
             );
           })}
       </Swiper>
-
-      {/* <div className="w-fit mx-auto">
-        <Skeleton.Button
-          active={true}
-          shape={"default"}
-          style={{
-            height: "23rem",
-            width: "48rem",
-          }}
-        />
-      </div> */}
     </div>
+    // <div className="md:hidden pt-[65px] w-fit mx-auto h-96 md:bg-blue-600">
+    //   <Skeleton.Button
+    //     active={true}
+    //     shape={"default"}
+    //     style={{
+    //       height: "15rem",
+    //       width: "48rem",
+    //     }}
+    //   />
+    // </div>
   );
 };
