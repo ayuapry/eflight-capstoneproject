@@ -80,7 +80,20 @@ export const getTiket = createAsyncThunk("tiket/getTiket", async (values) => {
             process.env.REACT_APP_BASE_URL
           }/flight/fulltwosearch?${qs.stringify(payload)}`
     );
-    console.log(res.data.data);
+    // console.log(res.data.data);
+    return res.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//QR
+export const getQR = createAsyncThunk("qr/getQR", async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/qr`
+    );
+    // console.log(res);
     return res.data.data;
   } catch (err) {
     console.log(err);
@@ -95,6 +108,7 @@ export const homeSlice = createSlice({
     age: [],
     cabinClass: [],
     tiket: [],
+    qr: [],
   },
   reducers: {},
   extraReducers: {
@@ -123,6 +137,10 @@ export const homeSlice = createSlice({
     //tiket
     [getTiket.fulfilled]: (state, { payload }) => {
       state.tiket = payload;
+    },
+    //QR
+    [getQR.fulfilled]: (state, { payload }) => {
+      state.qr = payload;
     },
   },
 });
