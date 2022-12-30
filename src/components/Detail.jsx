@@ -51,7 +51,7 @@ export default function Detail() {
   };
 
   const numberFormat = (value) =>
-    new Intl.NumberFormat("id-ID", {
+    new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "IDR",
     }).format(value);

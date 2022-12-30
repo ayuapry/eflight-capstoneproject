@@ -121,8 +121,14 @@ export const homeSlice = createSlice({
       state.cabinClass = payload;
     },
     //tiket
+    [getTiket.pending]: (state) => {
+      state.loading = true;
+    },
     [getTiket.fulfilled]: (state, { payload }) => {
       state.tiket = payload;
+    },
+    [getTiket.rejected]: (state) => {
+      state.loading = false;
     },
   },
 });

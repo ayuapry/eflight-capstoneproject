@@ -23,7 +23,7 @@ import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
 import { Unauthorized } from "./utils/Unauthorized";
-import { DashboardAdmin } from './admin/DashboardAdmin'
+import { DashboardAdmin } from "./admin/DashboardAdmin";
 import { Aircraft } from "./admin/Aircraft";
 import { HeroList } from "./admin/HeroList";
 import { CityList } from "./admin/CityList";
