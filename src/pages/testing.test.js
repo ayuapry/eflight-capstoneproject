@@ -1,13 +1,13 @@
 // import React from "react";
 // import { render, fireEvent } from "@testing-library/react";
-// import LoginPage from "./pages/LoginPage";
+// import LoginPage from "./LoginPage";
 
 // describe("LoginPage", () => {
 //   it("should render the form", () => {
 //     const { getByTestId } = render(<LoginPage />);
 //     const emailInput = getByTestId("email-input");
 //     const passwordInput = getByTestId("password-input");
-//     const loginButton = getByTestId("email-input");
+//     const loginButton = getByTestId("btn");
 
 //     expect(emailInput).toBeInTheDocument();
 //     expect(passwordInput).toBeInTheDocument();

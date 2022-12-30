@@ -18,10 +18,10 @@ const AllPromo = () => {
     <div className='bg-slate-100 min-h-screen'>
         <ScrollToTop />
         <Navbar />
-        <div className='min-h-screen'>
+        <div className='min-h-[70vh]'>
             <div className='w-full md:max-w-[1240px] mx-auto px-4 md:px-14 bg-slate-100 pt-[30px] md:pt-[65px]'>
-                <div className='h-full md:h-[80vh]'>
-                    <div className='flex flex-col md:grid gap-2 md:gap-4 md:grid-cols-2 rounded-md md:max-w-[1240px] md:mx-auto pt-10'>
+                <div className='min-h-full'>
+                    <div className='flex flex-col md:grid gap-2 md:gap-4 md:grid-cols-2 rounded-md md:max-w-[1240px] md:mx-auto pt-10 md:mb-5'>
                         {pagination && pagination.map((e) => {
                             return (
                                 <div key={e.id} className="haii w-full md:max-w-7xl bg-white shadow-md p-3 md:p-5 rounded-md mb-0">

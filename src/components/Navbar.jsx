@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LogoText from "../assets/LogoText.png";
-import { Dropdown } from "antd";
 import userIcon from "../assets/userIcon.png";
 import ButtonPrimary from "./ButtonPrimary";
 import { BellIcon, BellSlashIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { getNotification } from "../redux/feature/NotificationSlice";
 import Swal from "sweetalert2";
-import { FaRegUser, FaRegUserCircle } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import { RiUserReceived2Line } from "react-icons/ri";
 import { Menu, Transition } from "@headlessui/react";
 import { getProfile } from "../redux/feature/UserSlice";
@@ -61,6 +60,7 @@ export const Navbar = () => {
                   <Menu.Button>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-400"
+                      onClick={() => setSelect(false)}
                       src={profile?.imageURL || userIcon}
                       alt="profile"
                     />
@@ -204,12 +204,12 @@ export const Navbar = () => {
                         <div>
                           <div className="mx-3 my-3">
                             <div key={notif.id}>
-                              <span className="font-semibold">
+                              <span className="font-semibold text-[0.87rem]">
                                 {notif?.title}
                               </span>
                               <br />
-                              <span className="text-[0.78rem]">
-                                {notif?.description}
+                              <span className="text-[0.78rem] font-light">
+                                {notif?.description.substring(0, notif.description.indexOf("!") + 1)}
                               </span>
                             </div>
                           </div>
@@ -252,6 +252,7 @@ export const Navbar = () => {
                     <Menu.Button>
                       <img
                         className="h-8 w-8 rounded-full bg-gray-400"
+                        onClick={() => setSelect(false)}
                         src={profile?.imageURL || userIcon}
                         alt="profile"
                       />

@@ -62,6 +62,7 @@ export default function LoginPage() {
               ]}
             >
               <Input
+                data-testid="email-input"
                 suffix={<MailOutlined />}
                 type="email"
                 className="round-input"
@@ -84,13 +85,14 @@ export default function LoginPage() {
             >
               <Input.Password
                 className="round-input"
+                data-testid="password-input"
                 type="password"
                 placeholder="Password"
               />
             </Form.Item>
 
             <Form.Item>
-              <ButtonPrimary type="submit" title="LOGIN" />
+              <ButtonPrimary data-testid="btn-input" type="submit" title="LOGIN" />
               {/* <div className="flex justify-center">
                 <div className="border-b-2 border-slate-700 w-20 mb-6 mr-2"></div>
                 <p className="text-center text-slate-700 mt-2">Or</p>
