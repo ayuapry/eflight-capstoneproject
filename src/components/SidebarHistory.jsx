@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import {
   ArrowLeftCircleIcon,
   CameraIcon,
-  CheckCircleIcon,
+  CheckBadgeIcon,
+  ClipboardDocumentCheckIcon,
   UserCircleIcon,
 } from "@heroicons/react/20/solid";
 import { Modal, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { EditProfileModal } from "../components/EditProfileModal";
+import { useParams } from "react-router-dom";
 import { getProfile } from "../redux/feature/UserSlice";
 import { useState, useEffect } from "react";
 import { editAvatar } from "../redux/feature/historySlice";
@@ -21,15 +21,10 @@ import userIcon from "../assets/userIcon.png";
 
 export const SidebarHistory = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const [editProfileModal, setEditProfileModal] = useState(false);
-    const handleOnClose = () => setEditProfileModal(false);
-  
     const navigate = useNavigate();
     const dispatch = useDispatch();
   
     const { id } = useParams();
-  
     const { profile } = useSelector((state) => state.user);
     
     useEffect(() => {
@@ -107,7 +102,7 @@ export const SidebarHistory = () => {
     };
 
   return (
-    <div className='bg-white shadow-lg md:h-[620px] mx-2 pt-20 md:pt-0'>
+    <div className='bg-white shadow-lg md:h-[620px] mx-2 pt-20 md:pt-0 rounded-md'>
        <div className="w-fit mx-auto md:pt-4">
                 <img
                   src={profile.imageURL || userIcon}
@@ -151,24 +146,27 @@ export const SidebarHistory = () => {
                 </h1>
                 <span className="text-sm">{profile?.email}</span>
               </div>
-              <div className=" md:block mx-10 my-10">
+              <div className=" md:block py-10">
               <div
-                className="flex gap-2 cursor-pointer"
-                onClick={() => setEditProfileModal(true)}
+                className="px-5 py-3 text-white flex gap-2 cursor-pointer bg-blue-600 items-center"
+                onClick={() => navigate('/profile-page')}
               >
-                <UserCircleIcon className="h-6 w-6 text-blue-600" />
-                <p className="font-semibold">Account</p>
+                <UserCircleIcon className="h-6 w-6 " />
+                <div className="font-semibold">Account</div>
               </div>
-              <Link to="/checkin" className="flex gap-2 cursor-pointer">
-                <CheckCircleIcon className="h-6 w-6 text-blue-600" />
+              <div className="flex px-5 pt-3 gap-2 cursor-pointer hover:bg-gray-300" onClick={()=> navigate('/history')}>
+                <ClipboardDocumentCheckIcon className="h-6 w-6 text-blue-600" />
+                <p className="font-semibold">Order History</p>
+              </div>
+              <div className="flex px-5 pt-3 gap-2 cursor-pointer hover:bg-gray-300" onClick={()=> navigate('/checkin')}>
+                <CheckBadgeIcon className="h-6 w-6 text-blue-600" />
                 <p className="font-semibold">Check-In</p>
-              </Link>
-              <div className="flex gap-2 cursor-pointer" onClick={logout}>
+              </div>
+              <div className="hidden md:flex px-5 pt-3 gap-2 cursor-pointer hover:bg-gray-300" onClick={logout}>
                 <ArrowLeftCircleIcon className="h-6 w-6 text-blue-600" />
                 <p className="font-semibold">Logout</p>
               </div>
             </div>
-        <EditProfileModal open={editProfileModal} close={handleOnClose} />
     </div>
   )
 }

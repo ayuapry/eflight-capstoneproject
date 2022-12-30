@@ -60,7 +60,9 @@ export const Navbar = () => {
                   <Menu.Button>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-400"
-                      onClick={() => setSelect(false)}
+                      onClick={() => 
+                        setSelect(false)
+                      }
                       src={profile?.imageURL || userIcon}
                       alt="profile"
                     />
@@ -272,7 +274,7 @@ export const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => navigate("/history")}
+                              onClick={() => navigate("/profile-page")}
                               className={`${
                                 active
                                   ? " text-blue-500 focus:outline-none focus:ring-2 "
