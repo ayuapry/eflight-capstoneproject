@@ -76,7 +76,7 @@ export default function DetailRoundtrip() {
   const departures = tiket?.departures;
   const returns = tiket?.returns;
 
-  if (loading) return <SkeletonSearch length={departures.length} />;
+  if (loading) return <SkeletonSearch length="5" />;
 
   return (
     <div className="w-full">
