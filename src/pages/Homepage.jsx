@@ -12,7 +12,9 @@ export const Homepage = () => {
     <div className="bg-slate-50">
       <ScrollToTop />
       <Navbar />
-      <Hero />
+      <div className="h-72 md:h-[434px] md:bg-blue-600">
+        <Hero />
+      </div>
       <CardHome />
       <HeadlineCards />
       <Footer />

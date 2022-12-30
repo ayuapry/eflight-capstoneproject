@@ -1,4 +1,5 @@
 import {
+  ArrowDownLeftIcon,
   ArrowLongRightIcon,
   CheckCircleIcon,
   UsersIcon,
@@ -24,15 +25,18 @@ import {
 import { getAge } from "../redux/feature/homeSlice";
 import failed from "../assets/failed.svg";
 import success from "../assets/success.svg";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 export const BookingPage = () => {
-  const { titel, bagage, benefit, seat, country, booking } = useSelector((state) => state.booking);
+  const { titel, bagage, benefit, seat, country, booking } = useSelector(
+    (state) => state.booking
+  );
   const { age } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const bookingId = localStorage.getItem("bookingId");
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -40,7 +44,7 @@ export const BookingPage = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    window.location.reload(1);
+    // window.location.reload(1);
   };
 
   const toHistory = () => {
@@ -60,9 +64,13 @@ export const BookingPage = () => {
 
   const location = useLocation();
   const tiket = location.state?.tiket;
+  const tiketRet = location.state?.tiketRet;
   const hargaTiket = location.state?.total;
   const pass = location.state?.passenger;
-  const idSch = location.state?.tiket.id;
+  const idSchDep = location.state?.tiket.id;
+  const idSchRet = location.state?.tiketRet.id;
+
+  console.log(booking);
 
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-US", {
@@ -72,6 +80,14 @@ export const BookingPage = () => {
 
   const countPass = pass.A + pass.B + pass.D;
   const [total, setTotal] = useState(hargaTiket);
+
+  const bookingType = [];
+
+  {
+    tiketRet ? bookingType.push("ROUND TRIP") : bookingType.push("ONE WAY");
+  }
+
+  console.log(bookingType);
 
   const onFinish = (values) => {
     let keys = [
@@ -90,16 +106,36 @@ export const BookingPage = () => {
       Object.fromEntries(keys.map((key) => [key, values[key + i]]))
     );
 
-    const data = [];
+    const dataDep = [];
+    const dataRet = [];
     const seatPrice = [];
     const baggagePrice = [];
     let totalSeat = 0;
     let totalBaggage = 0;
 
     for (let i = 0; i < countPass; i++) {
-      data.push({
+      dataDep.push({
         ...arr[i],
-        scheduleId: idSch,
+        scheduleId: idSchDep,
+        titelId: arr[i].titelId,
+        ageCategoryId: ageId[i],
+        firstName: arr[i].firstName,
+        lastName: arr[i].lastName,
+        birthDate: arr[i].birthDate,
+        passportNumber: arr[i].passportNumber,
+        issuingCountryId: arr[i].citizenshipId,
+        citizenshipId: arr[i].citizenshipId,
+        aircraftSeat: {
+          id: arr[i].seatId,
+        },
+        baggage: {
+          total: arr[i].baggage,
+        },
+      });
+
+      dataRet.push({
+        ...arr[i],
+        scheduleId: idSchRet,
         titelId: arr[i].titelId,
         ageCategoryId: ageId[i],
         firstName: arr[i].firstName,
@@ -119,13 +155,17 @@ export const BookingPage = () => {
       seat
         ?.filter((seat) => seat.seatId === arr[i].seatId)
         .map((e, i) => {
-          seatPrice.push(e.price.amount);
+          tiketRet
+            ? seatPrice.push(e.price.amount * 2)
+            : seatPrice.push(e.price.amount);
         });
 
       bagage
         ?.filter((bagage) => bagage.weight === arr[i].baggage)
         .map((e, i) => {
-          baggagePrice.push(e.price);
+          tiketRet
+            ? baggagePrice.push(e.price * 2)
+            : baggagePrice.push(e.price);
         });
     }
 
@@ -136,9 +176,18 @@ export const BookingPage = () => {
 
     const total = parseInt(hargaTiket) + totalSeat + totalBaggage;
     setTotal(total);
-    console.log(data, total);
 
-    dispatch(Booking({ data, pass, total: total }));
+    dispatch(
+      Booking({
+        dataDep,
+        dataRet,
+        pass,
+        total: total,
+        bookingType: bookingType[0],
+      })
+    );
+
+    setIsModalOpen(true);
   };
 
   const agectr = [];
@@ -230,7 +279,7 @@ export const BookingPage = () => {
         >
           <div className="grid md:grid-cols md:grid-cols-[60%_40%] gap-2 py-5">
             <div>
-              <div className="bg-white mt-14 rounded-md shadow-md py-5 px-5">
+              <div className="bg-white md:mt-20 mt-14 rounded-md shadow-md py-5 px-5">
                 <div className="flex items-center gap-3">
                   <UsersIcon className="h-7 w-7" />
                   <div className="text-lg font-semibold">Passenger Details</div>
@@ -406,7 +455,7 @@ export const BookingPage = () => {
                             <Form.Item
                               name={`seatId${idx}`}
                               style={{ marginBottom: 0 }}
-                              placement={'bottomLeft'}
+                              placement={"bottomLeft"}
                               rules={[
                                 {
                                   required: true,
@@ -418,7 +467,8 @@ export const BookingPage = () => {
                               <Select placeholder="Seat">
                                 {seat?.map((e, i) => (
                                   <Select.Option key={i} value={e?.seatId}>
-                                    {e?.seatCode} - {numberFormat(e?.price.amount)}
+                                    {e?.seatCode} -{" "}
+                                    {numberFormat(e?.price.amount)}
                                   </Select.Option>
                                 ))}
                               </Select>
@@ -467,6 +517,11 @@ export const BookingPage = () => {
               <div className="flex justify-between items-center">
                 <div className="flex gap-3 items-center py-3">
                   <h2 className="mb-0">{tiket?.originCity}</h2>
+                  {tiketRet ? (
+                    <ArrowLongLeftIcon className="h-4 w-4 -mr-4" />
+                  ) : (
+                    ""
+                  )}
                   <ArrowLongRightIcon className="h-4 w-4" />
                   <h2 className="mb-0">{tiket?.destinationCity}</h2>
                 </div>
@@ -474,15 +529,33 @@ export const BookingPage = () => {
 
               <div className="flex items-center justify-between text-gray-500">
                 <img src={Logo} alt="" className="h-12 w-12" />
-                <div className="flex mt-4">
-                  <p>{tiket?.iataOriginAirport}</p>
-                  <p>-</p>
-                  <p>{tiket?.iataDestinationAirport}</p>
+                <div>
+                  <div className="flex mt-4">
+                    <p className="mb-0">{tiket?.iataOriginAirport}</p>
+                    <p className="mb-0">-</p>
+                    <p className="mb-0">{tiket?.iataDestinationAirport}</p>
+                  </div>
+                  <div className="flex">
+                    <p>{tiketRet?.iataOriginAirport}</p>
+                    <p>-</p>
+                    <p>{tiketRet?.iataDestinationAirport}</p>
+                  </div>
                 </div>
                 <div>
-                  {format(new Date(`${tiket?.arrivalDate}`), "dd MMM yyyy")}
+                  <div>
+                    {format(new Date(`${tiket?.arrivalDate}`), "dd MMM yyyy")}
+                  </div>
+                  <div>
+                    {format(
+                      new Date(`${tiketRet?.arrivalDate}`),
+                      "dd MMM yyyy"
+                    )}
+                  </div>
                 </div>
-                <div>{(tiket?.departureTime).slice(0, -3)}</div>
+                <div>
+                  <div>{(tiket?.departureTime).slice(0, -3)}</div>
+                  <div>{(tiketRet?.departureTime).slice(0, -3)}</div>
+                </div>
               </div>
 
               <h2 className="py-3">Ticket Policy</h2>
