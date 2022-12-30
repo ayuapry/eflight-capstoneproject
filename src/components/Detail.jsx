@@ -41,7 +41,7 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getTiket(values));
-  }, [dispatch]);
+  }, [dispatch, values]);
 
   const showDrawer = () => {
     setOpen(true);
@@ -144,17 +144,20 @@ export default function Detail() {
                       <ButtonPrimary
                         title="SELECT"
                         click={() =>
-                          navigate(`/booking/${tiket.aircraft.id}`, {
-                            state: {
-                              tiket: tiket,
-                              passenger: Passenger,
-                              total: `${
-                                tiket.price.amount * Passenger.D +
-                                tiket.price.amount * Passenger.A +
-                                tiket.price.amount * Passenger.B
-                              }`,
-                            },
-                          })
+                          navigate(
+                            `/booking/${tiket.aircraft.id}?ap=${values.ap1}.${values.ap2}&dt=${values.dt1}.${values.dt2}&ps=${values.psD}.${values.psA}.${values.psB}&sc=${values.sc}`,
+                            {
+                              state: {
+                                tiket: tiket,
+                                passenger: Passenger,
+                                total: `${
+                                  tiket.price.amount * Passenger.D +
+                                  tiket.price.amount * Passenger.A +
+                                  tiket.price.amount * Passenger.B
+                                }`,
+                              },
+                            }
+                          )
                         }
                       />
                     </div>
@@ -491,17 +494,20 @@ export default function Detail() {
                     <ButtonPrimary
                       title="SELECT"
                       click={() =>
-                        navigate(`/Booking/${tiket.aircraft.id}`, {
-                          state: {
-                            tiket: tiket,
-                            passenger: Passenger,
-                            total: `${
-                              tiket.price.amount * Passenger.D +
-                              tiket.price.amount * Passenger.A +
-                              tiket.price.amount * Passenger.B
-                            }`,
-                          },
-                        })
+                        navigate(
+                          `/Booking/${tiket.aircraft.id}ap=${values.ap1}.${values.ap2}&dt=${values.dt1}.${values.dt2}&ps=${values.psD}.${values.psA}.${values.psB}&sc=${values.sc}`,
+                          {
+                            state: {
+                              tiket: tiket,
+                              passenger: Passenger,
+                              total: `${
+                                tiket.price.amount * Passenger.D +
+                                tiket.price.amount * Passenger.A +
+                                tiket.price.amount * Passenger.B
+                              }`,
+                            },
+                          }
+                        )
                       }
                       className="text-sm lg:text-base"
                     />

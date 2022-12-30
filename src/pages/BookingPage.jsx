@@ -26,7 +26,9 @@ import failed from "../assets/failed.svg";
 import success from "../assets/success.svg";
 
 export const BookingPage = () => {
-  const { titel, bagage, benefit, seat, country, booking } = useSelector((state) => state.booking);
+  const { titel, bagage, benefit, seat, country, booking } = useSelector(
+    (state) => state.booking
+  );
   const { age } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -198,7 +200,7 @@ export const BookingPage = () => {
   return (
     <div className="bg-slate-100">
       <Navbar />
-      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 h-screen ">
+      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 min-h-screen ">
         {bookingId ? (
           responModal({
             title: "Booking Success",
@@ -230,7 +232,7 @@ export const BookingPage = () => {
         >
           <div className="grid md:grid-cols md:grid-cols-[60%_40%] gap-2 py-5">
             <div>
-              <div className="bg-white mt-14 rounded-md shadow-md py-5 px-5">
+              <div className="bg-white md:mt-20 mt-14 rounded-md shadow-md py-5 px-5">
                 <div className="flex items-center gap-3">
                   <UsersIcon className="h-7 w-7" />
                   <div className="text-lg font-semibold">Passenger Details</div>
@@ -406,7 +408,7 @@ export const BookingPage = () => {
                             <Form.Item
                               name={`seatId${idx}`}
                               style={{ marginBottom: 0 }}
-                              placement={'bottomLeft'}
+                              placement={"bottomLeft"}
                               rules={[
                                 {
                                   required: true,
@@ -418,7 +420,8 @@ export const BookingPage = () => {
                               <Select placeholder="Seat">
                                 {seat?.map((e, i) => (
                                   <Select.Option key={i} value={e?.seatId}>
-                                    {e?.seatCode} - {numberFormat(e?.price.amount)}
+                                    {e?.seatCode} -{" "}
+                                    {numberFormat(e?.price.amount)}
                                   </Select.Option>
                                 ))}
                               </Select>
