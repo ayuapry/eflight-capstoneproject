@@ -92,14 +92,19 @@ export const Booking = createAsyncThunk("user/booking", async (data) => {
       `${process.env.REACT_APP_BASE_URL}/booking/${id}`,
       {
         amount: data.total,
-        bookingType: "One Way",
+        bookingType: data.bookingType,
         adult: data.pass.D,
         child: data.pass.A,
         infant: data.pass.B,
         departures: {
-          data: data.data,
+          data: data.dataDep,
         },
-        returns: null,
+        returns:
+          data.bookingType === "Round Trip"
+            ? {
+                data: data.dataRet,
+              }
+            : null,
       },
       {
         headers: {

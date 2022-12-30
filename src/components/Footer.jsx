@@ -2,8 +2,19 @@ import React from "react";
 import BinarLogo from "../assets/LogoText.png";
 import { SiFacebook, SiYoutubemusic, SiLinkedin } from "react-icons/si";
 import { FaInstagramSquare } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getQR } from "../redux/feature/homeSlice";
 
 const Footer = () => {
+  const { qr } = useSelector((state) => state.homepage);
+  const dispatch = useDispatch();
+  let img = `data:image/png;base64,${qr?.base64QRCode}`;
+
+  useEffect(() => {
+    dispatch(getQR());
+  }, [dispatch]);
+
   return (
     <div className="bg-gray-100 py-10 px-4">
       <div className="FooterWrap px-5 max-w-7xl mx-auto md:px-20 flex flex-col ">
@@ -149,6 +160,14 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+              <div>
+                <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
+                Scan Me!
+                </h2>
+                <div className="w-[5rem]">
+                <img src={img} alt="Scan Me!" className="bg-transparent"/>
+                </div>
+              </div>
           </div>
         </div>
       </div>

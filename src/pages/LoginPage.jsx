@@ -62,6 +62,7 @@ export default function LoginPage() {
               ]}
             >
               <Input
+                data-testid="email-input"
                 suffix={<MailOutlined />}
                 type="email"
                 className="round-input"
@@ -78,25 +79,26 @@ export default function LoginPage() {
                 },
                 //   {
                 //     pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
-                //     message: `Password Pattern`
+                //     message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`
                 //  },
               ]}
             >
               <Input.Password
                 className="round-input"
+                data-testid="password-input"
                 type="password"
                 placeholder="Password"
               />
             </Form.Item>
 
             <Form.Item>
-              <ButtonPrimary type="submit" title="LOGIN" />
-              <div className="flex justify-center">
+              <ButtonPrimary data-testid="btn-input" type="submit" title="LOGIN" />
+              {/* <div className="flex justify-center">
                 <div className="border-b-2 border-slate-700 w-20 mb-6 mr-2"></div>
                 <p className="text-center text-slate-700 mt-2">Or</p>
                 <div className="border-b-2 border-slate-700 w-20 mb-6 ml-2"></div>
-              </div>
-              <ButtonBorder title="Login With Google" img={googleIcon} />
+              </div> */}
+              {/* <ButtonBorder title="Login With Google" img={googleIcon} /> */}
               <div className="flex">
                 <p className="mr-2 mt-4 mb-0 text-slate-700">
                   Don't have an accout?

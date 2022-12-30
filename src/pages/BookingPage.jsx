@@ -1,4 +1,5 @@
 import {
+  ArrowDownLeftIcon,
   ArrowLongRightIcon,
   CheckCircleIcon,
   UsersIcon,
@@ -7,9 +8,6 @@ import {
 import { DatePicker, Form, Input, Select, Modal } from "antd";
 import React, { useEffect, useState } from "react";
 import format from "date-fns/format";
-import { AiOutlineAppstoreAdd } from "react-icons/ai";
-import { GiHandBag } from "react-icons/gi";
-import { MdEventSeat } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Logo from "../assets/Logo.png";
@@ -24,11 +22,10 @@ import {
   Booking,
   getCountry,
 } from "../redux/feature/BookingSlice";
-import dayjs from "dayjs";
 import { getAge } from "../redux/feature/homeSlice";
-import { data } from "autoprefixer";
 import failed from "../assets/failed.svg";
 import success from "../assets/success.svg";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 
 export const BookingPage = () => {
   const { titel, bagage, benefit, seat, country, booking } = useSelector(
@@ -39,7 +36,7 @@ export const BookingPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const bookingId = localStorage.getItem("bookingId");
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -47,7 +44,6 @@ export const BookingPage = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    window.location.reload(1);
   };
 
   const toHistory = () => {
@@ -67,22 +63,30 @@ export const BookingPage = () => {
 
   const location = useLocation();
   const tiket = location.state?.tiket;
+  const tiketRet = location.state?.tiketRet;
   const hargaTiket = location.state?.total;
   const pass = location.state?.passenger;
-  const idSch = location.state?.tiket.id;
+  const idSchDep = location.state?.tiket.id;
+  const idSchRet = tiketRet?.id;
 
-  console.log(location);
+  console.log(tiketRet);
 
   const numberFormat = (value) =>
-    new Intl.NumberFormat("id-ID", {
+    new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "IDR",
     }).format(value);
 
   const countPass = pass.A + pass.B + pass.D;
-  console.log(countPass);
-
   const [total, setTotal] = useState(hargaTiket);
+
+  const bookingType = [];
+
+  {
+    tiketRet ? bookingType.push("ROUND TRIP") : bookingType.push("ONE WAY");
+  }
+
+  console.log(bookingType);
 
   const onFinish = (values) => {
     let keys = [
@@ -97,21 +101,40 @@ export const BookingPage = () => {
       "createdAt",
     ];
     let number = countPass;
-
     let arr = Array.from({ length: number }, (_, i) =>
       Object.fromEntries(keys.map((key) => [key, values[key + i]]))
     );
 
-    const data = [];
+    const dataDep = [];
+    const dataRet = [];
     const seatPrice = [];
     const baggagePrice = [];
     let totalSeat = 0;
     let totalBaggage = 0;
 
     for (let i = 0; i < countPass; i++) {
-      data.push({
+      dataDep.push({
         ...arr[i],
-        scheduleId: idSch,
+        scheduleId: idSchDep,
+        titelId: arr[i].titelId,
+        ageCategoryId: ageId[i],
+        firstName: arr[i].firstName,
+        lastName: arr[i].lastName,
+        birthDate: arr[i].birthDate,
+        passportNumber: arr[i].passportNumber,
+        issuingCountryId: arr[i].citizenshipId,
+        citizenshipId: arr[i].citizenshipId,
+        aircraftSeat: {
+          id: arr[i].seatId,
+        },
+        baggage: {
+          total: arr[i].baggage,
+        },
+      });
+
+      dataRet.push({
+        ...arr[i],
+        scheduleId: idSchRet,
         titelId: arr[i].titelId,
         ageCategoryId: ageId[i],
         firstName: arr[i].firstName,
@@ -131,15 +154,17 @@ export const BookingPage = () => {
       seat
         ?.filter((seat) => seat.seatId === arr[i].seatId)
         .map((e, i) => {
-          // setseatPrice((seatPrice) => seatPrice + e.price.amount);
-          seatPrice.push(e.price.amount);
+          tiketRet
+            ? seatPrice.push(e.price.amount * 2)
+            : seatPrice.push(e.price.amount);
         });
 
       bagage
         ?.filter((bagage) => bagage.weight === arr[i].baggage)
         .map((e, i) => {
-          // setbaggagePrice((baggagePrice) => baggagePrice + e.price);
-          baggagePrice.push(e.price);
+          tiketRet
+            ? baggagePrice.push(e.price * 2)
+            : baggagePrice.push(e.price);
         });
     }
 
@@ -150,9 +175,18 @@ export const BookingPage = () => {
 
     const total = parseInt(hargaTiket) + totalSeat + totalBaggage;
     setTotal(total);
-    console.log(data, total);
 
-    dispatch(Booking({ data, pass, total: total }));
+    dispatch(
+      Booking({
+        dataDep,
+        dataRet,
+        pass,
+        total: total,
+        bookingType: bookingType[0],
+      })
+    );
+
+    setIsModalOpen(true);
   };
 
   const agectr = [];
@@ -177,12 +211,6 @@ export const BookingPage = () => {
         ageId.push(e.id);
       });
   }
-
-  console.log(ageId[0]);
-
-  // const total = parseInt(hargaTiket) + baggagePrice + seatPrice;
-  console.log(seat);
-  console.log(booking);
 
   const responModal = (props) => {
     return (
@@ -216,11 +244,9 @@ export const BookingPage = () => {
   };
 
   return (
-    // <div>
-    // {(token) ?
     <div className="bg-slate-100">
       <Navbar />
-      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 ">
+      <div className="max-w-[1240px] mx-auto md:px-14 bg-slate-100 min-h-screen ">
         {bookingId ? (
           responModal({
             title: "Booking Success",
@@ -229,7 +255,7 @@ export const BookingPage = () => {
             type: "success",
             resTitle: "Go To History",
           })
-        ) : booking[0] ? (
+        ) : booking ? (
           responModal({
             title: "Booking Failed",
             message: booking,
@@ -252,7 +278,7 @@ export const BookingPage = () => {
         >
           <div className="grid md:grid-cols md:grid-cols-[60%_40%] gap-2 py-5">
             <div>
-              <div className="bg-white mt-14 rounded-md shadow-md py-5 px-5">
+              <div className="bg-white md:mt-20 mt-14 rounded-md shadow-md py-5 px-5">
                 <div className="flex items-center gap-3">
                   <UsersIcon className="h-7 w-7" />
                   <div className="text-lg font-semibold">Passenger Details</div>
@@ -267,15 +293,6 @@ export const BookingPage = () => {
                             Passenger {idx + 1} : {agectr[idx]}
                           </p>
                         </div>
-                        {/* <Form
-                        name="wrap"
-                        labelCol={{ flex: "110px" }}
-                        labelAlign="left"
-                        labelWrap
-                        wrapperCol={{ flex: 1 }}
-                        colon={false}
-                        onFinish={onFinish}
-                      > */}
                         <Form.Item
                           style={{ width: "50%", marginBottom: 0 }}
                           name={`titelId${idx}`}
@@ -437,6 +454,7 @@ export const BookingPage = () => {
                             <Form.Item
                               name={`seatId${idx}`}
                               style={{ marginBottom: 0 }}
+                              placement={"bottomLeft"}
                               rules={[
                                 {
                                   required: true,
@@ -448,7 +466,8 @@ export const BookingPage = () => {
                               <Select placeholder="Seat">
                                 {seat?.map((e, i) => (
                                   <Select.Option key={i} value={e?.seatId}>
-                                    {e?.seatCode}
+                                    {e?.seatCode} -{" "}
+                                    {numberFormat(e?.price.amount)}
                                   </Select.Option>
                                 ))}
                               </Select>
@@ -484,11 +503,7 @@ export const BookingPage = () => {
                               Choose your baggage
                             </p>
                           </div>
-                          {/* <div className="hidden"> */}
-                          {/* </div> */}
                         </div>
-                        {/* <ButtonPrimary type="submit" title="Booking Now" /> */}
-                        {/* </Form> */}
                       </>
                     );
                   })}
@@ -501,25 +516,59 @@ export const BookingPage = () => {
               <div className="flex justify-between items-center">
                 <div className="flex gap-3 items-center py-3">
                   <h2 className="mb-0">{tiket?.originCity}</h2>
+                  {tiketRet ? (
+                    <ArrowLongLeftIcon className="h-4 w-4 -mr-4" />
+                  ) : (
+                    ""
+                  )}
                   <ArrowLongRightIcon className="h-4 w-4" />
                   <h2 className="mb-0">{tiket?.destinationCity}</h2>
                 </div>
-                {/* <div className='py-5 font-semibold text-blue-600 hover:text-blue-400'>
-            <Link to='' >Details</Link>
-          </div> */}
               </div>
 
               <div className="flex items-center justify-between text-gray-500">
                 <img src={Logo} alt="" className="h-12 w-12" />
-                <div className="flex mt-4">
-                  <p>{tiket?.iataOriginAirport}</p>
-                  <p>-</p>
-                  <p>{tiket?.iataDestinationAirport}</p>
+                <div>
+                  <div className="flex">
+                    <p className="mb-0">{tiket?.iataOriginAirport}</p>
+                    <p className="mb-0">-</p>
+                    <p className="mb-0">{tiket?.iataDestinationAirport}</p>
+                  </div>
+                  <div className="flex">
+                    {tiketRet ? (
+                      <>
+                        <p>{tiketRet?.iataOriginAirport}</p>
+                        <p>-</p>
+                        <p>{tiketRet?.iataDestinationAirport}</p>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
                 <div>
-                  {format(new Date(`${tiket?.arrivalDate}`), "dd MMM yyyy")}
+                  <div>
+                    {format(new Date(`${tiket?.arrivalDate}`), "dd MMM yyyy")}
+                  </div>
+                  {tiketRet ? (
+                    <div>
+                      {format(
+                        new Date(`${tiketRet?.arrivalDate}`),
+                        "dd MMM yyyy"
+                      )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
-                <div>{(tiket?.departureTime).slice(0, -3)}</div>
+                <div>
+                  <div>{(tiket?.departureTime).slice(0, -3)}</div>
+                  {tiketRet ? (
+                    <div>{(tiketRet?.departureTime).slice(0, -3)}</div>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
 
               <h2 className="py-3">Ticket Policy</h2>
@@ -528,7 +577,6 @@ export const BookingPage = () => {
                   {e?.desription}
                 </p>
               ))}
-              {/* <p>{tiket?.benefits.desription}</p> */}
               <hr />
 
               <div className="flex justify-between py-4">
@@ -537,24 +585,16 @@ export const BookingPage = () => {
                   {numberFormat(total).slice(0, -3)}
                 </h2>
               </div>
-              {/* <div className='max-w-7xl' onClick={() => navigate(`/history?sort=DESC`) }> */}
               <ButtonPrimary
                 type="submit"
                 title="Booking Now"
                 className="w-fit"
               />
-              {/* </div> */}
             </div>
           </div>
         </Form>
       </div>
       <SecondFooter />
     </div>
-    // :
-    // <div>
-    //   Login Dulu
-    // </div>
-    //       }
-    // </div>
   );
 };

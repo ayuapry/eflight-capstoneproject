@@ -56,8 +56,66 @@ export const HeadlineCards = (props) => {
 
   return (
     <>
-    <div id='Destination' className='py-10'>
-        <div className='max-w-[1240px] mx-auto px-4 text-center'>
+    <div className='py-5 md:py-10'>
+         {/* Promo */}
+         <div className='Promo max-w-[1024px] md:h-full mx-auto px-4 md:pt-10 pb-10 md:pb-14 flex flex-col md:flex-row justify-between items-center'>
+                <div className='w-full md:w-[32%] hidden md:flex items-start flex-col mr-5'>
+                    <h1 className='md:text-[1.9rem] md:text-start leading-tight font-semibold m-0 text-justify'>
+                        Check out the promo before you go!
+                    </h1>
+                    <div className='mt-3 w-fit'>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                        {/* <p className='text-lg font-semibold text-blue-600 hover:text-blue-300 cursor-pointer'>View All Promo ...</p> */}
+                    </div>
+                </div>
+                <div className='w-full md:w-[30%] md:hidden flex justify-center items-center py-4'>
+                    <h1 className='md:text-[2.1rem] text-center md:text-start leading-tight font-semibold m-0'>
+                        Promo Highlight
+                    </h1>
+                </div>
+                <div className='w-full md:w-[68%] hidden md:flex flex-row'>
+                    <Swiper
+                        slidesPerView={2}
+                        spaceBetween={13}
+                        slidesPerGroup={1}
+                        loop={true}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className="mySwiper"
+                        >
+                            {promo?.map((e) => (
+                                <SwiperSlide>
+                            <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
+                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                            </Link>
+                            </SwiperSlide>  
+                            ))}
+                    </Swiper>
+                </div>
+                {/* Mobile */}
+                    <div className='w-full md:w-[68%] md:hidden flex flex-row'>
+                        <Swiper 
+                            slidesPerGroup={1}
+                            loop={true}
+                            navigation={true} 
+                            modules={[Navigation]} 
+                            className="mySwiper">
+                                {promo?.map((e) => (
+                                    <SwiperSlide>
+                                <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
+                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                                </Link>
+                                </SwiperSlide>  
+                                ))}
+                        </Swiper>
+                    </div>
+                    <div className='mt-3 w-full md:hidden flex'>
+                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
+                    </div>
+            </div>
+
+
+        <div  id='Destination' className='max-w-[1240px] mx-auto px-4 text-center'>
             <h1>Our Top Tour Places</h1>
             <span className=''>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</span>
         </div>
@@ -94,66 +152,7 @@ export const HeadlineCards = (props) => {
             </div>
         </div>
 
-        {/* Promo */}
-            <div className='Promo max-w-[1024px] md:h-[400px] mx-auto px-4 pb-10 flex flex-col md:flex-row justify-between items-center'>
-                <div className='w-full md:w-[32%] hidden md:flex items-start flex-col mr-5'>
-                    <h1 className='md:text-[1.9rem] md:text-start leading-tight font-semibold m-0 text-justify'>
-                        Check out the promo before you go!
-                    </h1>
-                    <div className='mt-3 w-fit'>
-                        {/* <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/> */}
-                        <p className='text-lg font-semibold text-blue-600 hover:text-blue-300 cursor-pointer'>View All Promo ...</p>
-                    </div>
-                </div>
-                <div className='w-full md:w-[30%] md:hidden flex justify-center items-center py-4'>
-                    <h1 className='md:text-[2.1rem] text-center md:text-start leading-tight font-semibold m-0'>
-                        Promo Highlight
-                    </h1>
-                </div>
-                <div className='w-full md:w-[68%] hidden md:flex flex-row'>
-                    <Swiper
-                        slidesPerView={2}
-                        spaceBetween={10}
-                        slidesPerGroup={1}
-                        loop={true}
-                        // pagination={{
-                        // type: "progressbar",
-                        // clickable: true,
-                        // }}
-                        navigation={true}
-                        modules={[Pagination, Navigation]}
-                        className="mySwiper"
-                        >
-                            {promo?.map((e) => (
-                                <SwiperSlide>
-                            <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
-                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
-                            </Link>
-                            </SwiperSlide>  
-                            ))}
-                    </Swiper>
-                </div>
-                {/* Mobile */}
-                    <div className='w-full md:w-[68%] md:hidden flex flex-row'>
-                        <Swiper 
-                            slidesPerGroup={1}
-                            loop={true}
-                            navigation={true} 
-                            modules={[Navigation]} 
-                            className="mySwiper">
-                                {promo?.map((e) => (
-                                    <SwiperSlide>
-                                <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
-                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
-                                </Link>
-                                </SwiperSlide>  
-                                ))}
-                        </Swiper>
-                    </div>
-                    <div className='mt-3 w-full md:hidden flex'>
-                        <ButtonPrimary title='SEE ALL PROMOS' click={SeePromos}/>
-                    </div>
-            </div>
+       
 
 
         <div className='max-w-[1240px] mx-auto px-4'>

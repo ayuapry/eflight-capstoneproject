@@ -18,11 +18,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getCountry,
-  getAge,
-  getCabinClass,
-} from "../redux/feature/homeSlice";
+import { getCountry, getAge, getCabinClass } from "../redux/feature/homeSlice";
 import ButtonPrimary from "./ButtonPrimary";
 
 export default function Card() {
@@ -31,13 +27,7 @@ export default function Card() {
 
   useEffect(() => {
     dispatch(getCountry());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getAge());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getCabinClass());
   }, [dispatch]);
 
@@ -54,8 +44,7 @@ export default function Card() {
     iata1: "",
     iata2: "",
   });
-  // console.log('calender: ', calendar)
-  // console.log('calender: ', calendarGo)
+
   const [openDate, setOpenDate] = useState(false);
   const [openDateGo, setOpenDateGo] = useState(false);
   const [openClass, setOpenClass] = useState(false);
@@ -93,15 +82,11 @@ export default function Card() {
 
   // Hide on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
-    // if (refOne.current && !refOne.current.target.name.contains("cal1")) {
     if (refOne.current && !refOne.current.children[0]) {
       setOpenDate(false);
     }
   };
   const hideOnClickOutsideGo = (e) => {
-    // if (refTwo.current && !refOne.current.target.name.contains("cal2")) {
     if (refTwo.current && !refTwo.current.children[0]) {
       setOpenDateGo(false);
     }
@@ -120,9 +105,8 @@ export default function Card() {
   const display = countD + countA + countB + " Passenger, ";
 
   const onFinishOne = (values) => {
-    // dispatch(getTiket(values));
     navigate(
-      `/filter?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${
+      `/search?ap=${iata.iata1}.${iata.iata2}&dt=${calendar}.${
         selectRadio === "RoundTrip" ? calendarGo : "NA"
       }&ps=${countD}.${countA}.${countB}&sc=${selectClass}`,
       { state: { values, D: countD, A: countA, B: countB } }
@@ -163,8 +147,8 @@ export default function Card() {
       {/* Mobile */}
       <div className="TitleCard md:hidden flex justify-between flex-row items-center px-0 md:px-[3rem] py-[2rem] md:py-[2rem]">
         <div className="flex items-center">
-          <img className="w-[3rem]" src={Logo} alt="BinarLogo" />
-          <h1 className="text-[1.8rem] px-[0.5rem] mb-0">Flights</h1>
+          <img className="w-10" src={Logo} alt="BinarLogo" />
+          <h1 className="text-xl px-[0.5rem] mb-0">Find Flights</h1>
         </div>
         <Link to="/checkin" className="flex cursor-pointer">
           <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">

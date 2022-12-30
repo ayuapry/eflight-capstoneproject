@@ -23,6 +23,7 @@ import Meal from "../assets/meal.png";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
 import noFlightData from "../assets/NoFlightData.svg";
+import SkeletonSearch from "./SkeletonSearch";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -41,7 +42,7 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getTiket(values));
-  }, [dispatch]);
+  }, [dispatch, values]);
 
   const showDrawer = () => {
     setOpen(true);
@@ -51,7 +52,7 @@ export default function Detail() {
   };
 
   const numberFormat = (value) =>
-    new Intl.NumberFormat("id-ID", {
+    new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "IDR",
     }).format(value);
@@ -71,6 +72,10 @@ export default function Detail() {
   };
 
   console.log(tiket);
+
+  if (loading) {
+    return <SkeletonSearch length={tiket.length} />;
+  }
 
   return (
     <div className="w-full">
@@ -144,17 +149,20 @@ export default function Detail() {
                       <ButtonPrimary
                         title="SELECT"
                         click={() =>
-                          navigate(`/booking/${tiket.aircraft.id}`, {
-                            state: {
-                              tiket: tiket,
-                              passenger: Passenger,
-                              total: `${
-                                tiket.price.amount * Passenger.D +
-                                tiket.price.amount * Passenger.A +
-                                tiket.price.amount * Passenger.B
-                              }`,
-                            },
-                          })
+                          navigate(
+                            `/booking/${tiket.aircraft.id}?ap=${values.ap1}.${values.ap2}&dt=${values.dt1}.${values.dt2}&ps=${values.psD}.${values.psA}.${values.psB}&sc=${values.sc}`,
+                            {
+                              state: {
+                                tiket: tiket,
+                                passenger: Passenger,
+                                total: `${
+                                  tiket.price.amount * Passenger.D +
+                                  tiket.price.amount * Passenger.A +
+                                  tiket.price.amount * Passenger.B
+                                }`,
+                              },
+                            }
+                          )
                         }
                       />
                     </div>
@@ -386,8 +394,14 @@ export default function Detail() {
 
                           <div className="flex flex-col justify-between ml-10 h-60 align-bottom w-full">
                             <p className="mb-0">
-                              <b>28 Nov - 20.00</b> <br />{" "}
-                              <span>{tiket.originAirport}</span>
+                              <b>
+                                {format(
+                                  new Date(`${tiket.departureDate}`),
+                                  "dd MMM"
+                                )}{" "}
+                                - {tiket.departureTime.slice(0, -3)}
+                              </b>{" "}
+                              <br /> <span>{tiket.originAirport}</span>
                             </p>
                             <div className="p-4 w-full bg-sky-50 rounded-md pb-0">
                               <p className="border-b-2 border-sky-200 w-full pb-4">
@@ -404,7 +418,14 @@ export default function Detail() {
                             </div>
                             <p className="mb-0">
                               {" "}
-                              <b>29 Nov - 10:45</b> <br />
+                              <b>
+                                {format(
+                                  new Date(`${tiket.arrivalDate}`),
+                                  "dd MMM"
+                                )}{" "}
+                                - {tiket.arrivalTime.slice(0, -3)}
+                              </b>{" "}
+                              <br />
                               <span>{tiket.destinationAirport}</span>
                             </p>
                           </div>
@@ -491,17 +512,20 @@ export default function Detail() {
                     <ButtonPrimary
                       title="SELECT"
                       click={() =>
-                        navigate(`/Booking/${tiket.aircraft.id}`, {
-                          state: {
-                            tiket: tiket,
-                            passenger: Passenger,
-                            total: `${
-                              tiket.price.amount * Passenger.D +
-                              tiket.price.amount * Passenger.A +
-                              tiket.price.amount * Passenger.B
-                            }`,
-                          },
-                        })
+                        navigate(
+                          `/booking/${tiket.aircraft.id}ap=${values.ap1}.${values.ap2}&dt=${values.dt1}.${values.dt2}&ps=${values.psD}.${values.psA}.${values.psB}&sc=${values.sc}`,
+                          {
+                            state: {
+                              tiket: tiket,
+                              passenger: Passenger,
+                              total: `${
+                                tiket.price.amount * Passenger.D +
+                                tiket.price.amount * Passenger.A +
+                                tiket.price.amount * Passenger.B
+                              }`,
+                            },
+                          }
+                        )
                       }
                       className="text-sm lg:text-base"
                     />
