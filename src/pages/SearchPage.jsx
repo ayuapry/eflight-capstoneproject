@@ -13,7 +13,7 @@ export const SearchPage = () => {
   const values = location.state?.values;
   console.log(values);
   return (
-    <div className="bg-slate-50 h-screen">
+    <div className="bg-slate-50 h-full">
       <ScrollToTop />
       <Navbar className="mb-4" />
       <div className="h-auto min-h-screen w-full lg:px-16 p-4 pt-24 lg:flex lg:pt-24 justify-center">

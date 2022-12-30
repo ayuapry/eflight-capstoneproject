@@ -77,15 +77,5 @@ export const Hero = () => {
           })}
       </Swiper>
     </div>
-    // <div className="md:hidden pt-[65px] w-fit mx-auto h-96 md:bg-blue-600">
-    //   <Skeleton.Button
-    //     active={true}
-    //     shape={"default"}
-    //     style={{
-    //       height: "15rem",
-    //       width: "48rem",
-    //     }}
-    //   />
-    // </div>
   );
 };
