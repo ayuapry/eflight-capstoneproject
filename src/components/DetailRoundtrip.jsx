@@ -23,6 +23,7 @@ import Meal from "../assets/meal.png";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
 import noFlightData from "../assets/NoFlightData.svg";
+import SkeletonSearch from "./SkeletonSearch";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -74,6 +75,8 @@ export default function DetailRoundtrip() {
 
   const departures = tiket?.departures;
   const returns = tiket?.returns;
+
+  if (loading) return <SkeletonSearch length={departures.length} />;
 
   return (
     <div className="w-full">

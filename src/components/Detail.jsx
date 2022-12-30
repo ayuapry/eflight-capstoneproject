@@ -74,7 +74,7 @@ export default function Detail() {
   console.log(tiket);
 
   if (loading) {
-    return <SkeletonSearch />;
+    return <SkeletonSearch length={tiket.length} />;
   }
 
   return (
@@ -394,8 +394,14 @@ export default function Detail() {
 
                           <div className="flex flex-col justify-between ml-10 h-60 align-bottom w-full">
                             <p className="mb-0">
-                              <b>28 Nov - 20.00</b> <br />{" "}
-                              <span>{tiket.originAirport}</span>
+                              <b>
+                                {format(
+                                  new Date(`${tiket.departureDate}`),
+                                  "dd MMM"
+                                )}{" "}
+                                - {tiket.departureTime.slice(0, -3)}
+                              </b>{" "}
+                              <br /> <span>{tiket.originAirport}</span>
                             </p>
                             <div className="p-4 w-full bg-sky-50 rounded-md pb-0">
                               <p className="border-b-2 border-sky-200 w-full pb-4">
@@ -412,7 +418,14 @@ export default function Detail() {
                             </div>
                             <p className="mb-0">
                               {" "}
-                              <b>29 Nov - 10:45</b> <br />
+                              <b>
+                                {format(
+                                  new Date(`${tiket.arrivalDate}`),
+                                  "dd MMM"
+                                )}{" "}
+                                - {tiket.arrivalTime.slice(0, -3)}
+                              </b>{" "}
+                              <br />
                               <span>{tiket.destinationAirport}</span>
                             </p>
                           </div>
