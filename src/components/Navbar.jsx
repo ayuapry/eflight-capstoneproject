@@ -274,7 +274,7 @@ export const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => navigate("/history")}
+                              onClick={() => navigate("/profile-page")}
                               className={`${
                                 active
                                   ? " text-blue-500 focus:outline-none focus:ring-2 "

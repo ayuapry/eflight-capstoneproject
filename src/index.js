@@ -23,11 +23,12 @@ import { RequireAuth } from "./utils/RequireAuth";
 import { Missing } from "./utils/Missing";
 import { Layout } from "./utils/Layout";
 import { Unauthorized } from "./utils/Unauthorized";
-import { DashboardAdmin } from './admin/DashboardAdmin'
+import { DashboardAdmin } from "./admin/DashboardAdmin";
 import { Aircraft } from "./admin/Aircraft";
 import { HeroList } from "./admin/HeroList";
 import { CityList } from "./admin/CityList";
 import { Airport } from "./admin/Airport";
+import { ProfilePage } from "./pages/ProfilePage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -48,6 +49,7 @@ root.render(
             element={<DetailsHistory />}
           />
           <Route path="/allnotif" element={<AllNotifPage />} />
+          <Route path="/profile-page" element={<ProfilePage />} />
         </Route>
 
         {/* Public Routes */}
