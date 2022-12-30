@@ -44,7 +44,6 @@ export const BookingPage = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    // window.location.reload(1);
   };
 
   const toHistory = () => {
@@ -68,9 +67,9 @@ export const BookingPage = () => {
   const hargaTiket = location.state?.total;
   const pass = location.state?.passenger;
   const idSchDep = location.state?.tiket.id;
-  const idSchRet = location.state?.tiketRet.id;
+  const idSchRet = tiketRet?.id;
 
-  console.log(booking);
+  console.log(tiketRet);
 
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-US", {
@@ -256,7 +255,7 @@ export const BookingPage = () => {
             type: "success",
             resTitle: "Go To History",
           })
-        ) : booking[0] ? (
+        ) : booking ? (
           responModal({
             title: "Booking Failed",
             message: booking,
@@ -530,31 +529,45 @@ export const BookingPage = () => {
               <div className="flex items-center justify-between text-gray-500">
                 <img src={Logo} alt="" className="h-12 w-12" />
                 <div>
-                  <div className="flex mt-4">
+                  <div className="flex">
                     <p className="mb-0">{tiket?.iataOriginAirport}</p>
                     <p className="mb-0">-</p>
                     <p className="mb-0">{tiket?.iataDestinationAirport}</p>
                   </div>
                   <div className="flex">
-                    <p>{tiketRet?.iataOriginAirport}</p>
-                    <p>-</p>
-                    <p>{tiketRet?.iataDestinationAirport}</p>
+                    {tiketRet ? (
+                      <>
+                        <p>{tiketRet?.iataOriginAirport}</p>
+                        <p>-</p>
+                        <p>{tiketRet?.iataDestinationAirport}</p>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div>
                   <div>
                     {format(new Date(`${tiket?.arrivalDate}`), "dd MMM yyyy")}
                   </div>
-                  <div>
-                    {format(
-                      new Date(`${tiketRet?.arrivalDate}`),
-                      "dd MMM yyyy"
-                    )}
-                  </div>
+                  {tiketRet ? (
+                    <div>
+                      {format(
+                        new Date(`${tiketRet?.arrivalDate}`),
+                        "dd MMM yyyy"
+                      )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div>
                   <div>{(tiket?.departureTime).slice(0, -3)}</div>
-                  <div>{(tiketRet?.departureTime).slice(0, -3)}</div>
+                  {tiketRet ? (
+                    <div>{(tiketRet?.departureTime).slice(0, -3)}</div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
 

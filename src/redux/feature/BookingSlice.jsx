@@ -99,9 +99,12 @@ export const Booking = createAsyncThunk("user/booking", async (data) => {
         departures: {
           data: data.dataDep,
         },
-        returns: {
-          data: data.bookingType === "ROUND TRIP" ? data.dataRet : null,
-        },
+        returns:
+          data.bookingType === "Round Trip"
+            ? {
+                data: data.dataRet,
+              }
+            : null,
       },
       {
         headers: {
