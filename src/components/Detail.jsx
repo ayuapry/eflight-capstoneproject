@@ -23,6 +23,7 @@ import Meal from "../assets/meal.png";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
 import noFlightData from "../assets/NoFlightData.svg";
+import SkeletonSearch from "./SkeletonSearch";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -71,6 +72,10 @@ export default function Detail() {
   };
 
   console.log(tiket);
+
+  if (loading) {
+    return <SkeletonSearch />;
+  }
 
   return (
     <div className="w-full">

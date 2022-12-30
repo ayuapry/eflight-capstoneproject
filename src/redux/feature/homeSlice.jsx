@@ -109,22 +109,43 @@ export const homeSlice = createSlice({
       state.loading = false;
     },
     //Country
+    [getCountry.pending]: (state) => {
+      state.loading = true;
+    },
     [getCountry.fulfilled]: (state, { payload }) => {
       state.country = payload;
     },
+    [getCountry.rejected]: (state) => {
+      state.loading = false;
+    },
     //AgeCategory
+    [getAge.pending]: (state) => {
+      state.loading = true;
+    },
     [getAge.fulfilled]: (state, { payload }) => {
+      state.loading = false;
       state.age = payload;
     },
+    [getAge.rejected]: (state) => {
+      state.loading = false;
+    },
     //CabinClass
+    [getCabinClass.pending]: (state) => {
+      state.loading = true;
+    },
     [getCabinClass.fulfilled]: (state, { payload }) => {
+      state.loading = false;
       state.cabinClass = payload;
+    },
+    [getCabinClass.rejected]: (state) => {
+      state.loading = false;
     },
     //tiket
     [getTiket.pending]: (state) => {
       state.loading = true;
     },
     [getTiket.fulfilled]: (state, { payload }) => {
+      state.loading = false;
       state.tiket = payload;
     },
     [getTiket.rejected]: (state) => {
