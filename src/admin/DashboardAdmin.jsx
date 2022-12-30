@@ -1,5 +1,6 @@
 import React from 'react'
 import { Sidebar } from './Sidebar'
+import dashboard from '../assets/dashboard.png'
 
 export const DashboardAdmin = () => {
   return (
@@ -8,8 +9,8 @@ export const DashboardAdmin = () => {
             <div className=''>
                 <Sidebar />
             </div>
-            <div>
-                dashboard
+            <div className=''>
+                <img className='h-[600px] w-[600px] mx-auto mt-20 object-cover' src={dashboard} alt="/" />
             </div>
         </div>
     </div>
