@@ -500,7 +500,7 @@ export default function Detail() {
                       title="SELECT"
                       click={() =>
                         navigate(
-                          `/Booking/${tiket.aircraft.id}ap=${values.ap1}.${values.ap2}&dt=${values.dt1}.${values.dt2}&ps=${values.psD}.${values.psA}.${values.psB}&sc=${values.sc}`,
+                          `/booking/${tiket.aircraft.id}ap=${values.ap1}.${values.ap2}&dt=${values.dt1}.${values.dt2}&ps=${values.psD}.${values.psA}.${values.psB}&sc=${values.sc}`,
                           {
                             state: {
                               tiket: tiket,

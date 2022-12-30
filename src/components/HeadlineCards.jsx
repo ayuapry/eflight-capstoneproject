@@ -56,7 +56,7 @@ export const HeadlineCards = (props) => {
 
   return (
     <>
-    <div id='Destination' className='py-5 md:py-10'>
+    <div className='py-5 md:py-10'>
          {/* Promo */}
          <div className='Promo max-w-[1024px] md:h-full mx-auto px-4 md:pt-10 pb-10 md:pb-14 flex flex-col md:flex-row justify-between items-center'>
                 <div className='w-full md:w-[32%] hidden md:flex items-start flex-col mr-5'>
@@ -75,7 +75,7 @@ export const HeadlineCards = (props) => {
                 </div>
                 <div className='w-full md:w-[68%] hidden md:flex flex-row'>
                     <Swiper
-                        slidesPerView={2.2}
+                        slidesPerView={2}
                         spaceBetween={13}
                         slidesPerGroup={1}
                         loop={true}
@@ -115,7 +115,7 @@ export const HeadlineCards = (props) => {
             </div>
 
 
-        <div className='max-w-[1240px] mx-auto px-4 text-center'>
+        <div  id='Destination' className='max-w-[1240px] mx-auto px-4 text-center'>
             <h1>Our Top Tour Places</h1>
             <span className=''>With a world full of fascinating destinations, choosing the perfect vacation spot can present a challenge.</span>
         </div>

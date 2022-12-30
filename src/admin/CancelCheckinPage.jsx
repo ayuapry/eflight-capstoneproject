@@ -23,6 +23,7 @@ export const CancelCheckinPage = () => {
                 <Sidebar />
             </div>
             <div className="mx-20 my-auto bg-white px-5 py-20 shadow-md h-[300px]">
+              <p className="text-blue-600">Cancel Passenger's Check-In Status Here ...</p>
               <Form
                 form={form}
                 name="checkin"
