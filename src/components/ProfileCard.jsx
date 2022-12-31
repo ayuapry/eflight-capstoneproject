@@ -21,7 +21,7 @@ export const ProfileCard = () => {
 
   return (
     <div className='mt-3'>
-        <div className="mx-2 md:mt-[90px] min-h-[620px] md:ml-5 bg-white shadow-md rounded-md">
+        <div className="mx-2 md:mt-[90px] md:min-h-[620px] md:ml-5 bg-white shadow-md rounded-md">
             <div className='px-5 py-2 flex justify-between items-center border-b-2'>
                 <div className='font-semibold text-lg'>Your Accounts</div>
                 {/* <p>Edit</p> */}
@@ -39,7 +39,7 @@ export const ProfileCard = () => {
                     <p><span className='text-gray-400'>Gender: </span>{profile?.gender}</p>
                 </div>
             </div>
-            <div className='px-40' >
+            <div className='px-40 hidden md:flex' >
                 <img src={account} alt="" className='h-[400px] w-[400px]'/>
             </div>
         </div>
