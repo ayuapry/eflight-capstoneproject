@@ -74,7 +74,7 @@ export default function Detail() {
   console.log(tiket);
 
   if (loading) {
-    return <SkeletonSearch length={tiket.length} />;
+    return <SkeletonSearch length="5" />;
   }
 
   return (
