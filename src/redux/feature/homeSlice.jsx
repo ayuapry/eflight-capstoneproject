@@ -54,7 +54,7 @@ export const getCabinClass = createAsyncThunk(
 );
 
 export const getTiket = createAsyncThunk("tiket/getTiket", async (values) => {
-  console.log(values, "value");
+  // console.log(values, "value");
   const payload = {
     ap: `${values.ap1}.${values.ap2}`,
     dt: `${values.dt1}.${values.dt2}`,
@@ -102,6 +102,7 @@ export const homeSlice = createSlice({
     cabinClass: [],
     tiket: [],
     qr: [],
+    loading: false,
   },
   reducers: {},
   extraReducers: {

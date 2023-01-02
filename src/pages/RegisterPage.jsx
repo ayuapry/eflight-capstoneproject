@@ -1,6 +1,7 @@
 import { MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Alert, Form, Input } from "antd";
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LoginBg from "../assets/login.webp";
@@ -25,6 +26,10 @@ export default function RegisterPage() {
     navigate("/Login");
     window.location.reload(1);
   };
+
+  if (loading) {
+    return <h2>Loading</h2>;
+  }
 
   return (
     <div className="flex flex-col justify-between h-screen max-w-7xl mx-auto ">

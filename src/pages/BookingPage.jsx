@@ -69,7 +69,7 @@ export const BookingPage = () => {
   const idSchDep = location.state?.tiket.id;
   const idSchRet = tiketRet?.id;
 
-  console.log(tiketRet);
+  // console.log(tiketRet);
 
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-US", {

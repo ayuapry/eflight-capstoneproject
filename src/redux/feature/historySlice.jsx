@@ -146,6 +146,7 @@ export const historySlice = createSlice({
     jasper: [],
     boardingPass: [],
     avatar: [],
+    loading: false,
   },
   reducers: {},
   extraReducers: {

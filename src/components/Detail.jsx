@@ -27,7 +27,7 @@ export default function Detail() {
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const Passenger = location.state;
   const values = location.state.values;
   const placement = "bottom";

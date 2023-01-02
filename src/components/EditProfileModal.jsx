@@ -30,8 +30,7 @@ const validateMessages = {
 
 export const EditProfileModal = ({ open, close }) => {
   const dispatch = useDispatch();
-  const { city } = useSelector((state) => state.user);
-  const { profile } = useSelector((state) => state.user);
+  const { city, profile, loading} = useSelector((state) => state.user);
   const id = localStorage.getItem("id");
 
   const handleOnClose = (e) => {
@@ -46,6 +45,10 @@ export const EditProfileModal = ({ open, close }) => {
   const onFinish = (values) => {
     dispatch(editProfile(values));
   };
+
+  if(loading){
+    return <h2>Loading</h2>
+  }  
 
   if (!open) return null;
   return (
