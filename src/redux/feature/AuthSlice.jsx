@@ -1,30 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// export const LoginGoogle = createAsyncThunk(
-//     "user/LoginGoogle", async () => {
-//         try {
-//             const res = await signInWithPopup(auth, googleProvider);
-//             const user = res.user;
-//             const q = query(collection(db, "users"), where("uid", "==", user.uid));
-//             const docs = await getDocs(q);
-//             if (docs.docs.length === 0) {
-//                 await addDoc(collection(db, "users"), {
-//                     uid: user.uid,
-//                     name: user.displayName,
-//                     authProvider: "google",
-//                     email: user.email,
-//                 });
-//             }
-//             localStorage.setItem("token", JSON.stringify(user.accessToken))
-//             localStorage.setItem("user", JSON.stringify(user))
-//             window.location.reload(1);
-//             return user
-//         } catch (err) {
-//             console.error(err);
-//             alert(err.message);
-//         }
-//     }
-// )
 
 export const LoginEmail = createAsyncThunk("user/Login", async (values) => {
   try {
@@ -62,7 +37,6 @@ export const Register = createAsyncThunk("user/Register", async (values) => {
     localStorage.setItem("id", res.data.data.id);
     return res.data.data;
   } catch (error) {
-    // console.error(error.response.data.data)
     return error.response.data.data;
   }
 });

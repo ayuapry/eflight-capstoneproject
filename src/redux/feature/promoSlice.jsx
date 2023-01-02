@@ -6,7 +6,7 @@ export const getPromo = createAsyncThunk("promo/getPromo", async () => {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/promobanner/all`
     );
-    console.log(res.data);
+    // console.log(res.data);
     return res.data.data.content;
   } catch (error) {
     console.error(error);
@@ -17,12 +17,10 @@ export const getPromo = createAsyncThunk("promo/getPromo", async () => {
 export const getDetPromo = createAsyncThunk(
   "detPromo/getDetPromo",
   async (id) => {
-    console.log("testtt");
     try {
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/promobanner?id=${id}`
       );
-      console.log(res.data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -38,7 +36,6 @@ export const getPagination = createAsyncThunk(
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/promobanner/all?page=${page}&sort=string`
       );
-      console.log(res.data);
       return res.data.data.content;
     } catch (error) {
       console.error(error);

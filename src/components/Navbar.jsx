@@ -11,7 +11,6 @@ import { FaRegUser } from "react-icons/fa";
 import { RiUserReceived2Line } from "react-icons/ri";
 import { Menu, Transition } from "@headlessui/react";
 import { getProfile } from "../redux/feature/UserSlice";
-// import { user } from "./SecondFooter";
 
 export const Navbar = () => {
   const { notification } = useSelector((state) => state.notification);
@@ -26,7 +25,6 @@ export const Navbar = () => {
     dispatch(getNotification(id));
     dispatch(getProfile());
   }, [dispatch, id]);
-  console.log(notification);
 
   const SeeAllNotif = () => {
     window.location.replace("/allnotif");
@@ -59,10 +57,9 @@ export const Navbar = () => {
                 <div>
                   <Menu.Button>
                     <img
+                      loading="lazy"
                       className="h-8 w-8 rounded-full bg-gray-400"
-                      onClick={() => 
-                        setSelect(false)
-                      }
+                      onClick={() => setSelect(false)}
                       src={profile?.imageURL || userIcon}
                       alt="profile"
                     />
@@ -136,6 +133,7 @@ export const Navbar = () => {
             </div>
           ) : (
             <img
+              loading="lazy"
               className="h-8 w-8 rounded-full bg-gray-400"
               src={userIcon}
               alt="profile"
@@ -144,7 +142,7 @@ export const Navbar = () => {
           )}
         </div>
         <a href="/" className="flex items-center">
-          <img src={LogoText} className="w-40" alt="" />
+          <img src={LogoText} className="w-40 h-auto" alt="" />
         </a>
         <ul className="hidden md:flex gap-3 md:text-md mt-3">
           <a
@@ -203,7 +201,7 @@ export const Navbar = () => {
                     <div></div>
                     {notification?.notifications?.length > 0 ? (
                       notification?.notifications?.slice(-3).map((notif) => (
-                        <div>
+                        <div key={notif.id}>
                           <div className="mx-3 my-3">
                             <div key={notif.id}>
                               <span className="font-semibold text-[0.87rem]">
@@ -211,7 +209,10 @@ export const Navbar = () => {
                               </span>
                               <br />
                               <span className="text-[0.78rem] font-light">
-                                {notif?.description.substring(0, notif.description.indexOf("!") + 1)}
+                                {notif?.description.substring(
+                                  0,
+                                  notif.description.indexOf("!") + 1
+                                )}
                               </span>
                             </div>
                           </div>
@@ -274,7 +275,7 @@ export const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => navigate("/profile-page")}
+                              onClick={() => navigate("/profilepage")}
                               className={`${
                                 active
                                   ? " text-blue-500 focus:outline-none focus:ring-2 "

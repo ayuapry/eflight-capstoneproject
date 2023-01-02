@@ -2,7 +2,7 @@ import React from "react";
 import ButtonPrimary from "./ButtonPrimary";
 import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Disclosure } from "@headlessui/react";
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Tab } from "@headlessui/react";
 import { useState } from "react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
@@ -11,9 +11,9 @@ import { getTiket } from "../redux/feature/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import format from "date-fns/format";
-import Meal from "../assets/meal.png";
-import Entertain from "../assets/entertain.png";
-import Bagage from "../assets/bagIcon.png";
+import Meal from "../assets/meal.webp";
+import Entertain from "../assets/entertain.webp";
+import Bagage from "../assets/bagIcon.webp";
 import noFlightData from "../assets/NoFlightData.svg";
 import SkeletonSearch from "./SkeletonSearch";
 
@@ -24,7 +24,7 @@ function classNames(...classes) {
 export default function DetailRoundtrip() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState("left");
+  const placement = "bottom";
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -533,10 +533,8 @@ export default function DetailRoundtrip() {
                 </div>
               </div>
               <Drawer
-                title={
-                  `${tiket.originCity}` + " - " + `${tiket.destinationCity}`
-                }
-                placement={"bottom"}
+                title={`${tiket.originCity} - ${tiket.destinationCity}`}
+                placement={placement}
                 closable={true}
                 onClose={onClose}
                 open={open}

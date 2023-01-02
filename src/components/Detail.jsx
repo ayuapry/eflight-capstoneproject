@@ -11,9 +11,9 @@ import { getTiket } from "../redux/feature/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import format from "date-fns/format";
-import Meal from "../assets/meal.png";
-import Entertain from "../assets/entertain.png";
-import Bagage from "../assets/bagIcon.png";
+import Meal from "../assets/meal.webp";
+import Entertain from "../assets/entertain.webp";
+import Bagage from "../assets/bagIcon.webp";
 import noFlightData from "../assets/NoFlightData.svg";
 import SkeletonSearch from "./SkeletonSearch";
 
@@ -30,7 +30,7 @@ export default function Detail() {
   console.log(location);
   const Passenger = location.state;
   const values = location.state.values;
-  const [placement, setplacement] = useState();
+  const placement = "bottom";
 
   useEffect(() => {
     dispatch(getTiket(values));
@@ -62,8 +62,6 @@ export default function Detail() {
       </div>
     );
   };
-
-  console.log(tiket);
 
   if (loading) {
     return <SkeletonSearch length="5" />;
@@ -342,7 +340,7 @@ export default function Detail() {
               </div>
               <Drawer
                 title={`${tiket.originCity} - ${tiket.destinationCity}`}
-                placement={"bottom"}
+                placement={placement}
                 closable={true}
                 onClose={onClose}
                 open={open}
