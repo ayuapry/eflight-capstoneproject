@@ -9,7 +9,6 @@ import {
 import { Disclosure } from "@headlessui/react";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { Tab } from "@headlessui/react";
-import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import Filter from "../components/Filter";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
@@ -18,7 +17,6 @@ import { getTiket } from "../redux/feature/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import format from "date-fns/format";
-import { MdFoodBank } from "react-icons/md";
 import Meal from "../assets/meal.webp";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
@@ -36,7 +34,7 @@ export default function Detail() {
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const Passenger = location.state;
   const values = location.state.values;
 

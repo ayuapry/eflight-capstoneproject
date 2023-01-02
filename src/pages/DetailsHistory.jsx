@@ -11,7 +11,7 @@ export const DetailsHistory = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {bookingId} = useParams()
-    const { history, jasper } = useSelector( (state) => state.history );
+    const { history } = useSelector( (state) => state.history );
 
     useEffect(() => {
         dispatch(getHistory('ASC'))

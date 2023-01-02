@@ -13,7 +13,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { login } = useSelector((state) => state.auth);
+  const { login, loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
 
@@ -25,6 +25,10 @@ export default function LoginPage() {
     navigate("/");
     window.location.reload(1);
   };
+
+  if(loading){
+    return <h2>Loading</h2>
+  }  
 
   return (
     <div className="flex flex-col justify-between h-screen">
