@@ -45,16 +45,16 @@ export const CheckInPage = () => {
       </Modal>
     );
   };
-  const [lastNames, setLastName] = useState();
-  const [bookingReferenceNumbers, setBookingReferenceNumber] = useState();
+  // const [lastNames, setLastName] = useState();
+  // const [bookingReferenceNumbers, setBookingReferenceNumber] = useState();
 
-  const change = (e) => {
-    setBookingReferenceNumber(e);
-  };
+  // const change = (e) => {
+  //   setBookingReferenceNumber(e);
+  // };
 
-  const changege = (e) => {
-    setLastName(e);
-  };
+  // const changege = (e) => {
+  //   setLastName(e);
+  // };
 
   const downloadBoardPass = () => {
     dispatch(getBoardingPass(data));
@@ -124,7 +124,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input onChange={(e) => changege(e.target.value)} />
+                  <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -136,7 +136,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input onChange={(e) => change(e.target.value)} />
+                  <Input/>
                 </Form.Item>
                 <div className="flex justify-end">
                   <div className="w-[30%]">
@@ -145,7 +145,6 @@ export const CheckInPage = () => {
                 </div>
               </Form>
             </div>
-            {/* <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p> */}
           </div>
           <div className="md:hidden mt-20 w-auto h-auto">
             <LazyLoadImage src={login} alt="/" />

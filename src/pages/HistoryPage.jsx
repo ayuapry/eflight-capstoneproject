@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navbar } from '../components/Navbar'
 import { OrderHistory } from '../components/OrderHistory'
+import { SecondFooter } from '../components/SecondFooter';
 import { SidebarHistory } from '../components/SidebarHistory';
 
 export const HistoryPage = () => {
@@ -15,6 +16,7 @@ export const HistoryPage = () => {
           <OrderHistory />
         </div>
     </div>
+    <SecondFooter />
   </div>
   );
 };

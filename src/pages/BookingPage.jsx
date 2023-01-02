@@ -35,7 +35,7 @@ export const BookingPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const bookingId = localStorage.getItem("bookingId");
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -43,7 +43,6 @@ export const BookingPage = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    window.location.reload(1);
   };
 
   const toHistory = () => {
@@ -164,6 +163,8 @@ export const BookingPage = () => {
             ? baggagePrice.push(e.price * 2)
             : baggagePrice.push(e.price);
         });
+      
+      setIsModalOpen(true)
     }
 
     for (let j = 0; j < countPass; j++) {
@@ -409,8 +410,9 @@ export const BookingPage = () => {
                               rules={[
                                 {
                                   required: true,
-                                  message: "Please input your pasport number!",
+                                  message: "max 6 characters",
                                   whitespace: true,
+                                  max: 6,
                                 },
                               ]}
                             >

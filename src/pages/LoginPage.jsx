@@ -85,10 +85,10 @@ export default function LoginPage() {
                   required: true,
                   message: "Please input your Password!",
                 },
-                //   {
-                //     pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
-                //     message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`
-                //  },
+                  {
+                    pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
+                    message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`
+                 },
               ]}
             >
               <Input.Password

@@ -49,8 +49,8 @@ export const OrderHistory = () => {
   return (
     <div className="mx-2 md:mt-[90px] md:ml-5 bg-white shadow-md rounded-md">
          <div className="grid md:grid-cols md:grid-cols-[75%_25%] px-4 my-4 border-b-2">
-              <div className="">
-                <h1>Order History</h1>
+              <div className="my-3">
+                <h2 className="text-lg">Order History</h2>
                 <span className="text-gray-400">
                   This is the history of your trip
                 </span>

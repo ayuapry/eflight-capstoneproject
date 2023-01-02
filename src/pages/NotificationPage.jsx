@@ -29,7 +29,7 @@ export const NotificationPage = () => {
     <div className="h-full md:h-screen LiGradien2">
       <ScrollToTop />
       <Navbar />
-      <div className="h-full md:h-[65vh] max-w-[1240px] mx-auto px-5 md:px-14 pb-5 md:pb-10 pt-[65px] md:pt-0 flex flex-col justify-start md:justify-center">
+      <div className="min-h-screen md:h-[65vh] max-w-[1240px] mx-auto px-5 md:px-14 pb-5 md:pb-10 pt-[65px] md:pt-0 flex flex-col justify-start md:justify-center">
         <div>
           <div className="font-semibold text-blue-600 text-xl my-5 bg-yellow-400 w-fit px-4 py-1 rounded-[100px]">
             Notification
@@ -53,8 +53,8 @@ export const NotificationPage = () => {
               </article>
             </div>
           )}
-          <div className="flex flex-col justify-start">
-            <div className="mb-2 w-full">
+          <div className="flex justify-end">
+            <div className=" mb-2 md:w-[30%] w-full">
               <ButtonPrimary
                 title="BACK TO NOTIFICATIONS"
                 click={Back}
