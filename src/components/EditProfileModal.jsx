@@ -30,7 +30,7 @@ const validateMessages = {
 
 export const EditProfileModal = ({ open, close }) => {
   const dispatch = useDispatch();
-  const { city, profile, loading} = useSelector((state) => state.user);
+  const { city, profile} = useSelector((state) => state.user);
   const id = localStorage.getItem("id");
 
   const handleOnClose = (e) => {
@@ -45,10 +45,6 @@ export const EditProfileModal = ({ open, close }) => {
   const onFinish = (values) => {
     dispatch(editProfile(values));
   };
-
-  if(loading){
-    return <h2>Loading</h2>
-  }  
 
   if (!open) return null;
   return (
@@ -110,7 +106,7 @@ export const EditProfileModal = ({ open, close }) => {
             >
               <DatePicker
                 name="birthDate"
-                defaultValue={dayjs(`${profile.birthdate}`, "YYYY-MM-DD")}
+                defaultValue={dayjs(`${profile?.birthdate || '2022-01-06'}`, "YYYY-MM-DD")}
                 style={{ width: "100%" }}
                 placeholder="Birth Date"
               />
