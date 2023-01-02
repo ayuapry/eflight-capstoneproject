@@ -1,5 +1,4 @@
 import React from "react";
-import Filter from "../components/Filter";
 import Detail from "../components/Detail";
 import { Navbar } from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -16,7 +15,6 @@ export const SearchPage = () => {
       <ScrollToTop />
       <Navbar className="mb-4" />
       <div className="h-auto min-h-screen w-full lg:px-16 p-4 pt-24 lg:flex lg:pt-24 justify-center">
-        {/* <Filter /> */}
         {values.dt2 === "NA" ? <Detail /> : <DetailRoundtrip />}
       </div>
       <div className="relative z-10">

@@ -28,7 +28,6 @@ import { Aircraft } from "./admin/Aircraft";
 import { Airport } from "./admin/Airport";
 import { ProfilePage } from "./pages/ProfilePage";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

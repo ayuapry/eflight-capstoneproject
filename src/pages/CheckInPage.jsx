@@ -1,25 +1,20 @@
 import { Form, Input, Modal } from "antd";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import login from "../assets/login.png";
+import login from "../assets/login.webp";
 import ButtonPrimary from "../components/ButtonPrimary";
-import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import { SecondFooter } from "../components/SecondFooter";
-import {
-  getBoardingPass,
-  getCheckin,
-  getHistory,
-} from "../redux/feature/historySlice";
+import { getBoardingPass, getCheckin } from "../redux/feature/historySlice";
 import checkinSuccess from "../assets/checkinSuccess.svg";
 import checkinFail from "../assets/checkinFail.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const CheckInPage = () => {
-  const { checkin, history } = useSelector((state) => state.history);
+  const { checkin } = useSelector((state) => state.history);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const navigate = useNavigate();
@@ -75,7 +70,6 @@ export const CheckInPage = () => {
   };
 
   const closeModal = () => {
-    // window.location.reload(1);
     return setIsModalOpen(false);
   };
 

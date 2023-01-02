@@ -11,7 +11,6 @@ import { FaRegUser } from "react-icons/fa";
 import { RiUserReceived2Line } from "react-icons/ri";
 import { Menu, Transition } from "@headlessui/react";
 import { getProfile } from "../redux/feature/UserSlice";
-// import { user } from "./SecondFooter";
 
 export const Navbar = () => {
   const { notification } = useSelector((state) => state.notification);
@@ -58,11 +57,9 @@ export const Navbar = () => {
                 <div>
                   <Menu.Button>
                     <img
-                      loading='lazy'
+                      loading="lazy"
                       className="h-8 w-8 rounded-full bg-gray-400"
-                      onClick={() => 
-                        setSelect(false)
-                      }
+                      onClick={() => setSelect(false)}
                       src={profile?.imageURL || userIcon}
                       alt="profile"
                     />
@@ -135,7 +132,7 @@ export const Navbar = () => {
               </Menu>
             </div>
           ) : (
-            <img 
+            <img
               loading="lazy"
               className="h-8 w-8 rounded-full bg-gray-400"
               src={userIcon}
@@ -204,7 +201,7 @@ export const Navbar = () => {
                     <div></div>
                     {notification?.notifications?.length > 0 ? (
                       notification?.notifications?.slice(-3).map((notif) => (
-                        <div>
+                        <div key={notif.id}>
                           <div className="mx-3 my-3">
                             <div key={notif.id}>
                               <span className="font-semibold text-[0.87rem]">
@@ -212,7 +209,10 @@ export const Navbar = () => {
                               </span>
                               <br />
                               <span className="text-[0.78rem] font-light">
-                                {notif?.description.substring(0, notif.description.indexOf("!") + 1)}
+                                {notif?.description.substring(
+                                  0,
+                                  notif.description.indexOf("!") + 1
+                                )}
                               </span>
                             </div>
                           </div>

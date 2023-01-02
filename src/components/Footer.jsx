@@ -167,9 +167,9 @@ const Footer = () => {
             </div>
               <div>
                 <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
-                Scan Me!
+                Customer Support!
                 </h2>
-                <div className="w-[5rem]">
+                <div className="w-[7rem] mx-auto">
                 <LazyLoadImage loading="lazy" src={img} alt="Scan Me!" className="bg-transparent"/>
                 </div>
               </div>
