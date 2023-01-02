@@ -33,7 +33,7 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
   const token = localStorage.getItem("token");
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/aircraftseat?aircraftid=${id}`,
+      `${process.env.REACT_APP_BASE_URL}/aircraftseat/available?aircraftid=${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ export const Booking = createAsyncThunk("user/booking", async (data) => {
           data: data.dataDep,
         },
         returns:
-          data.bookingType === "Round Trip"
+          data.bookingType === "ROUND TRIP"
             ? {
                 data: data.dataRet,
               }

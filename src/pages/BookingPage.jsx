@@ -209,6 +209,8 @@ export const BookingPage = () => {
       });
   }
 
+  console.log(seat);
+
   const responModal = (props) => {
     return (
       <Modal
