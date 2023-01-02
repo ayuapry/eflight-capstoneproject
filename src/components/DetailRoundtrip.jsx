@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import format from "date-fns/format";
 import { MdFoodBank } from "react-icons/md";
-import Meal from "../assets/meal.png";
+import Meal from "../assets/meal.webp";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
 import noFlightData from "../assets/NoFlightData.svg";

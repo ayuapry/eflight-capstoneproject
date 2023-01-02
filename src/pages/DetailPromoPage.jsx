@@ -6,6 +6,7 @@ import { Navbar } from '../components/Navbar';
 import Pagination from '../components/Pagination';
 import { getDetPromo } from '../redux/feature/promoSlice';
 import  promoImg from '../assets/promo4.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const DetailPromoPage = () => {
     const {detPromo,pagination } = useSelector((state) => state.promo);
@@ -30,7 +31,7 @@ const DetailPromoPage = () => {
                         <div key={e.id} className="haii md:max-w-7xl mx-auto bg-white shadow-md p-5 rounded-md mb-2">
                             <div className=' grid md:grid-cols md:grid-cols-[25%_75%] gap-2 py-5'>
                                 <div className='imgDet  max-w-[12rem] flex items-center justify-center' to={`/detail-promo/${e?.id}`}>
-                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
+                                    <LazyLoadImage loading='lazy' src={e?.imageURL} alt="PromoBanner" className='rounded-md flex'/>
                                 </div>
                                 <div className='flex flex-col justify-center items-center pr-5'>
                                     <h1 className='text-[1rem] font-semibold mb-0 text-justify leading-relaxed'>
@@ -45,7 +46,7 @@ const DetailPromoPage = () => {
                         )) : (               
                             <div key={detPromo.id} className="haii md:max-w-7xl mx-auto bg-white shadow-md p-5 rounded-md" >
                             <div className='img md:max-w-7xl flex items-center justify-center pb-5' to={`/detail-promo/${detPromo?.data?.id}`}>
-                                <img src={detPromo?.data?.imageURL} alt="PromoBanner" className='rounded-md flex '/>
+                                <LazyLoadImage loading='lazy' src={detPromo?.data?.imageURL} alt="PromoBanner" className='rounded-md flex '/>
                             </div>
                             <div className='md:max-w-7xl mx-auto flex flex-col justify-center'>
                                 <p className='text-[1.5rem] font-semibold mb-0 pb-3 text-justify'>
@@ -60,7 +61,7 @@ const DetailPromoPage = () => {
                     }
                 </div>
                 <div className='py-5 max-w-[1240px] mx-auto bg-white shadow-md rounded-md h-fit'>
-                    <img src={promoImg} alt="PromoImg" />
+                    <LazyLoadImage loading='lazy' src={promoImg} alt="PromoImg" />
                 </div>
             </div>
                     <Pagination/>

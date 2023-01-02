@@ -25,10 +25,9 @@ import { Layout } from "./utils/Layout";
 import { Unauthorized } from "./utils/Unauthorized";
 import { DashboardAdmin } from "./admin/DashboardAdmin";
 import { Aircraft } from "./admin/Aircraft";
-import { HeroList } from "./admin/HeroList";
-import { CityList } from "./admin/CityList";
 import { Airport } from "./admin/Airport";
 import { ProfilePage } from "./pages/ProfilePage";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -49,7 +48,7 @@ root.render(
             element={<DetailsHistory />}
           />
           <Route path="/allnotif" element={<AllNotifPage />} />
-          <Route path="/profile-page" element={<ProfilePage />} />
+          <Route path="/profilepage" element={<ProfilePage />} />
         </Route>
 
         {/* Public Routes */}
@@ -70,8 +69,6 @@ root.render(
           <Route path="dashboard-admin" element={<DashboardAdmin />} />
           <Route path="cancel-checkin" element={<CancelCheckinPage />} />
           <Route path="aircraft" element={<Aircraft />} />
-          <Route path="hero-list" element={<HeroList />} />
-          <Route path="city-list" element={<CityList />} />
           <Route path="airport" element={<Airport />} />
         </Route>
 

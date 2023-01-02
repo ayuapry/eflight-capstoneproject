@@ -9,6 +9,7 @@ import { SecondFooter } from "../components/SecondFooter";
 import googleIcon from "../assets/google.png";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginEmail } from "../redux/feature/AuthSlice";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function LoginPage() {
     <div className="flex flex-col justify-between h-screen">
       <div className="max-w-7xl lg:mx-auto lg:my-auto grid lg:grid-cols-2 md:items-center md:h-[90vh]">
         <div className="hidden ml-20 p-2 lg:w-[100%] lg:block">
-          <img src={LoginBg} alt="/" />
+          <LazyLoadImage loading="lazy" src={LoginBg} height={600} width={600} alt="/" />
         </div>
         <div className="lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white">
           {token ? (
@@ -117,7 +118,7 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="px-4 lg:hidden">
-        <img src={LoginBg} alt="/" />
+        <LazyLoadImage loading="lazy" src={LoginBg} alt="/" height={400} width={400} />
       </div>
       <div>
         <SecondFooter />

@@ -23,7 +23,6 @@ export const getBagage = createAsyncThunk("user/getBagage", async (id) => {
         },
       }
     );
-    //   console.log(res)
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -42,7 +41,6 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
         },
       }
     );
-    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -51,12 +49,10 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
 });
 
 export const getCountry = createAsyncThunk("user/getCountry", async () => {
-  const token = localStorage.getItem("token");
   try {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/country/all`
     );
-    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -75,7 +71,6 @@ export const getBenefit = createAsyncThunk("user/getBenefit", async (id) => {
         },
       }
     );
-    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -86,7 +81,6 @@ export const getBenefit = createAsyncThunk("user/getBenefit", async (id) => {
 export const Booking = createAsyncThunk("user/booking", async (data) => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  console.log(data);
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/booking/${id}`,
@@ -112,7 +106,6 @@ export const Booking = createAsyncThunk("user/booking", async (data) => {
         },
       }
     );
-    console.log(res.data.data);
     localStorage.setItem("bookingId", res.data.data.bookingId);
     return res.data.data;
   } catch (error) {

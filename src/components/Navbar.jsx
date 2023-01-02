@@ -26,7 +26,6 @@ export const Navbar = () => {
     dispatch(getNotification(id));
     dispatch(getProfile());
   }, [dispatch, id]);
-  console.log(notification);
 
   const SeeAllNotif = () => {
     window.location.replace("/allnotif");
@@ -59,6 +58,7 @@ export const Navbar = () => {
                 <div>
                   <Menu.Button>
                     <img
+                      loading='lazy'
                       className="h-8 w-8 rounded-full bg-gray-400"
                       onClick={() => 
                         setSelect(false)
@@ -135,7 +135,8 @@ export const Navbar = () => {
               </Menu>
             </div>
           ) : (
-            <img
+            <img 
+              loading="lazy"
               className="h-8 w-8 rounded-full bg-gray-400"
               src={userIcon}
               alt="profile"
@@ -144,7 +145,7 @@ export const Navbar = () => {
           )}
         </div>
         <a href="/" className="flex items-center">
-          <img src={LogoText} className="w-40" alt="" />
+          <img src={LogoText} className="w-40 h-auto" alt="" />
         </a>
         <ul className="hidden md:flex gap-3 md:text-md mt-3">
           <a
@@ -274,7 +275,7 @@ export const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => navigate("/profile-page")}
+                              onClick={() => navigate("/profilepage")}
                               className={`${
                                 active
                                   ? " text-blue-500 focus:outline-none focus:ring-2 "

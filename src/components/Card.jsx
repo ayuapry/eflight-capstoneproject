@@ -111,14 +111,13 @@ export default function Card() {
       }&ps=${countD}.${countA}.${countB}&sc=${selectClass}`,
       { state: { values, D: countD, A: countA, B: countB } }
     );
-    console.log(values);
   };
 
   return (
     <div className=" CardWrap bg-white shadow md:shadow-md w-[90%] md:max-w-5xl md:mx-auto m-0 px-4 rounded-md md:rounded-xl z-10">
       <div className="TitleCard hidden md:flex justify-between flex-row items-center px-[1.5rem] md:px-[3rem] py-[2rem] md:py-[2rem]">
         <div className="flex items-center">
-          <img className="w-[3rem]" src={Logo} alt="BinarLogo" />
+          <img loading="lazy" className="w-[3rem]" src={Logo} alt="BinarLogo" />
           <h1 className="text-[1.8rem] px-[0.5rem] mb-0">
             Find Flights Tickets
           </h1>

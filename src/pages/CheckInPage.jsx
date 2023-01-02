@@ -16,6 +16,7 @@ import {
 } from "../redux/feature/historySlice";
 import checkinSuccess from "../assets/checkinSuccess.svg";
 import checkinFail from "../assets/checkinFail.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const CheckInPage = () => {
   const { checkin, history } = useSelector((state) => state.history);
@@ -152,8 +153,8 @@ export const CheckInPage = () => {
             </div>
             {/* <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p> */}
           </div>
-          <div className="md:hidden mt-20">
-            <img src={login} alt="/" />
+          <div className="md:hidden mt-20 w-auto h-auto">
+            <LazyLoadImage src={login} alt="/" />
           </div>
         </div>
       </div>

@@ -149,7 +149,7 @@ export const SidebarHistory = () => {
               <div className=" md:block py-10">
               <div
                 className="px-5 py-3 text-white flex gap-2 cursor-pointer bg-blue-600 items-center"
-                onClick={() => navigate('/profile-page')}
+                onClick={() => navigate('/profilepage')}
               >
                 <UserCircleIcon className="h-6 w-6 " />
                 <div className="font-semibold">Account</div>

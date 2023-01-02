@@ -1,4 +1,3 @@
-import { PencilIcon, PlusCircleIcon, TrashIcon } from '@heroicons/react/20/solid';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCountry } from '../redux/feature/homeSlice';

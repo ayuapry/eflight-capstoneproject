@@ -11,7 +11,6 @@ import DetailRoundtrip from "../components/DetailRoundtrip";
 export const SearchPage = () => {
   const location = useLocation();
   const values = location.state?.values;
-  console.log(values);
   return (
     <div className="bg-slate-50 h-full">
       <ScrollToTop />

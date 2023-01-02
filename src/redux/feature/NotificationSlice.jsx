@@ -40,7 +40,6 @@ export const AllNotification = createAsyncThunk(
           },
         }
       );
-      console.log(res.data.data)
       return res.data.data;
     } catch (error) {
       console.error(error);

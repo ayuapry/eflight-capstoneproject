@@ -22,6 +22,7 @@ import "swiper/css/navigation";
 import { Link, useNavigate } from 'react-router-dom'
 import ButtonPrimary from './ButtonPrimary'
 import axios from 'axios'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export const HeadlineCards = (props) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -83,10 +84,10 @@ export const HeadlineCards = (props) => {
                         modules={[Pagination, Navigation]}
                         className="mySwiper"
                         >
-                            {promo?.map((e) => (
+                            {promo?.map((e, i) => (
                                 <SwiperSlide>
-                            <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
-                                <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                            <Link key={i} className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
+                                <LazyLoadImage src={e?.imageURL} alt="PromoBanner" loading='lazy' className='rounded-md flex' />
                             </Link>
                             </SwiperSlide>  
                             ))}
@@ -100,10 +101,10 @@ export const HeadlineCards = (props) => {
                             navigation={true} 
                             modules={[Navigation]} 
                             className="mySwiper">
-                                {promo?.map((e) => (
+                                {promo?.map((e, i) => (
                                     <SwiperSlide>
-                                <Link className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
-                                    <img src={e?.imageURL} alt="PromoBanner" className='rounded-md flex' />
+                                <Link key={i} className='md:w-[250px]' to={`/detailpromo/${e?.id}`}>
+                                    <LazyLoadImage src={e?.imageURL} alt="PromoBanner" loading='lazy' className='rounded-md flex' />
                                 </Link>
                                 </SwiperSlide>  
                                 ))}
@@ -122,7 +123,7 @@ export const HeadlineCards = (props) => {
         <div className='max-w-[1024px] mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer'>
         {allArticle.map((item,i) => (
             <div key={i} className='relative' onClick={() => handleClick(item.id)}>
-                <img className='w-full h-full object-cover rounded-md' src={item.image} alt="/" />
+                <LazyLoadImage className='w-full h-full object-cover rounded-md' loading='lazy' src={item.image} alt="/" />
                 <div className='bg-gray-900/30 absolute top-0 left-0 w-full h-full rounded-md'>
                     <p className='left-4 bottom-4 text-2xl font-bold text-white absolute'>
                         {item.title}
@@ -135,7 +136,7 @@ export const HeadlineCards = (props) => {
         
         <div className='max-w-[1240px] mx-auto px-4 hidden md:flex items-center '>
             <div className='w-[40%]'>
-                <img src={Holiday} alt="/" className='h-auto w-auto object-cover ' />
+                <LazyLoadImage loading='lazy' src={Holiday} alt="/" className='h-auto w-auto object-cover ' />
             </div>
             <div className='w-[50%]'>
                 <h1>Ordering Tickets and Planning Vacations Made Easy</h1>
@@ -159,22 +160,22 @@ export const HeadlineCards = (props) => {
             <h1 id='Services' className='text-center py-4'>Discover further services</h1>
             <div className='bg-slate-50 md:px-20 h-full pb-5 md:pb-20 grid grid-cols-2 lg:grid-cols-4 gap-8 justify-center'>
                 <div className='flex flex-col items-center justify-start'>
-                    <img src={seat} alt='seat' className='h-16 mb-4' />
+                    <img src={seat} loading='lazy' alt='seat' className='h-16 mb-4' />
                     <p className='font-semibold text-center'>ADITIONAL SEAT</p>
                     <h3 className='font-light text-center'>Reserve your seat before flight that best suit for you</h3>
                 </div>
                 <div className='flex flex-col items-center justify-start'>
-                    <img src={bag} alt='bag' className='h-16 mb-4' />
+                    <img src={bag} loading='lazy' alt='bag' className='h-16 mb-4' />
                     <p className='font-semibold text-center'>MORE BAGS</p>
                     <h3 className='font-light text-center' style={{textcenter: "inter-character"}}>Purchasing extra baggage allowance before your flight to stress-free travel</h3>
                 </div>
                 <div className='flex flex-col items-center justify-start'>
-                    <img src={meals} alt='meals' className='h-16 mb-4' />
+                    <img src={meals} loading='lazy' alt='meals' className='h-16 mb-4' />
                     <p className='font-semibold text-center'>SPECIAL MEALS</p>
                     <p className='font-light text-center'>Make your travel easy and enjoyablewith delicious in-flight meals service</p>
                 </div>
                 <div className='flex flex-col items-center justify-start'>
-                    <img src={baggage} alt='baggage' className='h-16 mb-4' />
+                    <img src={baggage} loading='lazy' alt='baggage' className='h-16 mb-4' />
                     <p className='font-semibold text-center'>CABIN UPGRADE</p>
                     <p className='font-light text-center tracking-normal'>Treat yourself to an upgrade and enjoy better amenities for your flight</p>
                 </div>

@@ -17,7 +17,6 @@ export const ProfileCard = () => {
     useEffect(() => {
       dispatch(getProfile(id));
     }, [dispatch, id]);
-    console.log(profile)
 
   return (
     <div className='mt-3'>
@@ -40,7 +39,7 @@ export const ProfileCard = () => {
                 </div>
             </div>
             <div className='px-40 hidden md:flex' >
-                <img src={account} alt="" className='h-[400px] w-[400px]'/>
+                <img loading='lazy' src={account} alt="" className='h-[400px] w-[400px]'/>
             </div>
         </div>
         <EditProfileModal open={editProfileModal} close={handleOnClose} />

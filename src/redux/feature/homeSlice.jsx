@@ -8,8 +8,6 @@ export const getHero = createAsyncThunk("promo/getHero", async () => {
     const res =
       await axios.get(`${process.env.REACT_APP_BASE_URL}/herobanner/all
             `);
-    // console.log(res.data.data);
-    // console.log(res.data)
     return res.data.data;
   } catch (err) {
     console.log(err);
@@ -22,7 +20,6 @@ export const getCountry = createAsyncThunk("country/getCountry", async () => {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/airport/all`
     );
-    // console.log(res);
     return res.data.data;
   } catch (err) {
     console.log(err);
@@ -35,7 +32,6 @@ export const getAge = createAsyncThunk("age/getAge", async () => {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/agecategory/all`
     );
-    // console.log(res)
     return res.data.data;
   } catch (err) {
     console.log(err);
@@ -50,7 +46,6 @@ export const getCabinClass = createAsyncThunk(
       const res = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/travel/all`
       );
-      // console.log(res)
       return res.data.data;
     } catch (err) {
       console.log(err);
@@ -80,7 +75,6 @@ export const getTiket = createAsyncThunk("tiket/getTiket", async (values) => {
             process.env.REACT_APP_BASE_URL
           }/flight/fulltwosearch?${qs.stringify(payload)}`
     );
-    // console.log(res.data.data);
     return res.data.data;
   } catch (err) {
     console.log(err);
@@ -93,7 +87,6 @@ export const getQR = createAsyncThunk("qr/getQR", async () => {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/qr`
     );
-    // console.log(res);
     return res.data.data;
   } catch (err) {
     console.log(err);

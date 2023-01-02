@@ -14,7 +14,6 @@ export const getAircraft = createAsyncThunk(
             },
           }
         );
-        console.log(res.data)
         return res.data.data;
       } catch (error) {
         console.error(error);
