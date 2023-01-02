@@ -1,24 +1,16 @@
 import React from "react";
 import ButtonPrimary from "../components/ButtonPrimary";
-import {
-  ChevronDownIcon,
-  ShoppingBagIcon,
-  TvIcon,
-  WifiIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Disclosure } from "@headlessui/react";
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Tab } from "@headlessui/react";
-import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import Filter from "../components/Filter";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
-import { Button, Drawer, Popover } from "antd";
+import { Drawer } from "antd";
 import { getTiket } from "../redux/feature/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import format from "date-fns/format";
-import { MdFoodBank } from "react-icons/md";
 import Meal from "../assets/meal.png";
 import Entertain from "../assets/entertain.png";
 import Bagage from "../assets/bagIcon.png";
@@ -32,13 +24,13 @@ function classNames(...classes) {
 export default function Detail() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState("left");
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const location = useLocation();
   console.log(location);
   const Passenger = location.state;
   const values = location.state.values;
+  const [placement, setplacement] = useState();
 
   useEffect(() => {
     dispatch(getTiket(values));
@@ -169,8 +161,16 @@ export default function Detail() {
                   </div>
                 </div>
                 <div className="flex mt-2 lg:hidden">
-                  <WifiIcon className="lg:h-5 h-4 mr-4 text-sky-600" />
-                  <ShoppingBagIcon className="lg:h-5 h-4 text-sky-600" />
+                  {tiket.facilities &&
+                    tiket.facilities.map((fc, index) => {
+                      return fc.name === "Meal" ? (
+                        <img src={Meal} className="h-6 mr-2" alt="/" />
+                      ) : fc.name === "Entertainment" ? (
+                        <img src={Entertain} className="h-6 mr-2" alt="/" />
+                      ) : (
+                        <img src={Bagage} className="h-6 mr-2" alt="/" />
+                      );
+                    })}
                 </div>
                 <div className="hidden lg:block">
                   <Disclosure>
@@ -341,9 +341,7 @@ export default function Detail() {
                 </div>
               </div>
               <Drawer
-                title={
-                  `${tiket.originCity}` + " - " + `${tiket.destinationCity}`
-                }
+                title={`${tiket.originCity} - ${tiket.destinationCity}`}
                 placement={"bottom"}
                 closable={true}
                 onClose={onClose}
