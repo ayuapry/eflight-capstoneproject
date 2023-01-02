@@ -187,9 +187,15 @@ export default function DetailRoundtrip() {
                                 tiketRet: returns[index],
                                 passenger: Passenger,
                                 total: `${
-                                  tiket.price.amount * Passenger.D +
-                                  tiket.price.amount * Passenger.A +
-                                  tiket.price.amount * Passenger.B
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.D +
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.A +
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.B
                                 }`,
                               },
                             }

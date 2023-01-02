@@ -25,20 +25,9 @@ import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const HeadlineCards = (props) => {
-<<<<<<< HEAD
-  const { promo } = useSelector((state) => state.promo);
+  const { promo, loading } = useSelector((state) => state.promo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-=======
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const {promo, loading } = useSelector((state) => state.promo);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      dispatch(getPromo())
-    },[dispatch]); 
->>>>>>> cde52b7a6dff9c9569541946b4e3e611c962646d
 
   useEffect(() => {
     dispatch(getPromo());
@@ -67,9 +56,9 @@ export const HeadlineCards = (props) => {
     navigate(`/detail-places/${id}`);
   };
 
-      if(loading){
-        return <h2>Loading</h2>
-      }  
+  if (loading) {
+    return <h2>Loading</h2>;
+  }
 
   return (
     <>

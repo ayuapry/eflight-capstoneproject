@@ -1,7 +1,6 @@
 import { MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Alert, Form, Input } from "antd";
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LoginBg from "../assets/login.webp";
@@ -14,7 +13,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const { register } = useSelector((state) => state.auth);
+  const { register, loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const id = localStorage.getItem("id");
 

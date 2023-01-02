@@ -69,8 +69,6 @@ export const BookingPage = () => {
   const idSchDep = location.state?.tiket.id;
   const idSchRet = tiketRet?.id;
 
-  // console.log(tiketRet);
-
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -82,7 +80,11 @@ export const BookingPage = () => {
 
   const bookingType = [];
 
-  tiketRet ? bookingType.push("ROUND TRIP") : bookingType.push("ONE WAY");
+  {
+    tiketRet ? bookingType.push("ROUND TRIP") : bookingType.push("ONE WAY");
+  }
+
+  console.log(bookingType);
 
   const onFinish = (values) => {
     let keys = [
@@ -170,6 +172,7 @@ export const BookingPage = () => {
     }
 
     const total = parseInt(hargaTiket) + totalSeat + totalBaggage;
+
     setTotal(total);
 
     dispatch(
