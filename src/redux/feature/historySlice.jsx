@@ -16,7 +16,6 @@ export const getHistory = createAsyncThunk(
           },
         }
       );
-      console.log(res.data);
       return res.data.data;
     } catch (err) {
       console.log(err);
@@ -32,7 +31,6 @@ export const getCheckin = createAsyncThunk(
         lastName: `${values.lastName}`,
         bookingReferenceNumber: `${values.bookingReferenceNumber}`,
       });
-      console.log(res.data.data);
       localStorage.setItem("checkinId", res.data.data.id);
       return res.data.data;
     } catch (error) {
@@ -56,7 +54,6 @@ export const getCheckinCancel = createAsyncThunk(
           window.location.reload(1);
         }, 500)
       );
-      console.log(res.data.data);
       return res.data.data;
     } catch (error) {
       console.error(error);
@@ -94,7 +91,6 @@ export const getJasper = createAsyncThunk(
 export const getBoardingPass = createAsyncThunk(
   "history/getBoardingPass",
   async (values) => {
-    console.log(values)
     const token = localStorage.getItem('token')
     fetch(`https://binar-air.azurewebsites.net/api/v1/jasperreport/boardingpass/${values.lastName}/${values.bookingReferenceNumber}`, {
       method: 'GET',
@@ -133,7 +129,6 @@ export const editAvatar = createAsyncThunk(
           },
         }
       );
-      console.log(res);
       window.location.reload(1);
       return res.data.data;
     } catch (error) {
@@ -151,6 +146,7 @@ export const historySlice = createSlice({
     jasper: [],
     boardingPass: [],
     avatar: [],
+    loading: false,
   },
   reducers: {},
   extraReducers: {

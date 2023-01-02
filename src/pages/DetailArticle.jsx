@@ -5,6 +5,7 @@ import axios from "axios";
 import { Navbar } from '../components/Navbar';
 import ScrollToTop from '../components/ScrollToTop';
 import { SecondFooter } from '../components/SecondFooter';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const DetailArticle = () => {
     const { id } = useParams();
@@ -33,7 +34,7 @@ export const DetailArticle = () => {
                 return (
                 <div key={item.id} className="mt-5">
                     <div className='flex align-center '>
-                        <img src={item.image} alt="" className="mb-5 mx-auto rounded-md shadow-lg " />
+                        <LazyLoadImage src={item.image} alt="" className="mb-5 mx-auto rounded-md shadow-lg " />
                     </div>
                     <h1 className="text-center">{item.title}</h1>
                     <h6 className="mb-3 font-normal">{item.description}</h6>

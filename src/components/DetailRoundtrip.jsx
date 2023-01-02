@@ -1,27 +1,19 @@
 import React from "react";
 import ButtonPrimary from "./ButtonPrimary";
-import {
-  ChevronDownIcon,
-  ShoppingBagIcon,
-  TvIcon,
-  WifiIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Disclosure } from "@headlessui/react";
-import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Tab } from "@headlessui/react";
-import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import Filter from "./Filter";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
-import { Button, Drawer, Popover } from "antd";
+import { Drawer } from "antd";
 import { getTiket } from "../redux/feature/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import format from "date-fns/format";
-import { MdFoodBank } from "react-icons/md";
-import Meal from "../assets/meal.png";
-import Entertain from "../assets/entertain.png";
-import Bagage from "../assets/bagIcon.png";
+import Meal from "../assets/meal.webp";
+import Entertain from "../assets/entertain.webp";
+import Bagage from "../assets/bagIcon.webp";
 import noFlightData from "../assets/NoFlightData.svg";
 import SkeletonSearch from "./SkeletonSearch";
 
@@ -32,7 +24,7 @@ function classNames(...classes) {
 export default function DetailRoundtrip() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState("left");
+  const placement = "bottom";
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -195,9 +187,15 @@ export default function DetailRoundtrip() {
                                 tiketRet: returns[index],
                                 passenger: Passenger,
                                 total: `${
-                                  tiket.price.amount * Passenger.D +
-                                  tiket.price.amount * Passenger.A +
-                                  tiket.price.amount * Passenger.B
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.D +
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.A +
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.B
                                 }`,
                               },
                             }
@@ -541,10 +539,8 @@ export default function DetailRoundtrip() {
                 </div>
               </div>
               <Drawer
-                title={
-                  `${tiket.originCity}` + " - " + `${tiket.destinationCity}`
-                }
-                placement={"bottom"}
+                title={`${tiket.originCity} - ${tiket.destinationCity}`}
+                placement={placement}
                 closable={true}
                 onClose={onClose}
                 open={open}
@@ -700,7 +696,7 @@ export default function DetailRoundtrip() {
                               </li>
                               <p>
                                 {numberFormat(
-                                  tiket.price.amount * Passenger.D
+                                  tiket.price.amount * Passenger.D * 2
                                 ).slice(0, -3)}
                               </p>
                             </div>
@@ -714,7 +710,7 @@ export default function DetailRoundtrip() {
                               </li>
                               <p>
                                 {numberFormat(
-                                  tiket.price.amount * Passenger.A
+                                  tiket.price.amount * Passenger.A * 2
                                 ).slice(0, -3)}
                               </p>
                             </div>
@@ -728,7 +724,7 @@ export default function DetailRoundtrip() {
                               </li>
                               <p>
                                 {numberFormat(
-                                  tiket.price.amount * Passenger.B
+                                  tiket.price.amount * Passenger.B * 2
                                 ).slice(0, -3)}
                               </p>
                             </div>
@@ -747,7 +743,7 @@ export default function DetailRoundtrip() {
                               </li>
                               <p>
                                 {numberFormat(
-                                  tiket.price.amount * Passenger.D
+                                  tiket.price.amount * Passenger.D * 2
                                 ).slice(0, -3)}
                               </p>
                             </div>
@@ -761,7 +757,7 @@ export default function DetailRoundtrip() {
                               </li>
                               <p>
                                 {numberFormat(
-                                  returns[index].price.amount * Passenger.A
+                                  returns[index].price.amount * Passenger.A * 2
                                 ).slice(0, -3)}
                               </p>
                             </div>
@@ -775,7 +771,7 @@ export default function DetailRoundtrip() {
                               </li>
                               <p>
                                 {numberFormat(
-                                  returns[index].price.amount * Passenger.B
+                                  returns[index].price.amount * Passenger.B * 2
                                 ).slice(0, -3)}
                               </p>
                             </div>
@@ -795,7 +791,7 @@ export default function DetailRoundtrip() {
                           <p>Total</p>
                           <p className="text-sky-500 font-medium mb-0">
                             {numberFormat(
-                              (tiket.price.amount +
+                              ((tiket.price.amount +
                                 returns[index].price.amount) *
                                 Passenger.D +
                                 (tiket.price.amount +
@@ -803,7 +799,8 @@ export default function DetailRoundtrip() {
                                   Passenger.A +
                                 (tiket.price.amount +
                                   returns[index].price.amount) *
-                                  Passenger.B
+                                  Passenger.B) *
+                                2
                             ).slice(0, -3)}
                           </p>
                         </div>
@@ -816,12 +813,13 @@ export default function DetailRoundtrip() {
                     Total <br />{" "}
                     <span className="text-base font-medium">
                       {numberFormat(
-                        (tiket.price.amount + returns[index].price.amount) *
+                        ((tiket.price.amount + returns[index].price.amount) *
                           Passenger.D +
                           (tiket.price.amount + returns[index].price.amount) *
                             Passenger.A +
                           (tiket.price.amount + returns[index].price.amount) *
-                            Passenger.B
+                            Passenger.B) *
+                          2
                       ).slice(0, -3)}
                     </span>
                   </p>
@@ -836,15 +834,16 @@ export default function DetailRoundtrip() {
                               tiket: tiket,
                               passenger: Passenger,
                               total: `${
-                                (tiket.price.amount +
+                                ((tiket.price.amount +
                                   returns[index].price.amount) *
                                   Passenger.D +
-                                (tiket.price.amount +
-                                  returns[index].price.amount) *
-                                  Passenger.A +
-                                (tiket.price.amount +
-                                  returns[index].price.amount) *
-                                  Passenger.B
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.A +
+                                  (tiket.price.amount +
+                                    returns[index].price.amount) *
+                                    Passenger.B) *
+                                2
                               }`,
                             },
                           }

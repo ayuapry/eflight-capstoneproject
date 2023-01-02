@@ -5,9 +5,10 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getQR } from "../redux/feature/homeSlice";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Footer = () => {
-  const { qr } = useSelector((state) => state.homepage);
+  const { qr, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   let img = `data:image/png;base64,${qr?.base64QRCode}`;
 
@@ -15,12 +16,16 @@ const Footer = () => {
     dispatch(getQR());
   }, [dispatch]);
 
+  if(loading){
+    return <h2>Loading</h2>
+  }  
+
   return (
     <div className="bg-gray-100 py-10 px-4">
       <div className="FooterWrap px-5 max-w-7xl mx-auto md:px-20 flex flex-col ">
         <div className=" flex flex-col">
           <div className="FooterImg flex justify-center md:justify-start pb-[2rem] md:pb-[2rem]">
-            <img className="w-40 h-auto" src={BinarLogo} alt="BinarLogo" />
+            <LazyLoadImage loading="lazy" className="w-40 h-auto" src={BinarLogo} alt="BinarLogo" />
           </div>
 
           <div className="FooterText flex items-center md:items-start md:justify-between flex-col md:flex-row">
@@ -165,7 +170,7 @@ const Footer = () => {
                 Scan Me!
                 </h2>
                 <div className="w-[5rem]">
-                <img src={img} alt="Scan Me!" className="bg-transparent"/>
+                <LazyLoadImage loading="lazy" src={img} alt="Scan Me!" className="bg-transparent"/>
                 </div>
               </div>
           </div>

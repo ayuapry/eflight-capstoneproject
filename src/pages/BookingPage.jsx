@@ -1,5 +1,4 @@
 import {
-  ArrowDownLeftIcon,
   ArrowLongRightIcon,
   CheckCircleIcon,
   UsersIcon,
@@ -36,7 +35,7 @@ export const BookingPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const bookingId = localStorage.getItem("bookingId");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -44,6 +43,7 @@ export const BookingPage = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    window.location.reload(1);
   };
 
   const toHistory = () => {
@@ -68,8 +68,6 @@ export const BookingPage = () => {
   const pass = location.state?.passenger;
   const idSchDep = location.state?.tiket.id;
   const idSchRet = tiketRet?.id;
-
-  console.log(tiketRet);
 
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-US", {
@@ -174,6 +172,7 @@ export const BookingPage = () => {
     }
 
     const total = parseInt(hargaTiket) + totalSeat + totalBaggage;
+
     setTotal(total);
 
     dispatch(
@@ -185,8 +184,6 @@ export const BookingPage = () => {
         bookingType: bookingType[0],
       })
     );
-
-    setIsModalOpen(true);
   };
 
   const agectr = [];
@@ -211,6 +208,8 @@ export const BookingPage = () => {
         ageId.push(e.id);
       });
   }
+
+  console.log(seat);
 
   const responModal = (props) => {
     return (
@@ -255,7 +254,7 @@ export const BookingPage = () => {
             type: "success",
             resTitle: "Go To History",
           })
-        ) : booking ? (
+        ) : booking[0] ? (
           responModal({
             title: "Booking Failed",
             message: booking,

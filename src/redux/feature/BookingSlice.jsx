@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import format from "date-fns/format";
 
 export const getTitel = createAsyncThunk("booking/getTitel", async () => {
   try {
@@ -23,7 +22,6 @@ export const getBagage = createAsyncThunk("user/getBagage", async (id) => {
         },
       }
     );
-    //   console.log(res)
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -35,14 +33,13 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
   const token = localStorage.getItem("token");
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/aircraftseat?aircraftid=${id}`,
+      `${process.env.REACT_APP_BASE_URL}/aircraftseat/available?aircraftid=${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -51,12 +48,10 @@ export const getSeat = createAsyncThunk("user/getSeat", async (id) => {
 });
 
 export const getCountry = createAsyncThunk("user/getCountry", async () => {
-  const token = localStorage.getItem("token");
   try {
     const res = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/country/all`
     );
-    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -75,7 +70,6 @@ export const getBenefit = createAsyncThunk("user/getBenefit", async (id) => {
         },
       }
     );
-    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -86,7 +80,6 @@ export const getBenefit = createAsyncThunk("user/getBenefit", async (id) => {
 export const Booking = createAsyncThunk("user/booking", async (data) => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  console.log(data);
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/booking/${id}`,
@@ -100,7 +93,7 @@ export const Booking = createAsyncThunk("user/booking", async (data) => {
           data: data.dataDep,
         },
         returns:
-          data.bookingType === "Round Trip"
+          data.bookingType === "ROUND TRIP"
             ? {
                 data: data.dataRet,
               }
@@ -112,7 +105,6 @@ export const Booking = createAsyncThunk("user/booking", async (data) => {
         },
       }
     );
-    console.log(res.data.data);
     localStorage.setItem("bookingId", res.data.data.bookingId);
     return res.data.data;
   } catch (error) {

@@ -2,7 +2,8 @@
 import React, { useEffect } from "react";
 import { Pagination, A11y, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Divider, Form, Radio, Skeleton, Space, Switch } from "antd";
+import { Skeleton } from "antd";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 // Import Swiper styles
 import "swiper/css";
@@ -68,9 +69,12 @@ export const Hero = () => {
             return (
               <SwiperSlide key={i}>
                 <img
+                  loading="lazy"
                   className="md:max-w-3xl mx-auto"
                   src={hero?.imageURL}
                   alt="Banner1"
+                  width="auto"
+                  height="auto"
                 />
               </SwiperSlide>
             );

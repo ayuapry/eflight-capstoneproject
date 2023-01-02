@@ -14,7 +14,6 @@ export const getProfile = createAsyncThunk("user/getProfile", async () => {
       }
     );
     // localStorage.setItem("id",(res.data.data.id))
-    console.log(res.data.data);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -42,7 +41,6 @@ export const editProfile = createAsyncThunk(
           },
         }
       );
-      console.log(res.data.data);
       window.location.reload(1);
       return res.data.data;
     } catch (error) {
@@ -55,7 +53,6 @@ export const editProfile = createAsyncThunk(
 export const getCity = createAsyncThunk("user/getCity", async () => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/city/all`);
-    console.log(res);
     return res.data.data;
   } catch (err) {
     console.log(err);

@@ -14,7 +14,7 @@ export const OrderHistory = () => {
     const dispatch = useDispatch();
   
     const { id } = useParams();
-    const { history } = useSelector((state) => state.history);
+    const { history, loading } = useSelector((state) => state.history);
     const [sorting, setSorting] = useState('DESC')
   
     useEffect(() => {
@@ -25,6 +25,10 @@ export const OrderHistory = () => {
     const handleClick = (bookingId) => {
       navigate(`/detail-history/${bookingId}`);
     };
+
+    if(loading){
+      return <h2>Loading</h2>
+    }  
   
     const noData = () => {
       return (
