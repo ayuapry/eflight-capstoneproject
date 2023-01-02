@@ -102,6 +102,7 @@ export const homeSlice = createSlice({
     cabinClass: [],
     tiket: [],
     qr: [],
+    loading: false,
   },
   reducers: {},
   extraReducers: {

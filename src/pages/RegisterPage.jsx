@@ -25,10 +25,6 @@ export default function RegisterPage() {
     window.location.reload(1);
   };
 
-  if(loading){
-    return <h2>Loading</h2>
-  }  
-
   return (
     <div className='flex flex-col justify-between h-screen'>
     <div className='max-w-7xl mx-auto my-auto grid lg:grid-cols-2 items-center h-[90vh]'>

@@ -26,7 +26,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export const HeadlineCards = (props) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const {promo } = useSelector((state) => state.promo);
+    const {promo, loading } = useSelector((state) => state.promo);
     const dispatch = useDispatch();
     const navigate = useNavigate();
   
@@ -54,6 +54,10 @@ export const HeadlineCards = (props) => {
       const handleClick = (id) => {
         navigate(`/detail-places/${id}`);
       };
+
+      if(loading){
+        return <h2>Loading</h2>
+      }  
 
   return (
     <>
