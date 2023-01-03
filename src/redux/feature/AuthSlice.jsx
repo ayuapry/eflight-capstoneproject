@@ -35,7 +35,6 @@ export const Register = createAsyncThunk("user/Register", async (values) => {
       }
     );
     localStorage.setItem("id", res.data.data.id);
-    window.location.reload(1);
     return res.data.data;
   } catch (error) {
     return error.response.data.data;
