@@ -82,7 +82,7 @@ export const Navbar = () => {
                             onClick={() => navigate("/history")}
                             className={`${
                               active
-                                ? " text-blue-500 focus:outline-none focus:ring-2 focus:ring-[#FFE69A]"
+                                ? " text-blue-500 focus:outline-none focus:ring-2"
                                 : "text-black"
                             } group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold`}
                           >
@@ -107,7 +107,7 @@ export const Navbar = () => {
                             onClick={logout}
                             className={`${
                               active
-                                ? " text-blue-500 focus:outline-none focus:ring-2 focus:ring-[#FFE69A]"
+                                ? " text-blue-500 focus:outline-none focus:ring-2"
                                 : "text-black"
                             } group flex w-full items-center rounded-md px-2 py-2 text-sm font-semibold`}
                           >
@@ -134,7 +134,7 @@ export const Navbar = () => {
           ) : (
             <img
               loading="lazy"
-              className="h-8 w-8 rounded-full bg-gray-400"
+              className="h-8 w-8 rounded-full bg-gray-400 cursor-pointer"
               src={userIcon}
               alt="profile"
               onClick={() => navigate("/Login")}
