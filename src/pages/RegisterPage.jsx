@@ -9,6 +9,7 @@ import { SecondFooter } from "../components/SecondFooter";
 import { Register } from "../redux/feature/AuthSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import Loading from "../components/Loading";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -22,12 +23,11 @@ export default function RegisterPage() {
   };
 
   const isRegistered = () => {
-    navigate("/Login");
-    window.location.reload(1);
+    navigate("/login");
   };
 
   if (loading) {
-    return <h2>Loading</h2>;
+    return <Loading />;
   }
 
   return (
@@ -113,8 +113,8 @@ export default function RegisterPage() {
                 },
                 {
                   pattern:
-                    /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
-                  message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`,
+                    /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+).{8,}$/,
+                  message: `Password must be minimum 9 character, include uppercase, lowwercase, symbols`,
                 },
               ]}
               hasFeedback
@@ -157,8 +157,7 @@ export default function RegisterPage() {
               <p className="mr-2 mt-4 mb-0 text-slate-700">Have an accout?</p>
               <a
                 className="text-[#46B3E6] mt-4 hover:font-bold hover:text-[#46B3E6]"
-                onClick={() => navigate(`/Login`)}
-                href="/Login"
+                onClick={() => navigate(`/login`)}
               >
                 {" "}
                 Login{" "}

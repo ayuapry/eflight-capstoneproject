@@ -10,13 +10,13 @@ export const LoginEmail = createAsyncThunk("user/Login", async (values) => {
         password: `${values.password}`,
       }
     );
-    setTimeout(function () {
-      window.location.reload(1);
-    }, 500);
     localStorage.removeItem("id");
     localStorage.setItem("token", res.data.data.jwtToken);
     localStorage.setItem("id", res.data.data.id);
     localStorage.setItem("role", res.data.data.role);
+    setTimeout(function () {
+      window.location.reload(1);
+    }, 500);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -35,6 +35,7 @@ export const Register = createAsyncThunk("user/Register", async (values) => {
       }
     );
     localStorage.setItem("id", res.data.data.id);
+    window.location.reload(1);
     return res.data.data;
   } catch (error) {
     return error.response.data.data;

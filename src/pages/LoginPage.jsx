@@ -8,6 +8,7 @@ import { SecondFooter } from "../components/SecondFooter";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginEmail } from "../redux/feature/AuthSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "../components/Loading";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -23,9 +24,9 @@ export default function LoginPage() {
     navigate("/");
   };
 
-  if(loading){
-    return <h2>Loading</h2>
-  }  
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex flex-col justify-between h-screen max-w-7xl mx-auto ">
@@ -85,10 +86,11 @@ export default function LoginPage() {
                   required: true,
                   message: "Please input your Password!",
                 },
-                  {
-                    pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
-                    message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`
-                 },
+                {
+                  pattern:
+                    /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+).{8,}$/,
+                  message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`,
+                },
               ]}
             >
               <Input.Password
