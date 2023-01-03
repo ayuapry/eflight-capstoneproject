@@ -30,6 +30,9 @@ export default function RegisterPage() {
     return <Loading />;
   }
 
+  console.log(register);
+  console.log(id);
+
   return (
     <div className="flex flex-col justify-between h-screen max-w-7xl mx-auto ">
       <div className="grid lg:grid-cols-2 md:items-center md:h-[90vh]">
@@ -46,7 +49,7 @@ export default function RegisterPage() {
         <div className="lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white">
           {id ? (
             isRegistered()
-          ) : register.length ? (
+          ) : register ? (
             <div className="flex justify-center">
               <Alert
                 message={register}
