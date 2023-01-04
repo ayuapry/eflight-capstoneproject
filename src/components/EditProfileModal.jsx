@@ -73,7 +73,7 @@ export const EditProfileModal = ({ open, close }) => {
               label="FullName"
               rules={[
                 {
-                  required: true,
+                  required: false,
                 },
               ]}
               initialValue={profile.fullName}
@@ -85,7 +85,7 @@ export const EditProfileModal = ({ open, close }) => {
               label="Gender"
               rules={[
                 {
-                  required: true,
+                  required: false,
                 },
               ]}
               initialValue={profile.gender}
@@ -100,7 +100,7 @@ export const EditProfileModal = ({ open, close }) => {
               label="Birth Date"
               rules={[
                 {
-                  required: true,
+                  required: false,
                 },
               ]}
             >
