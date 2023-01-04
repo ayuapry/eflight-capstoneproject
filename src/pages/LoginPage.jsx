@@ -1,15 +1,14 @@
 import React from "react";
 import { MailOutlined } from "@ant-design/icons";
-import { Form, Input, Modal, Space, Alert } from "antd";
+import { Form, Input, Alert } from "antd";
 import ButtonPrimary from "../components/ButtonPrimary";
-import ButtonBorder from "../components/ButtonBorder";
-import LoginBg from "../assets/login.png";
+import LoginBg from "../assets/login.webp";
 import { useNavigate } from "react-router-dom";
 import { SecondFooter } from "../components/SecondFooter";
-import googleIcon from "../assets/google.png";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginEmail } from "../redux/feature/AuthSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "../components/Loading";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -23,18 +22,23 @@ export default function LoginPage() {
 
   const isLogin = () => {
     navigate("/");
-    window.location.reload(1);
   };
 
-  if(loading){
-    return <h2>Loading</h2>
-  }  
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
-    <div className="flex flex-col justify-between h-screen">
-      <div className="max-w-7xl lg:mx-auto lg:my-auto grid lg:grid-cols-2 md:items-center md:h-[90vh]">
+    <div className="flex flex-col justify-between h-screen max-w-[1024] mx-auto ">
+      <div className="grid lg:grid-cols-2 md:items-center md:h-[90vh]">
         <div className="hidden ml-20 p-2 lg:w-[100%] lg:block">
-          <LazyLoadImage loading="lazy" src={LoginBg} height={600} width={600} alt="/" />
+          <LazyLoadImage
+            loading="lazy"
+            src={LoginBg}
+            height={600}
+            width={600}
+            alt="/"
+          />
         </div>
         <div className="lg:ml-auto lg:mr-20 mx-4 rounded-xl lg:px-12 p-2 lg:shadow-md lg:shadow-gray-400 lg:w-[70%] lg:border-t-2 items-end bg-white">
           {token ? (
@@ -82,10 +86,11 @@ export default function LoginPage() {
                   required: true,
                   message: "Please input your Password!",
                 },
-                //   {
-                //     pattern:/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
-                //     message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`
-                //  },
+                {
+                  pattern:
+                    /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+).{8,}$/,
+                  message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`,
+                },
               ]}
             >
               <Input.Password
@@ -97,7 +102,11 @@ export default function LoginPage() {
             </Form.Item>
 
             <Form.Item>
-              <ButtonPrimary data-testid="btn-input" type="submit" title="LOGIN" />
+              <ButtonPrimary
+                data-testid="btn-input"
+                type="submit"
+                title="LOGIN"
+              />
               {/* <div className="flex justify-center">
                 <div className="border-b-2 border-slate-700 w-20 mb-6 mr-2"></div>
                 <p className="text-center text-slate-700 mt-2">Or</p>
@@ -122,11 +131,17 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="px-4 lg:hidden">
-        <LazyLoadImage loading="lazy" src={LoginBg} alt="/" height={400} width={400} />
+        <LazyLoadImage
+          loading="lazy"
+          src={LoginBg}
+          alt="/"
+          height={400}
+          width={400}
+        />
       </div>
       <div>
-        <SecondFooter />
       </div>
+      <SecondFooter />
     </div>
   );
 }

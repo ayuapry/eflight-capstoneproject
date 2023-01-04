@@ -1,5 +1,4 @@
 import {
-  ArrowDownLeftIcon,
   ArrowLongRightIcon,
   CheckCircleIcon,
   UsersIcon,
@@ -69,8 +68,6 @@ export const BookingPage = () => {
   const idSchDep = location.state?.tiket.id;
   const idSchRet = tiketRet?.id;
 
-  // console.log(tiketRet);
-
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -86,7 +83,7 @@ export const BookingPage = () => {
     tiketRet ? bookingType.push("ROUND TRIP") : bookingType.push("ONE WAY");
   }
 
-  // console.log(bookingType);
+  console.log(bookingType);
 
   const onFinish = (values) => {
     let keys = [
@@ -166,6 +163,8 @@ export const BookingPage = () => {
             ? baggagePrice.push(e.price * 2)
             : baggagePrice.push(e.price);
         });
+      
+      setIsModalOpen(true)
     }
 
     for (let j = 0; j < countPass; j++) {
@@ -174,6 +173,7 @@ export const BookingPage = () => {
     }
 
     const total = parseInt(hargaTiket) + totalSeat + totalBaggage;
+
     setTotal(total);
 
     dispatch(
@@ -185,8 +185,6 @@ export const BookingPage = () => {
         bookingType: bookingType[0],
       })
     );
-
-    setIsModalOpen(true);
   };
 
   const agectr = [];
@@ -211,6 +209,8 @@ export const BookingPage = () => {
         ageId.push(e.id);
       });
   }
+
+  console.log(seat);
 
   const responModal = (props) => {
     return (
@@ -255,7 +255,7 @@ export const BookingPage = () => {
             type: "success",
             resTitle: "Go To History",
           })
-        ) : booking ? (
+        ) : booking[0] ? (
           responModal({
             title: "Booking Failed",
             message: booking,
@@ -410,8 +410,9 @@ export const BookingPage = () => {
                               rules={[
                                 {
                                   required: true,
-                                  message: "Please input your pasport number!",
+                                  message: "max 6 characters",
                                   whitespace: true,
+                                  max: 6,
                                 },
                               ]}
                             >

@@ -1,25 +1,20 @@
 import { Form, Input, Modal } from "antd";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import login from "../assets/login.png";
+import login from "../assets/login.webp";
 import ButtonPrimary from "../components/ButtonPrimary";
-import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import ScrollToTop from "../components/ScrollToTop";
 import { SecondFooter } from "../components/SecondFooter";
-import {
-  getBoardingPass,
-  getCheckin,
-  getHistory,
-} from "../redux/feature/historySlice";
+import { getBoardingPass, getCheckin } from "../redux/feature/historySlice";
 import checkinSuccess from "../assets/checkinSuccess.svg";
 import checkinFail from "../assets/checkinFail.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const CheckInPage = () => {
-  const { checkin, history } = useSelector((state) => state.history);
+  const { checkin } = useSelector((state) => state.history);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const navigate = useNavigate();
@@ -50,16 +45,6 @@ export const CheckInPage = () => {
       </Modal>
     );
   };
-  const [lastNames, setLastName] = useState();
-  const [bookingReferenceNumbers, setBookingReferenceNumber] = useState();
-
-  const change = (e) => {
-    setBookingReferenceNumber(e);
-  };
-
-  const changege = (e) => {
-    setLastName(e);
-  };
 
   const downloadBoardPass = () => {
     dispatch(getBoardingPass(data));
@@ -75,7 +60,6 @@ export const CheckInPage = () => {
   };
 
   const closeModal = () => {
-    // window.location.reload(1);
     return setIsModalOpen(false);
   };
 
@@ -130,7 +114,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input onChange={(e) => changege(e.target.value)} />
+                  <Input />
                 </Form.Item>
 
                 <Form.Item
@@ -142,7 +126,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input onChange={(e) => change(e.target.value)} />
+                  <Input />
                 </Form.Item>
                 <div className="flex justify-end">
                   <div className="w-[30%]">
@@ -151,7 +135,6 @@ export const CheckInPage = () => {
                 </div>
               </Form>
             </div>
-            {/* <p className="text-blue-600 cursor-pointer" onClick={() => (navigate('/cancel-checkin'))}>cancel your checkin?</p> */}
           </div>
           <div className="md:hidden mt-20 w-auto h-auto">
             <LazyLoadImage src={login} alt="/" />

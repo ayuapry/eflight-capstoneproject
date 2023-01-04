@@ -66,8 +66,15 @@ export const notificationSlice = createSlice({
     [getNotification.rejected]: (state) => {
       state.loading = false;
     },
+    [AllNotification.pending]: (state) => {
+      state.loading = true;
+    },
     [AllNotification.fulfilled]: (state, { payload }) => {
+      state.loading = false;
       state.allNotif = payload;
+    },
+    [AllNotification.rejected]: (state) => {
+      state.loading = false;
     },
   },
 });
