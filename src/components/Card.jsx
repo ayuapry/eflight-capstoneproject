@@ -124,10 +124,10 @@ export default function Card() {
             Find Flights Tickets
           </h1>
         </div>
-        {(role === 'BUYER') ? 
-        <Link to="/checkin" className="flex cursor-pointer">
+        {(role === 'ADMIN') ? 
+          <Link to="/admin/dashboard-admin" className="flex cursor-pointer">
           <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
-            Check-In Here
+            Admin Page
           </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -146,9 +146,9 @@ export default function Card() {
           </svg>
         </Link>
         :
-        <Link to="/admin/dashboard-admin" className="flex cursor-pointer">
+        <Link to="/checkin" className="flex cursor-pointer">
         <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
-          Admin Page
+          Check-In Here
         </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +165,7 @@ export default function Card() {
             color="blue"
           />
         </svg>
-      </Link>
+        </Link>
         }
       </div>
       {/* Mobile */}
