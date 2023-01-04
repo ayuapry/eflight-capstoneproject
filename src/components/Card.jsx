@@ -33,16 +33,16 @@ export default function Card() {
 
   const [inputCity, setInputCity] = useState("");
   const [inputCityTo, setInputCityTo] = useState("");
-  const [selectCity, setSelectCity] = useState("");
-  const [selectCityTo, setSelectCityTo] = useState("");
+  const [selectCity, setSelectCity] = useState("Jakarta");
+  const [selectCityTo, setSelectCityTo] = useState("Denpasar");
   const [open, setOpen] = useState(false);
   const [openTo, setOpenTo] = useState(false);
   const [selectRadio, setSelectRadio] = useState("OneWay");
   const [calendar, setCalendar] = useState("");
   const [calendarGo, setCalendarGo] = useState("");
   const [iata, setIata] = useState({
-    iata1: "",
-    iata2: "",
+    iata1: "CGK",
+    iata2: "DPS",
   });
 
   const [openDate, setOpenDate] = useState(false);
