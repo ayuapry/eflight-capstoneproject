@@ -24,6 +24,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "redux-logger": "^3.0.6",
     "sweetalert2": "^11.6.16",
     "swiper": "^8.4.5",
     "tailwind-scrollbar-hide": "^1.1.7",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "autoprefixer": "^10.4.13",
     "babel-jest": "^29.3.1",
