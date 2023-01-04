@@ -30,11 +30,8 @@ export default function RegisterPage() {
     return <Loading />;
   }
 
-  console.log(register);
-  console.log(id);
-
   return (
-    <div className="flex flex-col justify-between h-screen max-w-7xl mx-auto ">
+    <div className="flex flex-col justify-between h-screen max-w-[1024] mx-auto ">
       <div className="grid lg:grid-cols-2 md:items-center md:h-[90vh]">
         <div className="hidden ml-20 p-2 lg:w-[100%] lg:block">
           <LazyLoadImage
