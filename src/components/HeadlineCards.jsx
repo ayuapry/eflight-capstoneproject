@@ -23,6 +23,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ButtonPrimary from "./ButtonPrimary";
 import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "./Loading";
 
 export const HeadlineCards = (props) => {
   const { promo, loading } = useSelector((state) => state.promo);
@@ -57,7 +58,7 @@ export const HeadlineCards = (props) => {
   };
 
   if (loading) {
-    return <h2>Loading</h2>;
+    return <Loading />;
   }
 
   return (

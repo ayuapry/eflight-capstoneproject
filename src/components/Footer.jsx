@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getQR } from "../redux/feature/homeSlice";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "./Loading";
 
 const Footer = () => {
   const { qr, loading } = useSelector((state) => state.homepage);
@@ -16,16 +17,21 @@ const Footer = () => {
     dispatch(getQR());
   }, [dispatch]);
 
-  if(loading){
-    return <h2>Loading</h2>
-  }  
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="bg-gray-100 py-10 px-4">
       <div className="FooterWrap px-5 max-w-7xl mx-auto md:px-20 flex flex-col ">
         <div className=" flex flex-col">
           <div className="FooterImg flex justify-center md:justify-start pb-[2rem] md:pb-[2rem]">
-            <LazyLoadImage loading="lazy" className="w-40 h-auto" src={BinarLogo} alt="BinarLogo" />
+            <LazyLoadImage
+              loading="lazy"
+              className="w-40 h-auto"
+              src={BinarLogo}
+              alt="BinarLogo"
+            />
           </div>
 
           <div className="FooterText flex items-center md:items-start md:justify-between flex-col md:flex-row">
@@ -165,14 +171,19 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-              <div>
-                <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
+            <div>
+              <h2 className="fontPopp text-blue-600 text-base md:text-lg font-bold pb-0 md:pb-5 mb-2 md:mb-0">
                 Customer Support!
-                </h2>
-                <div className="w-[7rem] mx-auto">
-                <LazyLoadImage loading="lazy" src={img} alt="Scan Me!" className="bg-transparent"/>
-                </div>
+              </h2>
+              <div className="w-[7rem] mx-auto">
+                <LazyLoadImage
+                  loading="lazy"
+                  src={img}
+                  alt="Scan Me!"
+                  className="bg-transparent"
+                />
               </div>
+            </div>
           </div>
         </div>
       </div>

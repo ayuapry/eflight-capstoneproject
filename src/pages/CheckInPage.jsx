@@ -45,16 +45,6 @@ export const CheckInPage = () => {
       </Modal>
     );
   };
-  // const [lastNames, setLastName] = useState();
-  // const [bookingReferenceNumbers, setBookingReferenceNumber] = useState();
-
-  // const change = (e) => {
-  //   setBookingReferenceNumber(e);
-  // };
-
-  // const changege = (e) => {
-  //   setLastName(e);
-  // };
 
   const downloadBoardPass = () => {
     dispatch(getBoardingPass(data));
@@ -124,7 +114,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input/>
+                  <Input />
                 </Form.Item>
 
                 <Form.Item
@@ -136,7 +126,7 @@ export const CheckInPage = () => {
                     },
                   ]}
                 >
-                  <Input/>
+                  <Input />
                 </Form.Item>
                 <div className="flex justify-end">
                   <div className="w-[30%]">
