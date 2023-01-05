@@ -412,7 +412,7 @@ export const BookingPage = () => {
                                   required: true,
                                   message: "max 6 characters",
                                   whitespace: true,
-                                  max: 6,
+                                  max: 10,
                                 },
                               ]}
                             >

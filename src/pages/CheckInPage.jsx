@@ -84,7 +84,7 @@ export const CheckInPage = () => {
           })
         : ""}
       <div className="max-w-[1240px] mx-auto h-full md:min-h-screen">
-        <div className="md:pt-32 pt-20">
+        <div className="md:pt-52 pt-20">
           <div className="bg-white md:mx-14 rounded-md shadow-md md:py-20 py-5 mx-2 px-5 md:h-[400px]">
             <p className="text-gray-500 text-sm">
               Start check-in with your departure date and booking reference
