@@ -4,7 +4,7 @@ import {
   UsersIcon,
   XCircleIcon,
 } from "@heroicons/react/20/solid";
-import { DatePicker, Form, Input, Select, Modal } from "antd";
+import { DatePicker, Form, Input, Select, Modal, InputNumber } from "antd";
 import React, { useEffect, useState } from "react";
 import format from "date-fns/format";
 import { useDispatch, useSelector } from "react-redux";
@@ -410,13 +410,15 @@ export const BookingPage = () => {
                               rules={[
                                 {
                                   required: true,
-                                  message: "max 6 characters",
+                                  message: "max 10 characters",
                                   whitespace: true,
-                                  max: 6,
+                                  max: 10,
                                 },
                               ]}
                             >
-                              <Input
+                              <InputNumber 
+                                stringMode
+                                style={{width:'100%'}}
                                 name="pasportNumber"
                                 placeholder="Passport Number"
                               />

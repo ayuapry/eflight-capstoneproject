@@ -700,7 +700,7 @@ export default function Card() {
         </div>
       </div>
 
-      <div className="w-full flex flex-row items-center justify-end px-0 md:px-[4rem] py-[1rem] cursor-pointer">
+      <div className="w-full flex flex-row items-center justify-end px-0 md:px-[4rem] py-[1rem]">
         <div className="w-full md:w-fit">
           <ButtonPrimary
             title="SEARCH FLIGHTS"

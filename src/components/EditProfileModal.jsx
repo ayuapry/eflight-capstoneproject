@@ -106,6 +106,7 @@ export const EditProfileModal = ({ open, close }) => {
             >
               <DatePicker
                 name="birthDate"
+                // defaultValue={dayjs(`${profile?.birthdate}`, "YYYY-MM-DD")}
                 defaultValue={dayjs(`${profile?.birthdate || '2022-01-06'}`, "YYYY-MM-DD")}
                 style={{ width: "100%" }}
                 placeholder="Birth Date"
