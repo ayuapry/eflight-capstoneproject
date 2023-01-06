@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Tab } from "@headlessui/react";
 import { useState } from "react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
-import { Drawer } from "antd";
+import { Card, Drawer } from "antd";
 import { getTiket } from "../redux/feature/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -15,6 +15,8 @@ import Meal from "../assets/meal.webp";
 import Entertain from "../assets/entertain.webp";
 import Bagage from "../assets/bagIcon.webp";
 import noFlightData from "../assets/NoFlightData.svg";
+import Wifi from "../assets/wifi.webp";
+import Power from "../assets/power-plug.webp";
 import SkeletonSearch from "./SkeletonSearch";
 
 function classNames(...classes) {
@@ -27,7 +29,6 @@ export default function Detail() {
   const { tiket, loading } = useSelector((state) => state.homepage);
   const dispatch = useDispatch();
   const location = useLocation();
-  // console.log(location);
   const Passenger = location.state;
   const values = location.state.values;
   const placement = "bottom";
@@ -123,8 +124,12 @@ export default function Detail() {
                           <img src={Meal} className="h-6 mr-2" alt="/" />
                         ) : fc.name === "Entertainment" ? (
                           <img src={Entertain} className="h-6 mr-2" alt="/" />
-                        ) : (
+                        ) : fc.name === "Wifi" ? (
+                          <img src={Wifi} className="h-6 mr-2" alt="/" />
+                        ) : fc.name === "Baggage" ? (
                           <img src={Bagage} className="h-6 mr-2" alt="/" />
+                        ) : (
+                          <img src={Power} className="h-6 mr-2" alt="/" />
                         );
                       })}
                   </div>

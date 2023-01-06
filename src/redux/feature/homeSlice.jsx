@@ -84,9 +84,7 @@ export const getTiket = createAsyncThunk("tiket/getTiket", async (values) => {
 //QR
 export const getQR = createAsyncThunk("qr/getQR", async () => {
   try {
-    const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/qr`
-    );
+    const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/qr`);
     return res.data.data;
   } catch (err) {
     console.log(err);
@@ -121,6 +119,7 @@ export const homeSlice = createSlice({
       state.loading = true;
     },
     [getCountry.fulfilled]: (state, { payload }) => {
+      state.loading = false;
       state.country = payload;
     },
     [getCountry.rejected]: (state) => {
@@ -170,7 +169,6 @@ export const homeSlice = createSlice({
     [getQR.rejected]: (state) => {
       state.loading = false;
     },
-    
   },
 });
 

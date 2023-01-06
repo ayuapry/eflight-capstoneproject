@@ -31,11 +31,11 @@ export const ProfileCard = () => {
         <div className="mt-5 px-5 py-2 grid grid-cols-2">
           <div>
             <p>
-              <span className="text-gray-400">FirstName:</span>{" "}
+              <span className="text-gray-400">Username:</span>{" "}
               {profile?.fullName}
             </p>
             <p>
-              <span className="text-gray-400">BirthDate : </span>
+              <span className="text-gray-400">Birthdate : </span>
               {profile?.birthdate}
             </p>
           </div>
