@@ -14,6 +14,7 @@ export const getProfile = createAsyncThunk("user/getProfile", async () => {
       }
     );
     // localStorage.setItem("id",(res.data.data.id))
+    console.log(res);
     return res.data.data;
   } catch (error) {
     console.error(error);
@@ -41,7 +42,8 @@ export const editProfile = createAsyncThunk(
           },
         }
       );
-      window.location.reload(1);
+      console.log(res);
+      // window.location.reload(1);
       return res.data.data;
     } catch (error) {
       console.error(error);
