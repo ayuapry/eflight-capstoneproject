@@ -163,8 +163,8 @@ export const BookingPage = () => {
             ? baggagePrice.push(e.price * 2)
             : baggagePrice.push(e.price);
         });
-      
-      setIsModalOpen(true)
+
+      setIsModalOpen(true);
     }
 
     for (let j = 0; j < countPass; j++) {
@@ -209,8 +209,6 @@ export const BookingPage = () => {
         ageId.push(e.id);
       });
   }
-
-  console.log(seat);
 
   const responModal = (props) => {
     return (
@@ -416,9 +414,9 @@ export const BookingPage = () => {
                                 },
                               ]}
                             >
-                              <InputNumber 
+                              <InputNumber
                                 stringMode
-                                style={{width:'100%'}}
+                                style={{ width: "100%" }}
                                 name="pasportNumber"
                                 placeholder="Passport Number"
                               />
