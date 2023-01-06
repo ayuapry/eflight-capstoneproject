@@ -284,7 +284,7 @@ export const DetailsHistory = () => {
                     e?.departure?.data.slice(0, 1).map((item, i) => (
                       <div
                         key={i}
-                        className="bg-white rounded-md shadow-md md:mt-20 px-5 py-5 h-[400px] "
+                        className="bg-white rounded-md shadow-md md:mt-20 px-5 py-5 h-[383px] "
                       >
                         <p className="font-bold">Amount Details</p>
                         <div className="bg-slate-100 rounded-lg px-2 py-2">
