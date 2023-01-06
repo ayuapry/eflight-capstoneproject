@@ -1,10 +1,10 @@
 import { DatePicker, Form, Input, Select } from "antd";
-import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { editProfile, getCity, getProfile } from "../redux/feature/UserSlice";
 import ButtonPrimary from "./ButtonPrimary";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
@@ -30,7 +30,7 @@ const validateMessages = {
 
 export const EditProfileModal = ({ open, close }) => {
   const dispatch = useDispatch();
-  const { city, profile} = useSelector((state) => state.user);
+  const { city, profile } = useSelector((state) => state.user);
   const id = localStorage.getItem("id");
 
   const handleOnClose = (e) => {
@@ -106,8 +106,7 @@ export const EditProfileModal = ({ open, close }) => {
             >
               <DatePicker
                 name="birthDate"
-                // defaultValue={dayjs(`${profile?.birthdate}`, "YYYY-MM-DD")}
-                defaultValue={dayjs(`${profile?.birthdate || '2022-01-06'}`, "YYYY-MM-DD")}
+                defaultValue={dayjs("2019-01-25")}
                 style={{ width: "100%" }}
                 placeholder="Birth Date"
               />
