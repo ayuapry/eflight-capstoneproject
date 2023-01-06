@@ -113,8 +113,8 @@ export default function RegisterPage() {
                 },
                 {
                   pattern:
-                    /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+).{8,}$/,
-                  message: `Password must be minimum 9 character, include uppercase, lowwercase, symbols`,
+                    /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@(#$%\-_=+<>])([a-zA-Z0-9!@(#$%\-_=+<>]+).{8,}$/,
+                  message: `Password must be minimum 9 character, include uppercase, lowwercase, special characters`,
                 },
               ]}
               hasFeedback

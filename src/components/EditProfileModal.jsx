@@ -100,7 +100,7 @@ export const EditProfileModal = ({ open, close }) => {
               label="Birth Date"
               rules={[
                 {
-                  required: false,
+                  required: true,
                 },
               ]}
             >

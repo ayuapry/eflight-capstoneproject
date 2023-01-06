@@ -89,7 +89,7 @@ export default function LoginPage() {
                 {
                   pattern:
                     /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+).{8,}$/,
-                  message: `Password must be minimum 9 characters, include uppercase, lowwercase, symbols`,
+                  message: `Password must be minimum 9 characters, include uppercase, lowwercase, special characters`,
                 },
               ]}
             >
