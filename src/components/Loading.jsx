@@ -13,7 +13,7 @@ export default function Loading() {
   );
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white/50">
+    <div className="flex justify-center items-center">
       <Spin indicator={antIcon} />
     </div>
   );

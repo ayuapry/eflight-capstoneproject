@@ -113,7 +113,7 @@ export default function Card() {
     );
   };
 
-  const role = localStorage.getItem('role')
+  const role = localStorage.getItem("role");
 
   return (
     <div className=" CardWrap bg-white shadow md:shadow-md w-[90%] md:max-w-5xl md:mx-auto m-0 px-4 rounded-md md:rounded-xl z-10">
@@ -124,49 +124,49 @@ export default function Card() {
             Find Flights Tickets
           </h1>
         </div>
-        {(role === 'ADMIN') ? 
+        {role === "ADMIN" ? (
           <Link to="/admin/dashboard-admin" className="flex cursor-pointer">
-          <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
-            Admin Page
-          </p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.4}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              color="blue"
-            />
-          </svg>
-        </Link>
-        :
-        <Link to="/checkin" className="flex cursor-pointer">
-        <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
-          Check-In Here
-        </p>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.4}
-          stroke="currentColor"
-          className="w-5 h-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            color="blue"
-          />
-        </svg>
-        </Link>
-        }
+            <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
+              Admin Page
+            </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.4}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                color="blue"
+              />
+            </svg>
+          </Link>
+        ) : (
+          <Link to="/checkin" className="flex cursor-pointer">
+            <p className="flex text-blue-600 font-semibold hover:text-blue-400 mb-0">
+              Check-In Here
+            </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.4}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                color="blue"
+              />
+            </svg>
+          </Link>
+        )}
       </div>
       {/* Mobile */}
       <div className="TitleCard md:hidden flex justify-between flex-row items-center px-0 md:px-[3rem] py-[2rem] md:py-[2rem]">
